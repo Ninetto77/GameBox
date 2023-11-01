@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42efad241ceca24db7090ab80b2e8eb, type: 3}
+  m_Name: Axe_simpol
+  m_EditorClassIdentifier: 
+  _name: axe_simpol
+  _sprite: {fileID: 21300000, guid: ef7ca51f1a00219428cdc7b7cae5ce2f, type: 3}
+  _speed: 1
+  _power: 25
+  _equipmentSlot: 0
+  _prefab: {fileID: 1557911036443341042, guid: f573dbf146645174ea5cd77cc256e064, type: 3}
