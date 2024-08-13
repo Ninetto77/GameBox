@@ -38,12 +38,12 @@ public class ExtractedResource : Interactable
         if (DisolveMaterial!=null && render != null )
 			render.material = DisolveMaterial;
             
+        yield return new WaitForSeconds(2f);
+
         if (RemainderPrefab != null)
         {
             var remainder = Instantiate(RemainderPrefab, transform.position, Quaternion.identity);
         }
-
-        yield return new WaitForSeconds(2f);
 		Destroy(this.gameObject);
     }
 
