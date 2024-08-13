@@ -1,15 +1,14 @@
-
-using Unity.VisualScripting;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 public class ItemPickup : Interactable
 {
     public ItemInfo item;
     public bool isPicked = false;
-    
 
-    public override void Interact()
+	public override void Interact()
     {
         base.Interact();
         PickItem();
@@ -30,13 +29,12 @@ public class ItemPickup : Interactable
                 Destroy(this.gameObject);
 
         }
-
     }
 
-    /// <summary>
-    /// Remove from inventory
-    /// </summary>
-    public void RemoveItem()
+	/// <summary>
+	/// Remove from inventory
+	/// </summary>
+	public void RemoveItem()
     {
         Inventory.instance.RemoveItem(item);
         isPicked = false;

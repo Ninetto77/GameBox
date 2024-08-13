@@ -1,10 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Outline))]
 public class Interactable : MonoBehaviour
 {
-    public virtual void Interact()
+	[HideInInspector]
+	public Outline outline;
+
+	private void Start()
+	{
+		outline = GetComponent<Outline>();
+
+		if (outline != null)
+			outline.enabled = false;
+	}
+	public virtual void Interact()
     {
         Debug.Log("Interact ");
     }

@@ -1,36 +1,50 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Health))]
-
 public class ExtractedResource : Interactable
 {
-
     [Header("„асти добываемых ресурса")]
-    public ItemInfo partOfResource;
+    public ItemInfo PartOfResource;
 
-    private Health health;
+	[Header("Ёффект исчезновени€")]
+    public Material DisolveMaterial;
+	public GameObject RemainderPrefab;
+
+	private Health health;
 
 
     private void Start()
     {
-        health = GetComponent<Health>();
-    }
-    void Update()
-    {
-        FallApart();
-    }
+        health = GetComponentInChildren<Health>();
+        health.OnDeadEvent += FallApart;
+	}
 
     /// <summary>
     /// ћетод уничтожени€ добываемых ресурсов
     /// </summary>
     public void FallApart()
     {
-        if (health.GetCurrentHealth() <= 0)
+        StartCoroutine(DisolveResource());
+    }
+
+    /// <summary>
+    /// ћетод исчезновени€ предмета
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator DisolveResource()
+    {
+        var render = gameObject.GetComponentInChildren<Renderer>();
+        if (DisolveMaterial!=null && render != null )
+			render.material = DisolveMaterial;
+            
+        if (RemainderPrefab != null)
         {
-            Destroy(this.gameObject);
+            var remainder = Instantiate(RemainderPrefab, transform.position, Quaternion.identity);
         }
+
+        yield return new WaitForSeconds(2f);
+		Destroy(this.gameObject);
     }
 
     /// <summary>

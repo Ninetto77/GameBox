@@ -17,4 +17,4 @@ MonoBehaviour:
   _speed: 1
   _power: 25
   _equipmentSlot: 0
-  _prefab: {fileID: 9127715695711549231, guid: 800f3674c5060394288fcf8021c8cfe9, type: 3}
+  _prefab: {fileID: 7098938066853060418, guid: 6fd95a5d69769c7469d4e14400097f6a, type: 3}
