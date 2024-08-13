@@ -8,11 +8,16 @@ public class PlayerMoovement : MonoBehaviour
 
     public Vector3 direction;
 
-    public CharacterController player;
+    private CharacterController player;
+    private Animator animator;
+    private PlayerAnimations animations;
 
-    void Start()
+
+	void Start()
     {
         player = GetComponent<CharacterController>();
+		animator = GetComponent<Animator>();
+		animations =  new PlayerAnimations(animator);
     }
 
     /// <summary>
@@ -33,8 +38,10 @@ public class PlayerMoovement : MonoBehaviour
         direction = transform.TransformDirection(direction);
         //движение
         player.Move(direction);
+        animations.SetRuningAnim(player.velocity);
+	}
 
-    }
+     
 
     //private void Update()
     //{
