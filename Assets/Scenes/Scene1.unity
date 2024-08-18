@@ -3960,8 +3960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpened: 0
-  craftingPanel: {fileID: 0}
-  inventoryAndClothingPanel: {fileID: 0}
   craftItemsPanel: {fileID: 0}
   craftItemButtonPrefab: {fileID: 0}
   UIBG: {fileID: 0}
@@ -3969,7 +3967,9 @@ MonoBehaviour:
   craftBtn: {fileID: 0}
   currentCraftItem: {fileID: 0}
   openCloseCraftButton: 118
-  allCrafts: []
+  allCrafts:
+  - {fileID: 11400000, guid: 66083d077284feb40b9b74631df3bbca, type: 2}
+  - {fileID: 11400000, guid: 7ba5d3b957a0a474b87139e0ab251f94, type: 2}
   craftItemName: {fileID: 0}
   craftItemDescription: {fileID: 0}
   craftItemImage: {fileID: 0}

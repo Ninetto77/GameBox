@@ -21,13 +21,15 @@ public class TypeCtaftItemButton : MonoBehaviour
 		{
 			Destroy(manager.craftItemsPanel.GetChild(i).gameObject);
 		}
-		foreach (CraftItem cso in manager.allCrafts)
+		foreach (CraftItem item in manager.allCrafts)
 		{
-			if (cso.craftType == craftType)
+			if (item.craftType == craftType)
 			{
 				GameObject craftItemButton = Instantiate(manager.craftItemButtonPrefab, manager.craftItemsPanel);
+				craftItemButton.GetComponent<Text>().text = item.finalCraft.Name;
+
 				//craftItemButton.GetComponent<Image>().sprite = cso.finalCraft.icon;
-				craftItemButton.GetComponent<FillCraftItemDetails>().currentCraftItem = cso;
+				craftItemButton.GetComponent<FillCraftItemDetails>().currentCraftItem = item;
 			}
 		}
 	}
