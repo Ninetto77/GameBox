@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Table : MonoBehaviour
 {
@@ -9,11 +10,11 @@ public class Table : MonoBehaviour
     [SerializeField] private Transform PlaseOfItems;
     private int currentCountOfItems;
     private bool isInteractable;
-    private Inventory inventory;
+	[Inject] private Inventory inventory;
 
     private void Start()
     {
-        inventory = Inventory.instance;
+       // inventory = Inventory.instance;
     }
 
     private void Update()

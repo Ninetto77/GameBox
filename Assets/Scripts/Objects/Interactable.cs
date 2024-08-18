@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Outline))]
+[RequireComponent(typeof(OutlineObjects))]
 public class Interactable : MonoBehaviour
 {
 	[HideInInspector]
-	public Outline outline;
+	public OutlineObjects outline;
 
 	private void Start()
 	{
-		outline = GetComponent<Outline>();
+		outline = GetComponent<OutlineObjects>();
 
 		if (outline != null)
 			outline.enabled = false;

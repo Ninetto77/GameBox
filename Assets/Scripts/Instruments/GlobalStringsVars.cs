@@ -8,5 +8,7 @@ public class GlobalStringsVars
     public const string VERTICAL_AXIS = "Vertical";
     public const string FIRE_1 = "Fire1";
     
+    public const int FIRE = 0;
+    
     #endregion
 }

@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Axe_simpol
   m_EditorClassIdentifier: 
   _name: axe_simpol
-  _sprite: {fileID: 21300000, guid: ef7ca51f1a00219428cdc7b7cae5ce2f, type: 3}
+  _icon: {fileID: 21300000, guid: ef7ca51f1a00219428cdc7b7cae5ce2f, type: 3}
   _speed: 1
   _power: 25
   _equipmentSlot: 0
   _prefab: {fileID: 4763703700410393030, guid: 7b52ec6aaeb6c934881ff3073976b53e, type: 3}
+  _fxType: 1
+  layerMaskToHit:
+    serializedVersion: 2
+    m_Bits: 8

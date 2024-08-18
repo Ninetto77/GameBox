@@ -1,24 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Inventory : MonoBehaviour
 {
-    #region Singlton
-    public static Inventory instance;
-
-    private void Awake()
-    {
-        if (instance != null)
-            return;
-        
-        instance = this;
-    }
-    #endregion
-
     //Создание делегата. вызывается при изменении инвентаря
     public delegate void OnItemChanged();
     public OnItemChanged OnItemChangedCallback;
@@ -27,7 +11,7 @@ public class Inventory : MonoBehaviour
     public int Space = 3;
     public float reachDistance = 1.5f;
 
-    private Outline lastOutline;
+    private OutlineObjects lastOutline;
     private Camera mainCamera;
 
 
@@ -49,14 +33,16 @@ public class Inventory : MonoBehaviour
     {
         Ray ray = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
+
+        if (lastOutline != null) 
+            lastOutline.enabled = false;
+
         if (Physics.Raycast(ray, out hit, reachDistance))
         {
             ItemPickup item = hit.collider.gameObject.GetComponent<ItemPickup>();
+
             if (item != null)
             {
-                if (lastOutline != null) 
-                    lastOutline.enabled = false;
-
                 lastOutline = item.outline;
                 item.outline.enabled = true ;
                 if (Input.GetMouseButtonDown(0))

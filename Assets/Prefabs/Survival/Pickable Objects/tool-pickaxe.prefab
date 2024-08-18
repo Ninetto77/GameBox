@@ -10,23 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 15.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.242
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.26
+      value: 18.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9063079
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.42261827
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalRotation.y
@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 98bf47bfde71b3d47b2371ff8e61951e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -142,6 +142,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   DistanceToInteract: 1.5
+  FXPrefab: {fileID: 100002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
 --- !u!114 &4069158544227129839
 MonoBehaviour:
   m_ObjectHideFlags: 0

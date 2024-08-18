@@ -22,23 +22,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc2b93724976554c82db04fad7e2886, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9063079
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc2b93724976554c82db04fad7e2886, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.42261827
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc2b93724976554c82db04fad7e2886, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc2b93724976554c82db04fad7e2886, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc2b93724976554c82db04fad7e2886, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc2b93724976554c82db04fad7e2886, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -87,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: acc2b93724976554c82db04fad7e2886, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4382380960419679352}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: acc2b93724976554c82db04fad7e2886, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8911603494305933787}
   m_SourcePrefab: {fileID: 100100000, guid: acc2b93724976554c82db04fad7e2886, type: 3}
 --- !u!1 &2775863461038279947 stripped
 GameObject:
@@ -153,9 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c61254c2f7a4b45aebb0d814bfd1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 63
+  DistanceToInteract: 1.5
 --- !u!114 &3665288361765624790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d55a3508d59f84e9c391fa57396c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outline: {fileID: 0}
   item: {fileID: 0}
   isPicked: 0
 --- !u!65 &4382380960419679352
@@ -191,3 +193,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.52, y: 0.73, z: 1}
   m_Center: {x: 0, y: 2.21, z: 0}
+--- !u!114 &8911603494305933787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775863461038279947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

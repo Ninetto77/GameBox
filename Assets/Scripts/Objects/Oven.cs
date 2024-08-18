@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Oven : MonoBehaviour
 {
@@ -8,11 +9,11 @@ public class Oven : MonoBehaviour
     [SerializeField]private int countOfLogs;
     private int currentCountOfLogs;
     private bool isInteractable;
-    private Inventory inventory;
+	[Inject] private Inventory inventory;
 
     private void Start()
     {
-        inventory = Inventory.instance;
+        //inventory = Inventory.instance;
     }
 
     private void Update()

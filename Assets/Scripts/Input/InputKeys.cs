@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputKeys : MonoBehaviour
 {
+    [HideInInspector]
     public PlayerMoovement player;
 
     private void Start()
@@ -20,5 +19,11 @@ public class InputKeys : MonoBehaviour
         float verticalDirection = Input.GetAxis(GlobalStringsVars.VERTICAL_AXIS);
 
         player.MovePlayer(horizontalDirection, verticalDirection);
-    }
+
+        bool hit = Input.GetMouseButton(GlobalStringsVars.FIRE);
+        if (hit) player.Hit(true);
+
+		bool notHit = Input.GetMouseButtonUp(GlobalStringsVars.FIRE);
+		if (notHit) player.Hit(false);
+	}
 }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerAnimations
 {
-    private readonly string animRuningString = "IsRuning";
     private readonly string animRunString = "Run";
     private readonly string animJumpString = "Jump";
+    private readonly string animHitString = "IsHiting";
 
     private Animator animator;
     public PlayerAnimations(Animator _animator)
@@ -12,18 +12,18 @@ public class PlayerAnimations
         animator = _animator;
 	}
 
-    public void SetRuningAnim(bool state)
-    {
-		animator.SetBool(animRuningString, state);
-	}
-
 	public void SetRuningAnim(Vector3 velocity)
 	{
 		animator.SetFloat(animRunString, velocity.magnitude);
 	}
 
-	public void SetJumpAnim(bool state)
+	public void SetJumpAnim()
 	{
 		animator.SetTrigger(animJumpString);
+	}
+
+	public void SetHitAnim(bool state)
+	{
+		animator.SetBool(animHitString, state);
 	}
 }

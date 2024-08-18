@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -6,10 +7,9 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryUI;
 
     private InventorySlot[] slots;
-    private Inventory inventory;
+	[Inject] private Inventory inventory;
     void Start()
     {
-        inventory = Inventory.instance;
         //Событие
         inventory.OnItemChangedCallback += UpdateUI;
 

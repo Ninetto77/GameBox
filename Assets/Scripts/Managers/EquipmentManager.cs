@@ -1,28 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
+using Zenject;
 
 public class EquipmentManager : MonoBehaviour
 {
-    #region Singlton
-    public static EquipmentManager instance;
-
-    private void Awake()
-    {
-        if (instance != null)
-            return;
-
-        instance = this;
-    }
-    #endregion
-
     [SerializeField]private Transform playerHand;
 
-    private Inventory inventory;
-    private Insrument[] currentEquipment;
+    [Inject] private Inventory inventory;
+	[Inject] private DiContainer diContainer;
+
+	private Insrument[] currentEquipment;
 
     public delegate void OnEquipmentChanged(Insrument oldItem, Insrument newItem);
     public OnEquipmentChanged OnEquipmentChangedCallback;
@@ -30,8 +16,6 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
-        inventory = Inventory.instance;
-
         //найти количество экипированных частей тела
         int numberOfSlots = System.Enum.GetNames(typeof(EquipmentsSlot)).Length;
         currentEquipment = new Insrument[numberOfSlots];
@@ -126,7 +110,9 @@ public class EquipmentManager : MonoBehaviour
     {
         UnequipHand();
 
-        GameObject item = Instantiate(newItem.Prefab, playerHand) as GameObject;
+		GameObject item =  diContainer.InstantiatePrefab(newItem.Prefab, playerHand);
+
+		//GameObject item = Instantiate(newItem.Prefab, playerHand) as GameObject;
         item.transform.position = playerHand.position;
         item.GetComponent<ItemPickup>().isPicked = true;
     }

@@ -1,14 +1,16 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class InventorySlot : MonoBehaviour
 {
     [Header("UI")]
     public Image icon;
     public Button removeBtn;
+    [Inject] Inventory inventory;
+    [Inject] EquipmentManager equipmentManager;
 
-    private ItemInfo item;
+	private ItemInfo item;
 
     /// <summary>
     /// Добавляем слот
@@ -18,7 +20,7 @@ public class InventorySlot : MonoBehaviour
     {
         item = newItem;
 
-        icon.sprite = item.Sprite;
+        icon.sprite = item.Icon;
         icon.enabled = true;
         removeBtn.interactable = true;
     }
@@ -41,17 +43,17 @@ public class InventorySlot : MonoBehaviour
     /// </summary>
     public void OnRemoveButton()
     {
-        Inventory.instance.RemoveItem(item);
+        inventory.RemoveItem(item);
     }
 
     /// <summary>
     /// Использование предмета
     /// </summary>
     public void UseItem()
-    {
-        if (item != null)
+    { 
+		if (item != null)
         {
-            item.Use();
+            item.Use(equipmentManager);
         }
     }
 }

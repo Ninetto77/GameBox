@@ -34,6 +34,12 @@ public class ExtractedResource : Interactable
     /// <returns></returns>
     IEnumerator DisolveResource()
     {
+        var collids = GetComponents<BoxCollider>();
+        foreach (var item in collids)
+        {
+            item.enabled = false;
+		}
+
         var render = gameObject.GetComponentInChildren<Renderer>();
         if (DisolveMaterial!=null && render != null )
 			render.material = DisolveMaterial;
