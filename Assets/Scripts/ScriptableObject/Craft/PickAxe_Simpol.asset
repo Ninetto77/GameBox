@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PickAxe_Simpol
   m_EditorClassIdentifier: 
   craftType: 1
-  finalCraft: {fileID: 11400000, guid: f3d503edc569cad49abcdd0b1b2047a5, type: 2}
+  finalCraft: {fileID: 11400000, guid: be1b0c85c8dacbd43807f3aa6c607d95, type: 2}
   craftAmount: 1
   craftTime: 1
   craftResources:

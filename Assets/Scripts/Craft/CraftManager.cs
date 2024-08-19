@@ -10,12 +10,17 @@ public class CraftManager : MonoBehaviour
 {
 	public bool isOpened;
 
+	[Header("Craft Panels")]
 	public Transform craftItemsPanel;
-	public GameObject craftItemButtonPrefab;
+	public Transform craftItemResourcePanel;
 
-	public GameObject UIBG;
-	public GameObject crosshair;
-	public Button craftBtn;
+	[Header("Craft Buttons Prefab")]
+	public GameObject craftItemButtonPrefab;
+	public GameObject craftItemResourceButtonPrefab;
+
+	//public GameObject UIBG;
+	//public GameObject crosshair;
+	//public Button craftBtn;
 	public FillCraftItemDetails currentCraftItem;
 
 	public KeyCode openCloseCraftButton;
@@ -46,11 +51,15 @@ public class CraftManager : MonoBehaviour
 
 		//craftingPanel.gameObject.SetActive(false);
 	}
-	public void FillItemDetailsHelper()
+	public void FillCraftItemDetails(string name, string description, Sprite icon, int time, int amount)
 	{
-		currentCraftItem.FillItemDetails();
+		craftItemName.text = name;
+		craftItemDescription.text = description;
+		craftItemImage.sprite = icon;
+		craftItemDuration.text = time.ToString();
+		craftItemAmount.text = amount.ToString();
 	}
-	// Update is called once per frame
+
 	void Update()
 	{
 		if (Input.GetKeyDown(openCloseCraftButton))
@@ -71,10 +80,10 @@ public class CraftManager : MonoBehaviour
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
 			}
-
 		}
-
 	}
+
+
 
 	public void LoadCraftItems(string craftType)
 	{
@@ -87,7 +96,6 @@ public class CraftManager : MonoBehaviour
 			if (cso.craftType.ToString().ToLower() == craftType.ToLower())
 			{
 				GameObject craftItemButton = Instantiate(craftItemButtonPrefab, craftItemsPanel);
-				//craftItemButton.GetComponent<Image>().sprite = cso.finalCraft.icon;
 				craftItemButton.GetComponent<FillCraftItemDetails>().currentCraftItem = cso;
 			}
 		}

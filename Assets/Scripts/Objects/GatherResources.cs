@@ -13,7 +13,7 @@ public class GatherResources : MonoBehaviour
     private LayerMask layerMask;
 	private ItemInfo itemPickup;
 	private bool insrumentIsPicked;
-	private Insrument insrument;
+	private Tool insrument;
     private Camera mainCamera;
 	[Inject] private Inventory inventory;
     private OutlineObjects outline;
@@ -35,7 +35,7 @@ public class GatherResources : MonoBehaviour
 
 	private void InitInstrument()
 	{
-		insrument =(Insrument)itemPickup;
+		insrument =(Tool)itemPickup;
 		layerMask = insrument.LayerMaskToHit;
 		fxPrefab  = insrument.FXType;
 	}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe_Simpol
   m_EditorClassIdentifier: 
   craftType: 1
-  finalCraft: {fileID: 11400000, guid: 45f9b4d15bfbade448c4b2e5231ff52b, type: 2}
+  finalCraft: {fileID: 11400000, guid: 2a6b2aa6a65a06e43bcaa7ee84a9e5ed, type: 2}
   craftAmount: 1
   craftTime: 1
   craftResources:

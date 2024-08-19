@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,11 +7,12 @@ public class TypeCtaftItemButton : MonoBehaviour
 {
 	public CraftType craftType;
 	[Inject] CraftManager manager;
+	[Inject] DiContainer container;
 
 	void Start()
     {
         Button btn = GetComponent<Button>();
-		//btn.onClick += onClick();
+		btn.onClick.AddListener(onClick);
     }
 
 	private void onClick()
@@ -25,10 +25,9 @@ public class TypeCtaftItemButton : MonoBehaviour
 		{
 			if (item.craftType == craftType)
 			{
-				GameObject craftItemButton = Instantiate(manager.craftItemButtonPrefab, manager.craftItemsPanel);
-				craftItemButton.GetComponent<Text>().text = item.finalCraft.Name;
+				GameObject craftItemButton = container.InstantiatePrefab(manager.craftItemButtonPrefab, manager.craftItemsPanel);
+				craftItemButton.transform.GetChild(0).GetComponent<Text>().text = item.finalCraft.Name;
 
-				//craftItemButton.GetComponent<Image>().sprite = cso.finalCraft.icon;
 				craftItemButton.GetComponent<FillCraftItemDetails>().currentCraftItem = item;
 			}
 		}

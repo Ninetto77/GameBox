@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 74
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -91,8 +91,9 @@ GameObject:
   - component: {fileID: 6342684038220129401}
   - component: {fileID: 4602734695565562388}
   - component: {fileID: 5301134266547931552}
+  - component: {fileID: 2074489329180075475}
   m_Layer: 5
-  m_Name: Item_Btn
+  m_Name: CraftItem_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +117,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 438.6201, y: 125}
+  m_SizeDelta: {x: 440, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6342684038220129401
 CanvasRenderer:
@@ -200,3 +201,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2074489329180075475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211011099104886171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65242321fa26b443b267f35c00d8ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCraftItem: {fileID: 0}

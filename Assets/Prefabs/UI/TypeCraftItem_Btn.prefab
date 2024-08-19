@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4980677414154014101}
   - component: {fileID: 1233735691001115759}
   - component: {fileID: 4190280483791664530}
+  - component: {fileID: 894287705085368344}
   m_Layer: 5
   m_Name: TypeCraftItem_Btn
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &894287705085368344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123817646168070246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3539ef92d7155694c914ab956faaeab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftType: 0
 --- !u!1 &5201950254419721108
 GameObject:
   m_ObjectHideFlags: 0

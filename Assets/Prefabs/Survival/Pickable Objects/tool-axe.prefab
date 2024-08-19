@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
-  item: {fileID: 11400000, guid: 45f9b4d15bfbade448c4b2e5231ff52b, type: 2}
+  item: {fileID: 11400000, guid: 2a6b2aa6a65a06e43bcaa7ee84a9e5ed, type: 2}
   isPicked: 0
 --- !u!65 &6541764067988317805
 BoxCollider:

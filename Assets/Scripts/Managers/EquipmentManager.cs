@@ -8,9 +8,9 @@ public class EquipmentManager : MonoBehaviour
     [Inject] private Inventory inventory;
 	[Inject] private DiContainer diContainer;
 
-	private Insrument[] currentEquipment;
+	private Tool[] currentEquipment;
 
-    public delegate void OnEquipmentChanged(Insrument oldItem, Insrument newItem);
+    public delegate void OnEquipmentChanged(Tool oldItem, Tool newItem);
     public OnEquipmentChanged OnEquipmentChangedCallback;
 
 
@@ -18,7 +18,7 @@ public class EquipmentManager : MonoBehaviour
     {
         //найти количество экипированных частей тела
         int numberOfSlots = System.Enum.GetNames(typeof(EquipmentsSlot)).Length;
-        currentEquipment = new Insrument[numberOfSlots];
+        currentEquipment = new Tool[numberOfSlots];
     }
 
     private void Update()
@@ -33,10 +33,10 @@ public class EquipmentManager : MonoBehaviour
     /// Экипировать предмет
     /// </summary>
     /// <param name="newItem"></param>
-    public void Equip(Insrument newItem)
+    public void Equip(Tool newItem)
     {
         int slotIndex = (int)newItem.EquipmentSlot;
-        Insrument oldItem = null;
+        Tool oldItem = null;
 
 
         if (currentEquipment[slotIndex] != null)
@@ -72,7 +72,7 @@ public class EquipmentManager : MonoBehaviour
         //если слот экипировки не пустой
         if (currentEquipment[slotIndex] != null)
         {
-            Insrument oldItem = currentEquipment[slotIndex];
+            Tool oldItem = currentEquipment[slotIndex];
             bool IsAdded = inventory.TryAddItem(oldItem);
 
             if (IsAdded)
@@ -106,7 +106,7 @@ public class EquipmentManager : MonoBehaviour
     /// Метод экипировки руки
     /// </summary>
     /// <param name="newItem"></param>
-    public void EquipHand(Insrument newItem)
+    public void EquipHand(Tool newItem)
     {
         UnequipHand();
 

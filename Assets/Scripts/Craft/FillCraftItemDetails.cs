@@ -1,74 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class FillCraftItemDetails : MonoBehaviour
 {
+	public CraftItem currentCraftItem { get; set; }
+	[Inject] private CraftManager craftManager;
 
-	public CraftItem currentCraftItem;
-	private CraftManager craftManager;
-	public GameObject craftResourcePrefab;
-	public string craftInfoPanelName;
-	private GameObject craftInfoPanelGO;
+
+	//public GameObject craftResourcePrefab;
+	//public string craftInfoPanelName;
+	//private GameObject craftInfoPanelGO;
 	//public CraftQueueManager craftQueueManager;
 
-	private void Awake()
+	private void Start()
 	{
-		craftInfoPanelGO = GameObject.Find(craftInfoPanelName);
-		craftManager = FindObjectOfType<CraftManager>();
-		//craftQueueManager = FindObjectOfType<CraftQueueManager>();
+		Button btn = GetComponent<Button>();
+		btn.onClick.AddListener(FillItemDetails);
 	}
+
 	public void FillItemDetails()
 	{
-		//craftManager.currentCraftItem = this;
-		////for (int i = 0; i < GameObject.Find(craftInfoPanelName).transform.childCount; i++)
-		//for (int i = 0; i < craftInfoPanelGO.transform.childCount; i++)
-		//{
-		//	Destroy(craftInfoPanelGO.transform.GetChild(i).gameObject);
-		//}
+		var resourcePanelTransform = craftManager.craftItemResourcePanel.transform;
 
-		//craftManager.craftItemName.text = currentCraftItem.finalCraft.name;
-		//craftManager.craftItemDescription.text = currentCraftItem.finalCraft.itemDescription;
-		//craftManager.craftItemImage.sprite = currentCraftItem.finalCraft.icon;
-		//craftManager.craftItemDuration.text = currentCraftItem.craftTime.ToString();
-		//craftManager.craftItemAmount.text = currentCraftItem.craftAmount.ToString();
+		for (int i = 0; i < resourcePanelTransform.childCount; i++)
+		{
+			Destroy(resourcePanelTransform.GetChild(i).gameObject);
+		}
+
+
+		var item = currentCraftItem.finalCraft;
+
+		craftManager.FillCraftItemDetails(
+			item.Name,
+			item.Description,
+			item.Icon,
+			currentCraftItem.craftTime,
+			currentCraftItem.craftAmount);
+
 
 		//bool canCraft = true;
-		//for (int i = 0; i < currentCraftItem.craftResources.Count; i++)
-		//{
-		//	GameObject craftResourceGO = Instantiate(craftResourcePrefab, craftInfoPanelGO.transform);
-		//	CraftResourceDetails crd = craftResourceGO.GetComponent<CraftResourceDetails>();
-		//	crd.amountText.text = currentCraftItem.craftResources[i].craftObjectAmount.ToString();
-		//	crd.itemTypeText.text = currentCraftItem.craftResources[i].craftObject.itemName;
-		//	//int totalAmount = currentCraftItem.craftResources[i].craftObjectAmount * int.Parse(craftQueueManager.craftAmountInputField.text);
-		//	crd.totalText.text = totalAmount.ToString();
-		//	int resourceAmount = 0;
-		//	foreach (InventorySlot slot in FindObjectsOfType<InventoryManager>()[0].slots)
-		//	{
-		//		if (slot.isEmpty)
-		//			continue;
-		//		if (slot.item.itemName == currentCraftItem.craftResources[i].craftObject.itemName)
-		//		{
-		//			resourceAmount += slot.amount;
-		//		}
-		//	}
-		//	crd.haveText.text = resourceAmount.ToString();
+		for (int i = 0; i < currentCraftItem.craftResources.Count; i++)
+		{
+			GameObject craftResourceGO = Instantiate(craftManager.craftItemResourceButtonPrefab, resourcePanelTransform);
 
-		//	if (resourceAmount < totalAmount)
-		//	{
-		//		canCraft = false;
-		//	}
-		//}
-		//if (canCraft)
-		//{
-		//	craftManager.craftBtn.interactable = true;
-		//}
-		//else
-		//{
-		//	craftManager.craftBtn.interactable = false;
-		//}
-		////craftQueueManager.currentCraftItem = currentCraftItem;
+
+			CraftResourceDetails crd = craftResourceGO.GetComponent<CraftResourceDetails>();
+			if (crd != null)
+			{
+				crd.FillResourceDetails(
+					currentCraftItem.craftResources[i].craftObjectAmount.ToString(),
+					currentCraftItem.craftResources[i].craftObject.Name,
+					currentCraftItem.craftResources[i].craftObjectAmount.ToString(),
+					"0"
+					);
+			}
+			else
+				Debug.LogAssertion($"Нет инфы по поводу ресурсов {currentCraftItem.craftResources[i].craftObject.Name}");
+		}
 	}
 }

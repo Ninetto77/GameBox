@@ -1,8 +1,7 @@
 using UnityEngine;
-using Zenject;
 
-[CreateAssetMenu(fileName = "IntrumentInfo", menuName ="Gameplay/New instrument")]
-public class Insrument : ItemInfo
+[CreateAssetMenu(fileName = "ToolInfo", menuName = "Gameplay/New tool")]
+public class Tool : ItemInfo
 {
     [SerializeField] private int _speed;
     [SerializeField] private int _power;

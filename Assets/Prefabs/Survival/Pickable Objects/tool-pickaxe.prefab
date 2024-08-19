@@ -138,11 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c61254c2f7a4b45aebb0d814bfd1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
   DistanceToInteract: 1.5
-  FXPrefab: {fileID: 100002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
 --- !u!114 &4069158544227129839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
-  item: {fileID: 11400000, guid: f3d503edc569cad49abcdd0b1b2047a5, type: 2}
+  item: {fileID: 11400000, guid: be1b0c85c8dacbd43807f3aa6c607d95, type: 2}
   isPicked: 0
 --- !u!114 &7742205922803730651
 MonoBehaviour:
