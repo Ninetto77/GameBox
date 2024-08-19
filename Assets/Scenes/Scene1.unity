@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4016,7 +4016,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpened: 0
   craftItemsPanel: {fileID: 2147204030}
+  craftItemResourcePanel: {fileID: 1329179317}
   craftItemButtonPrefab: {fileID: 7211011099104886171, guid: 5b8fa85a48234474cab8b8f0d7878e90, type: 3}
+  craftItemResourceButtonPrefab: {fileID: 7091771631089038126, guid: e15d2fcf7f891b046b3b016c63ff0e1e, type: 3}
+  craftButton: {fileID: 0}
   currentCraftItem: {fileID: 0}
   openCloseCraftButton: 118
   allCrafts:
@@ -4404,8 +4407,6 @@ GameObject:
   - component: {fileID: 1803429202}
   - component: {fileID: 1803429206}
   - component: {fileID: 1803429205}
-  - component: {fileID: 1803429204}
-  - component: {fileID: 1803429203}
   m_Layer: 5
   m_Name: IngredientsPanel
   m_TagString: Untagged
@@ -4433,32 +4434,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5.2528, y: 368.8272}
   m_SizeDelta: {x: 835, y: 340}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1803429203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803429201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0591eca5a78648428c14a0de50a65f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateOnAwake: 1
-  CurrentWindowState: 0
---- !u!225 &1803429204
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803429201}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &1803429205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6298,10 +6273,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1329179317}
     m_Modifications:
-    - target: {fileID: 1015977812455228117, guid: e15d2fcf7f891b046b3b016c63ff0e1e, type: 3}
-      propertyPath: m_Name
-      value: Have
-      objectReference: {fileID: 0}
     - target: {fileID: 3084657548355238909, guid: e15d2fcf7f891b046b3b016c63ff0e1e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6453,14 +6424,6 @@ PrefabInstance:
     - target: {fileID: 4246532257496597139, guid: e15d2fcf7f891b046b3b016c63ff0e1e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5588413542630140064, guid: e15d2fcf7f891b046b3b016c63ff0e1e, type: 3}
-      propertyPath: m_Name
-      value: Type
-      objectReference: {fileID: 0}
-    - target: {fileID: 6764139666813620106, guid: e15d2fcf7f891b046b3b016c63ff0e1e, type: 3}
-      propertyPath: m_Name
-      value: Total
       objectReference: {fileID: 0}
     - target: {fileID: 7091771631089038126, guid: e15d2fcf7f891b046b3b016c63ff0e1e, type: 3}
       propertyPath: m_Name

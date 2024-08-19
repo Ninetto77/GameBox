@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b614efba6a86da14487598b7994a4785, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  _name: Stone
+  _name: "\u041A\u0430\u043C\u0435\u043D\u044C"
   _description: 
   _icon: {fileID: 21300000, guid: 7d202495337359241966d6272b866260, type: 3}
