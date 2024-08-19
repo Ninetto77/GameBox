@@ -18,6 +18,9 @@ public class CraftManager : MonoBehaviour
 	public GameObject craftItemButtonPrefab;
 	public GameObject craftItemResourceButtonPrefab;
 
+	[Header("Craft Buttons")]
+	public Button craftButton;
+
 	//public GameObject UIBG;
 	//public GameObject crosshair;
 	//public Button craftBtn;

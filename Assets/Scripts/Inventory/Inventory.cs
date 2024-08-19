@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -87,6 +88,14 @@ public class Inventory : MonoBehaviour
         if (OnItemChangedCallback != null)
             OnItemChangedCallback.Invoke();
         return true;
+    }
+    /// <summary>
+    /// Считает количество определенного предмета в инвентаре
+    /// </summary>
+    /// <returns></returns>
+    public int GetCountOfItem(string nameItem)
+    {
+        return items.Count(item => item.name == nameItem);
     }
 
     /// <summary>

@@ -6,6 +6,7 @@ public class FillCraftItemDetails : MonoBehaviour
 {
 	public CraftItem currentCraftItem { get; set; }
 	[Inject] private CraftManager craftManager;
+	[Inject] private Inventory inventory;
 
 
 	//public GameObject craftResourcePrefab;
@@ -21,14 +22,6 @@ public class FillCraftItemDetails : MonoBehaviour
 
 	public void FillItemDetails()
 	{
-		var resourcePanelTransform = craftManager.craftItemResourcePanel.transform;
-
-		for (int i = 0; i < resourcePanelTransform.childCount; i++)
-		{
-			Destroy(resourcePanelTransform.GetChild(i).gameObject);
-		}
-
-
 		var item = currentCraftItem.finalCraft;
 
 		craftManager.FillCraftItemDetails(
@@ -38,8 +31,35 @@ public class FillCraftItemDetails : MonoBehaviour
 			currentCraftItem.craftTime,
 			currentCraftItem.craftAmount);
 
-
 		//bool canCraft = true;
+		FillCraftResources();
+
+
+		//if (canCraft)
+		//{
+		//	craftManager.craftButton.interactable = true;
+		//}
+		//else
+		//{
+		//	craftManager.craftButton.interactable = false;
+		//}
+	}
+
+	/// <summary>
+	/// Заполнить ресурсы крафта
+	/// </summary>
+	/// <param name="resourcePanelTransform"></param>
+	private void FillCraftResources()
+	{
+		var resourcePanelTransform = craftManager.craftItemResourcePanel.transform;
+
+		///Очистка панели ресурсов крафта
+		for (int i = 0; i < resourcePanelTransform.childCount; i++)
+		{
+			Destroy(resourcePanelTransform.GetChild(i).gameObject);
+		}
+
+		//перебор ресурсов
 		for (int i = 0; i < currentCraftItem.craftResources.Count; i++)
 		{
 			GameObject craftResourceGO = Instantiate(craftManager.craftItemResourceButtonPrefab, resourcePanelTransform);
@@ -48,12 +68,22 @@ public class FillCraftItemDetails : MonoBehaviour
 			CraftResourceDetails crd = craftResourceGO.GetComponent<CraftResourceDetails>();
 			if (crd != null)
 			{
+				var craftItemName = currentCraftItem.craftResources[i].craftObject.Name;
+				var have = inventory.GetCountOfItem(craftItemName);
+
+				Debug.Log(have);
+
 				crd.FillResourceDetails(
 					currentCraftItem.craftResources[i].craftObjectAmount.ToString(),
-					currentCraftItem.craftResources[i].craftObject.Name,
+					craftItemName,
 					currentCraftItem.craftResources[i].craftObjectAmount.ToString(),
-					"0"
+					have.ToString()
 					);
+
+				//if (resourceAmount < totalAmount)
+				//{
+				//	canCraft = false;
+				//}
 			}
 			else
 				Debug.LogAssertion($"Нет инфы по поводу ресурсов {currentCraftItem.craftResources[i].craftObject.Name}");
