@@ -65,8 +65,6 @@ public class FillCraftItemDetails : MonoBehaviour
 				var totalAmount = currentCraftItem.craftResources[i].craftObjectAmount;
 				var have = inventory.GetCountOfItem(craftItemName);
 
-				Debug.Log(have);
-
 				crd.FillResourceDetails(
 					amount.ToString(),
 					craftItemName,

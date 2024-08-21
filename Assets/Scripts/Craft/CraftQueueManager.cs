@@ -4,16 +4,18 @@ using Zenject;
 
 public class CraftQueueManager : MonoBehaviour
 {
-	public CraftItem currentCraftItem;
 	[Header("Детали очереди")]
 	public GameObject craftQueuePrefab;
 	public TMP_Text craftAmountText;
 
+	[HideInInspector]
+	public CraftItem currentCraftItem {  get; set; }
 	//public Button addButton;
 	//public Button removeButton;
 
 	[Inject] private Inventory inventory;
 	[Inject] private CraftManager craftManager;
+
 
 	private int craftTime;
 
@@ -36,6 +38,7 @@ public class CraftQueueManager : MonoBehaviour
 	{
 		foreach (CraftResource craftResource in currentCraftItem.craftResources)
 		{
+
 			//int amountToRemove = craftResource.craftObjectAmount * int.Parse(craftAmountInputField.text);
 			//foreach (InventorySlot slot in inventory.slots)
 			//{
@@ -80,8 +83,14 @@ public class CraftQueueManager : MonoBehaviour
 		
 		///отображение деталей предмета в очереди в UI
 		CraftQueueItemDetails craftQueueItemDetails = craftQueueInstance.GetComponent<CraftQueueItemDetails>();
-		GetCraftTime(out int minutes, out int seconds);
 
+		if (craftQueueItemDetails == null)
+		{
+			Debug.Log("Нет деталей очереди CraftQueueItemDetails");
+			return;
+		}
+
+		GetCraftTime(out int minutes, out int seconds);
 		craftQueueItemDetails.FillGUADetails(
 											craftAmountText.text,
 											minutes, seconds,

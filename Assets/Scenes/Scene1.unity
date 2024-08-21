@@ -4917,10 +4917,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1211194545}
   - {fileID: 268632715}
   - {fileID: 359130115}
   - {fileID: 994419583}
+  - {fileID: 1211194545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1010965836
@@ -6909,7 +6909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccef284de3832c344aee5c5893f8bf8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCraftItem: {fileID: 0}
   craftQueuePrefab: {fileID: 1540912129031913098, guid: ebc0c88740f9ea844a4851277ef5ccb2, type: 3}
   craftAmountText: {fileID: 1212534454}
 --- !u!224 &1557921371 stripped
