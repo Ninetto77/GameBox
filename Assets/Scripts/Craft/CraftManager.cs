@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 using Zenject;
 
 public class CraftManager : MonoBehaviour
@@ -30,16 +28,12 @@ public class CraftManager : MonoBehaviour
 
 	public List<CraftItem> allCrafts;
 
-
-
-
 	[Header("Craft Item Details")]
 	public TMP_Text craftItemName;
 	public TMP_Text craftItemDescription;
 	public Image craftItemImage;
 	public TMP_Text craftItemDuration;
 	public TMP_Text craftItemAmount;
-	
 	
 	
 	[Inject] private StateMashine stateMashine;
@@ -54,6 +48,14 @@ public class CraftManager : MonoBehaviour
 
 		//craftingPanel.gameObject.SetActive(false);
 	}
+	/// <summary>
+	/// Заполнение детали предмета
+	/// </summary>
+	/// <param name="name">Имя</param>
+	/// <param name="description">Описание</param>
+	/// <param name="icon">иконка</param>
+	/// <param name="time">время создания</param>
+	/// <param name="amount">количество</param>
 	public void FillCraftItemDetails(string name, string description, Sprite icon, int time, int amount)
 	{
 		craftItemName.text = name;

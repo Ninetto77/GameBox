@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aadd41eeb8eed344f96a446c406aba0f, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  craftType: 1
+  finalCraft: {fileID: 11400000, guid: 2a6b2aa6a65a06e43bcaa7ee84a9e5ed, type: 2}
+  craftAmount: 1
+  craftTime: 1
+  craftResources:
+  - craftObject: {fileID: 11400000, guid: 0bcfb9cc90549b84f825707f38f426ac, type: 2}
+    craftObjectAmount: 1
+  - craftObject: {fileID: 11400000, guid: 8360324285e9dd443b5d41bcbb48dd19, type: 2}
+    craftObjectAmount: 1

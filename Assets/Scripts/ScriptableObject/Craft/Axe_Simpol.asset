@@ -18,6 +18,6 @@ MonoBehaviour:
   craftTime: 1
   craftResources:
   - craftObject: {fileID: 11400000, guid: 0bcfb9cc90549b84f825707f38f426ac, type: 2}
-    craftObjectAmount: 1
+    craftObjectAmount: 2
   - craftObject: {fileID: 11400000, guid: 8360324285e9dd443b5d41bcbb48dd19, type: 2}
     craftObjectAmount: 1

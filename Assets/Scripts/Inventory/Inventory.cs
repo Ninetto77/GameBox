@@ -89,11 +89,28 @@ public class Inventory : MonoBehaviour
             OnItemChangedCallback.Invoke();
         return true;
     }
-    /// <summary>
-    /// Считает количество определенного предмета в инвентаре
-    /// </summary>
-    /// <returns></returns>
-    public int GetCountOfItem(string nameItem)
+
+	/// <summary>
+	/// Если предметы добавлены в инвентарь, возвращает 1. Иначе 0
+	/// </summary>
+	/// <param name="newItem">Предмет</param>
+	/// <returns></returns>
+	public bool TryAddItems(ItemInfo newItem, int count)
+	{
+        for (int i = 0; i < count; i++)
+        {
+            bool added = TryAddItem(newItem);
+            if (!added)
+                return false;
+        }
+		return true;
+	}
+
+	/// <summary>
+	/// Считает количество определенного предмета в инвентаре
+	/// </summary>
+	/// <returns></returns>
+	public int GetCountOfItem(string nameItem)
     {
         return items.Count(item => item.name == nameItem);
     }
