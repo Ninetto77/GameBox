@@ -14,7 +14,6 @@ public class EquipmentManager : MonoBehaviour
     public delegate void OnEquipmentChanged(Tool oldItem, Tool newItem);
     public OnEquipmentChanged OnEquipmentChangedCallback;
 
-	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
 	private InventoryController inventory;
 
 	private void Start()

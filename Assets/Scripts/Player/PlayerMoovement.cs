@@ -12,6 +12,9 @@ public class PlayerMoovement : MonoBehaviour
 	[SerializeField] private Transform aimTarget;
 	[SerializeField] private Transform hand;
 
+    [Header("Слайдер здоровья")]
+    [SerializeField] private HealthBar healthBar;
+
     [HideInInspector]
     public Vector3 direction;
 
@@ -19,13 +22,21 @@ public class PlayerMoovement : MonoBehaviour
     private Animator animator;
     private PlayerAnimations animations;
     private PlayerBrain brain;
+    private PlayerHealth playerHealth;
+    private Health health;
 
+	private void Awake()
+	{
+        health = GetComponent<Health>();
+		playerHealth = new PlayerHealth(healthBar, health);
+	}
 	void Start()
     {
         player = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
 		animations =  new PlayerAnimations(animator);
         brain = new PlayerBrain();
+
 	}
 
     /// <summary>
@@ -78,11 +89,17 @@ public class PlayerMoovement : MonoBehaviour
         }
 	}
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            health.TakeDamage(10);
+        }
+    }
 
-
-	//private void Update()
-	//{
-	//    if (EventSystem.current.IsPointerOverGameObject())
-	//        return;
-	//}
-}
+		//private void Update()
+		//{
+		//    if (EventSystem.current.IsPointerOverGameObject())
+		//        return;
+		//}
+	}

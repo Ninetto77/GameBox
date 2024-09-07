@@ -6,7 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public Action OnDeadEvent;
-    public Action OnChangeHealth;
+    public Action<float> OnChangeHealth;
     public float MaxHealth;
 
     private float currentHealth;
@@ -18,7 +18,9 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-		OnChangeHealth?.Invoke();
+		OnChangeHealth?.Invoke(currentHealth);
+
+        currentHealth = Math.Clamp(currentHealth, 0, MaxHealth);
 
 		if (currentHealth <= 0)
             OnDeadEvent?.Invoke();
@@ -27,13 +29,13 @@ public class Health : MonoBehaviour
     public void TakeTreat(float value)
     {
         currentHealth += value;
-		OnChangeHealth?.Invoke();
+		OnChangeHealth?.Invoke(currentHealth);
 	}
 
 	public void RestoreHealth()
     {
         currentHealth = MaxHealth;
-		OnChangeHealth?.Invoke();
+		OnChangeHealth?.Invoke(currentHealth);
 	}
 
 	public float GetCurrentHealth() => currentHealth;

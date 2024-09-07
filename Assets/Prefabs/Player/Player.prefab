@@ -729,6 +729,7 @@ GameObject:
   - component: {fileID: 6306885781561422017}
   - component: {fileID: 8669287752093017128}
   - component: {fileID: 3763539139393978518}
+  - component: {fileID: 2316162266315152884}
   - component: {fileID: 4498380440424157612}
   - component: {fileID: 4207366747279161641}
   - component: {fileID: 1066433313141774966}
@@ -832,6 +833,19 @@ MonoBehaviour:
   aimTarget: {fileID: 14469459370295251}
   hand: {fileID: 8546366815321699621}
   direction: {x: 0, y: 0, z: 0}
+--- !u!114 &2316162266315152884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938933717123069374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17878f5f3b2b9744cb7c5398aa6e90c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
 --- !u!95 &4498380440424157612
 Animator:
   serializedVersion: 5
