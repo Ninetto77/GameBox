@@ -1,3 +1,4 @@
+using InventorySystem;
 using UnityEngine;
 using Zenject;
 
@@ -5,7 +6,7 @@ public class EquipmentManager : MonoBehaviour
 {
     [SerializeField]private Transform playerHand;
 
-    [Inject] private Inventory inventory;
+    //[Inject] private Inventory inventory;
 	[Inject] private DiContainer diContainer;
 
 	private Tool[] currentEquipment;
@@ -13,15 +14,18 @@ public class EquipmentManager : MonoBehaviour
     public delegate void OnEquipmentChanged(Tool oldItem, Tool newItem);
     public OnEquipmentChanged OnEquipmentChangedCallback;
 
+	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
+	private InventoryController inventory;
 
-    private void Start()
+	private void Start()
     {
         //найти количество экипированных частей тела
         int numberOfSlots = System.Enum.GetNames(typeof(EquipmentsSlot)).Length;
         currentEquipment = new Tool[numberOfSlots];
-    }
+		inventory = InventoryController.instance;
+	}
 
-    private void Update()
+	private void Update()
     {
         if (Input.GetKeyDown(KeyCode.U)) 
         {
@@ -39,18 +43,18 @@ public class EquipmentManager : MonoBehaviour
         Tool oldItem = null;
 
 
-        if (currentEquipment[slotIndex] != null)
-        {
-            //найти старый предмет
-            oldItem = currentEquipment[slotIndex];
-            //добавить старый предмет в инвентарь
-            inventory.TryAddItem(oldItem);
-        }
+        //if (currentEquipment[slotIndex] != null)
+        //{
+        //    //найти старый предмет
+        //    oldItem = currentEquipment[slotIndex];
+        //    //добавить старый предмет в инвентарь
+        //    inventory.TryAddItem(inventoryname, oldItem.Name);
+        //}
 
         //экипировать новый предмет
-        currentEquipment[slotIndex] = newItem;
+        //currentEquipment[slotIndex] = newItem;
         //удалить новый предмет из инвентаря
-        inventory.RemoveItem(newItem);
+        //inventory.RemoveItem(inventoryname, newItem.Name, 1);
 
         //����� �������
         if (OnEquipmentChangedCallback != null)
@@ -69,32 +73,34 @@ public class EquipmentManager : MonoBehaviour
     /// <param name="slotIndex"></param>
     public void Unequipt(int slotIndex)
     {
+        UnequipHand();
+
         //если слот экипировки не пустой
-        if (currentEquipment[slotIndex] != null)
-        {
-            Tool oldItem = currentEquipment[slotIndex];
-            bool IsAdded = inventory.TryAddItem(oldItem);
+        //if (currentEquipment[slotIndex] != null)
+        //{
+        //    Tool oldItem = currentEquipment[slotIndex];
 
-            if (IsAdded)
-            {
-                currentEquipment[slotIndex] = null;
-            }
+        //    //bool IsAdded = inventory.TryAddItem(inventoryname, oldItem.Name);
+        //    //if (IsAdded)
+        //    //{
+        //    //    currentEquipment[slotIndex] = null;
+        //    //}
 
-            UnequipHand();
+        //    UnequipHand();
 
-            ///вызов события
-            if (OnEquipmentChangedCallback != null)
-            {
-                OnEquipmentChangedCallback.Invoke(null, oldItem);
-            }
-        }
+        //    ///вызов события
+        //    if (OnEquipmentChangedCallback != null)
+        //    {
+        //        OnEquipmentChangedCallback.Invoke(null, oldItem);
+        //    }
+        //}
 
 
     }
-    /// <summary>
-    /// Снять всю экипировку
-    /// </summary>
-    public void UnequiptAll()
+	/// <summary>
+	/// Снять всю экипировку
+	/// </summary>
+	public void UnequiptAll()
     {
         for (int i=0; i < currentEquipment.Length; i++)
         {

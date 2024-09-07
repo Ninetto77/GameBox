@@ -1,11 +1,14 @@
 using UnityEngine;
 using Zenject;
 
-public class InventoryInstaller : MonoInstaller
+namespace MyInventory
 {
-    [SerializeField] private Inventory inventory;
-    public override void InstallBindings()
+    public class InventoryInstaller : MonoInstaller
     {
-        Container.Bind<Inventory>().FromInstance(inventory).AsSingle().NonLazy();
+        [SerializeField] private Inventory inventory;
+        public override void InstallBindings()
+        {
+            Container.Bind<Inventory>().FromInstance(inventory).AsSingle().NonLazy();
+        }
     }
 }

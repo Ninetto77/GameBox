@@ -23,8 +23,10 @@ public class Tool : ItemInfo
     /// </summary>
     public override void Use(EquipmentManager equipmentManager)
     {
-		equipmentManager.Equip(this);
-    }
+        if (equipmentManager != null)
+		    equipmentManager.Equip(this);
+		else Debug.Log("no equipmentManager in Tool");
+	}
 }
 
 

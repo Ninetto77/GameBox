@@ -1,3 +1,4 @@
+using InventorySystem;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -6,9 +7,11 @@ public class FillCraftItemDetails : MonoBehaviour
 {
 	public CraftItem currentCraftItem { get; set; }
 	[Inject] private CraftManager craftManager;
-	[Inject] private Inventory inventory;
+	//[Inject] private Inventory inventory;
 	private bool canCraft = true;
 
+	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
+	private InventoryController inventory;
 
 	//public GameObject craftResourcePrefab;
 	//public string craftInfoPanelName;
@@ -19,6 +22,7 @@ public class FillCraftItemDetails : MonoBehaviour
 	{
 		Button btn = GetComponent<Button>();
 		btn.onClick.AddListener(FillItemDetails);
+		inventory = InventoryController.instance;
 	}
 
 	public void FillItemDetails()
@@ -63,7 +67,8 @@ public class FillCraftItemDetails : MonoBehaviour
 				var amount = currentCraftItem.craftResources[i].craftObjectAmount;
 				var craftItemName = currentCraftItem.craftResources[i].craftObject.name;
 				var totalAmount = currentCraftItem.craftResources[i].craftObjectAmount;
-				var have = inventory.GetCountOfItem(craftItemName);
+				//var have = inventory.GetCountOfItem(craftItemName);
+				var have = inventory.CountItems(inventoryname, craftItemName);
 
 				crd.FillResourceDetails(
 					amount.ToString(),

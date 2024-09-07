@@ -1,5 +1,3 @@
-
-
 public class GlobalStringsVars 
 {
     #region
@@ -7,6 +5,10 @@ public class GlobalStringsVars
     public const string HORIZONTAL_AXIS = "Horizontal";
     public const string VERTICAL_AXIS = "Vertical";
     public const string FIRE_1 = "Fire1";
+
+    public const string INVENTORY_NAME = "Inventory";
+    public const string HOTBAR_NAME = "HotBar";
+    public const string ACTIVESLOT_NAME = "ActiveSlot";
     
     public const int FIRE = 0;
     

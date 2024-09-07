@@ -1,3 +1,4 @@
+using InventorySystem;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,7 +9,9 @@ public class ItemPickup : Interactable
 {
     public ItemInfo item;
     public bool isPicked = false;
-	[Inject] private Inventory inventory;
+	//[Inject] private Inventory inventory;
+
+	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
 
 	public override void Interact()
     {
@@ -25,7 +28,7 @@ public class ItemPickup : Interactable
         {
             Debug.Log("Pick Item " + item.name);
 
-			isPicked = inventory.TryAddItem(item);
+			isPicked = InventoryController.instance.TryAddItem(inventoryname, item.Name);
 
             if (isPicked)
                 Destroy(this.gameObject);
@@ -38,7 +41,7 @@ public class ItemPickup : Interactable
 	/// </summary>
 	public void RemoveItem()
     {
-        inventory.RemoveItem(item);
+		InventoryController.instance.RemoveItem(inventoryname, item.Name, 1);
         isPicked = false;
     }
 }

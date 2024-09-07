@@ -1,8 +1,10 @@
+using InventorySystem;
 using System;
 using System.Collections;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using Zenject;
+using static UnityEditor.Progress;
 
 [RequireComponent(typeof(ItemPickup))]
 public class GatherResources : MonoBehaviour
@@ -12,37 +14,42 @@ public class GatherResources : MonoBehaviour
 
     private LayerMask layerMask;
 	private ItemInfo itemPickup;
-	private bool insrumentIsPicked;
-	private Tool insrument;
+	private bool toolIsPicked;
+	private Tool tool;
     private Camera mainCamera;
-	[Inject] private Inventory inventory;
+	//[Inject] private Inventory inventory;
     private OutlineObjects outline;
 	FXProvider fXProvider;
 
-    private void Start()
+	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
+	private InventoryController inventory;
+	[Inject] EquipmentManager equipmentManager;
+
+
+	private void Start()
     {
        // inventory = Inventory.instance;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
 		var temp = gameObject.GetComponent<ItemPickup>();
 		itemPickup = temp.item;
-		insrumentIsPicked = temp.isPicked;
+		toolIsPicked = temp.isPicked;
 
 		fXProvider = new FXProvider();
 		InitInstrument();
-
+		inventory = InventoryController.instance;
 	}
 
 	private void InitInstrument()
 	{
-		insrument =(Tool)itemPickup;
-		layerMask = insrument.LayerMaskToHit;
-		fxPrefab  = insrument.FXType;
+		tool =(Tool)itemPickup;
+		layerMask = tool.LayerMaskToHit;
+		fxPrefab  = tool.FXType;
 	}
 
 	public void TryGatherResource()
 	{
-		if (!insrumentIsPicked) return;
+		if (!toolIsPicked) return;
 
 		Ray ray = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
 		RaycastHit hit;
@@ -59,13 +66,14 @@ public class GatherResources : MonoBehaviour
 		ExtractedResource resource = hit.collider.gameObject.GetComponent<ExtractedResource>();
 		if (resource != null)
 		{
-			inventory.TryAddItem(resource.PartOfResource);
+			//inventory.TryAddItem(resource.PartOfResource);
+			inventory.AddItem(inventoryname, resource.PartOfResource.Name);
 
 			GetFX(hit);
 			//if (FXPrefab!=null) 
 			//	Instantiate(FXPrefab, transform.position, Quaternion.Euler(hit.normal));
 
-			resource.TakeDamage(insrument.Power);
+			resource.TakeDamage(tool.Power);
 		}
 	}
 
@@ -81,5 +89,16 @@ public class GatherResources : MonoBehaviour
 	{
 		yield return new WaitForSeconds(5f);
 		fXProvider.UnloadFX();
+	}
+
+	public void EquipmentTool()
+	{
+		Debug.Log(1);
+		if (tool != null)
+		{
+			Debug.Log(2);
+
+			tool.Use(equipmentManager);
+		}
 	}
 }

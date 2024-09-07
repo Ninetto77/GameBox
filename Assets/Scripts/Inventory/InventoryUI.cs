@@ -1,44 +1,47 @@
 using UnityEngine;
 using Zenject;
 
-public class InventoryUI : MonoBehaviour
+namespace MyInventory
 {
-    public Transform itemsParent;
-    public GameObject inventoryUI;
-
-    private InventorySlot[] slots;
-	[Inject] private Inventory inventory;
-    void Start()
+    public class InventoryUI : MonoBehaviour
     {
-        //Событие
-        inventory.OnItemChangedCallback += UpdateUI;
+        public Transform itemsParent;
+        public GameObject inventoryUI;
 
-        //Создание списка слотов
-        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
-    }
-
-    void Update()
-    {
-        if (Input.GetButtonDown("Inventory"))
+        private InventorySlot[] slots;
+        [Inject] private Inventory inventory;
+        void Start()
         {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            //Событие
+            inventory.OnItemChangedCallback += UpdateUI;
+
+            //Создание списка слотов
+            slots = itemsParent.GetComponentsInChildren<InventorySlot>();
         }
-    }
 
-    /// <summary>
-    /// ОБновление UI инвенторя
-    /// </summary>
-    void UpdateUI()
-    {
-        for (int i=0; i < slots.Length; i++)
+        void Update()
         {
-            if (i <  inventory.items.Count)
+            if (Input.GetButtonDown("Inventory"))
             {
-                slots[i].AddIcon(inventory.items[i]);
+                inventoryUI.SetActive(!inventoryUI.activeSelf);
             }
-            else
+        }
+
+        /// <summary>
+        /// ОБновление UI инвенторя
+        /// </summary>
+        void UpdateUI()
+        {
+            for (int i = 0; i < slots.Length; i++)
             {
-                slots[i].ClearIcon();
+                if (i < inventory.items.Count)
+                {
+                    slots[i].AddIcon(inventory.items[i]);
+                }
+                else
+                {
+                    slots[i].ClearIcon();
+                }
             }
         }
     }

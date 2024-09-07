@@ -18,14 +18,15 @@ public class PlayerMoovement : MonoBehaviour
     private CharacterController player;
     private Animator animator;
     private PlayerAnimations animations;
-
+    private PlayerBrain brain;
 
 	void Start()
     {
         player = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
 		animations =  new PlayerAnimations(animator);
-    }
+        brain = new PlayerBrain();
+	}
 
     /// <summary>
     /// Движение игрока по двум направлениям с учетом гравитации
@@ -48,6 +49,7 @@ public class PlayerMoovement : MonoBehaviour
         animations.SetRuningAnim(player.velocity);
 
         TurnHead();
+        brain.GatherResource();
 	}
 
     private void TurnHead()

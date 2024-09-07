@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Zenject;
+using InventorySystem;
 
 public class CraftQueueManager : MonoBehaviour
 {
@@ -13,11 +14,18 @@ public class CraftQueueManager : MonoBehaviour
 	//public Button addButton;
 	//public Button removeButton;
 
-	[Inject] private Inventory inventory;
+	//[Inject] private Inventory inventory;
 	[Inject] private CraftManager craftManager;
 
+	//private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
+	private InventoryController inventory;
 
 	private int craftTime;
+
+	private void Start()
+	{
+		inventory = InventoryController.instance;
+	}
 
 	public void RemoveButtonFunction()
 	{

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Zenject;
+using InventorySystem;
+using Zenject.ReflectionBaking.Mono.Cecil;
 
 public class CraftQueueItemDetails : MonoBehaviour
 {
@@ -16,7 +18,9 @@ public class CraftQueueItemDetails : MonoBehaviour
 	private int initialCraftTime;
 	
 	[Inject] private CraftManager craftManager;
-	[Inject] private Inventory inventory;
+	//[Inject] private Inventory inventory;
+	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
+	private InventoryController inventory;
 
 	private void Start()
 	{
@@ -30,7 +34,7 @@ public class CraftQueueItemDetails : MonoBehaviour
 		{
 			UpdateTime();
 		}
-
+		inventory = InventoryController.instance;
 	}
 
 	public void FillCraftQueueDetails(string amount, int time, CraftItem item)
@@ -60,7 +64,8 @@ public class CraftQueueItemDetails : MonoBehaviour
 	{
 		foreach (CraftResource resource in currentCraftItem.craftResources)
 		{
-			inventory.TryAddItems(resource.craftObject, resource.craftObjectAmount * craftAmount);
+			//inventory.TryAddItems(resource.craftObject, resource.craftObjectAmount * craftAmount);
+			inventory.AddItem(inventoryname, resource.craftObject.Name, resource.craftObjectAmount * craftAmount);
 		}
 		CancelInvoke();
 		craftManager.currentCraftItem.FillItemDetails();
@@ -78,7 +83,9 @@ public class CraftQueueItemDetails : MonoBehaviour
 		craftTime--;
 		if (craftTime <= 0)
 		{
-			inventory.TryAddItems(currentCraftItem.finalCraft, currentCraftItem.craftAmount);
+			//inventory.TryAddItems(currentCraftItem.finalCraft, currentCraftItem.craftAmount);
+			inventory.AddItem(inventoryname, currentCraftItem.finalCraft.Name, currentCraftItem.craftAmount);
+
 			craftAmount--;
 			craftTime = initialCraftTime;
 			if (craftAmount <= 0)
