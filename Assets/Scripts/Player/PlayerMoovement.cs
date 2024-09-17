@@ -1,12 +1,11 @@
-using UnityEngine.EventSystems;
 using UnityEngine;
-using System;
 
 public class PlayerMoovement : MonoBehaviour
 {
     [Header("Физика")]
     public float Speed = 20f;
     public float Gravity = -9.8f;
+    public LayerMask mask;
 
 	[Header("Удар")]
 	[SerializeField] private Transform aimTarget;
@@ -61,6 +60,7 @@ public class PlayerMoovement : MonoBehaviour
 
         TurnHead();
         brain.GatherResource();
+        brain.Shoot(mask);
 	}
 
     private void TurnHead()
@@ -95,6 +95,11 @@ public class PlayerMoovement : MonoBehaviour
         {
             health.TakeDamage(10);
         }
+    }
+
+    private void GetWeapon()
+    {
+
     }
 
 		//private void Update()
