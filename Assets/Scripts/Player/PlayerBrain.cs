@@ -9,7 +9,8 @@ public class PlayerBrain
 
     public PlayerBrain()
     {
-		mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		//mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		mainCamera = Camera.main;
 		reachDistance = 3f;
 	}
 

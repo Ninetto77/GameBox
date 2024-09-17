@@ -15,6 +15,11 @@ public class ItemsController : MonoBehaviour
 		inventory = InventoryController.instance;
 	}
 
+	/// <summary>
+	/// Бросить в мир объект
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="item"></param>
 	public void DropItem(Vector3 pos, InventoryItem item)
 	{
 		for (int i = 0; i < item.GetAmount(); i++)
@@ -34,6 +39,9 @@ public class ItemsController : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Перестать использовать предмет
+	/// </summary>
 	public void StopUseItem()
 	{
 		try
@@ -43,6 +51,11 @@ public class ItemsController : MonoBehaviour
 		catch { Debug.Log("no equipmentManager"); }
 	}
 
+	/// <summary>
+	/// Поменять местами объекты в инвентаре
+	/// </summary>
+	/// <param name="item1"></param>
+	/// <param name="inSlot"></param>
 	public void Swap(InventoryItem item1, InventoryItem inSlot)
 	{
 		string item1inv = item1.GetInventory();
