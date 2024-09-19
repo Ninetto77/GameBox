@@ -2,6 +2,7 @@ public enum FXType
 {
     none,
     wood,
-    metal
+    metal, 
+    blaster
 }
     

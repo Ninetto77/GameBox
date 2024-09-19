@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-
 public partial class Weapon : MonoBehaviour, IWeapon
 {
 	public WeaponItem weapon;
@@ -13,17 +11,25 @@ public partial class Weapon : MonoBehaviour, IWeapon
 	private bool canFire = true;
 	private int bulletsPerMagazineDefault = 0;
 	private int currentBulletsPerMagazine = 0;
+	
 	private Camera mainCamera;
+	private bool toolIsPicked;
+
 
 	private void Start()
 	{
 		bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
 		currentBulletsPerMagazine = bulletsPerMagazineDefault;
 		mainCamera = Camera.main;
+
+		var temp = gameObject.GetComponent<ItemPickup>();
+		toolIsPicked = temp.isPicked;
 	}
 
 	private void Update()
 	{
+		if (!toolIsPicked) return;
+
 		if (Input.GetMouseButtonDown(0) && weapon.SingleFire)
 		{
 			Fire();

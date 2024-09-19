@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class WeaponItem : ItemInfo
+[CreateAssetMenu(fileName = "WeaponInfo", menuName = "Gameplay/New weapon")]
+public class WeaponItem : Equipable
 {
-	[SerializeField] private GameObject _weaponPrefab;
 	[SerializeField] private GameObject _bulletPrefab;
 	[SerializeField] private float _weaponDamage= 15;
 	[SerializeField] private bool singleFire = false;
@@ -10,7 +10,7 @@ public class WeaponItem : ItemInfo
 	[SerializeField] private int bulletsPerMagazine = 30;
 	[SerializeField] private float timeToReload = 1.5f;
 
-	public GameObject WeaponPrefab => _weaponPrefab;
+
 	public GameObject BulletPrefab => _bulletPrefab;
 	public float WeaponDamage => _weaponDamage;
 	public bool SingleFire => singleFire ;
@@ -18,13 +18,14 @@ public class WeaponItem : ItemInfo
 	public int BulletsPerMagazine  => bulletsPerMagazine;
 	public float TimeToReload => timeToReload;
 
+
 	/// <summary>
 	/// Использование экипировки
 	/// </summary>
 	public override void Use(EquipmentManager equipmentManager)
 	{
-		//if (equipmentManager != null)
-			//equipmentManager.Equip(this);
-		//else Debug.Log("no equipmentManager in Tool");
+		if (equipmentManager != null)
+			equipmentManager.Equip(this);
+		else Debug.Log("no equipmentManager in WeaponItem");
 	}
 }

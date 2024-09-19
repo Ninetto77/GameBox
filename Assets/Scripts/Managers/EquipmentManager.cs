@@ -6,12 +6,11 @@ public class EquipmentManager : MonoBehaviour
 {
     [SerializeField]private Transform playerHand;
 
-    //[Inject] private Inventory inventory;
 	[Inject] private DiContainer diContainer;
 
-	private Tool[] currentEquipment;
+	private Equipable[] currentEquipment;
 
-    public delegate void OnEquipmentChanged(Tool oldItem, Tool newItem);
+    public delegate void OnEquipmentChanged(Equipable oldItem, Equipable newItem);
     public OnEquipmentChanged OnEquipmentChangedCallback;
 
 	private InventoryController inventory;
@@ -20,7 +19,7 @@ public class EquipmentManager : MonoBehaviour
     {
         //найти количество экипированных частей тела
         int numberOfSlots = System.Enum.GetNames(typeof(EquipmentsSlot)).Length;
-        currentEquipment = new Tool[numberOfSlots];
+        currentEquipment = new Equipable[numberOfSlots];
 		inventory = InventoryController.instance;
 	}
 
@@ -36,10 +35,10 @@ public class EquipmentManager : MonoBehaviour
     /// Экипировать предмет
     /// </summary>
     /// <param name="newItem"></param>
-    public void Equip(Tool newItem)
+    public void Equip(Equipable newItem)
     {
         int slotIndex = (int)newItem.EquipmentSlot;
-        Tool oldItem = null;
+		Equipable oldItem = null;
 
 
         //if (currentEquipment[slotIndex] != null)
@@ -61,8 +60,8 @@ public class EquipmentManager : MonoBehaviour
             OnEquipmentChangedCallback.Invoke(newItem, oldItem);
         }
 
-        if (newItem.EquipmentSlot == 0)
-        {
+        if (newItem.EquipmentSlot == 0 || newItem.EquipmentSlot == EquipmentsSlot.handweapon)
+		{
             EquipHand(newItem);
         }
     }
@@ -111,7 +110,7 @@ public class EquipmentManager : MonoBehaviour
     /// Метод экипировки руки
     /// </summary>
     /// <param name="newItem"></param>
-    public void EquipHand(Tool newItem)
+    public void EquipHand(Equipable newItem)
     {
         UnequipHand();
 
@@ -120,6 +119,7 @@ public class EquipmentManager : MonoBehaviour
 		//GameObject item = Instantiate(newItem.Prefab, playerHand) as GameObject;
         item.transform.position = playerHand.position;
         item.GetComponent<ItemPickup>().isPicked = true;
+        Debug.Log($"Get {item.name}");
     }
 
     /// <summary>

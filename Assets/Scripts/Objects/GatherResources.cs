@@ -17,7 +17,6 @@ public class GatherResources : MonoBehaviour
 	private bool toolIsPicked;
 	private Tool tool;
     private Camera mainCamera;
-	//[Inject] private Inventory inventory;
     private OutlineObjects outline;
 	FXProvider fXProvider;
 
@@ -28,7 +27,6 @@ public class GatherResources : MonoBehaviour
 
 	private void Start()
     {
-       // inventory = Inventory.instance;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
 		var temp = gameObject.GetComponent<ItemPickup>();
@@ -93,11 +91,8 @@ public class GatherResources : MonoBehaviour
 
 	public void EquipmentTool()
 	{
-		Debug.Log(1);
 		if (tool != null)
 		{
-			Debug.Log(2);
-
 			tool.Use(equipmentManager);
 		}
 	}

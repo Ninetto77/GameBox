@@ -1,24 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Bullet: MonoBehaviour
 {
-	private float damage;
-
-	public void SetDamage(float weaponDamage)
-	{
-		damage = weaponDamage;
-	}
-
 	public float bulletSpeed = 345;
 	public float hitForce = 50f;
 	public float destroyAfter = 3.5f;
 
-	float currentTime = 0;
-	Vector3 newPos;
-	Vector3 oldPos;
-	bool hasHit = false;
+	private float damage;
+	private float currentTime = 0;
+	private Vector3 newPos;
+	private Vector3 oldPos;
+	private bool hasHit = false;
 
 	float damagePoints;
 
@@ -45,7 +38,6 @@ public class Bullet: MonoBehaviour
 					IEntity npc = hit.transform.GetComponent<IEntity>();
 					if (npc != null)
 					{
-						//Apply damage to NPC
 						npc.ApplyDamage(damagePoints);
 					}
 				}
@@ -65,6 +57,11 @@ public class Bullet: MonoBehaviour
 		{
 			StartCoroutine(DestroyBullet());
 		}
+	}
+
+	public void SetDamage(float weaponDamage)
+	{
+		damage = weaponDamage;
 	}
 
 	IEnumerator DestroyBullet()
