@@ -4,5 +4,4 @@ namespace Enemy.States
 	{
 		idle, scream, run, attack, damage, death, none
 	}
-
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMoovement : MonoBehaviour
 {
@@ -59,8 +60,13 @@ public class PlayerMoovement : MonoBehaviour
         animations.SetRuningAnim(player.velocity);
 
         TurnHead();
-        brain.GatherResource();
-        brain.Shoot(mask);
+
+        // brain.GatherResource();
+        brain.Update();
+		//animations.SetAimingAnim(true);
+
+
+		brain.Shoot(mask);
 	}
 
     private void TurnHead()
@@ -85,7 +91,9 @@ public class PlayerMoovement : MonoBehaviour
         if (hand.childCount > 0 && hand.GetChild(0) != null)
         {
             var intrument = hand.GetChild(0);
-            intrument.GetComponent<GatherResources>().TryGatherResource();
+            var gather = intrument.GetComponent<GatherResources>();
+            if (gather != null)
+				gather.TryGatherResource();
         }
 	}
 

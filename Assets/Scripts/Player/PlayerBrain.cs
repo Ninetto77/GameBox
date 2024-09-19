@@ -1,4 +1,6 @@
 using UnityEngine;
+using Player.States;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerBrain
 {
@@ -6,12 +8,26 @@ public class PlayerBrain
 
 	private OutlineObjects lastOutline;
 	private Camera mainCamera;
+	private StateMachine stateMachine;
 
     public PlayerBrain()
     {
-		//mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 		mainCamera = Camera.main;
 		reachDistance = 3f;
+		stateMachine = new StateMachine();
+		stateMachine.Init(FactoryState.GetStatePlayer(StatesEnum.gather, this));
+	}
+
+	public void Update()
+	{
+		if (stateMachine.CurrentState is IdleState)
+			return;
+		else
+		if (stateMachine.CurrentState is ShootState)
+			return;
+		else
+		if (stateMachine.CurrentState is GatherState)
+			stateMachine.CurrentState.Update();
 	}
 
 	/// <summary>

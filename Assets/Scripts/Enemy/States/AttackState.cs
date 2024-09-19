@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject.SpaceFighter;
 
 namespace Enemy.States
 {
