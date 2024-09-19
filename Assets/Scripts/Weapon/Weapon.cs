@@ -66,7 +66,6 @@ public partial class Weapon : MonoBehaviour, IWeapon
 
 					FirePoint.LookAt(firePointPointerPosition);
 
-					//Fire
 					GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
 					Bullet bullet = bulletObject.GetComponent<Bullet>();
 

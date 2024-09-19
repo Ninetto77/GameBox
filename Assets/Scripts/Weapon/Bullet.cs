@@ -13,8 +13,6 @@ public class Bullet: MonoBehaviour
 	private Vector3 oldPos;
 	private bool hasHit = false;
 
-	float damagePoints;
-
 	IEnumerator Start()
 	{
 		newPos = transform.position;
@@ -33,12 +31,12 @@ public class Bullet: MonoBehaviour
 			{
 				if (hit.rigidbody != null)
 				{
-					hit.rigidbody.AddForce(direction * hitForce);
+					//hit.rigidbody.AddForce(direction * hitForce);
 
 					IEntity npc = hit.transform.GetComponent<IEntity>();
 					if (npc != null)
 					{
-						npc.ApplyDamage(damagePoints);
+						npc.ApplyDamage(damage);
 					}
 				}
 

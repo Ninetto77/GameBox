@@ -7,7 +7,7 @@ namespace Enemy.States
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(Health))]
 	[RequireComponent(typeof(Rigidbody))]
-	public class EnemyController : MonoBehaviour
+	public class EnemyController : MonoBehaviour, IEntity
 	{
 		[Header("Обнаружение игрока")]
 		public LayerMask PlayerMask;
@@ -81,11 +81,16 @@ namespace Enemy.States
 			stateMachine.CurrentState.Update();
 
 
-			if (Input.GetKey(KeyCode.E)) health.TakeDamage(10);
-			if (Input.GetKey(KeyCode.R)) health.TakeDamage(10000);
-
 			//Debug.Log(1);
-			//var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, playerMask.value);
+
+			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
+
+			foreach (var collider in colliders)
+			{
+				Debug.Log("Find Player");
+			}
+			//Collider[] colliders = null;
+			//var v = Physics.OverlapSphereNonAlloc(transform.position, radiusOfDetect, colliders, PlayerMask.value);
 
 			//foreach (var collider in colliders)
 			//{
@@ -126,6 +131,11 @@ namespace Enemy.States
 			yield return new WaitForSeconds(1.5f);
 			isTakingDamage = false;
 
+		}
+
+		public void ApplyDamage(float damage)
+		{
+			health.TakeDamage(damage);
 		}
 		#endregion
 

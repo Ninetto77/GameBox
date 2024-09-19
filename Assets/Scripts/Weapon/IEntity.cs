@@ -1,4 +1,4 @@
 interface IEntity
 {
-	void ApplyDamage(float points);
+	void ApplyDamage(float damage);
 }
