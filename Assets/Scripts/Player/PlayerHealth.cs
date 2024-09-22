@@ -1,21 +1,32 @@
 using UnityEngine;
+using Zenject;
 
-public class PlayerHealth
+public class PlayerHealth: MonoBehaviour
 {
-    MonoBehaviour context;
-	HealthBar bar;
-    Health health;
+	private HealthBar bar;
+	private Health health;
 
-	public PlayerHealth(HealthBar bar, Health health)
-    {
-        this.bar = bar;
-        this.health = health;
-
-        Init();
+	[Inject]
+	private void Construct(PlayerMoovement player)
+	{
+		health = player.health;
 	}
 
-    private void Init()
+	private void Start()
+	{
+		bar = GetComponent<HealthBar>();
+		Init();
+	}
+
+	private void Init()
     {
         bar.Initialize(health);
 	}
+	//public PlayerHealth(HealthBar bar, Health health)
+	//   {
+	//       this.bar = bar;
+	//       this.health = health;
+
+	//       Init();
+	//}
 }

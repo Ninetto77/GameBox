@@ -18,6 +18,8 @@ public class GatherResources : MonoBehaviour
 	private Tool tool;
     private Camera mainCamera;
     private OutlineObjects outline;
+
+	[Inject] private ProjectContext projectContext;
 	FXProvider fXProvider;
 
 	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
@@ -33,7 +35,7 @@ public class GatherResources : MonoBehaviour
 		itemPickup = temp.item;
 		toolIsPicked = temp.isPicked;
 
-		fXProvider = new FXProvider();
+		fXProvider = projectContext.FXProvider;
 		InitInstrument();
 		inventory = InventoryController.instance;
 	}

@@ -4,9 +4,10 @@ using Zenject;
 
 public class EquipmentManager : MonoBehaviour
 {
-    [SerializeField]private Transform playerHand;
+    private Transform playerHand => player.hand;
 
 	[Inject] private DiContainer diContainer;
+    [Inject] private PlayerMoovement player;
 
 	private Equipable[] currentEquipment;
 

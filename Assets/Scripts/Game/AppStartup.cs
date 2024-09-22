@@ -1,14 +1,13 @@
-using UnityEngine;
-
-public class AppStartup : MonoBehaviour
+public class AppStartup
 {
-	private FXProvider fxProvider => ProjectContext.Instance.FXProvider;
+ //   public AppStartup() {}
+ //   private FXProvider fxProvider => ProjectContext.Instance.FXProvider;
 
-	void Start()
-    {
-		ProjectContext.Instance.Initialized();
-		//var fxprovider = await fxProvider.LoadAsset();
+	//void Start()
+ //   {
+	//	ProjectContext.Instance.Initialized();
+	//	//var fxprovider = await fxProvider.LoadAsset();
 
-	}
+	//}
 
 }

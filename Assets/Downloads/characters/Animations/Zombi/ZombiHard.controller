@@ -183,7 +183,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Zombi Easy
+  m_Name: ZombiHard
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Velocity
@@ -252,7 +252,7 @@ AnimatorStateMachine:
     m_Position: {x: 730, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2113340250478296027}
-    m_Position: {x: 80, y: 330, z: 0}
+    m_Position: {x: 120, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4654852686532383225}
     m_Position: {x: -20, y: -100, z: 0}
@@ -470,7 +470,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Zombie Running
-  m_Speed: 2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4591759892301994290}
@@ -485,7 +485,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: e0bf00e6b2b2cb04bb3d31606da1ac55, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 84f31429d31e9e9428e81b69f475c677, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

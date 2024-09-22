@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace Enemy.States
 {
@@ -11,7 +12,6 @@ namespace Enemy.States
 	{
 		[Header("Обнаружение игрока")]
 		public LayerMask PlayerMask;
-		public GameObject Player;
 		[SerializeField] private float radiusOfDetect = 10;
 		[SerializeField] private float distanceToAtack = 3;
 
@@ -28,11 +28,20 @@ namespace Enemy.States
 		private Health health;
 		private Rigidbody rb;
 
+		[Inject] private PlayerMoovement player;
+		public Vector3 TargetPosition => player.transform.position;
+
 		private bool started = true;
 		private bool isTakingDamage = false;
 		private bool isDead = false;
 
-		private void Awake()
+        [Inject]
+		private void Construct(PlayerMoovement player)
+        {
+            this.player = player;
+        }
+
+        private void Awake()
 		{
 			animator = GetComponent<Animator>();
 			Animation = new EnemyAnimation(animator);
@@ -42,8 +51,6 @@ namespace Enemy.States
 			health.OnChangeHealth += TakeDamage;
 			health.OnDeadEvent += Die;
 		}
-
-
 
 		private void Start()
 		{
@@ -71,7 +78,7 @@ namespace Enemy.States
 			if (isTakingDamage) return;
 			if (isDead) return;
 
-			if (Vector3.Distance(transform.position, Player.transform.position) < distanceToAtack)
+			if (Vector3.Distance(transform.position, TargetPosition) < distanceToAtack)
 			{
 				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.attack, this));
 				return;
@@ -81,7 +88,7 @@ namespace Enemy.States
 			stateMachine.CurrentState.Update();
 
 
-			//Debug.Log(1);
+			//лучше 
 
 			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
@@ -89,6 +96,8 @@ namespace Enemy.States
 			{
 				Debug.Log("Find Player");
 			}
+			//лучше 
+
 			//Collider[] colliders = null;
 			//var v = Physics.OverlapSphereNonAlloc(transform.position, radiusOfDetect, colliders, PlayerMask.value);
 
@@ -138,6 +147,12 @@ namespace Enemy.States
 			health.TakeDamage(damage);
 		}
 		#endregion
+
+		private void OnDisable()
+		{
+			health.OnChangeHealth -= TakeDamage;
+			health.OnDeadEvent -= Die;
+		}
 
 	}
 }

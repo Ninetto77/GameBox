@@ -14,13 +14,17 @@ namespace InventorySystem
         // Essential Item Properties
         [Header("========[ Item Properties ]========")]
 
-        [Tooltip("Create a type/classification of items.")]
-        [SerializeField]
-        private string itemType;
+        //[Tooltip("Create a type/classification of items.")]
+        //[SerializeField]
+        //private string itemType;
 
-        [Tooltip("Visual representation of the item.")]
-        [SerializeField]
-        private Sprite itemImage;
+        //[Tooltip("Visual representation of the item.")]
+        //[SerializeField]
+        //private Sprite itemImage;
+
+		[Tooltip("Info about item.")]
+		[SerializeField]
+		private ItemInfo itemInfo;
 
         [Tooltip("Maximum number of this item that can be stacked together.")]
         [SerializeField]
@@ -43,9 +47,6 @@ namespace InventorySystem
         [SerializeField]
         private GameObject RelatedGameObject;
 
-		[Tooltip("Info about item.")]
-		[SerializeField]
-		private ItemInfo itemInfo;
 
 		[Tooltip("Event triggered in relation to this item.")]
         [SerializeField]
@@ -68,7 +69,8 @@ namespace InventorySystem
         }
         public string GetItemType()
         {
-            return itemType;
+            return itemInfo.Name;
+            //return itemType;
         }
 		/// ----------
 		/// my
@@ -79,7 +81,8 @@ namespace InventorySystem
 		/// ----------
 		public Sprite GetItemImage()
         {
-            return itemImage;
+            return itemInfo.Icon;
+           // return itemImage;
         }
         public int GetItemStackAmount()
         {

@@ -40,7 +40,7 @@ public class Bullet: MonoBehaviour
 					}
 				}
 
-				newPos = hit.point; //Adjust new position
+				//newPos = hit.point; //Adjust new position
 				StartCoroutine(DestroyBullet());
 			}
 

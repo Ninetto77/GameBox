@@ -24,7 +24,7 @@ namespace Enemy.States
 		/// </summary>
 		public void RotateToPlayer()
 		{
-			direction = (enemy.Player.transform.position - enemy.transform.position).normalized;
+			direction = (enemy.TargetPosition - enemy.transform.position).normalized;
 			var targetRotation = Quaternion.LookRotation(direction);
 			enemy.transform.rotation = Quaternion.Lerp(enemy.transform.rotation, targetRotation,angularSpeed * Time.deltaTime);
 		}

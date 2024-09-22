@@ -1,17 +1,12 @@
 using InventorySystem;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
-
-
 
 public class ItemPickup : Interactable
 {
     public ItemInfo item;
     public bool isPicked = false;
-	//[Inject] private Inventory inventory;
 
-	private readonly string inventoryname = GlobalStringsVars.INVENTORY_NAME;
+	private readonly string inventoryname = GlobalStringsVars.HOTBAR_NAME;
 
 	public override void Interact()
     {

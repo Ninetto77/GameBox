@@ -1,14 +1,11 @@
-using UnityEngine;
-
-public class ProjectContext : MonoBehaviour
-{
+public class ProjectContext
+{ 
     public FXProvider FXProvider { get; private set; }
-    public static ProjectContext Instance { get; private set; }
+    //public static ProjectContext Instance { get; private set; }
 
-	private void Awake()
-	{
-		Instance = this;
-		DontDestroyOnLoad(this);
+    public ProjectContext()
+    {
+		Initialized();
 	}
 
 	public void Initialized()

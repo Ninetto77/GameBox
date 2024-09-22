@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public partial class Weapon : MonoBehaviour, IWeapon
 {
@@ -15,6 +16,10 @@ public partial class Weapon : MonoBehaviour, IWeapon
 	private Camera mainCamera;
 	private bool toolIsPicked;
 
+	//[Inject] private ProjectContext projectContext;
+	private FXProvider fXProvider;
+	private FXType fxPrefab;
+
 
 	private void Start()
 	{
@@ -24,6 +29,9 @@ public partial class Weapon : MonoBehaviour, IWeapon
 
 		var temp = gameObject.GetComponent<ItemPickup>();
 		toolIsPicked = temp.isPicked;
+
+		//fXProvider = projectContext.FXProvider;
+		//fxPrefab = weapon.FXType;
 	}
 
 	private void Update()
@@ -71,6 +79,8 @@ public partial class Weapon : MonoBehaviour, IWeapon
 
 					bullet.SetDamage(weapon.WeaponDamage);
 
+					//GetFX(hit);
+
 					currentBulletsPerMagazine--;
 				}
 				else
@@ -80,6 +90,27 @@ public partial class Weapon : MonoBehaviour, IWeapon
 			}
 		}
 	}
+
+	#region
+	private void GetFX(RaycastHit hit)
+	{
+		if (fxPrefab == FXType.none) return;
+		//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.Euler(hit.normal));
+		//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.identity, FirePoint);
+		//GameObject game = task.Result;
+
+		StartCoroutine(UnloadFX());
+		//game.SetActive(false);
+	}
+
+	private IEnumerator UnloadFX()
+	{
+		yield return new WaitForSeconds(0.2f);
+		Debug.Log("UnloadFX in weapon");
+
+		fXProvider.UnloadFX();
+	}
+	#endregion
 
 	/// <summary>
 	/// Перезарядка

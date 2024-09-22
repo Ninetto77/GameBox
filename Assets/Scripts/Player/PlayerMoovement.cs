@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMoovement : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class PlayerMoovement : MonoBehaviour
 
 	[Header("Удар")]
 	[SerializeField] private Transform aimTarget;
-	[SerializeField] private Transform hand;
+	public Transform hand;
 
     [Header("Слайдер здоровья")]
     [SerializeField] private HealthBar healthBar;
@@ -22,13 +21,14 @@ public class PlayerMoovement : MonoBehaviour
     private Animator animator;
     private PlayerAnimations animations;
     private PlayerBrain brain;
-    private PlayerHealth playerHealth;
-    private Health health;
+    //private PlayerHealth playerHealth;
+    [HideInInspector]
+	public Health health;
 
 	private void Awake()
 	{
         health = GetComponent<Health>();
-		playerHealth = new PlayerHealth(healthBar, health);
+		//playerHealth = new PlayerHealth(healthBar, health);
 	}
 	void Start()
     {
@@ -61,12 +61,11 @@ public class PlayerMoovement : MonoBehaviour
 
         TurnHead();
 
-        // brain.GatherResource();
         brain.Update();
 		//animations.SetAimingAnim(true);
 
 
-		brain.Shoot(mask);
+		//brain.Shoot(mask);
 	}
 
     private void TurnHead()
