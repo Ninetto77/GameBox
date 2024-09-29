@@ -5,7 +5,13 @@ public class InputKeys : MonoBehaviour
     [HideInInspector]
     public PlayerMoovement player;
 
-    private void Start()
+    public float horizontalDirection;
+	public float verticalDirection;
+
+	public bool jump ;
+
+
+	private void Start()
     {
         player = GetComponent<PlayerMoovement>();
     }
@@ -13,12 +19,14 @@ public class InputKeys : MonoBehaviour
     /// <summary>
     /// Принимает клавиши клавиатуры и отправляет их к скрипту движения игрока
     /// </summary>
-    private void Update()
+    private void FixedUpdate()
     {
-        float horizontalDirection = Input.GetAxis(GlobalStringsVars.HORIZONTAL_AXIS);
-        float verticalDirection = Input.GetAxis(GlobalStringsVars.VERTICAL_AXIS);
+        horizontalDirection = Input.GetAxis(GlobalStringsVars.HORIZONTAL_AXIS);
+        verticalDirection = Input.GetAxis(GlobalStringsVars.VERTICAL_AXIS);
 
-        player.MovePlayer(horizontalDirection, verticalDirection);
+        jump = Input.GetKeyDown(KeyCode.Space);
+
+        player.MovePlayer(horizontalDirection, verticalDirection, jump);
 
         bool hit = Input.GetMouseButton(GlobalStringsVars.FIRE);
         if (hit) player.Hit(true);

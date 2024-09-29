@@ -1,18 +1,18 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMoovement : MonoBehaviour
 {
     [Header("‘изика")]
-    public float Speed = 20f;
+    public float Speed = 40f;
+    public float MaxSpeed = 20f;
     public float Gravity = -9.8f;
-    public LayerMask mask;
+    public float JumpForce = 5f;
 
 	[Header("”дар")]
 	[SerializeField] private Transform aimTarget;
 	public Transform hand;
-
-    [Header("—лайдер здоровь€")]
-    [SerializeField] private HealthBar healthBar;
 
     [HideInInspector]
     public Vector3 direction;
@@ -21,14 +21,15 @@ public class PlayerMoovement : MonoBehaviour
     private Animator animator;
     private PlayerAnimations animations;
     private PlayerBrain brain;
-    //private PlayerHealth playerHealth;
-    [HideInInspector]
+	private Rigidbody rb;
+	//private PlayerHealth playerHealth;
+	[HideInInspector]
 	public Health health;
 
+    private bool isGrounded;
 	private void Awake()
 	{
         health = GetComponent<Health>();
-		//playerHealth = new PlayerHealth(healthBar, health);
 	}
 	void Start()
     {
@@ -36,37 +37,37 @@ public class PlayerMoovement : MonoBehaviour
 		animator = GetComponent<Animator>();
 		animations =  new PlayerAnimations(animator);
         brain = new PlayerBrain();
+        rb = GetComponent<Rigidbody>();
+		isGrounded = true;
 
 	}
 
-    /// <summary>
-    /// ƒвижение игрока по двум направлени€м с учетом гравитации
-    /// </summary>
-    /// <param name="horizontalDirection">горизонтальное направление</param>
-    /// <param name="verticalDirection">вертикальное направление</param>
-    public void MovePlayer(float horizontalDirection, float verticalDirection)
+	/// <summary>
+	/// ƒвижение игрока по двум направлени€м с учетом гравитации
+	/// </summary>
+	/// <param name="horizontalDirection">горизонтальное направление</param>
+	/// <param name="verticalDirection">вертикальное направление</param>
+	public void MovePlayer(float horizontalDirection, float verticalDirection, bool jump)
     {
-        direction = new Vector3(horizontalDirection * Speed, 0, verticalDirection * Speed);
-        //ограничение скорости
-        direction = Vector3.ClampMagnitude(direction, Speed);
+		direction = new Vector3(horizontalDirection, 0, verticalDirection);
 
-        //гравитаци€
-        direction.y = -Gravity;
+		rb.AddRelativeForce(direction * Speed , ForceMode.Impulse);
 
-        direction *= Time.deltaTime;
-        direction = transform.TransformDirection(direction);
-        //движение
-        player.Move(direction);
-        animations.SetRuningAnim(player.velocity);
+		if (rb.velocity.magnitude > MaxSpeed)
+			rb.velocity = Vector3.ClampMagnitude(rb.velocity, MaxSpeed);
 
-        TurnHead();
+		if (isGrounded)
+            if (jump == true)
+				rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
 
-        brain.Update();
+		animations.SetRuningAnim(rb.velocity);
+
 		//animations.SetAimingAnim(true);
 
 
-		//brain.Shoot(mask);
+
 	}
+
 
     private void TurnHead()
     {
@@ -102,16 +103,40 @@ public class PlayerMoovement : MonoBehaviour
         {
             health.TakeDamage(10);
         }
-    }
+		TurnHead();
+		brain.Update();
+	}
 
     private void GetWeapon()
     {
 
     }
 
-		//private void Update()
-		//{
-		//    if (EventSystem.current.IsPointerOverGameObject())
-		//        return;
-		//}
+	#region коллизии дл€ прыжка
+
+	void OnCollisionEnter(Collision collision)
+	{
+		IsGroundedUpate(collision, true);
 	}
+
+	void OnCollisionExit(Collision collision)
+	{
+		IsGroundedUpate(collision, false);
+	}
+
+	private void IsGroundedUpate(Collision collision, bool value)
+	{
+		if (collision.gameObject.tag == ("Ground"))
+		{
+			isGrounded = value;
+		}
+	}
+	#endregion
+
+
+	//private void Update()
+	//{
+	//    if (EventSystem.current.IsPointerOverGameObject())
+	//        return;
+	//}
+}
