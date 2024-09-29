@@ -8,7 +8,7 @@ namespace Enemy.States
 		private float speed;
 		private float angularSpeed;
 
-		public RunState(EnemyController enemyController) : base(enemyController) 
+		public RunState(IEnemy enemyController) : base(enemyController) 
 		{
 			this.speed = enemy.Speed;
 			angularSpeed = enemy.AngularSpeed;
@@ -24,9 +24,9 @@ namespace Enemy.States
 		/// </summary>
 		public void RotateToPlayer()
 		{
-			direction = (enemy.TargetPosition - enemy.transform.position).normalized;
+			direction = (enemy.TargetPosition - enemy.EnemyTransform.position).normalized;
 			var targetRotation = Quaternion.LookRotation(direction);
-			enemy.transform.rotation = Quaternion.Lerp(enemy.transform.rotation, targetRotation,angularSpeed * Time.deltaTime);
+			enemy.EnemyTransform.rotation = Quaternion.Lerp(enemy.EnemyTransform.rotation, targetRotation,angularSpeed * Time.deltaTime);
 		}
 
 		/// <summary>
@@ -35,7 +35,7 @@ namespace Enemy.States
 		private void Run()
 		{
 			Rigidbody rb = enemy.GetRigidBody();
-			rb.AddForce(enemy.transform.forward * Time.deltaTime * 20, ForceMode.Impulse);
+			rb.AddForce(enemy.EnemyTransform.forward * Time.deltaTime * 20, ForceMode.Impulse);
 
 			if (rb.velocity.magnitude > enemy.MaxSpeed)
 				rb.velocity = Vector3.ClampMagnitude(rb.velocity, enemy.MaxSpeed);

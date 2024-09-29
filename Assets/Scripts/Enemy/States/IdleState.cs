@@ -3,7 +3,7 @@ namespace Enemy.States
 {
     public class IdleState : EnemyState
     {
-		public IdleState(EnemyController enemyController) : base(enemyController) { }
+		public IdleState(IEnemy enemyController) : base(enemyController) { }
 
 		public override void Update()
 		{ }

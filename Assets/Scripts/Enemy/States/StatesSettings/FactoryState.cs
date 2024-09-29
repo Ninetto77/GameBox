@@ -2,7 +2,7 @@ namespace Enemy.States
 {
     public static class FactoryState
     {
-        public static EnemyState GetStateEnemy(StatesEnum state, EnemyController enemy)
+        public static EnemyState GetStateEnemy(StatesEnum state, IEnemy enemy)
         {
             switch (state)
             {

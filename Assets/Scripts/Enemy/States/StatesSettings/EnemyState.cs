@@ -3,12 +3,12 @@ namespace Enemy.States
     public abstract class EnemyState: IEnemyState
 	{
         public bool isFinish;
-        protected EnemyController enemy;
+        protected IEnemy enemy;
 
         public EnemyState()
         {
         }
-        public EnemyState(EnemyController enemyController)
+        public EnemyState(IEnemy enemyController)
         {
             enemy = enemyController;
         }

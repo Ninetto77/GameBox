@@ -4,7 +4,7 @@ namespace Enemy.States
 {
 	public class AttackState : EnemyState
 	{
-		public AttackState(EnemyController enemyController) : base(enemyController) { }
+		public AttackState(IEnemy enemyController) : base(enemyController) { }
 
 		public override void Update()
 		{ }
@@ -14,9 +14,9 @@ namespace Enemy.States
 		/// </summary>
 		public void RotateToPlayer()
 		{
-			var direction = (enemy.TargetPosition - enemy.transform.position).normalized;
+			var direction = (enemy.TargetPosition - enemy.EnemyTransform.position).normalized;
 			var targetRotation = Quaternion.LookRotation(direction);
-			enemy.transform.rotation = targetRotation;
+			enemy.EnemyTransform.rotation = targetRotation;
 		}
 
 		public override void Enter()

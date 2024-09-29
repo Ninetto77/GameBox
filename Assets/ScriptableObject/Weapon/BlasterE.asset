@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972feb118620f81419de1e1e4cba547d, type: 3}
+  m_Name: BlasterE
+  m_EditorClassIdentifier: 
+  _name: "\u0411\u043B\u0430\u0441\u0442\u0435\u0440\u0420"
+  _description: first blaster
+  _icon: {fileID: 21300000, guid: 4439909e5693df64fa7004e60f7ddb5c, type: 3}
+  _prefab: {fileID: 5503004487430818115, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
+  _equipmentSlot: 1
+  _fxType: 3
+  bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}
+  weaponDamage: 15
+  singleFire: 0
+  fireRate: 0.1
+  bulletsPerMagazine: 30
+  timeToReload: 1.5
+  distanceToShoot: 100

@@ -734,6 +734,9 @@ GameObject:
   - component: {fileID: 4498380440424157612}
   - component: {fileID: 4207366747279161641}
   - component: {fileID: 1066433313141774966}
+  - component: {fileID: 8524901632714224954}
+  - component: {fileID: 2371785193095292107}
+  - component: {fileID: 7667500849727625195}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -777,7 +780,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 3.82
   m_Radius: 0.35
@@ -799,6 +802,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  horizontalDirection: 0
+  verticalDirection: 0
+  jump: 0
 --- !u!114 &8669287752093017128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,15 +835,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0581b2857d688a7488801b81cc612478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 9
+  MaxSpeed: 7
   Gravity: 9.8
-  mask:
-    serializedVersion: 2
-    m_Bits: 256
+  JumpForce: 550
   aimTarget: {fileID: 14469459370295251}
   hand: {fileID: 5657914233142493673}
-  healthBar: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
+  health: {fileID: 0}
 --- !u!114 &2316162266315152884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +960,77 @@ MonoBehaviour:
   - m_Rig: {fileID: 2998099580211721965}
     m_Active: 1
   m_Effectors: []
+--- !u!54 &8524901632714224954
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938933717123069374}
+  serializedVersion: 4
+  m_Mass: 60
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2371785193095292107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938933717123069374}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8273964, y: 0.21394205, z: 1}
+  m_Center: {x: 0.0017986298, y: 0.09456855, z: 0}
+--- !u!136 &7667500849727625195
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938933717123069374}
+  m_Material: {fileID: 13400000, guid: ffb8084d20668a248adf81eb06a89850, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3531685
+  m_Height: 3.824272
+  m_Direction: 1
+  m_Center: {x: 0.0017700195, y: 1.999761, z: 0}
 --- !u!1 &2052634033561924391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,7 +2589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 0b67b33c14feb5d42b38f78db8439be8, type: 2}
   FirePoint: {fileID: 4066020620386500490}
-  distanceToShoot: 100
 --- !u!1 &7982857105472734551
 GameObject:
   m_ObjectHideFlags: 0

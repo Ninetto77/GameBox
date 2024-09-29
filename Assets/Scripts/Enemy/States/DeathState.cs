@@ -2,7 +2,7 @@ namespace Enemy.States
 {
 	public class DeathState : EnemyState
 	{
-		public DeathState(EnemyController enemyController) : base(enemyController) { }
+		public DeathState(IEnemy enemyController) : base(enemyController) { }
 
         public override void Update()
 		{ }

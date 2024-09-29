@@ -4,15 +4,16 @@ using Enemy;
 public class LocationInstaller : MonoInstaller, IInitializable
 {
 	public EnemyMarker[] enemyMarkers;
+	public EnemyFactory enemyFactoryPrefab;
 
 	public void Initialize()
 	{
-		var enemyFactory =  Container.Resolve<IEnemyFactory>();
+		var enemyFactory = Container.Resolve<IEnemyFactory>();
 
 		enemyFactory.Load();
 		foreach (EnemyMarker marker in enemyMarkers)
 			enemyFactory.Create(marker.EnemyType, marker.transform.position);
-		
+
 	}
 
 	public override void InstallBindings()
@@ -22,10 +23,22 @@ public class LocationInstaller : MonoInstaller, IInitializable
 
 	private void BindInstallerIntarfaces()
 	{
+		BiindLocationInstaller();
+		BindEnemyFactory();
+	}
+
+	private void BiindLocationInstaller()
+	{
 		Container.BindInterfacesTo<LocationInstaller>()
 			.FromInstance(this)
 			.AsSingle();
-		
-		Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
+	}
+
+	private void BindEnemyFactory()
+	{
+		Container.Bind<IEnemyFactory>()
+			.To<EnemyFactory>()
+			.FromComponentInNewPrefab(enemyFactoryPrefab)
+			.AsSingle();
 	}
 }

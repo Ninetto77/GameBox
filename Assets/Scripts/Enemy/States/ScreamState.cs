@@ -6,7 +6,7 @@ namespace Enemy.States
     {
 		private float angularSpeed;
 
-		public ScreamState(EnemyController enemyController) : base(enemyController) { }
+		public ScreamState(IEnemy enemyController) : base(enemyController) { }
 
 		public override void Update() 
 		{ RotateToPlayer(); }
@@ -16,9 +16,9 @@ namespace Enemy.States
 		/// </summary>
 		public void RotateToPlayer()
 		{
-			var direction = (enemy.TargetPosition - enemy.transform.position).normalized;
+			var direction = (enemy.TargetPosition - enemy.EnemyTransform.position).normalized;
 			var targetRotation = Quaternion.LookRotation(direction);
-			enemy.transform.rotation = targetRotation;
+			enemy.EnemyTransform.rotation = targetRotation;
 			//enemy.transform.rotation = Quaternion.Lerp(enemy.transform.rotation, targetRotation, angularSpeed * Time.deltaTime); // не работает
 		}
 

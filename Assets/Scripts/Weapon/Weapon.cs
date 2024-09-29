@@ -1,129 +1,136 @@
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
-public partial class Weapon : MonoBehaviour, IWeapon
+namespace Weapon
 {
-	public WeaponItem weapon;
-	public Transform FirePoint;
-	public float distanceToShoot = 100;
-
-	private float nextFireTime = 0;
-	private bool canFire = true;
-	private int bulletsPerMagazineDefault = 0;
-	private int currentBulletsPerMagazine = 0;
-	
-	private Camera mainCamera;
-	private bool toolIsPicked;
-
-	//[Inject] private ProjectContext projectContext;
-	private FXProvider fXProvider;
-	private FXType fxPrefab;
-
-
-	private void Start()
+	public partial class Weapon : MonoBehaviour, IWeapon
 	{
-		bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
-		currentBulletsPerMagazine = bulletsPerMagazineDefault;
-		mainCamera = Camera.main;
+		public WeaponItem weapon;
+		public Transform FirePoint;
 
-		var temp = gameObject.GetComponent<ItemPickup>();
-		toolIsPicked = temp.isPicked;
+		private float nextFireTime = 0;
+		private bool canFire = true;
+		private int bulletsPerMagazineDefault = 0;
+		private int currentBulletsPerMagazine = 0;
 
-		//fXProvider = projectContext.FXProvider;
-		//fxPrefab = weapon.FXType;
-	}
+		private Camera mainCamera;
+		private bool toolIsPicked;
 
-	private void Update()
-	{
-		if (!toolIsPicked) return;
+		//[Inject] private ProjectContext projectContext;
+		private FXProvider fXProvider;
+		private FXType fxPrefab;
 
-		if (Input.GetMouseButtonDown(0) && weapon.SingleFire)
+
+		private void Start()
 		{
-			Fire();
+			bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
+			currentBulletsPerMagazine = bulletsPerMagazineDefault;
+			mainCamera = Camera.main;
+
+			var temp = gameObject.GetComponent<ItemPickup>();
+			toolIsPicked = temp.isPicked;
+
+			//fXProvider = projectContext.FXProvider;
+			//fxPrefab = weapon.FXType;
 		}
-		if (Input.GetMouseButton(0) && !weapon.SingleFire)
-		{
-			Fire();
-		}
-		if (Input.GetKeyDown(KeyCode.R) && canFire)
-		{
-			StartCoroutine(Reload());
-		}
-	}
 
-	/// <summary>
-	/// Стрельба
-	/// </summary>
-	private void Fire()
-	{
-		if (canFire)
+		private void Update()
 		{
-			if (Time.time > nextFireTime)
+			if (!toolIsPicked) return;
+
+			if (Input.GetMouseButtonDown(0) && weapon.SingleFire)
 			{
-				nextFireTime = Time.time + weapon.FireRate;
+				Fire();
+			}
+			if (Input.GetMouseButton(0) && !weapon.SingleFire)
+			{
+				Fire();
+			}
+			if (Input.GetKeyDown(KeyCode.R) && canFire)
+			{
+				StartCoroutine(Reload());
+			}
+		}
 
-				if (currentBulletsPerMagazine > 0)
+		/// <summary>
+		/// Стрельба
+		/// </summary>
+		private void Fire()
+		{
+			if (canFire)
+			{
+				if (Time.time > nextFireTime)
 				{
-					Vector3 firePointPointerPosition = mainCamera.transform.position + mainCamera.transform.forward * 100;
-					RaycastHit hit;
-					if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, distanceToShoot))
+					nextFireTime = Time.time + weapon.FireRate;
+
+					if (currentBulletsPerMagazine > 0)
 					{
-						firePointPointerPosition = hit.point;
+						Vector3 firePointPointerPosition = mainCamera.transform.position + mainCamera.transform.forward * 100;
+						RaycastHit hit;
+						if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, weapon.DistanceToShoot))
+						{
+							firePointPointerPosition = hit.point;
+						}
+
+						FirePoint.LookAt(firePointPointerPosition);
+
+
+						GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
+						Bullet bullet = bulletObject.GetComponent<Bullet>();
+
+						bullet.SetDamage(weapon.WeaponDamage);
+
+						//GetFX(hit);
+
+						currentBulletsPerMagazine--;
 					}
-
-					FirePoint.LookAt(firePointPointerPosition);
-
-					GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
-					Bullet bullet = bulletObject.GetComponent<Bullet>();
-
-					bullet.SetDamage(weapon.WeaponDamage);
-
-					//GetFX(hit);
-
-					currentBulletsPerMagazine--;
-				}
-				else
-				{
-					StartCoroutine(Reload());
+					else
+					{
+						StartCoroutine(Reload());
+					}
 				}
 			}
 		}
-	}
 
-	#region
-	private void GetFX(RaycastHit hit)
-	{
-		if (fxPrefab == FXType.none) return;
-		//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.Euler(hit.normal));
-		//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.identity, FirePoint);
-		//GameObject game = task.Result;
+		private Vector3 GetDirection()
+		{
+			return Vector3.forward;
+		}
 
-		StartCoroutine(UnloadFX());
-		//game.SetActive(false);
-	}
+		#region
+		private void GetFX(RaycastHit hit)
+		{
+			if (fxPrefab == FXType.none) return;
+			//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.Euler(hit.normal));
+			//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.identity, FirePoint);
+			//GameObject game = task.Result;
 
-	private IEnumerator UnloadFX()
-	{
-		yield return new WaitForSeconds(0.2f);
-		Debug.Log("UnloadFX in weapon");
+			StartCoroutine(UnloadFX());
+			//game.SetActive(false);
+		}
 
-		fXProvider.UnloadFX();
-	}
-	#endregion
+		private IEnumerator UnloadFX()
+		{
+			yield return new WaitForSeconds(0.2f);
+			Debug.Log("UnloadFX in weapon");
 
-	/// <summary>
-	/// Перезарядка
-	/// </summary>
-	/// <returns></returns>
-	private IEnumerator Reload()
-	{
-		canFire = false;
+			fXProvider.UnloadFX();
+		}
+		#endregion
 
-		yield return new WaitForSeconds(weapon.TimeToReload);
+		/// <summary>
+		/// Перезарядка
+		/// </summary>
+		/// <returns></returns>
+		private IEnumerator Reload()
+		{
+			canFire = false;
 
-		currentBulletsPerMagazine = bulletsPerMagazineDefault;
+			yield return new WaitForSeconds(weapon.TimeToReload);
 
-		canFire = true;
+			currentBulletsPerMagazine = bulletsPerMagazineDefault;
+
+			canFire = true;
+		}
 	}
 }

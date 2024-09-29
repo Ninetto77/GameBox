@@ -1,5 +1,7 @@
-public interface IWeapon
+namespace Weapon
 {
-	void Fire() { }
-	
+	public interface IWeapon
+	{
+		void Fire() { }
+	}
 }

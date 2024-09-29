@@ -2,7 +2,7 @@ namespace Enemy.States
 {
 	public class DamageState : EnemyState
 	{
-        public DamageState(EnemyController enemyController) : base(enemyController) { }
+        public DamageState(IEnemy enemyController) : base(enemyController) { }
 
         public override void Update()
 		{ }

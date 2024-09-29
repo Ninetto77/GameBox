@@ -3,20 +3,16 @@ using Zenject;
 
 namespace Enemy
 {
-	public class EnemyFactory : IEnemyFactory
+	public class EnemyFactory : MonoBehaviour, IEnemyFactory
 	{
-		private const string enemyEasy = "EnemyEasy";
-		private const string enemyHard = "EnemyHard";
+		private const string enemyEasy = "SimpolZombi";
+		private const string enemyHard = "HardZombi";
 		private Object simpolZombi;
 		private Object hardZombi;
 		
-		private DiContainer _container;
+		[Inject] private DiContainer _container;
 
-		public EnemyFactory(DiContainer container)
-        {
-            _container = container;
-        }
-        public void Load()
+		public void Load()
 		{
 			simpolZombi = Resources.Load(enemyEasy);
 			hardZombi = Resources.Load(enemyHard);

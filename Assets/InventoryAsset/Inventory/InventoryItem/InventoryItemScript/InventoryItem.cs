@@ -97,8 +97,13 @@ namespace InventorySystem
         }
         public void Selected()
         {
-            if (itemEvent != null)
+			Debug.Log("Selected()");
+
+			if (itemEvent != null)
+            {
                 itemEvent.Invoke(this);
+                Debug.Log("Selected item");
+            }
         }
         public bool GetPressable()
         {
