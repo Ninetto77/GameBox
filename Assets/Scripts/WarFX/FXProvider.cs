@@ -20,6 +20,9 @@ public class FXProvider : LocalAssetLoader
 			case FXType.blaster:
 				_assetName = "WFX_Blaster";
 				break;
+			case FXType.fireball:
+				_assetName = "Fireball";
+				break;
 		}
 		return LoadAsset<GameObject>(_assetName, position, rotation, parent);
     }

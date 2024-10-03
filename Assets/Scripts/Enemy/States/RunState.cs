@@ -35,7 +35,7 @@ namespace Enemy.States
 		private void Run()
 		{
 			Rigidbody rb = enemy.GetRigidBody();
-			rb.AddForce(enemy.EnemyTransform.forward * Time.deltaTime * 20, ForceMode.Impulse);
+			rb.AddForce(enemy.EnemyTransform.forward * Time.deltaTime * speed, ForceMode.Impulse);
 
 			if (rb.velocity.magnitude > enemy.MaxSpeed)
 				rb.velocity = Vector3.ClampMagnitude(rb.velocity, enemy.MaxSpeed);

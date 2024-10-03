@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+namespace Old
+{
 public class Bullet: MonoBehaviour
 {
 	public float bulletSpeed = 345;
@@ -33,7 +35,7 @@ public class Bullet: MonoBehaviour
 				{
 					//hit.rigidbody.AddForce(direction * hitForce);
 
-					IEntity npc = hit.transform.GetComponent<IEntity>();
+					IDamageable npc = hit.transform.GetComponent<IDamageable>();
 					if (npc != null)
 					{
 						npc.ApplyDamage(damage);
@@ -68,4 +70,5 @@ public class Bullet: MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		Destroy(gameObject);
 	}
+}
 }

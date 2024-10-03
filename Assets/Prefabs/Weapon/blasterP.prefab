@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6912175207041881569}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.007, y: 0.061, z: -0.472}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0.024, z: 0.482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5122081241461527545}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!1001 &4656705235115111442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,6 +94,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: df6d8d7469aa9904788f23bfe4260868, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4640270272652760241, guid: df6d8d7469aa9904788f23bfe4260868, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4640270272652760241, guid: df6d8d7469aa9904788f23bfe4260868, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4640270272652760241, guid: df6d8d7469aa9904788f23bfe4260868, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4313156193584043355, guid: df6d8d7469aa9904788f23bfe4260868, type: 3}
       propertyPath: m_Name
@@ -176,7 +188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 0b67b33c14feb5d42b38f78db8439be8, type: 2}
   FirePoint: {fileID: 4954780506410380350}
-  distanceToShoot: 100
 --- !u!114 &921329368287610398
 MonoBehaviour:
   m_ObjectHideFlags: 0

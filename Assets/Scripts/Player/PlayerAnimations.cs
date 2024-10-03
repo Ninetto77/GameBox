@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerAnimations
 {
     private readonly string animRunString = "Run";
-    private readonly string animJumpString = "Jump";
+    //private readonly string animJumpString = "Jump";
+    private readonly string animJumpString = "IsJumping";
     private readonly string animHitString = "IsHiting";
     private readonly string animAimingString = "IsAiming";
 
@@ -18,9 +19,9 @@ public class PlayerAnimations
 		animator.SetFloat(animRunString, velocity.magnitude);
 	}
 
-	public void SetJumpAnim()
+	public void SetJumpAnim(bool state)
 	{
-		animator.SetTrigger(animJumpString);
+		animator.SetBool(animJumpString, state);
 	}
 
 	public void SetHitAnim(bool state)

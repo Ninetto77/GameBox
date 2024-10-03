@@ -5,6 +5,8 @@ public class Health : MonoBehaviour
 {
     public Action OnDeadEvent;
     public Action<float> OnChangeHealth;
+    public Action OnTakeDamage;
+    public Action OnTakeTreat;
     public float MaxHealth;
 
     private float currentHealth;
@@ -17,6 +19,7 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damage;
 		OnChangeHealth?.Invoke(currentHealth);
+		OnTakeDamage?.Invoke();
 
         currentHealth = Math.Clamp(currentHealth, 0, MaxHealth);
 
@@ -27,7 +30,12 @@ public class Health : MonoBehaviour
     public void TakeTreat(float value)
     {
         currentHealth += value;
+		
+        currentHealth = Math.Clamp(currentHealth, 0, MaxHealth);
+
 		OnChangeHealth?.Invoke(currentHealth);
+		OnTakeTreat?.Invoke();
+
 	}
 
 	public void RestoreHealth()

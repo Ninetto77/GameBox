@@ -34,10 +34,7 @@ public class LocalAssetLoader
 	protected void UnloadAsset()
 	{
 		if (cachedObject == null) return;
-		Debug.Log($"UPLOAD {cachedObject.name}");
-		Debug.Log($"Before {cachedObject.activeSelf}");
 		cachedObject.SetActive(false);
-		Debug.Log($"AFTER {cachedObject.activeSelf}");
 		Addressables.ReleaseInstance(cachedObject);
 		cachedObject = null;
 	}

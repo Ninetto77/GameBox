@@ -1,8 +1,9 @@
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMoovement : MonoBehaviour
+public class PlayerMoovement : MonoBehaviour, IDamageable
 {
     [Header("Физика")]
     public float Speed = 40f;
@@ -39,7 +40,16 @@ public class PlayerMoovement : MonoBehaviour
         brain = new PlayerBrain();
         rb = GetComponent<Rigidbody>();
 		isGrounded = true;
-
+	}
+    private void Update()
+    {
+		//тест
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            health.TakeDamage(10);
+        }
+		TurnHead();
+		brain.Update();
 	}
 
 	/// <summary>
@@ -57,17 +67,16 @@ public class PlayerMoovement : MonoBehaviour
 			rb.velocity = Vector3.ClampMagnitude(rb.velocity, MaxSpeed);
 
 		if (isGrounded)
-            if (jump == true)
+		{
+			if (jump == true)
+			{
 				rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-
+			}
+		}
 		animations.SetRuningAnim(rb.velocity);
 
 		//animations.SetAimingAnim(true);
-
-
-
 	}
-
 
     private void TurnHead()
     {
@@ -75,6 +84,8 @@ public class PlayerMoovement : MonoBehaviour
         Vector3 desirePosition = ray.origin + ray.direction * 0.7f;
         aimTarget.position = desirePosition;
 	}
+
+	public void ApplyDamage(float damage) => health.TakeDamage(damage);
 
 	public void Hit(bool state)
 	{
@@ -86,31 +97,17 @@ public class PlayerMoovement : MonoBehaviour
     /// </summary>
 	public void HitAndGeatherResource()
 	{
-        if (hand == null) return;
-        
-        if (hand.childCount > 0 && hand.GetChild(0) != null)
-        {
-            var intrument = hand.GetChild(0);
-            var gather = intrument.GetComponent<GatherResources>();
-            if (gather != null)
+		if (hand == null) return;
+
+		if (hand.childCount > 0 && hand.GetChild(0) != null)
+		{
+			var intrument = hand.GetChild(0);
+			var gather = intrument.GetComponent<GatherResources>();
+			if (gather != null)
 				gather.TryGatherResource();
-        }
+		}
 	}
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            health.TakeDamage(10);
-        }
-		TurnHead();
-		brain.Update();
-	}
-
-    private void GetWeapon()
-    {
-
-    }
 
 	#region коллизии для прыжка
 
@@ -129,6 +126,7 @@ public class PlayerMoovement : MonoBehaviour
 		if (collision.gameObject.tag == ("Ground"))
 		{
 			isGrounded = value;
+			animations.SetJumpAnim(!value);
 		}
 	}
 	#endregion

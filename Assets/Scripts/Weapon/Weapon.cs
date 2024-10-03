@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using Attack.Base;
+using Unity.VisualScripting;
+using System;
 
 namespace Weapon
 {
-	public partial class Weapon : MonoBehaviour, IWeapon
+	public partial class Weapon : AttackBehaviour
 	{
 		public WeaponItem weapon;
 		public Transform FirePoint;
@@ -40,11 +43,11 @@ namespace Weapon
 
 			if (Input.GetMouseButtonDown(0) && weapon.SingleFire)
 			{
-				Fire();
+				PerformAttack();
 			}
 			if (Input.GetMouseButton(0) && !weapon.SingleFire)
 			{
-				Fire();
+				PerformAttack();
 			}
 			if (Input.GetKeyDown(KeyCode.R) && canFire)
 			{
@@ -52,10 +55,7 @@ namespace Weapon
 			}
 		}
 
-		/// <summary>
-		/// Стрельба
-		/// </summary>
-		private void Fire()
+		public override void PerformAttack()
 		{
 			if (canFire)
 			{
@@ -63,41 +63,115 @@ namespace Weapon
 				{
 					nextFireTime = Time.time + weapon.FireRate;
 
-					if (currentBulletsPerMagazine > 0)
+					for (var i = 0; i < weapon.ShotCount; i++)
 					{
-						Vector3 firePointPointerPosition = mainCamera.transform.position + mainCamera.transform.forward * 100;
-						RaycastHit hit;
-						if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, weapon.DistanceToShoot))
+						if (currentBulletsPerMagazine > 0)
 						{
-							firePointPointerPosition = hit.point;
+							PerformRaycast();
 						}
-
-						FirePoint.LookAt(firePointPointerPosition);
-
-
-						GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
-						Bullet bullet = bulletObject.GetComponent<Bullet>();
-
-						bullet.SetDamage(weapon.WeaponDamage);
-
-						//GetFX(hit);
-
-						currentBulletsPerMagazine--;
+						else
+						{
+							StartCoroutine(Reload());
+						}
 					}
-					else
-					{
-						StartCoroutine(Reload());
-					}
+
+					//PerformEffects();
 				}
+
 			}
 		}
+
+		private void PerformRaycast()
+		{
+			var direction = weapon.UseSpread ? transform.forward + CalculateSpread() : transform.forward;
+			var ray = new Ray(transform.position, direction);
+
+			FirePoint.LookAt(direction);
+
+			if (Physics.Raycast(ray, out RaycastHit hitInfo, weapon.DistanceToShoot,  weapon.Mask))
+			{
+				var hitCollider = hitInfo.collider;
+				Debug.Log("hit");
+
+				if (hitCollider.TryGetComponent(out IDamageable damageable))
+				{
+					damageable.ApplyDamage( weapon.WeaponDamage);
+					Debug.Log("apply damage");
+				}
+				else
+				{
+					// On IDamageable is not found.
+				}
+
+				currentBulletsPerMagazine--;
+
+				//SpawnParticleEffectOnHit(hitInfo);
+			}
+		}
+
+		private void PerformEffects()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		/// <summary>
+		/// Стрельба
+		/// </summary>
+		//private void Fire()
+		//{
+		//	if (canFire)
+		//	{
+		//		if (Time.time > nextFireTime)
+		//		{
+		//			nextFireTime = Time.time + weapon.FireRate;
+
+		//			if (currentBulletsPerMagazine > 0)
+		//			{
+
+
+		//				//Vector3 firePointPointerPosition = mainCamera.transform.position + mainCamera.transform.forward * 100;
+		//				//RaycastHit hit;
+		//				//if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, weapon.DistanceToShoot))
+		//				//{
+		//				//	firePointPointerPosition = hit.point;
+		//				//}
+
+		//				//FirePoint.LookAt(firePointPointerPosition);
+
+
+		//				//GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
+		//				//BulletRB bullet = bulletObject.GetComponent<BulletRB>();
+
+		//				//bullet.SetDamage(weapon.WeaponDamage);
+
+		//				////GetFX(hit);
+
+		//				//currentBulletsPerMagazine--;
+		//			}
+		//			else
+		//			{
+		//				StartCoroutine(Reload());
+		//			}
+		//		}
+		//	}
+		//}
 
 		private Vector3 GetDirection()
 		{
 			return Vector3.forward;
 		}
 
-		#region
+		private Vector3 CalculateSpread()
+		{
+			return new Vector3
+			{
+				x = UnityEngine.Random.Range(-weapon.SpreadFactor, weapon.SpreadFactor),
+				y = UnityEngine.Random.Range(-weapon.SpreadFactor, weapon.SpreadFactor),
+				z = UnityEngine.Random.Range(-weapon.SpreadFactor, weapon.SpreadFactor)
+			};
+		}
+
+		#region Частицы
 		private void GetFX(RaycastHit hit)
 		{
 			if (fxPrefab == FXType.none) return;
@@ -132,5 +206,37 @@ namespace Weapon
 
 			canFire = true;
 		}
+
+
+#if UNITY_EDITOR
+		private void OnDrawGizmosSelected()
+		{
+			var ray = new Ray(transform.position, transform.forward);
+			DrawRaycast(ray);
+		}
+
+		private void DrawRaycast(Ray ray)
+		{
+			if (Physics.Raycast(ray, out var hitInfo, weapon.DistanceToShoot, weapon.Mask))
+			{
+				DrawRay(ray, hitInfo.point, hitInfo.distance, Color.red);
+			}
+			else
+			{
+				var hitPosition = ray.origin + ray.direction * weapon.DistanceToShoot;
+
+				DrawRay(ray, hitPosition, weapon.DistanceToShoot, Color.green);
+			}
+		}
+
+		private static void DrawRay(Ray ray, Vector3 hitPosition, float distance, Color color)
+		{
+			const float hitPointRadius = 0.15f;
+			Debug.DrawRay(ray.origin, ray.direction * distance, color);
+
+			Gizmos.color = color;
+			Gizmos.DrawSphere(hitPosition, hitPointRadius);
+		}
+#endif
 	}
 }

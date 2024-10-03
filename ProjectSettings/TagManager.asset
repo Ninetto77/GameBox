@@ -9,6 +9,7 @@ TagManager:
   - StateMashine
   - Slot
   - FxTemporaire
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Stones
   - Player
   - Damageable
-  - 
+  - Ground
   - 
   - 
   - 

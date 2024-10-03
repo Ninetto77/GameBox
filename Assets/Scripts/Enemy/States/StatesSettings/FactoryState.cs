@@ -18,7 +18,9 @@ namespace Enemy.States
                     return new DamageState(enemy);
                 case StatesEnum.death:
                     return new DeathState(enemy);
-                default:
+				case StatesEnum.none:
+					return new IdleState(enemy);
+				default:
                     return new IdleState(enemy);
             }
         }
