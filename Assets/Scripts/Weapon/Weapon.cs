@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine;
 using Attack.Base;
 using Unity.VisualScripting;
-using System;
-using UnityEditor.Search;
+using Weapon;
+using Zenject;
 
-namespace Weapon
+namespace Attack.Raycast
 {
 	public partial class Weapon : AttackBehaviour
 	{
@@ -20,7 +20,7 @@ namespace Weapon
 		private Camera mainCamera;
 		private bool toolIsPicked;
 
-		//[Inject] private ProjectContext projectContext;
+		[Inject] private ProjectContext projectContext;
 		private FXProvider fXProvider;
 		private FXType fxPrefab;
 
@@ -34,8 +34,8 @@ namespace Weapon
 			var temp = gameObject.GetComponent<ItemPickup>();
 			toolIsPicked = temp.isPicked;
 
-			//fXProvider = projectContext.FXProvider;
-			//fxPrefab = weapon.FXType;
+			fXProvider = projectContext.FXProvider;
+			fxPrefab = weapon.FXType;
 		}
 
 		private void Update()
@@ -82,6 +82,9 @@ namespace Weapon
 			}
 		}
 
+		/// <summary>
+		/// Стрельба
+		/// </summary>
 		private void PerformRaycast()
 		{
 			var direction = weapon.UseSpread ? transform.forward + CalculateSpread() : transform.forward;
@@ -96,12 +99,7 @@ namespace Weapon
 
 				if (hitCollider.TryGetComponent(out IDamageable damageable))
 				{
-					var bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
-					BulletRB bullet = bulletObject.GetComponent<BulletRB>();
-
-
 					damageable.ApplyDamage(weapon.WeaponDamage);
-					Debug.Log("apply damage");
 				}
 				else
 				{
@@ -119,48 +117,8 @@ namespace Weapon
 			throw new System.NotImplementedException();
 		}
 
-		/// <summary>
-		/// Стрельба
-		/// </summary>
-		//private void Fire()
-		//{
-		//	if (canFire)
-		//	{
-		//		if (Time.time > nextFireTime)
-		//		{
-		//			nextFireTime = Time.time + weapon.FireRate;
 
-		//			if (currentBulletsPerMagazine > 0)
-		//			{
-
-
-		//				//Vector3 firePointPointerPosition = mainCamera.transform.position + mainCamera.transform.forward * 100;
-		//				//RaycastHit hit;
-		//				//if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, weapon.DistanceToShoot))
-		//				//{
-		//				//	firePointPointerPosition = hit.point;
-		//				//}
-
-		//				//FirePoint.LookAt(firePointPointerPosition);
-
-
-		//				//GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
-		//				//BulletRB bullet = bulletObject.GetComponent<BulletRB>();
-
-		//				//bullet.SetDamage(weapon.WeaponDamage);
-
-		//				////GetFX(hit);
-
-		//				//currentBulletsPerMagazine--;
-		//			}
-		//			else
-		//			{
-		//				StartCoroutine(Reload());
-		//			}
-		//		}
-		//	}
-		//}
-
+		
 		private Vector3 GetDirection()
 		{
 			return Vector3.forward;
@@ -185,7 +143,6 @@ namespace Weapon
 			//GameObject game = task.Result;
 
 			StartCoroutine(UnloadFX());
-			//game.SetActive(false);
 		}
 
 		private IEnumerator UnloadFX()

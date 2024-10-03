@@ -92,23 +92,6 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 		animations.SetHitAnim(state);
 	}
 
-    /// <summary>
-    /// Событие в анимации, когда надо собрать ресурсы
-    /// </summary>
-	public void HitAndGeatherResource()
-	{
-		if (hand == null) return;
-
-		if (hand.childCount > 0 && hand.GetChild(0) != null)
-		{
-			var intrument = hand.GetChild(0);
-			var gather = intrument.GetComponent<GatherResources>();
-			if (gather != null)
-				gather.TryGatherResource();
-		}
-	}
-
-
 	#region коллизии для прыжка
 
 	void OnCollisionEnter(Collision collision)

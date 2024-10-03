@@ -61,7 +61,7 @@ public class EquipmentManager : MonoBehaviour
             OnEquipmentChangedCallback.Invoke(newItem, oldItem);
         }
 
-        if (newItem.EquipmentSlot == 0 || newItem.EquipmentSlot == EquipmentsSlot.handweapon)
+        if (newItem.EquipmentSlot == 0 || newItem.EquipmentSlot == EquipmentsSlot.hand)
 		{
             EquipHand(newItem);
         }
