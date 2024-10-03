@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -8,13 +7,16 @@ namespace Enemy.States
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(Health))]
 	[RequireComponent(typeof(Rigidbody))]
-	public class EnemyController : MonoBehaviour, IEntity, IEnemy
+	public abstract class EnemyController : MonoBehaviour, IDamageable, IEnemy, IAttack
 	{
 		[Header("Обнаружение игрока")]
 		public LayerMask PlayerMask;
 		[SerializeField] private float radiusOfDetect = 10;
 		[SerializeField] private float distanceToAtack = 3;
 
+		[Header("Урон (не ведьма)")]
+		[Tooltip("Урон ведьмы менять в фаербол")]
+		public float Damage = 10;
 
 		//[Header("Физика")]
 		[field: SerializeField] public float MaxSpeed  {get; set;}
@@ -25,11 +27,11 @@ namespace Enemy.States
 
 		[HideInInspector]
 		public EnemyAnimation Animation { get; set; }
-		private StateMachine stateMachine;
-		private Health health;
 		private Rigidbody rb;
+		protected StateMachine stateMachine;
+		protected Health health;
 
-		[Inject] private PlayerMoovement player;
+		[Inject] protected PlayerMoovement player;
 		public Vector3 TargetPosition => player.transform.position;
 		public Transform EnemyTransform => transform;
 
@@ -46,12 +48,12 @@ namespace Enemy.States
 
         private void Awake()
 		{
-			radiusOfDetect = 10;
-			distanceToAtack = 3;
-
 			animator = GetComponent<Animator>();
 			Animation = new EnemyAnimation(animator);
+
 			stateMachine = new StateMachine();
+			stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.none, this));
+
 			health = GetComponent<Health>();
 			rb = GetComponent<Rigidbody>();
 			health.OnChangeHealth += TakeDamage;
@@ -60,9 +62,13 @@ namespace Enemy.States
 
 		private void Start()
 		{
-			StartCoroutine(StartScreaming());
+			//StartCoroutine(StartScreaming());
 		}
 
+		/// <summary>
+		/// Вой врага
+		/// </summary>
+		/// <returns></returns>
 		private IEnumerator StartScreaming()
 		{
 			started = true;
@@ -73,39 +79,50 @@ namespace Enemy.States
 			started = false;
 		}
 
-		private void Update()
+		protected virtual void Update()
 		{
-			if (started) 
-			{
-				stateMachine.CurrentState.Update();
-				return;
-			}
-
-			if (isTakingDamage) return;
-			if (isDead) return;
-
-			if (Vector3.Distance(transform.position, TargetPosition) < distanceToAtack)
-			{
-				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.attack, this));
-				return;
-			}
-
-			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
-			stateMachine.CurrentState.Update();
-
-
-			//лучше 
-
 			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
 			foreach (var collider in colliders)
 			{
-				Debug.Log("Find Player");
-			}
-			//лучше 
+				if (isTakingDamage) return;
+				if (isDead) return;
 
-			//Collider[] colliders = null;
-			//var v = Physics.OverlapSphereNonAlloc(transform.position, radiusOfDetect, colliders, PlayerMask.value);
+				if (Vector3.Distance(transform.position, TargetPosition) < distanceToAtack)
+				{
+					stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.attack, this));
+					return;
+				}
+
+				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
+				stateMachine.CurrentState.Update();
+			}
+
+			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.idle, this));
+			stateMachine.CurrentState.Update();
+			
+			//if (started) 
+			//{
+			//	stateMachine.CurrentState.Update();
+			//	return;
+			//}
+
+			//if (isTakingDamage) return;
+			//if (isDead) return;
+
+			//if (Vector3.Distance(transform.position, TargetPosition) < distanceToAtack)
+			//{
+			//	stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.attack, this));
+			//	return;
+			//}
+
+			//stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
+			//stateMachine.CurrentState.Update();
+
+
+			////лучше 
+
+			//var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
 			//foreach (var collider in colliders)
 			//{
@@ -119,7 +136,8 @@ namespace Enemy.States
 		#region Смерть
 		private void Die()
 		{
-			StartCoroutine(StartGetDead());
+			if (!isDead)
+				StartCoroutine(StartGetDead());
 		}
 
 		private IEnumerator StartGetDead()
@@ -135,7 +153,8 @@ namespace Enemy.States
 		#region Нанесение урона
 		private void TakeDamage(float obj)
 		{
-			StartCoroutine(StartTakeDamage());
+			if (!isTakingDamage)
+				StartCoroutine(StartTakeDamage());
 		}
 
 		private IEnumerator StartTakeDamage()
@@ -145,7 +164,6 @@ namespace Enemy.States
 
 			yield return new WaitForSeconds(1.5f);
 			isTakingDamage = false;
-
 		}
 
 		public void ApplyDamage(float damage)
