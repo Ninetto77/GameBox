@@ -3,6 +3,7 @@ using UnityEngine;
 using Attack.Base;
 using Unity.VisualScripting;
 using System;
+using UnityEditor.Search;
 
 namespace Weapon
 {
@@ -95,7 +96,11 @@ namespace Weapon
 
 				if (hitCollider.TryGetComponent(out IDamageable damageable))
 				{
-					damageable.ApplyDamage( weapon.WeaponDamage);
+					var bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
+					BulletRB bullet = bulletObject.GetComponent<BulletRB>();
+
+
+					damageable.ApplyDamage(weapon.WeaponDamage);
 					Debug.Log("apply damage");
 				}
 				else

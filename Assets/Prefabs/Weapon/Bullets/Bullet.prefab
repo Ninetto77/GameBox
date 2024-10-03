@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7301559071297287681}
   - component: {fileID: -4088459239611581966}
-  - component: {fileID: 7580233281569396201}
+  - component: {fileID: -279045156058267262}
   - component: {fileID: 4336758472629007525}
   m_Layer: 0
   m_Name: Bullet
@@ -62,7 +62,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &7580233281569396201
+--- !u!114 &-279045156058267262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,9 +71,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3564323241878444964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b976d7ec4a59e574db33b63561836b08, type: 3}
+  m_Script: {fileID: 11500000, guid: a106a49585c4fb746a5b609d886d250e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 10
+  _disposeType: 0
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _projectileRigidbody: {fileID: 0}
+  _spawnEffectOnDestroy: 1
+  _effectOnDestroyPrefab: {fileID: 0}
+  _effectOnDestroyLifetime: 2
 --- !u!136 &4336758472629007525
 CapsuleCollider:
   m_ObjectHideFlags: 0
