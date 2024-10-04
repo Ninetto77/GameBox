@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public Action OnDeadEvent;
     public Action<float> OnChangeHealth;
-    public Action OnTakeDamage;
-    public Action OnTakeTreat;
+    public event Action OnTakeDamage;
+    public event Action OnTakeTreat;
     public float MaxHealth;
 
     private float currentHealth;
@@ -22,9 +21,6 @@ public class Health : MonoBehaviour
 		OnTakeDamage?.Invoke();
 
         currentHealth = Math.Clamp(currentHealth, 0, MaxHealth);
-
-		if (currentHealth <= 0)
-            OnDeadEvent?.Invoke();
     }
 
     public void TakeTreat(float value)

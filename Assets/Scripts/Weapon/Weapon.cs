@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using Attack.Base;
-using Weapon;
 using Old;
-using Zenject;
 using System;
 using CameraSettings;
+using Items;
 
 namespace Attack.Raycast
 {
@@ -13,6 +12,11 @@ namespace Attack.Raycast
 	{
 		public WeaponItem weapon;
 		public Transform FirePoint;
+
+		public Action OnAttackStarted;
+		public Action OnAttackEnded;
+		public Action OnEmptyClip;
+		public Action OnEnemyHit;
 
 		private float nextFireTime = 0;
 		private bool canFire = true;
@@ -25,7 +29,6 @@ namespace Attack.Raycast
 		//[Inject] private ProjectContext projectContext;
 		private FXProvider fXProvider;
 		private FXType fxPrefab;
-		private CameraShakeAnimation shake;
 
 
 		private void Start()
@@ -37,7 +40,6 @@ namespace Attack.Raycast
 			var temp = gameObject.GetComponent<ItemPickup>();
 			toolIsPicked = temp.isPicked;
 
-			shake = GetComponent<CameraShakeAnimation>();
 			//fXProvider = projectContext.FXProvider;
 			//fxPrefab = weapon.FXType;
 		}
@@ -58,6 +60,13 @@ namespace Attack.Raycast
 			{
 				StartCoroutine(Reload());
 			}
+			if (Input.GetMouseButtonUp(0))
+				EndAttack();
+		}
+
+		private void EndAttack()
+		{
+			OnAttackEnded?.Invoke();
 		}
 
 		public override void PerformAttack()
@@ -74,7 +83,7 @@ namespace Attack.Raycast
 						{
 							//PerformRaycast();
 							PerformRaycastCamera();
-							//FireOld();
+							OnAttackStarted?.Invoke();
 						}
 						else
 						{
@@ -141,13 +150,7 @@ namespace Attack.Raycast
 
 				currentBulletsPerMagazine--;
 				SpawnParticleEffectOnHit(hitInfo);
-				ShakeCamera();
 			}
-		}
-
-		private void ShakeCamera()
-		{
-			shake.ReactOnAttack();
 		}
 
 		private void FireOld()
@@ -180,6 +183,7 @@ namespace Attack.Raycast
 		{
 			if (weapon.MuzzleEffect != null)
 			{
+				Debug.Log("MuzzleEffect");
 				weapon.MuzzleEffect.Play();
 			}
 		}

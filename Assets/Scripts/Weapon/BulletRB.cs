@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Weapon
+namespace Old
 {
     [RequireComponent(typeof(Rigidbody))]
     public class BulletRB : MonoBehaviour

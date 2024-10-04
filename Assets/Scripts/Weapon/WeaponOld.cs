@@ -1,10 +1,8 @@
-using Attack.Base;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Old;
+using Items;
 
-namespace Weapon
+namespace Old
 {
 	public class WeaponOld : MonoBehaviour
 	{

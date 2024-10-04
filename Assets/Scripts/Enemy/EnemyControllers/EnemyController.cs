@@ -57,7 +57,6 @@ namespace Enemy.States
 			health = GetComponent<Health>();
 			rb = GetComponent<Rigidbody>();
 			health.OnChangeHealth += TakeDamage;
-			health.OnDeadEvent += Die;
 		}
 
 		private void Start()
@@ -154,7 +153,11 @@ namespace Enemy.States
 		private void TakeDamage(float obj)
 		{
 			if (!isTakingDamage)
-				StartCoroutine(StartTakeDamage());
+			{
+				if (health.GetCurrentHealth() > 0)
+					StartCoroutine(StartTakeDamage());
+				else Die();
+			}
 		}
 
 		private IEnumerator StartTakeDamage()
@@ -175,7 +178,6 @@ namespace Enemy.States
 		private void OnDisable()
 		{
 			health.OnChangeHealth -= TakeDamage;
-			health.OnDeadEvent -= Die;
 		}
 
 	}

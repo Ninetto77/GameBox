@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace Weapon
+namespace Items
 {
 	[CreateAssetMenu(fileName = "WeaponInfo", menuName = "Gameplay/New weapon")]
 	public class WeaponItem : Equipable

@@ -1,4 +1,4 @@
-namespace Weapon
+namespace Old
 {
 	public interface IWeapon
 	{
