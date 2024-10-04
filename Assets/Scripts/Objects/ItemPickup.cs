@@ -6,8 +6,6 @@ public class ItemPickup : Interactable
     public ItemInfo item;
     public bool isPicked = false;
 
-	private readonly string inventoryname = GlobalStringsVars.HOTBAR_NAME;
-
 	public override void Interact()
     {
         base.Interact();
@@ -23,7 +21,11 @@ public class ItemPickup : Interactable
         {
             Debug.Log("Pick Item " + item.name);
 
-			isPicked = InventoryController.instance.TryAddItem(inventoryname, item.Name);
+            var type = item.ItemType;
+
+            string inventoryname = InventoryType.GetInventoryName(type);
+
+            isPicked = InventoryController.instance.TryAddItem(inventoryname, item.Name);
 
             if (isPicked)
                 Destroy(this.gameObject);
@@ -31,12 +33,12 @@ public class ItemPickup : Interactable
         }
     }
 
-	/// <summary>
-	/// Remove from inventory
-	/// </summary>
-	public void RemoveItem()
-    {
-		InventoryController.instance.RemoveItem(inventoryname, item.Name, 1);
-        isPicked = false;
-    }
+	///// <summary>
+	///// Remove from inventory
+	///// </summary>
+	//public void RemoveItem()
+ //   {
+	//	InventoryController.instance.RemoveItem(inventoryname, item.Name, 1);
+ //       isPicked = false;
+ //   }
 }

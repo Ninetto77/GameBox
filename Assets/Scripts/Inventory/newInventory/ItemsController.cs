@@ -1,6 +1,8 @@
 using InventorySystem;
+using Items;
 using UnityEngine;
 using Zenject;
+using static UnityEditor.Progress;
 
 public class ItemsController : MonoBehaviour
 {
@@ -8,11 +10,49 @@ public class ItemsController : MonoBehaviour
 
 	private ItemInfo item;
 	private InventoryController inventory;
-	private readonly string inventoryName = GlobalStringsVars.ACTIVESLOT_NAME;
+	private readonly string ActiveSlotName = GlobalStringsVars.ACTIVESLOT_NAME;
 
 	private void Start()
 	{
 		inventory = InventoryController.instance;
+	}
+
+	private void Update()
+	{
+		string inventoryname = "";
+
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			inventoryname = InventoryType.GetInventoryName(ItemType.melle);
+			SetActiveSlot(inventoryname);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			inventoryname = InventoryType.GetInventoryName(ItemType.lightWeapon);
+			SetActiveSlot(inventoryname);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			inventoryname = InventoryType.GetInventoryName(ItemType.heavyWeapon);
+			SetActiveSlot(inventoryname);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha4))
+		{
+			inventoryname = InventoryType.GetInventoryName(ItemType.scientificWeapon);
+			SetActiveSlot(inventoryname);
+		}
+
+	}
+
+	private void SetActiveSlot(string inventoryname)
+	{
+		var item1 = inventory.GetInventory(inventoryname).InventoryGetItem(0).GetItemType();
+		inventory.RemoveItemPos(ActiveSlotName, 0, 1);
+
+		if (item1 != null)
+		{
+			inventory.AddItemPos(ActiveSlotName, item1, 0);
+		}
 	}
 
 	/// <summary>
@@ -32,7 +72,7 @@ public class ItemsController : MonoBehaviour
 	/// </summary>
 	public void UseItem()
 	{
-		item = inventory.GetItem(inventoryName, 0).GetItemInfo();
+		item = inventory.GetItem(ActiveSlotName, 0).GetItemInfo();
 		if (item != null)
 		{
 			item.Use(equipmentManager);
