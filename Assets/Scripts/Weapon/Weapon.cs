@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using Attack.Base;
-using Unity.VisualScripting;
 using Weapon;
+using Old;
 using Zenject;
+using System;
+using CameraSettings;
 
 namespace Attack.Raycast
 {
@@ -20,9 +22,10 @@ namespace Attack.Raycast
 		private Camera mainCamera;
 		private bool toolIsPicked;
 
-		[Inject] private ProjectContext projectContext;
+		//[Inject] private ProjectContext projectContext;
 		private FXProvider fXProvider;
 		private FXType fxPrefab;
+		private CameraShakeAnimation shake;
 
 
 		private void Start()
@@ -34,8 +37,9 @@ namespace Attack.Raycast
 			var temp = gameObject.GetComponent<ItemPickup>();
 			toolIsPicked = temp.isPicked;
 
-			fXProvider = projectContext.FXProvider;
-			fxPrefab = weapon.FXType;
+			shake = GetComponent<CameraShakeAnimation>();
+			//fXProvider = projectContext.FXProvider;
+			//fxPrefab = weapon.FXType;
 		}
 
 		private void Update()
@@ -68,7 +72,9 @@ namespace Attack.Raycast
 					{
 						if (currentBulletsPerMagazine > 0)
 						{
-							PerformRaycast();
+							//PerformRaycast();
+							PerformRaycastCamera();
+							//FireOld();
 						}
 						else
 						{
@@ -76,7 +82,7 @@ namespace Attack.Raycast
 						}
 					}
 
-					//PerformEffects();
+					PerformEffects();
 				}
 
 			}
@@ -107,21 +113,90 @@ namespace Attack.Raycast
 				}
 
 				currentBulletsPerMagazine--;
-
-				//SpawnParticleEffectOnHit(hitInfo);
+				SpawnParticleEffectOnHit(hitInfo);
 			}
 		}
 
-		private void PerformEffects()
+
+		private void PerformRaycastCamera()
 		{
-			throw new System.NotImplementedException();
+			var direction = weapon.UseSpread ? mainCamera.transform.forward + CalculateSpread() : mainCamera.transform.forward;
+			var ray = new Ray(mainCamera.transform.position, direction);
+
+			FirePoint.LookAt(direction);
+
+			if (Physics.Raycast(ray, out RaycastHit hitInfo, weapon.DistanceToShoot, weapon.Mask))
+			{
+				var hitCollider = hitInfo.collider;
+				Debug.Log("hit");
+
+				if (hitCollider.TryGetComponent(out IDamageable damageable))
+				{
+					damageable.ApplyDamage(weapon.WeaponDamage);
+				}
+				else
+				{
+					// On IDamageable is not found.
+				}
+
+				currentBulletsPerMagazine--;
+				SpawnParticleEffectOnHit(hitInfo);
+				ShakeCamera();
+			}
+		}
+
+		private void ShakeCamera()
+		{
+			shake.ReactOnAttack();
+		}
+
+		private void FireOld()
+		{
+			Vector3 firePointPointerPosition = mainCamera.transform.position + mainCamera.transform.forward * 100;
+			RaycastHit hit;
+			if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, weapon.DistanceToShoot))
+			{
+				firePointPointerPosition = hit.point;
+			}
+
+			FirePoint.LookAt(firePointPointerPosition);
+
+
+			GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
+			Bullet bullet = bulletObject.GetComponent<Bullet>();
+
+			bullet.SetDamage(weapon.WeaponDamage);
+
+			//GetFX(hit);
+
+			currentBulletsPerMagazine--;
 		}
 
 
-		
-		private Vector3 GetDirection()
+		/// <summary>
+		/// Частицы при выстреле
+		/// </summary>
+		private void PerformEffects()
 		{
-			return Vector3.forward;
+			if (weapon.MuzzleEffect != null)
+			{
+				weapon.MuzzleEffect.Play();
+			}
+		}
+
+		/// <summary>
+		/// Частицы от удара
+		/// </summary>
+		/// <param name="hitInfo"></param>
+		private void SpawnParticleEffectOnHit(RaycastHit hitInfo)
+		{
+			if (weapon.HitEffectPrefab != null)
+			{
+				var hitEffectRotation = Quaternion.LookRotation(hitInfo.normal);
+				var hitEffect = Instantiate(weapon.HitEffectPrefab, hitInfo.point, hitEffectRotation);
+
+				Destroy(hitEffect.gameObject, weapon.HitEffectDestroyDelay);
+			}
 		}
 
 		private Vector3 CalculateSpread()

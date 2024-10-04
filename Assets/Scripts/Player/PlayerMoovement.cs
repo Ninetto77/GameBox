@@ -91,7 +91,10 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 	{
 		animations.SetHitAnim(state);
 	}
+	public void HitAndGeatherResource()
+	{
 
+	}
 	#region коллизии для прыжка
 
 	void OnCollisionEnter(Collision collision)

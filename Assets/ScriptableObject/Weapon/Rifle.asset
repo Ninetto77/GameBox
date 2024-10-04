@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 972feb118620f81419de1e1e4cba547d, type: 3}
-  m_Name: BlasterG
+  m_Name: Rifle
   m_EditorClassIdentifier: 
   _name: "\u0411\u043B\u0430\u0441\u0442\u0435\u0440\u0420"
   _description: first blaster
@@ -20,16 +20,19 @@ MonoBehaviour:
   _fxType: 3
   bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}
   aimIcon: {fileID: 0}
-  weaponDamage: 15
+  weaponDamage: 75
   layerMask:
     serializedVersion: 2
     m_Bits: 0
   distanceToShoot: 100
   shotCount: 1
+  _muzzleEffect: {fileID: 0}
+  _hitEffectPrefab: {fileID: 0}
+  _hitEffectDestroyDelay: 2
   useSpread: 0
-  spreadFactor: 1
+  spreadFactor: 0
   singleFire: 0
   fireRate: 0.1
-  bulletsPerMagazine: 30
-  timeToReload: 1.5
+  bulletsPerMagazine: 8
+  timeToReload: 2
   distanceSpread: 1

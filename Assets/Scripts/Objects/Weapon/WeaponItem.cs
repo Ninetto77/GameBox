@@ -18,6 +18,11 @@ namespace Weapon
 		[SerializeField] private float distanceToShoot = Mathf.Infinity;
 		[SerializeField] private int shotCount = 1;
 
+		[Header("Particle System")]
+		[SerializeField] private ParticleSystem _muzzleEffect;
+		[SerializeField] private ParticleSystem _hitEffectPrefab;
+		[SerializeField, Min(0f)] private float _hitEffectDestroyDelay = 2f;
+
 		[Header("Spread")]
 		[SerializeField] private bool useSpread = false;
 		[SerializeField, Min(0)] private float spreadFactor = 1f;
@@ -40,6 +45,10 @@ namespace Weapon
 		public LayerMask Mask => layerMask;
 		public float DistanceToShoot => distanceToShoot;
 		public int ShotCount => shotCount;
+
+		public ParticleSystem MuzzleEffect => _muzzleEffect;
+		public ParticleSystem HitEffectPrefab  => _hitEffectPrefab;
+		public float HitEffectDestroyDelay  => _hitEffectDestroyDelay;
 
 		public bool UseSpread => useSpread;
 		public float SpreadFactor => spreadFactor;

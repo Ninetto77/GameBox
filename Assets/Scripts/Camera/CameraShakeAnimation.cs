@@ -12,17 +12,17 @@ namespace CameraSettings
 			mainCamera = Camera.main;
 		}
 
-		private void ReactOnAttack()
+		public void ReactOnAttack()
 		{
 			var cameraTransform = mainCamera.transform;
 
 			cameraTransform
-				.DOShakePosition(0.15f, 1f, 10, 90f, false, true, ShakeRandomnessMode.Harmonic)
+				.DOShakePosition(0.15f, 0.5f, 10, 90f, false, true, ShakeRandomnessMode.Harmonic)
 				.SetEase(Ease.InOutBounce)
 				.SetLink(cameraTransform.gameObject);
 
 			cameraTransform
-		.DOShakeRotation(0.15f, 1f, 10, 90f, true, ShakeRandomnessMode.Harmonic)
+		.DOShakeRotation(0.15f, 0.5f, 10, 90f, true, ShakeRandomnessMode.Harmonic)
 		.SetEase(Ease.InOutBounce)
 		.SetLink(cameraTransform.gameObject);
 		}
