@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   distanceToShoot: 20
   shotCount: 1
-  _muzzleEffect: {fileID: 0}
+  _muzzleEffect: {fileID: 19800000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
   _hitEffectPrefab: {fileID: 0}
   _hitEffectDestroyDelay: 2
   useSpread: 0
