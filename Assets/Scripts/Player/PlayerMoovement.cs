@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -23,7 +21,6 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
     private PlayerAnimations animations;
     private PlayerBrain brain;
 	private Rigidbody rb;
-	//private PlayerHealth playerHealth;
 	[HideInInspector]
 	public Health health;
 
