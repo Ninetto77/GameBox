@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Enemy.States
@@ -99,35 +101,6 @@ namespace Enemy.States
 
 			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.idle, this));
 			stateMachine.CurrentState.Update();
-			
-			//if (started) 
-			//{
-			//	stateMachine.CurrentState.Update();
-			//	return;
-			//}
-
-			//if (isTakingDamage) return;
-			//if (isDead) return;
-
-			//if (Vector3.Distance(transform.position, TargetPosition) < distanceToAtack)
-			//{
-			//	stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.attack, this));
-			//	return;
-			//}
-
-			//stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
-			//stateMachine.CurrentState.Update();
-
-
-			////лучше 
-
-			//var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
-
-			//foreach (var collider in colliders)
-			//{
-			//	Debug.Log("Find Player");
-			//}
-
 		}
 
 		public Rigidbody GetRigidBody() => rb;
@@ -144,6 +117,7 @@ namespace Enemy.States
 			isDead = true;
 			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.death, this));
 
+			rb.isKinematic = true;
 			yield return new WaitForSeconds(5f);
 			Destroy(this.gameObject);
 		}
