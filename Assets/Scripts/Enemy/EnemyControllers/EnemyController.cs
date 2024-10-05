@@ -84,10 +84,11 @@ namespace Enemy.States
 		{
 			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
+			if (isTakingDamage) return;
+			if (isDead) return;
+
 			foreach (var collider in colliders)
 			{
-				if (isTakingDamage) return;
-				if (isDead) return;
 
 				if (Vector3.Distance(transform.position, TargetPosition) < distanceToAtack)
 				{
