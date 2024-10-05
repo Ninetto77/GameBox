@@ -1,6 +1,5 @@
-using Attack.Raycast;
+using System;
 using UnityEngine;
-using Zenject;
 
 namespace Attack.Overlap
 {
@@ -8,6 +7,10 @@ namespace Attack.Overlap
 	{
 		private bool toolIsPicked;
 		private OverlapWithAttack attack;
+
+		public Action OnAttackStarted;
+		public Action OnAttackEnded;
+		public Action OnEnemyHit;
 
 		private void Start()
 		{
@@ -23,6 +26,11 @@ namespace Attack.Overlap
 			if (Input.GetMouseButtonDown(0))
 			{
 				attack.PerformAttack();
+				OnAttackStarted?.Invoke();
+			}
+			if (Input.GetMouseButtonUp(0))
+			{
+				OnAttackEnded?.Invoke();
 			}
 		}
 	}

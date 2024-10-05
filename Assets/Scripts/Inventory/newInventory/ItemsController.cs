@@ -6,7 +6,7 @@ using static UnityEditor.Progress;
 
 public class ItemsController : MonoBehaviour
 {
-	[Inject] EquipmentManager equipmentManager;
+	[Inject] private EquipmentManager equipmentManager;
 
 	private ItemInfo item;
 	private InventoryController inventory;
@@ -56,18 +56,6 @@ public class ItemsController : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Бросить в мир объект
-	/// </summary>
-	/// <param name="pos"></param>
-	/// <param name="item"></param>
-	public void DropItem(Vector3 pos, InventoryItem item)
-	{
-		for (int i = 0; i < item.GetAmount(); i++)
-		{
-			Instantiate(item.GetRelatedGameObject(), pos, Quaternion.identity);
-		}
-	}
-	/// <summary>
 	/// Использование предмета
 	/// </summary>
 	public void UseItem()
@@ -89,6 +77,19 @@ public class ItemsController : MonoBehaviour
 			equipmentManager.UnequiptAll();
 		}
 		catch { Debug.Log("no equipmentManager"); }
+	}
+
+	/// <summary>
+	/// Бросить в мир объект
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="item"></param>
+	public void DropItem(Vector3 pos, InventoryItem item)
+	{
+		for (int i = 0; i < item.GetAmount(); i++)
+		{
+			Instantiate(item.GetRelatedGameObject(), pos, Quaternion.identity);
+		}
 	}
 
 	/// <summary>

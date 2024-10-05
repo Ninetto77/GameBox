@@ -27,6 +27,8 @@ namespace Items
 		[SerializeField] private bool useSpread = false;
 		[SerializeField, Min(0)] private float spreadFactor = 1f;
 
+		[Header("Zoom")]
+		[SerializeField] private bool useZoom = false;
 
 		[Header("Settings")]
 		[SerializeField] private bool singleFire = false;
@@ -51,7 +53,10 @@ namespace Items
 		public float HitEffectDestroyDelay  => _hitEffectDestroyDelay;
 
 		public bool UseSpread => useSpread;
-		public float SpreadFactor => spreadFactor;
+		public float SpreadFactor => spreadFactor;		
+		
+		public bool UseZoom => useZoom;
+
 
 		public bool SingleFire => singleFire;
 		public float FireRate => fireRate;

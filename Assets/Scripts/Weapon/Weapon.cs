@@ -3,7 +3,6 @@ using UnityEngine;
 using Attack.Base;
 using Old;
 using System;
-using CameraSettings;
 using Items;
 
 namespace Attack.Raycast
@@ -15,6 +14,7 @@ namespace Attack.Raycast
 
 		public Action OnAttackStarted;
 		public Action OnAttackEnded;
+		public Action OnZoomMouseClick;
 		public Action OnEmptyClip;
 		public Action OnEnemyHit;
 
@@ -62,6 +62,11 @@ namespace Attack.Raycast
 			}
 			if (Input.GetMouseButtonUp(0))
 				EndAttack();
+
+			if (weapon.UseZoom)
+				if (Input.GetMouseButtonDown(1))
+					OnZoomMouseClick?.Invoke();
+
 		}
 
 		private void EndAttack()
