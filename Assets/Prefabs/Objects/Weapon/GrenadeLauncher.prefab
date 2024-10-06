@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_Name
-      value: blasterO
+      value: GrenadeLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 6263444945335782496, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_Name
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: eb8a0da4f8017444587784c0db687245, type: 2}
   FirePoint: {fileID: 3268677507544887672}
-  distanceToShoot: 100
 --- !u!114 &2688275751869044305
 MonoBehaviour:
   m_ObjectHideFlags: 0

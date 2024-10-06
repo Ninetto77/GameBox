@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
       propertyPath: m_Name
-      value: blasterH
+      value: Flamethrower
       objectReference: {fileID: 0}
     - target: {fileID: 8674845598380875245, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
       propertyPath: m_Name
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: f66a1245ed1082f4a8d15abaaf81ebd7, type: 2}
   FirePoint: {fileID: 3636670274577327668}
-  distanceToShoot: 100
 --- !u!114 &6721568601160027482
 MonoBehaviour:
   m_ObjectHideFlags: 0

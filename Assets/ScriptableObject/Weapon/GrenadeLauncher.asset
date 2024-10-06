@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 972feb118620f81419de1e1e4cba547d, type: 3}
-  m_Name: BlasterH
+  m_Name: GrenadeLauncher
   m_EditorClassIdentifier: 
-  _name: "\u0411\u043B\u0430\u0441\u0442\u0435\u0440\u0420"
+  _name: "\u0413\u0440\u0430\u043D\u0430\u0442\u043E\u043C\u0435\u0442"
   _description: first blaster
-  _icon: {fileID: 21300000, guid: 4439909e5693df64fa7004e60f7ddb5c, type: 3}
-  _itemType: 1
-  _prefab: {fileID: 5503004487430818115, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
+  _icon: {fileID: 21300000, guid: 268d726e488c6a947be8912f9fb869a0, type: 3}
+  _itemType: 2
+  _prefab: {fileID: 3718982838855820358, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
   _equipmentSlot: 0
   _fxType: 3
   bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}
@@ -24,7 +24,7 @@ MonoBehaviour:
   weaponDamage: 15
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 769
   distanceToShoot: 100
   shotCount: 1
   _muzzleEffect: {fileID: 0}
@@ -32,6 +32,7 @@ MonoBehaviour:
   _hitEffectDestroyDelay: 2
   useSpread: 0
   spreadFactor: 1
+  useZoom: 0
   singleFire: 0
   fireRate: 0.1
   bulletsPerMagazine: 30
