@@ -29,7 +29,7 @@ namespace Old
 			mainCamera = Camera.main;
 
 			var temp = gameObject.GetComponent<ItemPickup>();
-			toolIsPicked = temp.isPicked;
+			toolIsPicked = temp.IsPicked;
 
 			//fXProvider = projectContext.FXProvider;
 			//fxPrefab = weapon.FXType;

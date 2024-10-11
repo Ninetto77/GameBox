@@ -23,11 +23,6 @@ namespace Attack.Raycast
 		private Camera mainCamera;
 		private bool toolIsPicked;
 
-		//[Inject] private ProjectContext projectContext;
-		private FXProvider fXProvider;
-		private FXType fxPrefab;
-
-
 		private void Start()
 		{
 			bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
@@ -35,15 +30,14 @@ namespace Attack.Raycast
 			mainCamera = Camera.main;
 
 			var temp = gameObject.GetComponent<ItemPickup>();
-			toolIsPicked = temp.isPicked;
-
-			//fXProvider = projectContext.FXProvider;
-			//fxPrefab = weapon.FXType;
+			toolIsPicked = temp.IsPicked;
 		}
 
 		private void Update()
 		{
 			if (!toolIsPicked) return;
+
+			Debug.Log($"toolIsPicked of {weapon.Name} is {toolIsPicked}");
 
 			if (Input.GetMouseButtonDown(0) && weapon.SingleFire)
 			{
@@ -139,7 +133,7 @@ namespace Attack.Raycast
 			if (Physics.Raycast(ray, out RaycastHit hitInfo, weapon.DistanceToShoot, weapon.Mask))
 			{
 				var hitCollider = hitInfo.collider;
-				Debug.Log("hit");
+				Debug.Log($"hit {weapon.Name}");
 
 				if (hitCollider.TryGetComponent(out IDamageable damageable))
 				{
@@ -185,7 +179,6 @@ namespace Attack.Raycast
 		{
 			if (MuzzleEffect != null)
 			{
-				Debug.Log("MuzzleEffect");
 				MuzzleEffect.Play();
 			}
 		}
@@ -214,26 +207,6 @@ namespace Attack.Raycast
 				z = UnityEngine.Random.Range(-weapon.SpreadFactor, weapon.SpreadFactor)
 			};
 		}
-
-		#region Частицы
-		private void GetFX(RaycastHit hit)
-		{
-			if (fxPrefab == FXType.none) return;
-			//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.Euler(hit.normal));
-			//fXProvider.LoadFX(fxPrefab, transform.position, Quaternion.identity, FirePoint);
-			//GameObject game = task.Result;
-
-			StartCoroutine(UnloadFX());
-		}
-
-		private IEnumerator UnloadFX()
-		{
-			yield return new WaitForSeconds(0.2f);
-			Debug.Log("UnloadFX in weapon");
-
-			fXProvider.UnloadFX();
-		}
-		#endregion
 
 		/// <summary>
 		/// Перезарядка

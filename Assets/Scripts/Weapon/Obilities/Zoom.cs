@@ -28,7 +28,6 @@ public class Zoom: MonoBehaviour
 	}
 	public void ZoomWeapon()
 	{
-		isZoom = !isZoom;
 		if (isZoom)
 		{
 			mainCamera.fieldOfView = 60;
@@ -42,5 +41,6 @@ public class Zoom: MonoBehaviour
 			manager.AimIcon.enabled = false;
 		}
 
+		isZoom = !isZoom;
 	}
 }

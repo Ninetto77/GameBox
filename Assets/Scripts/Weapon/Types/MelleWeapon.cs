@@ -15,7 +15,7 @@ namespace Attack.Overlap
 		private void Start()
 		{
 			var temp = gameObject.GetComponent<ItemPickup>();
-			toolIsPicked = temp.isPicked;
+			toolIsPicked = temp.IsPicked;
 			attack = GetComponent<OverlapWithAttack>();
 		}
 

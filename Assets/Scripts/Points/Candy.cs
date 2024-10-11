@@ -9,7 +9,8 @@ namespace Points
 	public class Candy : MonoCache
 	{
 		public int Points;
-		public PunchAnimationPreset presetPunch;
+		public PunchAnimationPreset presetPunchRotation;
+		public PunchAnimationPreset presetPunchPosition;
 
 		[Inject] private ShopPoint shop;
 		private Point candyPoint;
@@ -21,8 +22,8 @@ namespace Points
 
 		public override void OnTick()
 		{
-			AnimationShortCuts.PunchRotationAnimation(transform, presetPunch);
-			//AnimationShortCuts.PunchPositionAnimation(transform, presetPunch).SetLoops(-1);
+			AnimationShortCuts.PunchRotationAnimation(transform, presetPunchRotation);
+			//AnimationShortCuts.PunchPositionAnimation(transform, presetPunchPosition);
 		}
 
 		private void OnTriggerEnter(Collider other)

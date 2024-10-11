@@ -39,7 +39,7 @@ namespace Player.States
 				{
 					lastOutline = item.outline;
 					item.outline.enabled = true;
-					if (Input.GetMouseButtonDown(0))
+					if (Input.GetKeyDown(KeyCode.E))
 					{
 						item.Interact();
 					}

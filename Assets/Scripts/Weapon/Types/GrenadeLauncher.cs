@@ -28,7 +28,7 @@ public class GrenadeLauncher : AttackBehaviour
 		mainCamera = Camera.main;
 
 		var temp = gameObject.GetComponent<ItemPickup>();
-		toolIsPicked = temp.isPicked;
+		toolIsPicked = temp.IsPicked;
 
 		projectile = GetComponent<ProjectileAttack>();
 	}

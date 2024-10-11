@@ -1,11 +1,16 @@
-using InventorySystem;
+using System;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+using Zenject;
 
 public class ItemPickup : Interactable
 {
     public ItemInfo item;
-    public bool isPicked = false;
+    public Action OnChangeIsPicked;
+
+	private bool isPicked;
+    public bool IsPicked { get { return isPicked; } set { isPicked = value; OnChangeIsPicked?.Invoke(); } }
+
+	[Inject] private ItemsController itemsController;
 
 	public override void Interact()
     {
@@ -18,38 +23,24 @@ public class ItemPickup : Interactable
     /// </summary>
     public void PickItem()
     {
-        if (!isPicked)
-        {
-            Debug.Log("Pick Item " + item.name);
+        if (!IsPicked)
+		{
+			Debug.Log("Pick Item " + item.name);
 
-            var type = item.ItemType;
+			IsPicked = itemsController.TryAddToInventory(item);
 
-            string inventoryname = InventoryType.GetInventoryName(type);
+			if (IsPicked)
+				Destroy(this.gameObject);
 
-			if (!inventory.InventoryFull(inventoryname, item.Name))
-                isPicked = inventory.TryAddItem(inventoryname, item.Name);
-			else
-            {
-				Instantiate(inventory.GetItem(inventoryname, 0).GetRelatedGameObject(), new Vector3(40, 2,50), Quaternion.identity);
-		        inventory.RemoveItemPos(inventoryname, 0, 1);
-				isPicked = inventory.TryAddItem(inventoryname, item.Name);
-			}
-
-			Debug.Log($"In {inventoryname} is 0 " + inventory.GetItem(inventoryname, 0));
-
-
-			if (isPicked)
-                Destroy(this.gameObject);   
-
-        }
-    }
+		}
+	}
 
 	///// <summary>
 	///// Remove from inventory
 	///// </summary>
 	//public void RemoveItem()
- //   {
+	//   {
 	//	InventoryController.instance.RemoveItem(inventoryname, item.Name, 1);
- //       isPicked = false;
- //   }
+	//       isPicked = false;
+	//   }
 }

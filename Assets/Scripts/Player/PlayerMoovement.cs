@@ -71,8 +71,6 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 			}
 		}
 		animations.SetRuningAnim(rb.velocity);
-
-		//animations.SetAimingAnim(true);
 	}
 
     private void TurnHead()

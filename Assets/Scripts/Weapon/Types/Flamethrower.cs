@@ -15,7 +15,7 @@ public class Flamethrower : MonoBehaviour
 	{
 		overlap = GetComponent<OverlapWithAttack>();
 		var temp = gameObject.GetComponent<ItemPickup>();
-		toolIsPicked = temp.isPicked;
+		toolIsPicked = temp.IsPicked;
 	}
 
 	private void Update()

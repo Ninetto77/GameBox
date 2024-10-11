@@ -8,7 +8,6 @@ public class CandyUI : MonoBehaviour
 	[Inject] private ShopPoint shop;
 	public TextMeshProUGUI CandyText;
 	
-
 	void Start()
     {
         shop.OnChangedPoints += UpdateUI;

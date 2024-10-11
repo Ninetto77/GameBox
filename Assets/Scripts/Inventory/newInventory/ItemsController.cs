@@ -1,9 +1,12 @@
 using Cache;
 using InventorySystem;
 using Items;
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using Zenject;
 using static UnityEditor.PlayerSettings;
+using static UnityEditor.Progress;
 
 public class ItemsController : MonoCache
 {
@@ -48,15 +51,17 @@ public class ItemsController : MonoCache
 	private void SetActiveSlot(string inventoryname)
 	{
 		var itemInInventory = inventory.GetInventory(inventoryname).InventoryGetItem(0).GetItemType();
-
-		//DropItem(Vector3 pos, InventoryItem item)
-
-		inventory.RemoveItemPos(ActiveSlotName, 0, 1);
+		CleanActiveSlot();
 
 		if (itemInInventory != null)
 		{
 			inventory.AddItemPos(ActiveSlotName, itemInInventory, 0);
 		}
+	}
+
+	private void CleanActiveSlot()
+	{
+		inventory.RemoveItemPos(ActiveSlotName, 0, 1);
 	}
 
 	/// <summary>
@@ -88,13 +93,57 @@ public class ItemsController : MonoCache
 	/// </summary>
 	/// <param name="pos"></param>
 	/// <param name="item"></param>
-	public void DropItem(Vector3 pos, InventoryItem item)
+	public void DropItem(InventoryItem item)
 	{
 		for (int i = 0; i < item.GetAmount(); i++)
 		{
-			Instantiate(item.GetRelatedGameObject(), pos, Quaternion.identity);
+			var obj = equipmentManager.GetPlayerHand();
+			if (obj == null)
+				return;
+
+			ItemPickup dropedItem = obj.gameObject.GetComponent<ItemPickup>();
+
+			if (dropedItem != null)
+			{
+				dropedItem.IsPicked = false;
+				dropedItem.GetComponent<Rigidbody>().isKinematic = false;
+			}
+		}
+		equipmentManager.DropHand();
+	}
+
+
+	public bool TryAddToInventory(ItemInfo item)
+	{
+		var type = item.ItemType;
+		string inventoryname = InventoryType.GetInventoryName(type);
+
+		bool isPicked = TryAdd(inventoryname, item);
+		CleanActiveSlot();
+
+		return isPicked;
+	}
+
+
+	/// <summary>
+	/// Добавить предмет в инвентарь
+	/// </summary>
+	/// <param name="inventoryname"></param>
+	/// <param name="item"></param>
+	/// <returns></returns>
+	private bool TryAdd(string inventoryname, ItemInfo item)
+	{
+		if (!inventory.InventoryFull(inventoryname, item.Name))
+			return inventory.TryAddItem(inventoryname, item.Name);
+		else
+		{
+			var dropItem = inventory.GetItem(inventoryname, 0);
+			DropItem(dropItem);
+			inventory.RemoveItemPos(inventoryname, 0, 1);
+			return inventory.TryAddItem(inventoryname, item.Name);
 		}
 	}
+
 
 	/// <summary>
 	/// Поменять местами объекты в инвентаре
