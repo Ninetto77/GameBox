@@ -4,6 +4,7 @@ namespace Enemy.States
 {
 	public class RunState : EnemyState
 	{
+		private Rigidbody rb;
 		private Vector3 direction = Vector3.zero;
 		private float speed;
 		private float angularSpeed;
@@ -34,7 +35,6 @@ namespace Enemy.States
 		/// </summary>
 		private void Run()
 		{
-			Rigidbody rb = enemy.GetRigidBody();
 			rb.AddForce(enemy.EnemyTransform.forward * Time.deltaTime * speed, ForceMode.Impulse);
 
 			if (rb.velocity.magnitude > enemy.MaxSpeed)
@@ -46,6 +46,7 @@ namespace Enemy.States
 		public override void Enter()
 		{
 			base.Enter();
+			rb = enemy.GetRigidBody();
 		}
 
 		public override void Exit()

@@ -17,26 +17,31 @@ public class EnemyAnimation
 
     public void Walk(float speed)
     {
-        animator.SetFloat(WALK_STRING, speed);
+        if (animator == null) return;
+		animator.SetFloat(WALK_STRING, speed);
     }
 
 	public void Scream()
 	{
+        if (animator == null) return;
 		animator.SetTrigger(SCREAM_STRING);
 	}
 
 	public void Damage()
 	{
+        if (animator == null) return;
 		animator.SetTrigger(DAMAGE_STRING);
 	}
 
 	public void Death()
     {
+        if (animator == null) return;
         animator.SetTrigger(DEATH_STRING);
     }
 
 	public void Attack(bool value)
 	{
+        if (animator == null) return;
 		animator.SetBool(ATTACK_STRING, value);
 	}
 }

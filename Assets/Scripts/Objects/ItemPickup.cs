@@ -1,5 +1,6 @@
 using InventorySystem;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class ItemPickup : Interactable
 {
@@ -25,10 +26,20 @@ public class ItemPickup : Interactable
 
             string inventoryname = InventoryType.GetInventoryName(type);
 
-            isPicked = InventoryController.instance.TryAddItem(inventoryname, item.Name);
+			if (!inventory.InventoryFull(inventoryname, item.Name))
+                isPicked = inventory.TryAddItem(inventoryname, item.Name);
+			else
+            {
+				Instantiate(inventory.GetItem(inventoryname, 0).GetRelatedGameObject(), new Vector3(40, 2,50), Quaternion.identity);
+		        inventory.RemoveItemPos(inventoryname, 0, 1);
+				isPicked = inventory.TryAddItem(inventoryname, item.Name);
+			}
 
-            if (isPicked)
-                Destroy(this.gameObject);
+			Debug.Log($"In {inventoryname} is 0 " + inventory.GetItem(inventoryname, 0));
+
+
+			if (isPicked)
+                Destroy(this.gameObject);   
 
         }
     }

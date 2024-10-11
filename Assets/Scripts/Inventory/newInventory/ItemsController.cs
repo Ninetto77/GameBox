@@ -1,10 +1,11 @@
+using Cache;
 using InventorySystem;
 using Items;
 using UnityEngine;
 using Zenject;
-using static UnityEditor.Progress;
+using static UnityEditor.PlayerSettings;
 
-public class ItemsController : MonoBehaviour
+public class ItemsController : MonoCache
 {
 	[Inject] private EquipmentManager equipmentManager;
 
@@ -17,7 +18,7 @@ public class ItemsController : MonoBehaviour
 		inventory = InventoryController.instance;
 	}
 
-	private void Update()
+	public override void OnTick()
 	{
 		string inventoryname = "";
 
@@ -46,12 +47,15 @@ public class ItemsController : MonoBehaviour
 
 	private void SetActiveSlot(string inventoryname)
 	{
-		var item1 = inventory.GetInventory(inventoryname).InventoryGetItem(0).GetItemType();
+		var itemInInventory = inventory.GetInventory(inventoryname).InventoryGetItem(0).GetItemType();
+
+		//DropItem(Vector3 pos, InventoryItem item)
+
 		inventory.RemoveItemPos(ActiveSlotName, 0, 1);
 
-		if (item1 != null)
+		if (itemInInventory != null)
 		{
-			inventory.AddItemPos(ActiveSlotName, item1, 0);
+			inventory.AddItemPos(ActiveSlotName, itemInInventory, 0);
 		}
 	}
 

@@ -30,6 +30,6 @@ public class TriggerSpawn : MonoBehaviour
 	{
 		enemyFactory.Load();
 		foreach (EnemyMarker marker in enemyMarkers)
-			enemyFactory.Create(marker.EnemyType, marker.transform.position);
+			enemyFactory.Create(marker.type, marker.transform.position);
 	}
 }

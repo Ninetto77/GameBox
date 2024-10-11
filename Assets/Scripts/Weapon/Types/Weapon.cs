@@ -9,14 +9,11 @@ namespace Attack.Raycast
 {
 	public partial class Weapon : AttackBehaviour
 	{
+		[Header("Настройки")]
 		public WeaponItem weapon;
 		public Transform FirePoint;
-
-		public Action OnAttackStarted;
-		public Action OnAttackEnded;
-		public Action OnZoomMouseClick;
-		public Action OnEmptyClip;
-		public Action OnEnemyHit;
+		[Header("Эффекты")]
+		public ParticleSystem MuzzleEffect;
 
 		private float nextFireTime = 0;
 		private bool canFire = true;
@@ -87,8 +84,8 @@ namespace Attack.Raycast
 						if (currentBulletsPerMagazine > 0)
 						{
 							//PerformRaycast();
-							PerformRaycastCamera();
 							OnAttackStarted?.Invoke();
+							PerformRaycastCamera();
 						}
 						else
 						{
@@ -186,10 +183,10 @@ namespace Attack.Raycast
 		/// </summary>
 		private void PerformEffects()
 		{
-			if (weapon.MuzzleEffect != null)
+			if (MuzzleEffect != null)
 			{
 				Debug.Log("MuzzleEffect");
-				weapon.MuzzleEffect.Play();
+				MuzzleEffect.Play();
 			}
 		}
 

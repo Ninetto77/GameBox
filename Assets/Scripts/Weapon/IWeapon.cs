@@ -1,7 +1,14 @@
+using System;
+
 namespace Old
 {
 	public interface IWeapon
 	{
-		void Fire() { }
+		Action OnAttackStarted { get; set; }
+		Action OnAttackEnded{ get; set; }
+		Action OnReloud{ get; set; }
+		Action OnZoomMouseClick{ get; set; }
+		Action OnEmptyClip{ get; set; }
+		Action OnEnemyHit{ get; set; }
 	}
 }

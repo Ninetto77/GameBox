@@ -7,5 +7,7 @@ public class UIInstaller : MonoInstaller
 	public override void InstallBindings()
 	{
 		Container.Bind<UIManager>().FromInstance(UIManagerPrefab).AsSingle().NonLazy();
+		Container.QueueForInject(UIManagerPrefab);
+
 	}
 }

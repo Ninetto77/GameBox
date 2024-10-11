@@ -16,7 +16,7 @@ MonoBehaviour:
   _description: first blaster
   _icon: {fileID: 21300000, guid: 5c6c723b50b6a1340965909a61694b42, type: 3}
   _itemType: 1
-  _prefab: {fileID: 1804735718430850780, guid: 625298d138b52b1428a0a4cb1c59431c, type: 3}
+  _prefab: {fileID: 5503004487430818115, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
   _equipmentSlot: 0
   _fxType: 3
   bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}

@@ -1,31 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Flamethrower : MonoBehaviour
 {
     public float Damage;
     public float TimeToStartAttack;
-    public ParticleSystem particle;
+    public ParticleSystem FireParticle;
+    public ParticleSystem SparkParticle;
 
     private OverlapWithAttack overlap;
+	private bool toolIsPicked;
 
 	private void Start()
 	{
 		overlap = GetComponent<OverlapWithAttack>();
+		var temp = gameObject.GetComponent<ItemPickup>();
+		toolIsPicked = temp.isPicked;
 	}
 
 	private void Update()
 	{
-		if (Input.GetMouseButtonDown(GlobalStringsVars.FIRE))
-		{
+		if (!toolIsPicked) return;
 
+		if (Input.GetMouseButton(GlobalStringsVars.FIRE))
+		{
+			StartCoroutine(StartAttack());
+		}
+		if (Input.GetMouseButtonUp(GlobalStringsVars.FIRE))
+		{
+			SparkParticle.Play();
+			FireParticle.Stop();
 		}
 	}
 
 	private IEnumerator StartAttack()
 	{
-		particle.Play();
+		FireParticle.Play();
+		SparkParticle.Stop();
 		yield return new WaitForSeconds(TimeToStartAttack);
 		overlap.PerformAttack();
 	}
