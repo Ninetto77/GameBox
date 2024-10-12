@@ -21,6 +21,7 @@ namespace Attack.Raycast
 		private int currentBulletsPerMagazine = 0;
 
 		private Camera mainCamera;
+		private ItemPickup item;
 		private bool toolIsPicked;
 
 		private void Start()
@@ -29,15 +30,19 @@ namespace Attack.Raycast
 			currentBulletsPerMagazine = bulletsPerMagazineDefault;
 			mainCamera = Camera.main;
 
-			var temp = gameObject.GetComponent<ItemPickup>();
-			toolIsPicked = temp.IsPicked;
+			ChangeIsPicked();
+			item.OnChangeIsPicked += ChangeIsPicked;
+		}
+
+		private void ChangeIsPicked()
+		{
+			item = gameObject.GetComponent<ItemPickup>();
+			toolIsPicked = item.IsPicked;
 		}
 
 		private void Update()
 		{
 			if (!toolIsPicked) return;
-
-			Debug.Log($"toolIsPicked of {weapon.Name} is {toolIsPicked}");
 
 			if (Input.GetMouseButtonDown(0) && weapon.SingleFire)
 			{

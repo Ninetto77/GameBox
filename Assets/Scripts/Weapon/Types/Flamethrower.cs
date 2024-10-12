@@ -9,13 +9,21 @@ public class Flamethrower : MonoBehaviour
     public ParticleSystem SparkParticle;
 
     private OverlapWithAttack overlap;
+	private ItemPickup item;
 	private bool toolIsPicked;
 
 	private void Start()
 	{
 		overlap = GetComponent<OverlapWithAttack>();
-		var temp = gameObject.GetComponent<ItemPickup>();
-		toolIsPicked = temp.IsPicked;
+
+		ChangeIsPicked();
+		item.OnChangeIsPicked += ChangeIsPicked;
+	}
+
+	private void ChangeIsPicked()
+	{
+		item = gameObject.GetComponent<ItemPickup>();
+		toolIsPicked = item.IsPicked;
 	}
 
 	private void Update()

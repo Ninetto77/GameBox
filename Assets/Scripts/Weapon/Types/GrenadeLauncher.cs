@@ -19,6 +19,7 @@ public class GrenadeLauncher : AttackBehaviour
 	private int currentBulletsPerMagazine = 0;
 
 	private Camera mainCamera;
+	private ItemPickup item;
 	private bool toolIsPicked;
 
 	private void Start()
@@ -27,10 +28,16 @@ public class GrenadeLauncher : AttackBehaviour
 		currentBulletsPerMagazine = bulletsPerMagazineDefault;
 		mainCamera = Camera.main;
 
-		var temp = gameObject.GetComponent<ItemPickup>();
-		toolIsPicked = temp.IsPicked;
-
 		projectile = GetComponent<ProjectileAttack>();
+
+		ChangeIsPicked();
+		item.OnChangeIsPicked += ChangeIsPicked;
+	}
+
+	private void ChangeIsPicked()
+	{
+		item = gameObject.GetComponent<ItemPickup>();
+		toolIsPicked = item.IsPicked;
 	}
 
 	private void Update()

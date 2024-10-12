@@ -1,12 +1,10 @@
 using Cache;
 using InventorySystem;
 using Items;
-using System;
-using System.Runtime.CompilerServices;
+using Old;
+using System.Collections;
 using UnityEngine;
 using Zenject;
-using static UnityEditor.PlayerSettings;
-using static UnityEditor.Progress;
 
 public class ItemsController : MonoCache
 {
@@ -88,29 +86,6 @@ public class ItemsController : MonoCache
 		catch { Debug.Log("no equipmentManager"); }
 	}
 
-	/// <summary>
-	/// Бросить в мир объект
-	/// </summary>
-	/// <param name="pos"></param>
-	/// <param name="item"></param>
-	public void DropItem(InventoryItem item)
-	{
-		for (int i = 0; i < item.GetAmount(); i++)
-		{
-			var obj = equipmentManager.GetPlayerHand();
-			if (obj == null)
-				return;
-
-			ItemPickup dropedItem = obj.gameObject.GetComponent<ItemPickup>();
-
-			if (dropedItem != null)
-			{
-				dropedItem.IsPicked = false;
-				dropedItem.GetComponent<Rigidbody>().isKinematic = false;
-			}
-		}
-		equipmentManager.DropHand();
-	}
 
 
 	public bool TryAddToInventory(ItemInfo item)
@@ -123,7 +98,6 @@ public class ItemsController : MonoCache
 
 		return isPicked;
 	}
-
 
 	/// <summary>
 	/// Добавить предмет в инвентарь
@@ -138,12 +112,93 @@ public class ItemsController : MonoCache
 		else
 		{
 			var dropItem = inventory.GetItem(inventoryname, 0);
-			DropItem(dropItem);
+			DropItem(inventoryname, dropItem);
 			inventory.RemoveItemPos(inventoryname, 0, 1);
 			return inventory.TryAddItem(inventoryname, item.Name);
 		}
 	}
 
+	/// <summary>
+	/// Бросить в мир объект
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="dropItem"></param>
+	public void DropItem(string inventoryname, InventoryItem dropItem)
+	{
+		for (int i = 0; i < dropItem.GetAmount(); i++)
+		{
+			Debug.Log($"Хочу сбросить = {dropItem.GetItemInfo().Name}");
+
+			var objInHand = equipmentManager.GetPlayerHand();
+			if (objInHand == null) //если рука пустая
+			{
+				Debug.Log($"Рука пустая. Беру в руки = {dropItem.GetItemInfo().Name}");
+				objInHand = EquipHand(dropItem);
+				Debug.Log($"Взяла в руки {objInHand.name}");
+
+			}
+			else
+				Debug.Log($"Рука не пустая и занята {objInHand.name}");
+
+
+			Debug.Log($"Категория руки равна {objInHand.name}");
+			Debug.Log($"Категория ненужного оружия {dropItem.GetItemInfo().ItemType.ToString()}");
+
+			GameObject oldObj = null;
+			string inventoryHandName = InventoryType.GetInventoryName(objInHand.GetComponent<ItemPickup>().item.ItemType);
+			if (inventoryHandName != inventoryname)
+			{
+				Debug.Log($"Категория не равны");
+				Debug.Log($"Меняю руку");
+				objInHand = EquipHand(dropItem);
+				Debug.Log($"Взяла в руки {objInHand.name}");
+
+			}
+			else
+			{
+				Debug.Log($"Категории равны");
+
+			}
+
+			ItemPickup dropedItemPickup = objInHand.gameObject.GetComponent<ItemPickup>();
+			Debug.Log($"Меняем настройки {dropedItemPickup.item.Name}");
+
+			if (dropedItemPickup != null)
+			{
+				dropedItemPickup.IsPicked = false;
+				dropedItemPickup.GetComponent<Rigidbody>().isKinematic = false;
+				Debug.Log($"dropedItem.IsPicked = {dropedItemPickup.IsPicked}");
+			}
+
+			Debug.Log($"Сбросила руку");
+			equipmentManager.DropHand();
+		}
+	}
+
+	private GameObject EquipHand(InventoryItem item)
+	{
+		equipmentManager.EquipHand(item.GetItemInfo() as Equipable);
+		GameObject objInHand = equipmentManager.GetPlayerHand();
+		return objInHand;
+	}
+
+	private GameObject SetSettingsToDrop(GameObject objInHand)
+	{
+		ItemPickup dropedItem = objInHand.gameObject.GetComponent<ItemPickup>();
+
+		if (dropedItem != null)
+		{
+			Debug.Log("dropedItem is not null");
+			Debug.Log($"dropedItem.IsPicked = {dropedItem.IsPicked}");
+
+			dropedItem.IsPicked = false;
+			dropedItem.GetComponent<Rigidbody>().isKinematic = false;
+		}
+			
+		else
+		Debug.Log("dropedItem is null");
+		return objInHand;
+	}
 
 	/// <summary>
 	/// Поменять местами объекты в инвентаре

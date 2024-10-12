@@ -1,5 +1,4 @@
 using InventorySystem;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +15,7 @@ public class EquipmentManager : MonoBehaviour
     public OnEquipmentChanged OnEquipmentChangedCallback;
 
 	private InventoryController inventory;
+    private GameObject curHand;
 
 	private void Start()
     {
@@ -86,6 +86,7 @@ public class EquipmentManager : MonoBehaviour
 		item.GetComponent<Rigidbody>().isKinematic = true;
 
 		Debug.Log($"Get {item.name}");
+        curHand = item;
     }
 
     /// <summary>
@@ -95,9 +96,9 @@ public class EquipmentManager : MonoBehaviour
     {
         if (playerHand.childCount > 0)
         {
-            Destroy(GetPlayerHand());
-            //playerHand.GetChild(0).gameObject.transform.parent = null;
-        }
+            Destroy(playerHand.GetChild(0).gameObject);
+			curHand = null;
+		}
     }
 
     /// <summary>
@@ -113,10 +114,6 @@ public class EquipmentManager : MonoBehaviour
 
     public GameObject GetPlayerHand()
     {
-        if (playerHand.childCount > 0)
-        {
-            return playerHand.GetChild(0).gameObject;
-        }
-        return null;
-    }
+        return curHand != null ? curHand : null;
+    }    
 }

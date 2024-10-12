@@ -1,17 +1,14 @@
-using System.Drawing;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Zenject;
 
 namespace InventorySystem
 {
-    //Author Jaxon Schauer
-    /// <summary>
-    /// This class creates a slot gameObject that displays an image of the item when notified by the assigned inventory
-    /// </summary>
-    public class Slot : MonoBehaviour, IPointerClickHandler
+	//Author Jaxon Schauer
+	/// <summary>
+	/// This class creates a slot gameObject that displays an image of the item when notified by the assigned inventory
+	/// </summary>
+	public class Slot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField]
         private int position;//The position if the inventories items list
