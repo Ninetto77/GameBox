@@ -85,7 +85,7 @@ public class EquipmentManager : MonoBehaviour
         item.GetComponent<ItemPickup>().IsPicked = true;
 		item.GetComponent<Rigidbody>().isKinematic = true;
 
-		Debug.Log($"Get {item.name}");
+		//Debug.Log($"Get {item.name}");
         curHand = item;
     }
 

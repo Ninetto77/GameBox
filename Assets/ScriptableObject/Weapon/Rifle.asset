@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u0412\u0438\u043D\u0442\u043E\u0432\u043A\u0430"
   _description: first blaster
-  _icon: {fileID: 21300000, guid: 5ea7bede8ad84324c9861cadc556c85f, type: 3}
+  _icon: {fileID: 21300000, guid: 8f92c9d2dfb97644786437bce7799ac9, type: 3}
   _itemType: 1
   _prefab: {fileID: 1902958443794195071, guid: e4c1f1b45a6380b43beee3ed6cc46c88, type: 3}
   _equipmentSlot: 0
   _fxType: 3
   bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}
   aimIcon: {fileID: 0}
-  weaponDamage: 100
+  weaponDamage: 80
   layerMask:
     serializedVersion: 2
     m_Bits: 769
@@ -33,7 +33,7 @@ MonoBehaviour:
   useSpread: 0
   spreadFactor: 0
   useZoom: 1
-  singleFire: 0
+  singleFire: 1
   fireRate: 0.1
   bulletsPerMagazine: 8
   timeToReload: 2

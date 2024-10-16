@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u041E\u0433\u043D\u0435\u043C\u0435\u0442"
   _description: first blaster
-  _icon: {fileID: 21300000, guid: b649b11961067294f977e2ba4bb29bda, type: 3}
+  _icon: {fileID: 21300000, guid: 4a1f241fc45e1cd4eacbeb5c1711a79e, type: 3}
   _itemType: 2
   _prefab: {fileID: 50911323043190480, guid: dc2e9ca6f795c8a498b9880217ad4ebf, type: 3}
   _equipmentSlot: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   weaponDamage: 15
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 769
   distanceToShoot: 100
   shotCount: 1
   _muzzleEffect: {fileID: 0}

@@ -12,7 +12,6 @@ namespace Items
 		[SerializeField] private Sprite aimIcon;
 
 		[Header("Particle System")]
-		[SerializeField] private ParticleSystem _muzzleEffect;
 		[SerializeField] private ParticleSystem _hitEffectPrefab;
 		[SerializeField, Min(0f)] private float _hitEffectDestroyDelay = 2f;
 
@@ -25,7 +24,6 @@ namespace Items
 
 		public float BulletSpeed => bulletSpeed;
 
-		public ParticleSystem MuzzleEffect => _muzzleEffect;
 		public ParticleSystem HitEffectPrefab => _hitEffectPrefab;
 		public float HitEffectDestroyDelay => _hitEffectDestroyDelay;
 

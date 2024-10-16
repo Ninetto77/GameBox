@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Equipable : ItemInfo
 {
-
+	[Header("Equip settings")]
 	[SerializeField] private GameObject _prefab;
 	[SerializeField] private EquipmentsSlot _equipmentSlot;
 	[SerializeField] private FXType _fxType;

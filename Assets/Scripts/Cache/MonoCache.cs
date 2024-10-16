@@ -7,11 +7,11 @@ namespace Cache
 	{
 		public static List<MonoCache> allUpdate = new List<MonoCache>(10001);
 
-		private void OnEnable() => allUpdate.Add(this);
+		public virtual void OnEnable() => allUpdate.Add(this);
 
-		private void OnDisable() => allUpdate.Remove(this);
+		public virtual void OnDisable() => allUpdate.Remove(this);
 
-		private void OnDestroy() => allUpdate.Remove(this);
+		public virtual void OnDestroy() => allUpdate.Remove(this);
 
 		public void Tick() => OnTick();
 

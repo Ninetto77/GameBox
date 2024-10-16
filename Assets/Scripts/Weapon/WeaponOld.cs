@@ -24,7 +24,7 @@ namespace Old
 
 		private void Start()
 		{
-			bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
+			//bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
 			currentBulletsPerMagazine = bulletsPerMagazineDefault;
 			mainCamera = Camera.main;
 
@@ -76,10 +76,10 @@ namespace Old
 						FirePoint.LookAt(firePointPointerPosition);
 
 
-						GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
-						BulletRB bullet = bulletObject.GetComponent<BulletRB>();
+						//GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
+						//BulletRB bullet = bulletObject.GetComponent<BulletRB>();
 
-						bullet.SetDamage(weapon.WeaponDamage);
+					//	bullet.SetDamage(weapon.WeaponDamage);
 
 						//GetFX(hit);
 

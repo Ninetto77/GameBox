@@ -16,7 +16,7 @@ public class ItemPickup : Interactable
     {
         base.Interact();
         PickItem();
-    }
+    }   
 
     /// <summary>
     /// add to inventory
@@ -34,13 +34,4 @@ public class ItemPickup : Interactable
 
 		}
 	}
-
-	///// <summary>
-	///// Remove from inventory
-	///// </summary>
-	//public void RemoveItem()
-	//   {
-	//	InventoryController.instance.RemoveItem(inventoryname, item.Name, 1);
-	//       isPicked = false;
-	//   }
 }

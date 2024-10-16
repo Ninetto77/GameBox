@@ -1,16 +1,28 @@
+using Attack.Base;
+using Enemy;
+using System;
 using System.Collections;
 using UnityEngine;
 
-public class Flamethrower : MonoBehaviour
+public class Flamethrower : AttackBehaviour
 {
     public float Damage;
     public float TimeToStartAttack;
     public ParticleSystem FireParticle;
     public ParticleSystem SparkParticle;
 
-    private OverlapWithAttack overlap;
+	[Header("Sounds")]
+	[SerializeField] private AudioClip _emptyClipSound;
+	[SerializeField] private AudioClip _shootSound;
+	[SerializeField] private AudioClip _endedSound;
+	
+	private AudioSource audioSource;
+
+
+	private OverlapWithAttack overlap;
 	private ItemPickup item;
 	private bool toolIsPicked;
+	private bool isAttack;
 
 	private void Start()
 	{
@@ -18,6 +30,24 @@ public class Flamethrower : MonoBehaviour
 
 		ChangeIsPicked();
 		item.OnChangeIsPicked += ChangeIsPicked;
+
+		audioSource = GetComponent<AudioSource>();
+	}
+
+	private void SetSounds()
+	{
+		if (isAttack)
+		{
+			audioSource.loop = true;
+			//audioSource.PlayOneShot(_shootSound);
+			audioSource.Play();
+		}
+		else
+		{
+			audioSource.Stop();
+			audioSource.loop = false;
+			audioSource.PlayOneShot(_endedSound);
+		}
 	}
 
 	private void ChangeIsPicked()
@@ -32,20 +62,35 @@ public class Flamethrower : MonoBehaviour
 
 		if (Input.GetMouseButton(GlobalStringsVars.FIRE))
 		{
-			StartCoroutine(StartAttack());
+			StartAttack();
 		}
 		if (Input.GetMouseButtonUp(GlobalStringsVars.FIRE))
 		{
+			isAttack = false;
+			OnAttackEnded?.Invoke();
 			SparkParticle.Play();
 			FireParticle.Stop();
+			SetSounds();
+
 		}
 	}
 
-	private IEnumerator StartAttack()
+	private void StartAttack()
 	{
-		FireParticle.Play();
-		SparkParticle.Stop();
-		yield return new WaitForSeconds(TimeToStartAttack);
-		overlap.PerformAttack();
+		if (isAttack  == false)
+		{
+			FireParticle.Play();
+			SparkParticle.Stop();
+			overlap.PerformAttack();
+
+			isAttack = true;
+			OnAttackStarted?.Invoke();
+			SetSounds();
+		}
+	}
+
+	public override void PerformAttack()
+	{
+		return;
 	}
 }

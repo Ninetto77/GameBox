@@ -150,6 +150,9 @@ public class ItemsController : MonoCache
 			{
 				Debug.Log($"Категория не равны");
 				Debug.Log($"Меняю руку");
+
+				oldObj = equipmentManager.GetPlayerHand();
+
 				objInHand = EquipHand(dropItem);
 				Debug.Log($"Взяла в руки {objInHand.name}");
 

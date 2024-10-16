@@ -7,7 +7,6 @@ namespace Items
 	public class WeaponItem : Equipable
 	{
 		[Header("Prefab")]
-		[SerializeField] private GameObject bulletPrefab;
 		[SerializeField] private Sprite aimIcon;
 
 		[Header("Damage")]
@@ -19,7 +18,6 @@ namespace Items
 		[SerializeField] private int shotCount = 1;
 
 		[Header("Particle System")]
-		[SerializeField] private ParticleSystem _muzzleEffect;
 		[SerializeField] private ParticleSystem _hitEffectPrefab;
 		[SerializeField, Min(0f)] private float _hitEffectDestroyDelay = 2f;
 
@@ -33,13 +31,13 @@ namespace Items
 		[Header("Settings")]
 		[SerializeField] private bool singleFire = false;
 		[SerializeField] private float fireRate = 0.1f;
-		[SerializeField] private int bulletsPerMagazine = 30;
 		[SerializeField] private float timeToReload = 1.5f;
-		[SerializeField] private float distanceSpread = 1;
 
-		public GameObject BulletPrefab => bulletPrefab;
+		[Header("Bullets")]
+		[SerializeField] private int countOfBullets = 100;
+		[SerializeField] private int totalBulletsInPool = 10;
+
 		public Sprite AimIcon => aimIcon;
-		
 
 		public float WeaponDamage => weaponDamage;
 
@@ -48,7 +46,6 @@ namespace Items
 		public float DistanceToShoot => distanceToShoot;
 		public int ShotCount => shotCount;
 
-		public ParticleSystem MuzzleEffect => _muzzleEffect;
 		public ParticleSystem HitEffectPrefab  => _hitEffectPrefab;
 		public float HitEffectDestroyDelay  => _hitEffectDestroyDelay;
 
@@ -60,10 +57,9 @@ namespace Items
 
 		public bool SingleFire => singleFire;
 		public float FireRate => fireRate;
-		public int BulletsPerMagazine => bulletsPerMagazine;
+		public int CountOfBullets => countOfBullets;
+		public int TotalBulletsInPool => totalBulletsInPool;
 		public float TimeToReload => timeToReload;
-
-		public float DistanceSpread => distanceSpread;
 
 
 		/// <summary>

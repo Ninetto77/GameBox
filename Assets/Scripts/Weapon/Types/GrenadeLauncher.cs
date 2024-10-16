@@ -1,15 +1,18 @@
 using Attack.Base;
 using Attack.Projectile;
 using Items;
-using Old;
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class GrenadeLauncher : AttackBehaviour
 {
-  public ProjectileWeaponItem weapon;
+	[Header("Настройки")]
+	public ProjectileWeaponItem weapon;
 	public Transform FirePoint;
+	public float TimeToAttack = 0.7f;
+
+	[Header("Эффекты")]
+	public ParticleSystem MuzzleEffect;
 
 	private ProjectileAttack projectile;
 
@@ -64,34 +67,43 @@ public class GrenadeLauncher : AttackBehaviour
 
 	public override void PerformAttack()
 	{
-		//if (canFire)
-		//{
+		StartCoroutine(WaitToAttack());
+		////if (canFire)
+		////{
 
-		//	if (currentBulletsPerMagazine > 0)
-		//	{
-				projectile.PerformAttack();
-				OnAttackStarted?.Invoke();
-		//	}
-		//	else
-		//	{
-		//		StartCoroutine(Reload());
-		//	}
-		//	PerformEffects();
-		//}
+		////	if (currentBulletsPerMagazine > 0)
+		////	{
+		//		projectile.PerformAttack();
+		//		OnAttackStarted?.Invoke();
+		////	}
+		////	else
+		////	{
+		////		StartCoroutine(Reload());
+		////	}
+		//PerformEffects();
+		////}
+	}
+
+	private IEnumerator WaitToAttack()
+	{
+		OnAttackStarted?.Invoke();
+		yield return new WaitForSeconds(TimeToAttack);
+		projectile.PerformAttack();
+		PerformEffects();
 	}
 
 
 	#region Частицы
+
 
 	/// <summary>
 	/// Частицы при выстреле
 	/// </summary>
 	private void PerformEffects()
 	{
-		if (weapon.MuzzleEffect != null)
+		if (MuzzleEffect != null)
 		{
-			Debug.Log("MuzzleEffect");
-			weapon.MuzzleEffect.Play();
+			MuzzleEffect.Play();
 		}
 	}
 

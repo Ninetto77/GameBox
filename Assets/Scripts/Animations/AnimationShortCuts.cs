@@ -6,6 +6,8 @@ namespace Code.Global.Animations
 {
 	public static class AnimationShortCuts
 	{
+		#region Fade Animations
+
 		public static Tween FadeAnimation(this Graphic graphic, FadeAnimationPreset preset)
 		{
 			return graphic
@@ -29,6 +31,33 @@ namespace Code.Global.Animations
 				.SetEase(ease)
 				.SetLink(graphic.gameObject);
 		}
+		#endregion
+
+		#region Canvas Group
+		public static Tween FadeAnimation(this CanvasGroup graphic, FadeAnimationPreset preset)
+		{
+			return graphic
+				.DOFade(preset.value, preset.duration)
+				.SetEase(preset.ease)
+				.SetLink(graphic.gameObject);
+		}
+		
+		public static Tween FadeIn(this CanvasGroup graphic, in float duration = 1f, in Ease ease = Ease.Linear)
+		{
+			return graphic
+				.DOFade(1f, duration)
+				.SetEase(ease)
+				.SetLink(graphic.gameObject);
+		}
+
+		public static Tween FadeOut(this CanvasGroup graphic, in float duration = 1f, in Ease ease = Ease.Linear)
+		{
+			return graphic
+				.DOFade(0f, duration)
+				.SetEase(ease)
+				.SetLink(graphic.gameObject);
+		}
+		#endregion
 
 		public static Tween JumpAnimation(this Transform transform, in Vector3 endPosition, JumpAnimationPreset preset)
 		{

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMoovement : MonoBehaviour, IDamageable
@@ -21,6 +22,9 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
     private PlayerAnimations animations;
     private PlayerBrain brain;
 	private Rigidbody rb;
+	[Inject]
+	private UIManager uiManager;
+	
 	[HideInInspector]
 	public Health health;
 
@@ -43,8 +47,9 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 		//тест
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            health.TakeDamage(10);
-        }
+			ApplyDamage(10);
+
+		}
 		TurnHead();
 		brain.Update();
 	}
@@ -80,7 +85,10 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
         aimTarget.position = desirePosition;
 	}
 
-	public void ApplyDamage(float damage) => health.TakeDamage(damage);
+	public void ApplyDamage(float damage) {
+		uiManager.OnPlayerDamage?.Invoke();
+		health.TakeDamage(damage); 
+	}
 
 	public void Hit(bool state)
 	{

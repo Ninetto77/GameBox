@@ -4,6 +4,8 @@ using Attack.Base;
 using Old;
 using System;
 using Items;
+using Zenject;
+using Sounds;
 
 namespace Attack.Raycast
 {
@@ -17,17 +19,26 @@ namespace Attack.Raycast
 
 		private float nextFireTime = 0;
 		private bool canFire = true;
-		private int bulletsPerMagazineDefault = 0;
-		private int currentBulletsPerMagazine = 0;
 
 		private Camera mainCamera;
 		private ItemPickup item;
 		private bool toolIsPicked;
 
+		private int RestCountOfBullets;
+		private int curCountBulletsInPool;
+
+		//		[Inject]private UIManager uiManager;
+		//[Inject] private AudioManager audioManager;
+		//public void Construct(AudioManager audio)
+		//{
+		//	this.audioManager = audio;
+		//}
+
 		private void Start()
 		{
-			bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
-			currentBulletsPerMagazine = bulletsPerMagazineDefault;
+			RestCountOfBullets = weapon.CountOfBullets;
+			curCountBulletsInPool = weapon.TotalBulletsInPool;
+
 			mainCamera = Camera.main;
 
 			ChangeIsPicked();
@@ -54,7 +65,7 @@ namespace Attack.Raycast
 			}
 			if (Input.GetKeyDown(KeyCode.R) && canFire)
 			{
-				StartCoroutine(Reload());
+				ReloudBullet();
 			}
 			if (Input.GetMouseButtonUp(0))
 				EndAttack();
@@ -80,53 +91,21 @@ namespace Attack.Raycast
 
 					for (var i = 0; i < weapon.ShotCount; i++)
 					{
-						if (currentBulletsPerMagazine > 0)
+						if (curCountBulletsInPool > 0)
 						{
-							//PerformRaycast();
 							OnAttackStarted?.Invoke();
 							PerformRaycastCamera();
 						}
 						else
 						{
-							StartCoroutine(Reload());
+							ReloudBullet();
 						}
 					}
 
-					PerformEffects();
 				}
 
 			}
 		}
-
-		/// <summary>
-		/// Стрельба
-		/// </summary>
-		private void PerformRaycast()
-		{
-			var direction = weapon.UseSpread ? transform.forward + CalculateSpread() : transform.forward;
-			var ray = new Ray(transform.position, direction);
-
-			FirePoint.LookAt(direction);
-
-			if (Physics.Raycast(ray, out RaycastHit hitInfo, weapon.DistanceToShoot,  weapon.Mask))
-			{
-				var hitCollider = hitInfo.collider;
-				Debug.Log("hit");
-
-				if (hitCollider.TryGetComponent(out IDamageable damageable))
-				{
-					damageable.ApplyDamage(weapon.WeaponDamage);
-				}
-				else
-				{
-					// On IDamageable is not found.
-				}
-
-				currentBulletsPerMagazine--;
-				SpawnParticleEffectOnHit(hitInfo);
-			}
-		}
-
 
 		private void PerformRaycastCamera()
 		{
@@ -138,7 +117,6 @@ namespace Attack.Raycast
 			if (Physics.Raycast(ray, out RaycastHit hitInfo, weapon.DistanceToShoot, weapon.Mask))
 			{
 				var hitCollider = hitInfo.collider;
-				Debug.Log($"hit {weapon.Name}");
 
 				if (hitCollider.TryGetComponent(out IDamageable damageable))
 				{
@@ -149,33 +127,14 @@ namespace Attack.Raycast
 					// On IDamageable is not found.
 				}
 
-				currentBulletsPerMagazine--;
+				RestCountOfBullets--;
+				curCountBulletsInPool--;
+
 				SpawnParticleEffectOnHit(hitInfo);
 			}
+
+			PerformEffects();
 		}
-
-		private void FireOld()
-		{
-			Vector3 firePointPointerPosition = mainCamera.transform.position + mainCamera.transform.forward * 100;
-			RaycastHit hit;
-			if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, weapon.DistanceToShoot))
-			{
-				firePointPointerPosition = hit.point;
-			}
-
-			FirePoint.LookAt(firePointPointerPosition);
-
-
-			GameObject bulletObject = Instantiate(weapon.BulletPrefab, FirePoint.position, FirePoint.rotation);
-			Bullet bullet = bulletObject.GetComponent<Bullet>();
-
-			bullet.SetDamage(weapon.WeaponDamage);
-
-			//GetFX(hit);
-
-			currentBulletsPerMagazine--;
-		}
-
 
 		/// <summary>
 		/// Частицы при выстреле
@@ -213,19 +172,40 @@ namespace Attack.Raycast
 			};
 		}
 
+		private void ReloudBullet()
+		{
+			StartCoroutine(WaitToReloudBullet());
+
+			//звук пyстого патрона
+			if (RestCountOfBullets <= 0)
+			{
+				OnEmptyClip?.Invoke();
+			}
+		}
+
 		/// <summary>
 		/// Перезарядка
 		/// </summary>
 		/// <returns></returns>
-		private IEnumerator Reload()
+		private IEnumerator WaitToReloudBullet()
 		{
-			canFire = false;
+			if (RestCountOfBullets > 0)
+			{
+				canFire = false;
 
-			yield return new WaitForSeconds(weapon.TimeToReload);
+				OnReloud?.Invoke();
 
-			currentBulletsPerMagazine = bulletsPerMagazineDefault;
-
-			canFire = true;
+				yield return new WaitForSeconds(weapon.TimeToReload);
+				int dif = weapon.TotalBulletsInPool - curCountBulletsInPool;
+				if (dif > RestCountOfBullets)
+				{
+					dif = RestCountOfBullets;
+				}
+				curCountBulletsInPool += dif;
+				RestCountOfBullets -= dif;
+				
+				canFire = true;
+			}
 		}
 
 
