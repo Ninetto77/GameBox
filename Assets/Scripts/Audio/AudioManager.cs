@@ -1,32 +1,26 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
-using static Unity.VisualScripting.Member;
 
 namespace Sounds
 {
-    public class AudioManager : MonoBehaviour
+	public class AudioManager : MonoBehaviour
     {
         public Sound[] sounds;
         [SerializeField] private AudioMixerGroup musicMixerGroup;
         [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
-        public static AudioManager instance;
+		[SerializeField] private AudioSource musicSource;
+		[SerializeField] private AudioSource SFXSource;
+
+		public static AudioManager instance;
         private void Awake()
         {
-            //if (instance == null)
-            //{
-            //    instance = this;
-            //    DontDestroyOnLoad(gameObject);
-            //}
-            //else
-            //    Destroy(this.gameObject);
-
             Initialize();
-        }
+            PlaySound("MainMenu");
+		}
 
-        public void Initialize()
+		public void Initialize()
         {
             foreach (Sound sound in sounds)
             {
@@ -47,12 +41,16 @@ namespace Sounds
             Sound s = Array.Find(sounds, sound => sound.name == name);
             if (s == null)
             {
-                Debug.LogWarning("Sound: " + name + " not found!");
-                return;
-            }
-            //SFXSource.PlayOneShot(s.clip);
-            s.source.Play();
-        }
+                Debug.Log("Sound: " + name + " not found!");
+				return;
+			}
+
+            if (s.isSFX == true)
+                SFXSource.PlayOneShot(s.clip);
+            else
+                musicSource.PlayOneShot(s.clip);
+			// s.source.Play();
+		}
 
         public void StopSound(string name)
         {

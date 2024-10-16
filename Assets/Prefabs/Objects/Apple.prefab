@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2128382195240972767}
   - component: {fileID: 1815096639814942502}
   - component: {fileID: 2357144568203447295}
-  - component: {fileID: 2128418722128912533}
+  - component: {fileID: 4770027230521547294}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -101,11 +101,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2357144568203447295
 MonoBehaviour:
@@ -125,7 +125,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &2128418722128912533
+--- !u!114 &4770027230521547294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,9 +134,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6917625531952100066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17d55a3508d59f84e9c391fa57396c8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 26f8008a1e975394a938ec2d0a95a48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 0}
   item: {fileID: 11400000, guid: 8b3a4866bdb4a764792acf5f8fbeb394, type: 2}
-  isPicked: 0
+  particleOnDestroy: {fileID: 198894602908660118, guid: 5dbe86494ac8cfd46bd61c777a7c8ea6, type: 3}
+  timeOfDestroy: 0.1
