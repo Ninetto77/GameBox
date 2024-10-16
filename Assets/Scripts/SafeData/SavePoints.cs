@@ -12,3 +12,11 @@ public class SavePoints
 	}
 }
 
+[System.Serializable]
+public class SaveData
+{
+	public int Points;
+	public int CountOfLevels;
+
+}
+
