@@ -13,16 +13,13 @@ public class EnemyMarker : MonoBehaviour
 			case EnemyType.hardZombi:
 				Gizmos.color = Color.red;
 				break;
-			case EnemyType.vampire:
-				Gizmos.color = Color.green;
-				break;
 			case EnemyType.witch:
 				Gizmos.color = Color.black;
 				break;
 			case EnemyType.spider:
 				Gizmos.color = Color.blue;
 				break;
-			case EnemyType.voodoo:
+			case EnemyType.skeleton:
 				Gizmos.color = Color.magenta;
 				break;
 			default:

@@ -16,8 +16,6 @@ namespace Points
 
 		[Header("Effects")]
 		[SerializeField] private ParticleSystem particleOnDestroy;
-		[SerializeField] private float timeOfDestroy = 0.1f;
-
 
 		[Inject] private ShopPoint shop;
 		private Point candyPoint;
@@ -42,10 +40,8 @@ namespace Points
 			if (particleOnDestroy != null)
 			{
 				var hitEffect = Instantiate(particleOnDestroy, transform.position, Quaternion.identity);
-
-				Destroy(hitEffect.gameObject, 0.5f);
 			}
-			Destroy(this.gameObject, timeOfDestroy);
+			Destroy(this.gameObject);
 		}
 	}
 }

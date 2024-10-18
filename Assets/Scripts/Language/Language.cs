@@ -2,18 +2,22 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
-public class Language : MonoBehaviour
+
+namespace Languages
 {
-	[DllImport("__Internal")]
-	private static extern string GetLang();
-
-
-	public string CurrentLanguage;
-	[SerializeField] TextMeshProUGUI _languageText;
-
-	private void Awake()
+	public class Language : MonoBehaviour
 	{
-		CurrentLanguage = GetLang();
-		_languageText.text = CurrentLanguage;
+		[DllImport("__Internal")]
+		private static extern string GetLang();
+
+
+		public string CurrentLanguage;
+		[SerializeField] TextMeshProUGUI _languageText;
+
+		private void Awake()
+		{
+			CurrentLanguage = GetLang();
+			_languageText.text = CurrentLanguage;
+		}
 	}
 }

@@ -2,8 +2,7 @@ public enum EnemyType
 {
 	simpolZombi,
 	hardZombi,
-	vampire,
+	skeleton,
 	witch,
 	spider, 
-	voodoo
 }
