@@ -12,6 +12,11 @@ namespace Points
 
 		[Inject] private TaskManager taskManager;
 		private bool isFirst = true;
+		private void Start()
+		{
+			SetVisibleAllCandy();
+			isFirst = true;
+		}
 		private void SetVisibleAllCandy()
 		{
 			for (int i = 0; i < candyTransforms.Length; i++)
@@ -31,10 +36,11 @@ namespace Points
 
 		private void OnTriggerEnter(Collider other)
 		{
+			if (other.tag != "Player") return;
+
 			if (!isFirst) return;
 
 			taskManager.OnEndedTask?.Invoke();
-			SetVisibleAllCandy();
 			StartCoroutine(AppearCandyPath());
 			isFirst = !isFirst;
 		}

@@ -3,16 +3,16 @@ using Player.States;
 
 public class PlayerBrain
 {
-	public float reachDistance = 1.5f;
+	public float reachDistance;
 
 	private OutlineObjects lastOutline;
 	private Camera mainCamera;
 	private StateMachine stateMachine;
 
-    public PlayerBrain()
+    public PlayerBrain(float reachDistance)
     {
 		mainCamera = Camera.main;
-		reachDistance = 3.5f;
+		this.reachDistance = reachDistance;
 		stateMachine = new StateMachine();
 		stateMachine.Init(FactoryState.GetStatePlayer(StatesEnum.gather, this));
 	}

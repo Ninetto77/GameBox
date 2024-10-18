@@ -1259,7 +1259,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 10
-  distanceToAtack: 4
+  distanceToAtack: 7
   Damage: 10
   <MaxSpeed>k__BackingField: 10
   <Speed>k__BackingField: 30

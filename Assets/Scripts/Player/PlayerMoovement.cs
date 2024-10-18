@@ -14,7 +14,10 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 	[SerializeField] private Transform aimTarget;
 	public Transform hand;
 
-    [HideInInspector]
+	[Header("Подбор предметов")]
+	public float reachDistance = 4f;
+
+	[HideInInspector]
     public Vector3 direction;
 
     private CharacterController player;
@@ -38,7 +41,7 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
         player = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
 		animations =  new PlayerAnimations(animator);
-        brain = new PlayerBrain();
+        brain = new PlayerBrain(reachDistance);
         rb = GetComponent<Rigidbody>();
 		isGrounded = true;
 	}
