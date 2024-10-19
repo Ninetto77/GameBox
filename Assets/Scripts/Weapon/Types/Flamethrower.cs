@@ -39,7 +39,6 @@ public class Flamethrower : AttackBehaviour
 		if (isAttack)
 		{
 			audioSource.loop = true;
-			//audioSource.PlayOneShot(_shootSound);
 			audioSource.Play();
 		}
 		else

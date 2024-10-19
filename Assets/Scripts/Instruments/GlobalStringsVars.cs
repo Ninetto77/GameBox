@@ -20,6 +20,10 @@ public class GlobalStringsVars
 	#endregion
 
 	#region Звуки
+	public const string CANDY_SOUND_NAME = "CandyImpact";
+	public const string AMMO_SOUND_NAME = "AmmoImpact";
+	public const string RUN_SOUND_NAME = "Run";
+
 	public const string SFXMIXER_NAME = "SFXVolume";
 	public const string MUSICMIXER_NAME = "MusicVolume";
 

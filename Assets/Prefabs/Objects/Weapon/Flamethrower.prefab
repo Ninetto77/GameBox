@@ -5055,15 +5055,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 42.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.9300003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 70.99
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5270,7 +5270,7 @@ MonoBehaviour:
       m_Bits: 769
     _overlapPoint: {fileID: 864426388948028522}
     _overlapType: 0
-    _boxSize: {x: 0.16, y: 0.16, z: 2.5}
+    _boxSize: {x: 0.37, y: 0.22, z: 2.5}
     _sphereRadius: 0.5
     _positionOffset: {x: 0, y: 0, z: 1.5}
     _considerObstacles: 0

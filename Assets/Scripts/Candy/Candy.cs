@@ -1,5 +1,6 @@
 using Cache;
 using Code.Global.Animations;
+using Sounds;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,9 @@ namespace Points
 		[SerializeField] private ParticleSystem particleOnDestroy;
 
 		[Inject] private ShopPoint shop;
+		[Inject] private AudioManager audio;
+
+		private const string candyAudio = GlobalStringsVars.CANDY_SOUND_NAME;
 		private Point candyPoint;
 
 		private void Start()
@@ -37,6 +41,8 @@ namespace Points
 				return;
 
 			shop.AddPoints(candyPoint);
+			audio.PlaySound(candyAudio);
+
 			if (particleOnDestroy != null)
 			{
 				var hitEffect = Instantiate(particleOnDestroy, transform.position, Quaternion.identity);
