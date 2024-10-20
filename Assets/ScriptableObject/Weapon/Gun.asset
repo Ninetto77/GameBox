@@ -35,5 +35,5 @@ MonoBehaviour:
   singleFire: 1
   fireRate: 0.1
   timeToReload: 2
-  countOfBullets: 5
+  countOfBullets: 100
   totalBulletsInPool: 2
