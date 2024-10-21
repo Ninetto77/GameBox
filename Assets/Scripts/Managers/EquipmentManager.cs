@@ -15,6 +15,7 @@ public class EquipmentManager : MonoBehaviour
     public OnEquipmentChanged OnEquipmentChangedCallback;
 
 	private InventoryController inventory;
+    private GameObject curHand;
 
 	private void Start()
     {
@@ -41,27 +42,12 @@ public class EquipmentManager : MonoBehaviour
         int slotIndex = (int)newItem.EquipmentSlot;
 		Equipable oldItem = null;
 
-
-        //if (currentEquipment[slotIndex] != null)
-        //{
-        //    //найти старый предмет
-        //    oldItem = currentEquipment[slotIndex];
-        //    //добавить старый предмет в инвентарь
-        //    inventory.TryAddItem(inventoryname, oldItem.Name);
-        //}
-
-        //экипировать новый предмет
-        //currentEquipment[slotIndex] = newItem;
-        //удалить новый предмет из инвентаря
-        //inventory.RemoveItem(inventoryname, newItem.Name, 1);
-
-        //����� �������
         if (OnEquipmentChangedCallback != null)
         {
             OnEquipmentChangedCallback.Invoke(newItem, oldItem);
         }
 
-        if (newItem.EquipmentSlot == 0 || newItem.EquipmentSlot == EquipmentsSlot.handweapon)
+        if (newItem.EquipmentSlot == 0 || newItem.EquipmentSlot == EquipmentsSlot.hand)
 		{
             EquipHand(newItem);
         }
@@ -73,28 +59,6 @@ public class EquipmentManager : MonoBehaviour
     public void Unequipt(int slotIndex)
     {
         UnequipHand();
-
-        //если слот экипировки не пустой
-        //if (currentEquipment[slotIndex] != null)
-        //{
-        //    Tool oldItem = currentEquipment[slotIndex];
-
-        //    //bool IsAdded = inventory.TryAddItem(inventoryname, oldItem.Name);
-        //    //if (IsAdded)
-        //    //{
-        //    //    currentEquipment[slotIndex] = null;
-        //    //}
-
-        //    UnequipHand();
-
-        //    ///вызов события
-        //    if (OnEquipmentChangedCallback != null)
-        //    {
-        //        OnEquipmentChangedCallback.Invoke(null, oldItem);
-        //    }
-        //}
-
-
     }
 	/// <summary>
 	/// Снять всю экипировку
@@ -117,10 +81,12 @@ public class EquipmentManager : MonoBehaviour
 
 		GameObject item =  diContainer.InstantiatePrefab(newItem.Prefab, playerHand);
 
-		//GameObject item = Instantiate(newItem.Prefab, playerHand) as GameObject;
         item.transform.position = playerHand.position;
-        item.GetComponent<ItemPickup>().isPicked = true;
-        Debug.Log($"Get {item.name}");
+        item.GetComponent<ItemPickup>().IsPicked = true;
+		item.GetComponent<Rigidbody>().isKinematic = true;
+
+		//Debug.Log($"Get {item.name}");
+        curHand = item;
     }
 
     /// <summary>
@@ -131,8 +97,23 @@ public class EquipmentManager : MonoBehaviour
         if (playerHand.childCount > 0)
         {
             Destroy(playerHand.GetChild(0).gameObject);
-        }
+			curHand = null;
+		}
     }
 
+    /// <summary>
+    /// Бросить в мир предмет
+    /// </summary>
+	public void DropHand()
+	{
+		if (playerHand.childCount > 0)
+		{
+			GetPlayerHand().transform.parent = null;
+		}
+	}
 
+    public GameObject GetPlayerHand()
+    {
+        return curHand != null ? curHand : null;
+    }    
 }

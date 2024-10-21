@@ -3,9 +3,11 @@ using Zenject;
 
 public class UIInstaller : MonoInstaller
 {
-	[SerializeField] private StateMashine stateMashine;
+	[SerializeField] private UIManager UIManagerPrefab;
 	public override void InstallBindings()
 	{
-		Container.Bind<StateMashine>().FromInstance(stateMashine).AsSingle().NonLazy();
+		Container.Bind<UIManager>().FromInstance(UIManagerPrefab).AsSingle().NonLazy();
+		Container.QueueForInject(UIManagerPrefab);
+
 	}
 }

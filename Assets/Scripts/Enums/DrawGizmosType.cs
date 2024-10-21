@@ -1,6 +1,9 @@
-﻿public enum DrawGizmosType
+﻿namespace GizmosType
 {
-	Always,
-	OnSelected,
-	Never
+	public enum DrawGizmosType
+	{
+		Always,
+		OnSelected,
+		Never
+	}
 }

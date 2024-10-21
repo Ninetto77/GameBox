@@ -1,42 +1,37 @@
-using InventorySystem;
+using System;
 using UnityEngine;
+using Zenject;
 
 public class ItemPickup : Interactable
 {
     public ItemInfo item;
-    public bool isPicked = false;
+    public Action OnChangeIsPicked;
 
-	private readonly string inventoryname = GlobalStringsVars.HOTBAR_NAME;
+	private bool isPicked;
+    public bool IsPicked { get { return isPicked; } set { isPicked = value; OnChangeIsPicked?.Invoke(); } }
+
+	[Inject] private ItemsController itemsController;
 
 	public override void Interact()
     {
         base.Interact();
         PickItem();
-    }
+    }   
 
     /// <summary>
     /// add to inventory
     /// </summary>
     public void PickItem()
     {
-        if (!isPicked)
-        {
-            Debug.Log("Pick Item " + item.name);
+        if (!IsPicked)
+		{
+			Debug.Log("Pick Item " + item.name);
 
-			isPicked = InventoryController.instance.TryAddItem(inventoryname, item.Name);
+			IsPicked = itemsController.TryAddToInventory(item);
 
-            if (isPicked)
-                Destroy(this.gameObject);
+			if (IsPicked)
+				Destroy(this.gameObject);
 
-        }
-    }
-
-	/// <summary>
-	/// Remove from inventory
-	/// </summary>
-	public void RemoveItem()
-    {
-		InventoryController.instance.RemoveItem(inventoryname, item.Name, 1);
-        isPicked = false;
-    }
+		}
+	}
 }

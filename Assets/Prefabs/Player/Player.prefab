@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 2240084772653484000}
   - component: {fileID: 5728709495771868560}
   - component: {fileID: 1787943956717253555}
+  - component: {fileID: 6432911127804721468}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -449,7 +450,7 @@ Transform:
   m_GameObject: {fileID: 1206446772715167741}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.35, z: 0}
+  m_LocalPosition: {x: 0, y: 1.993, z: 0.517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -589,6 +590,20 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &6432911127804721468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206446772715167741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70b045c77b859e47bf2889ec3d41323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionLerpSpeed: 1
+  rotationLerpSpeed: 1
 --- !u!1 &1478597176631119465
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +829,7 @@ MonoBehaviour:
   JumpForce: 550
   aimTarget: {fileID: 14469459370295251}
   hand: {fileID: 5657914233142493673}
+  reachDistance: 10
   direction: {x: 0, y: 0, z: 0}
   health: {fileID: 0}
 --- !u!114 &2316162266315152884
@@ -1748,6 +1764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5657914233142493673}
+  - component: {fileID: 129919958446671396}
   m_Layer: 7
   m_Name: WeaponPlace
   m_TagString: Untagged
@@ -1770,6 +1787,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5469260726841176647}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &129919958446671396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228447479533714996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513519dc24e9fc74b893f5becfec2b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: {x: 1, y: 1}
+  multiplier: 5
+  inverseX: 1
+  inverseY: 0
+  minMaxX: {x: -7, y: 7}
+  minMaxY: {x: -7, y: 7}
 --- !u!1 &4300109409012070447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,6 +2629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 0b67b33c14feb5d42b38f78db8439be8, type: 2}
   FirePoint: {fileID: 4066020620386500490}
+  MuzzleEffect: {fileID: 0}
 --- !u!1 &7941130229427687784
 GameObject:
   m_ObjectHideFlags: 0

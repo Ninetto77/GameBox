@@ -2,16 +2,25 @@ using UnityEngine;
 
 public class EnemyMarker : MonoBehaviour
 {
-   public EnemyType EnemyType;
+   public EnemyType type;
 	private void OnDrawGizmos()
 	{
-		switch (EnemyType)
+		switch (type)
 		{
 			case EnemyType.simpolZombi:
 				Gizmos.color = Color.yellow;
 				break;
 			case EnemyType.hardZombi:
 				Gizmos.color = Color.red;
+				break;
+			case EnemyType.witch:
+				Gizmos.color = Color.black;
+				break;
+			case EnemyType.spider:
+				Gizmos.color = Color.blue;
+				break;
+			case EnemyType.skeleton:
+				Gizmos.color = Color.magenta;
 				break;
 			default:
 				break;

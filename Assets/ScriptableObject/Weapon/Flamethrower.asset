@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972feb118620f81419de1e1e4cba547d, type: 3}
+  m_Name: Flamethrower
+  m_EditorClassIdentifier: 
+  _name: "\u041E\u0433\u043D\u0435\u043C\u0435\u0442"
+  _description: first blaster
+  _icon: {fileID: 21300000, guid: 4a1f241fc45e1cd4eacbeb5c1711a79e, type: 3}
+  _itemType: 2
+  _prefab: {fileID: 50911323043190480, guid: dc2e9ca6f795c8a498b9880217ad4ebf, type: 3}
+  _equipmentSlot: 0
+  _fxType: 3
+  bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}
+  aimIcon: {fileID: 0}
+  weaponDamage: 15
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 769
+  distanceToShoot: 100
+  shotCount: 1
+  _muzzleEffect: {fileID: 0}
+  _hitEffectPrefab: {fileID: 2948683752128651967, guid: 808cc5444dae25b4f8a8fa0d9230409e, type: 3}
+  _hitEffectDestroyDelay: 2
+  useSpread: 0
+  spreadFactor: 1
+  useZoom: 0
+  singleFire: 0
+  fireRate: 0.1
+  bulletsPerMagazine: 30
+  timeToReload: 1.5
+  distanceSpread: 1

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace Weapon
+namespace Items
 {
 	[CreateAssetMenu(fileName = "MelleWeaponInfo", menuName = "Gameplay/New melleweapon")]
 	public class MelleWeaponItem : Equipable

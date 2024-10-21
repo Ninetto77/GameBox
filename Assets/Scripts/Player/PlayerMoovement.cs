@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMoovement : MonoBehaviour, IDamageable
@@ -15,7 +14,10 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 	[SerializeField] private Transform aimTarget;
 	public Transform hand;
 
-    [HideInInspector]
+	[Header("Подбор предметов")]
+	public float reachDistance = 4f;
+
+	[HideInInspector]
     public Vector3 direction;
 
     private CharacterController player;
@@ -23,7 +25,9 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
     private PlayerAnimations animations;
     private PlayerBrain brain;
 	private Rigidbody rb;
-	//private PlayerHealth playerHealth;
+	[Inject]
+	private UIManager uiManager;
+	
 	[HideInInspector]
 	public Health health;
 
@@ -37,7 +41,7 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
         player = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
 		animations =  new PlayerAnimations(animator);
-        brain = new PlayerBrain();
+        brain = new PlayerBrain(reachDistance);
         rb = GetComponent<Rigidbody>();
 		isGrounded = true;
 	}
@@ -46,8 +50,9 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 		//тест
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            health.TakeDamage(10);
-        }
+			ApplyDamage(10);
+
+		}
 		TurnHead();
 		brain.Update();
 	}
@@ -74,8 +79,6 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 			}
 		}
 		animations.SetRuningAnim(rb.velocity);
-
-		//animations.SetAimingAnim(true);
 	}
 
     private void TurnHead()
@@ -85,30 +88,19 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
         aimTarget.position = desirePosition;
 	}
 
-	public void ApplyDamage(float damage) => health.TakeDamage(damage);
+	public void ApplyDamage(float damage) {
+		uiManager.OnPlayerDamage?.Invoke();
+		health.TakeDamage(damage); 
+	}
 
 	public void Hit(bool state)
 	{
 		animations.SetHitAnim(state);
 	}
-
-    /// <summary>
-    /// Событие в анимации, когда надо собрать ресурсы
-    /// </summary>
 	public void HitAndGeatherResource()
 	{
-		if (hand == null) return;
 
-		if (hand.childCount > 0 && hand.GetChild(0) != null)
-		{
-			var intrument = hand.GetChild(0);
-			var gather = intrument.GetComponent<GatherResources>();
-			if (gather != null)
-				gather.TryGatherResource();
-		}
 	}
-
-
 	#region коллизии для прыжка
 
 	void OnCollisionEnter(Collision collision)

@@ -15,13 +15,25 @@ MonoBehaviour:
   _name: "\u0411\u043B\u0430\u0441\u0442\u0435\u0440\u0420"
   _description: first blaster
   _icon: {fileID: 21300000, guid: 4439909e5693df64fa7004e60f7ddb5c, type: 3}
+  _itemType: 1
   _prefab: {fileID: 5503004487430818115, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
-  _equipmentSlot: 1
+  _equipmentSlot: 0
   _fxType: 3
   bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}
+  aimIcon: {fileID: 0}
   weaponDamage: 15
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  distanceToShoot: 100
+  shotCount: 1
+  _muzzleEffect: {fileID: 0}
+  _hitEffectPrefab: {fileID: 0}
+  _hitEffectDestroyDelay: 2
+  useSpread: 0
+  spreadFactor: 1
   singleFire: 0
   fireRate: 0.1
   bulletsPerMagazine: 30
   timeToReload: 1.5
-  distanceToShoot: 100
+  distanceSpread: 1

@@ -9,10 +9,10 @@ namespace Player.States
 		private float reachDistance;
 
 
-		public GatherState(PlayerBrain enemyController) : base(enemyController)
+		public GatherState(PlayerBrain brain) : base(brain)
 		{
 			mainCamera = Camera.main;
-			reachDistance = enemyController.reachDistance;
+			reachDistance = brain.reachDistance;
 		}
 
 		public override void Update()
@@ -39,7 +39,7 @@ namespace Player.States
 				{
 					lastOutline = item.outline;
 					item.outline.enabled = true;
-					if (Input.GetMouseButtonDown(0))
+					if (Input.GetKeyDown(KeyCode.E))
 					{
 						item.Interact();
 					}

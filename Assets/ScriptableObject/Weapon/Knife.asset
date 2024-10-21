@@ -16,7 +16,7 @@ MonoBehaviour:
   _description: "\u041F\u0435\u0440\u0432\u043E\u0435 \u043E\u0440\u0443\u0436\u0438\u0435"
   _icon: {fileID: 21300000, guid: 42408db1ae6c33442acd4a095c19e67b, type: 3}
   _prefab: {fileID: 7097269977889926110, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
-  _equipmentSlot: 1
+  _equipmentSlot: 0
   _fxType: 0
   weaponDamage: 15
   velosity: 1

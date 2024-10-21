@@ -2,6 +2,7 @@ using NTC.OverlapSugar;
 using System.Collections.Generic;
 using UnityEngine;
 using Attack.Base;
+using GizmosType;
 
 public class OverlapWithAttack : AttackBehaviour
 {

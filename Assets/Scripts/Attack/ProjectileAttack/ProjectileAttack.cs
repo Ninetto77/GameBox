@@ -1,5 +1,6 @@
 using UnityEngine;
 using Attack.Base;
+using Attack.Raycast;
 
 namespace Attack.Projectile
 {
@@ -15,7 +16,10 @@ namespace Attack.Projectile
 		{
 			var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
 
+			var direction = Camera.main.transform.forward;
+
 			projectile.Rigidbody.AddForce(_weaponMuzzle.forward * _force, _forceMode);
+			//projectile.Rigidbody.AddForce(direction * _force, _forceMode);
 		}
 	}
 }

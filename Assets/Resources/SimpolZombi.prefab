@@ -1611,7 +1611,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 15
-  distanceToAtack: 2
+  distanceToAtack: 5
+  Damage: 10
   <MaxSpeed>k__BackingField: 4
   <Speed>k__BackingField: 20
   <AngularSpeed>k__BackingField: 10

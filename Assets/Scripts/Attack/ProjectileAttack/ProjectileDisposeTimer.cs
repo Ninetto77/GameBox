@@ -1,12 +1,12 @@
+using Cache;
 using UnityEngine;
 
 namespace Attack.Projectile
 {
 	[RequireComponent(typeof(Projectile))]
-	public class ProjectileDisposeTimer : MonoBehaviour
+	public class ProjectileDisposeTimer : MonoCache
 	{
 		[SerializeField, Min(0f)] private float _countdown = 15f;
-
 		private Projectile _projectile;
 		private float _elapsedTime;
 
@@ -15,12 +15,13 @@ namespace Attack.Projectile
 			_projectile = GetComponent<Projectile>();
 		}
 
-		private void Update()
+		public override void OnTick()
 		{
 			if (_projectile.IsProjectileDisposed)
 				return;
 
 			_elapsedTime += Time.deltaTime;
+
 
 			if (_elapsedTime >= _countdown)
 			{
