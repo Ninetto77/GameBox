@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0013871114, g: 0.0022241957, b: 0.008175579, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.0013871131, g: 0.002224198, b: 0.008175603, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11262,6 +11262,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 134476954}
     m_Modifications:
+    - target: {fileID: 3547967564773754156, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3718982838855820358, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
       propertyPath: m_Name
       value: GrenadeLauncher
@@ -12049,6 +12053,10 @@ PrefabInstance:
     - target: {fileID: 7764061190870796957, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567833186499227421, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42113,6 +42121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 6636847130137325448, guid: 625298d138b52b1428a0a4cb1c59431c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44935,7 +44947,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5122081241461527545, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.62
+      value: 28.35
       objectReference: {fileID: 0}
     - target: {fileID: 5122081241461527545, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44943,7 +44955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122081241461527545, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 65.15
+      value: 77.4
       objectReference: {fileID: 0}
     - target: {fileID: 5122081241461527545, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
       propertyPath: m_LocalRotation.w
@@ -44976,6 +44988,10 @@ PrefabInstance:
     - target: {fileID: 5503004487430818115, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
       propertyPath: m_Name
       value: Machine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992921643124552331, guid: 2534c36c78fa7f34686aff578a97e641, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

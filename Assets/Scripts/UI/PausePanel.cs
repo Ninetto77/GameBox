@@ -1,7 +1,9 @@
 using Cache;
+using Sounds;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Zenject;
 
 public class PausePanel : MonoCache
 {
@@ -15,33 +17,49 @@ public class PausePanel : MonoCache
 	[Header("UI")]
 	public Toggle MusicToggle;
 	public Toggle SFXToggle;
+	[Space]
+	public Image MusicImage;
+	public Image SFXTImage;
 
 	private readonly string musicMixer = GlobalStringsVars.MUSICMIXER_NAME;
 	private readonly string sfxMixer = GlobalStringsVars.SFXMIXER_NAME;
 
 	private readonly string musicSave = GlobalStringsVars.MUSICSAVE_NAME;
 	private readonly string sfxSave = GlobalStringsVars.SFXSAVE_NAME;
+	
+	private readonly string clickSound = GlobalStringsVars.CLICK_SOUND_NAME;
+
+	[Inject] private AudioManager audioManager;
 
 	private void Start()
 	{
-        if (MusicToggle != null)
-			MusicToggle.isOn = PlayerPrefs.GetInt(musicSave, 1) == 1;
+		if (MusicToggle != null)
+		{
+			MusicToggle.isOn = (PlayerPrefs.GetInt(musicSave, 1) == 1);
+			MusicImage.enabled = MusicToggle.isOn;
+		}
 
 		if (SFXToggle != null)
-			SFXToggle.isOn = PlayerPrefs.GetInt(sfxSave, 1) == 1;
+		{
+			SFXToggle.isOn = (PlayerPrefs.GetInt(sfxSave, 1) == 1);
+			SFXTImage.enabled = SFXToggle.isOn;
+		}
+
+		PlayerPrefs.SetInt(musicSave, MusicToggle.isOn ? 1 : 0);
+		PlayerPrefs.SetInt(sfxSave, SFXToggle.isOn ? 1 : 0);
 	}
 
-	private void OnEnable()
-	{
-		Time.timeScale = 0f;
-		InPause.TransitionTo(0.5f);
-	}
+	//private void OnEnable()
+	//{
+	//	Time.timeScale = 0f;
+	//	InPause.TransitionTo(0.5f);
+	//}
 
-	private void OnDisable()
-	{
-		Time.timeScale = 1.0f;
-		Normal.TransitionTo(0.5f);
-	}
+	//private void OnDisable()
+	//{
+	//	Time.timeScale = 1.0f;
+	//	Normal.TransitionTo(0.5f);
+	//}
 
 	public void ToggleMusic (bool state)
 	{
@@ -49,6 +67,9 @@ public class PausePanel : MonoCache
 
 		if (PlayerPrefs.HasKey(musicSave))
 			PlayerPrefs.SetInt(musicSave, state ? 1 : 0);
+
+		MusicImage.enabled = state;
+		PlaySoundClick();
 	}
 
 	public void ToggleSFX(bool state)
@@ -57,6 +78,15 @@ public class PausePanel : MonoCache
 
 		if (PlayerPrefs.HasKey(sfxSave))
 			PlayerPrefs.SetInt(sfxSave, state ? 1 : 0);
+
+		SFXTImage.enabled = state;
+		PlaySoundClick();
+	}
+
+
+	private void PlaySoundClick()
+	{
+		audioManager.PlaySound(clickSound);
 	}
 
 	public void ChangeSFX(float volume)

@@ -1,6 +1,7 @@
 using Code.Global.Animations;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -14,6 +15,12 @@ public class MenuManager : MonoBehaviour
 	public FadeAnimationPreset PresetFadeIn;
 	public FadeAnimationPreset PresetFadeOut;
 	public float TimeOfDisappear = 1.2f;
+
+	[Header("Levels Description")]
+	[Multiline]
+	public string[] LevelDescription;
+	public TextMeshProUGUI LevelDescriptionText;
+
 
 	private CanvasGroup curCanvas;
 
@@ -39,12 +46,25 @@ public class MenuManager : MonoBehaviour
 		StartCoroutine(SetCanvas(LevelCanvas));
 	}
 
+	public void SetLevelDescription(int numberLevel)
+	{
+		if (numberLevel < LevelDescription.Length && numberLevel >-1)
+			LevelDescriptionText.text = LevelDescription[numberLevel];
+		else
+			Debug.Log($"There are no {numberLevel} Level Description");
+	}
+
 	private IEnumerator SetCanvas(CanvasGroup canvas)
 	{
 		AnimationShortCuts.FadeAnimation(curCanvas, PresetFadeOut);
+		curCanvas.blocksRaycasts = false;
+
 		yield return new WaitForSeconds(TimeOfDisappear);
+
 		AnimationShortCuts.FadeAnimation(canvas, PresetFadeIn);
+		
 		curCanvas = canvas;
+		canvas.blocksRaycasts = true;
 	}
 }
 
