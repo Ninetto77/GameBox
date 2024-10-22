@@ -101,7 +101,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -282,6 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4630324068472651561}
   - component: {fileID: 439145615953119320}
+  - component: {fileID: 3238386014861576943}
   m_Layer: 0
   m_Name: EA03_Nature_Bush_02b_PRE
   m_TagString: Untagged
@@ -339,6 +340,29 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5197058408748674252}
   m_Enabled: 1
+--- !u!136 &3238386014861576943
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407107474818901395}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8540219555345378807
 GameObject:
   m_ObjectHideFlags: 0
