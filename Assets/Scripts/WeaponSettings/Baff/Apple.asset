@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Apple
   _description: Treat youself
-  _icon: {fileID: 21300000, guid: ca9e8c67c9f7f6044ad40aec9a53535f, type: 3}
-  _prefab: {fileID: 6917625531952100066, guid: 84f3ad64aa18fd447aaeb51ff5e3e870, type: 3}
-  _equipmentSlot: 0
-  _fxType: 0
+  _icon: {fileID: 1530113631, guid: 8224205d05753024981f0dd48f6438f3, type: 3}
+  _itemType: 0
   TreatPoints: 10

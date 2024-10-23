@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u0412\u0438\u043D\u0442\u043E\u0432\u043A\u0430"
   _description: first blaster
-  _icon: {fileID: 21300000, guid: 8f92c9d2dfb97644786437bce7799ac9, type: 3}
+  _icon: {fileID: 258710515, guid: 8224205d05753024981f0dd48f6438f3, type: 3}
   _itemType: 1
   _prefab: {fileID: 1902958443794195071, guid: e4c1f1b45a6380b43beee3ed6cc46c88, type: 3}
   _equipmentSlot: 0
   _fxType: 3
-  bulletPrefab: {fileID: 31371051498336713, guid: 816b7fcd931dfe64ab87fd88cd555a5c, type: 3}
   aimIcon: {fileID: 0}
   weaponDamage: 80
   layerMask:
@@ -27,7 +26,6 @@ MonoBehaviour:
     m_Bits: 769
   distanceToShoot: Infinity
   shotCount: 1
-  _muzzleEffect: {fileID: 3913013335058790163, guid: 84db7500af45ccc479be2875b49c4715, type: 3}
   _hitEffectPrefab: {fileID: 7793599092152993393, guid: 95cb99e033684134091f4fd1acb5bb5b, type: 3}
   _hitEffectDestroyDelay: 2
   useSpread: 0
@@ -35,6 +33,6 @@ MonoBehaviour:
   useZoom: 1
   singleFire: 1
   fireRate: 0.1
-  bulletsPerMagazine: 8
   timeToReload: 2
-  distanceSpread: 1
+  countOfBullets: 100
+  totalBulletsInPool: 10
