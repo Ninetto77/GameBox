@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 3528864236293014548}
   - component: {fileID: 8408244810997468058}
   - component: {fileID: 5091337410787105662}
-  - component: {fileID: 943989628}
   m_Layer: 0
   m_Name: EA03_Nature_Bush_01c_LOD3
   m_TagString: Untagged
@@ -333,28 +332,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &943989628
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4145606235240372912}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -715723111855635086, guid: e360f9142d27d0445abc192c6bc54b9b, type: 3}
 --- !u!1 &7714728962794611538
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6943400203910789608}
   - component: {fileID: 2738740647542689433}
+  - component: {fileID: 6021882187329265618}
   m_Layer: 0
   m_Name: EA03_Nature_Bush_01c_PRE
   m_TagString: Untagged
@@ -422,3 +400,26 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5091337410787105662}
   m_Enabled: 1
+--- !u!136 &6021882187329265618
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7714728962794611538}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
