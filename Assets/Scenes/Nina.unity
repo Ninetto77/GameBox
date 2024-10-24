@@ -26943,28 +26943,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.size
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1630365040}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.data[1]
       value: 
-      objectReference: {fileID: 1630365040}
+      objectReference: {fileID: 1619030097}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.data[2]
       value: 
-      objectReference: {fileID: 1619030097}
+      objectReference: {fileID: 1926610593}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.data[3]
       value: 
-      objectReference: {fileID: 1926610593}
+      objectReference: {fileID: 816701419}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 816701419}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.data[5]
       value: 
@@ -71449,6 +71449,10 @@ PrefabInstance:
     - target: {fileID: 1191987560937374500, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -190
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
+      propertyPath: candyTransforms.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2591180615866769002, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: m_LocalPosition.x
