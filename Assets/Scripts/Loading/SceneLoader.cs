@@ -8,7 +8,7 @@ public static class SceneLoader
     {
         if (assync)
         {
-           // AssyncLoadSceneManager.Instance.AddSceneToLoad(ID);
+            AssyncLoadSceneManager.AddSceneToLoad(ID);
             SceneManager.LoadScene(loadingScreenID);
         }
         else

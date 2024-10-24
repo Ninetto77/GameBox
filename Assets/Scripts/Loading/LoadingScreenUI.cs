@@ -18,7 +18,7 @@ public class LoadingScreenUI : MonoBehaviour
     IEnumerator LoadSceneCor()
     {
         yield return new WaitForSeconds(1f);
-       // asyncOperation = AssyncLoadSceneManager.Instance.LoadScene();
+        asyncOperation = AssyncLoadSceneManager.LoadScene();
 
         if (asyncOperation == null)
         {
@@ -30,7 +30,7 @@ public class LoadingScreenUI : MonoBehaviour
         {
             float progress = asyncOperation.progress / 0.9f;
             LoadingBar.fillAmount = progress;
-            LoadingText.text = "Loading: " + string.Format("{0:0}%", progress * 100f);
+            LoadingText.text = "Загрузка: " + string.Format("{0:0}%", progress * 100f);
             yield return null;
         }
     }

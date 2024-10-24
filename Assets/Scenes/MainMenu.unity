@@ -1649,7 +1649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442a88e74a5972849b10281712a61c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadType: 1
+  LoadType: 0
   SceneType: 0
   SceneName: NIK
 --- !u!1 &994229075

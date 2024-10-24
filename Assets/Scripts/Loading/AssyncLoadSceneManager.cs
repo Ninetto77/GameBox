@@ -1,15 +1,15 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
-public class AssyncLoadSceneManager 
+public static class AssyncLoadSceneManager 
 {
-    private string SceneID;
+    private static string SceneID;
 
-    public void AddSceneToLoad(string SceneName)
+    public static void AddSceneToLoad(string SceneName)
     {
         SceneID = SceneName;
     }
 
-    public AsyncOperation LoadScene()
+    public static AsyncOperation LoadScene()
     {
         AsyncOperation asyncOperation;
 
