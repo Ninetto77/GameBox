@@ -9,8 +9,8 @@ public class CandyUI : MonoBehaviour
 {
 	[Inject] private ShopPoint shop;
 	
-	[Header("Candy Info")]
-	public TextMeshProUGUI CandyText;
+	//[Header("Candy Info")]
+	//public TextMeshProUGUI CandyText;
 
 	[Header("Candy Hint")]
 	public CanvasGroup CandyHintCanvas;
@@ -27,7 +27,7 @@ public class CandyUI : MonoBehaviour
 
 	private void UpdateUI(int values)
 	{
-		CandyText.text = values.ToString();
+		//CandyText.text = values.ToString();
 		StartCoroutine(ShowHint());
 	}
 
