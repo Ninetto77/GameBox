@@ -523,8 +523,8 @@ MonoBehaviour:
   axes: 2
   sensitivityHor: 4
   sensitivityVer: 4
-  minVer: -45
-  maxVer: 45
+  minVer: -60
+  maxVer: 60
   _rotationX: 0
 --- !u!81 &2240084772653484000
 AudioListener:
@@ -808,8 +808,8 @@ MonoBehaviour:
   axes: 1
   sensitivityHor: 4
   sensitivityVer: 4
-  minVer: -45
-  maxVer: 45
+  minVer: -60
+  maxVer: 60
   _rotationX: 0
 --- !u!114 &3763539139393978518
 MonoBehaviour:

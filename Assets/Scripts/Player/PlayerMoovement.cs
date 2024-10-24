@@ -5,10 +5,15 @@ using Zenject;
 public class PlayerMoovement : MonoBehaviour, IDamageable
 {
     [Header("Физика")]
-    public float Speed = 40f;
-    public float MaxSpeed = 20f;
     public float Gravity = -9.8f;
     public float JumpForce = 5f;
+    [Header("Ходьба")]
+    public float Speed = 40f;
+    public float MaxSpeed = 20f;
+
+	[Header("Бег")]
+	public float RunSpeed = 20f;
+	public float RunMaxSpeed = 10f;
 
 	[Header("Удар")]
 	[SerializeField] private Transform aimTarget;
@@ -32,6 +37,8 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 	public Health health;
 
     private bool isGrounded;
+	private float curSpeed;
+	private float curMaxSpeed;
 	private void Awake()
 	{
         health = GetComponent<Health>();
@@ -62,14 +69,26 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 	/// </summary>
 	/// <param name="horizontalDirection">горизонтальное направление</param>
 	/// <param name="verticalDirection">вертикальное направление</param>
-	public void MovePlayer(float horizontalDirection, float verticalDirection, bool jump)
+	public void MovePlayer(float horizontalDirection, float verticalDirection, bool jump, bool isRuning)
     {
 		direction = new Vector3(horizontalDirection, 0, verticalDirection);
 
-		rb.AddRelativeForce(direction * Speed , ForceMode.Impulse);
+		
+		if (isRuning)
+		{
+			curSpeed = RunSpeed;
+			curMaxSpeed = RunMaxSpeed;
+		}
+		else
+		{
+			curSpeed = Speed;
+			curMaxSpeed = MaxSpeed;
+		}
 
-		if (rb.velocity.magnitude > MaxSpeed)
-			rb.velocity = Vector3.ClampMagnitude(rb.velocity, MaxSpeed);
+		rb.AddRelativeForce(direction * curSpeed, ForceMode.Impulse);
+
+		if (rb.velocity.magnitude > curMaxSpeed)
+			rb.velocity = Vector3.ClampMagnitude(rb.velocity, curMaxSpeed);
 
 		if (isGrounded)
 		{
@@ -115,7 +134,7 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 
 	private void IsGroundedUpate(Collision collision, bool value)
 	{
-		if (collision.gameObject.tag == ("Ground"))
+		if (collision.gameObject.tag == "Ground")
 		{
 			isGrounded = value;
 			animations.SetJumpAnim(!value);

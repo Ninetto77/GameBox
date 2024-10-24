@@ -28,21 +28,11 @@ public class MouseLook : MonoBehaviour
             body.freezeRotation = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (axes == RotationAxes.MouseX)
         {
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityHor, 0);
-        }
-
-        if ( axes == RotationAxes.MouseY)
-        {
-            _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVer;
-            _rotationX = Mathf.Clamp(_rotationX, minVer, maxVer);
-
-            float rotationY = transform.localEulerAngles.y;
-
-            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
         }
 
         if (axes == RotationAxes.MouseXandY)
@@ -57,5 +47,18 @@ public class MouseLook : MonoBehaviour
 
         }
     }
+
+	private void LateUpdate()
+	{
+        if ( axes == RotationAxes.MouseY)
+        {
+            _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVer;
+            _rotationX = Mathf.Clamp(_rotationX, minVer, maxVer);
+
+            float rotationY = transform.localEulerAngles.y;
+
+            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+        }
+	}
 
 }

@@ -9,6 +9,7 @@ public class InputKeys : MonoBehaviour
 	public float verticalDirection;
 
 	public bool jump ;
+	public bool isRuning ;
 
 
 	private void Start()
@@ -31,8 +32,11 @@ public class InputKeys : MonoBehaviour
 		if (notHit) player.Hit(false);
 
         jump = Input.GetKeyDown(KeyCode.Space);
-           // if (jump) Debug.Log("jump");
-        player.MovePlayer(horizontalDirection, verticalDirection, jump);
+		// if (jump) Debug.Log("jump");
+		isRuning = Input.GetKey(KeyCode.LeftShift);
+
+		player.MovePlayer(horizontalDirection, verticalDirection, jump, isRuning);
+
 	}
 
 	private void FixedUpdate()
