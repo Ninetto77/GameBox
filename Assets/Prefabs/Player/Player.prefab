@@ -793,6 +793,7 @@ MonoBehaviour:
   horizontalDirection: 0
   verticalDirection: 0
   jump: 0
+  isRuning: 0
 --- !u!114 &8669287752093017128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,10 +824,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0581b2857d688a7488801b81cc612478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 30
-  MaxSpeed: 14
   Gravity: 9.8
   JumpForce: 550
+  Speed: 30
+  MaxSpeed: 14
+  RunSpeed: 40
+  RunMaxSpeed: 20
   aimTarget: {fileID: 14469459370295251}
   hand: {fileID: 5657914233142493673}
   reachDistance: 10
