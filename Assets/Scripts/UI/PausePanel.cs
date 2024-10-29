@@ -1,96 +1,61 @@
 using Cache;
-using Sounds;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
-using Zenject;
 
 public class PausePanel : MonoCache
 {
-	[Header("AudioMixer")]
-	public AudioMixerGroup Mixer;
+	[Header("Canvases")]
+	public Window PauseCanvas;
+	public Window GameCanvas;
 
 	[Header("Audio snapshots")]
 	public AudioMixerSnapshot Normal;
 	public AudioMixerSnapshot InPause;
-
-	[Header("UI")]
-	public Toggle MusicToggle;
-	public Toggle SFXToggle;
-	[Space]
-	public Image MusicImage;
-	public Image SFXTImage;
-
-	private readonly string musicMixer = GlobalStringsVars.MUSICMIXER_NAME;
-	private readonly string sfxMixer = GlobalStringsVars.SFXMIXER_NAME;
-
-	private readonly string musicSave = GlobalStringsVars.MUSICSAVE_NAME;
-	private readonly string sfxSave = GlobalStringsVars.SFXSAVE_NAME;
 	
-	private readonly string clickSound = GlobalStringsVars.CLICK_SOUND_NAME;
-
-	[Inject] private AudioManager audioManager;
+	private bool isPause;
+	private Window curCanvas;
 
 	private void Start()
 	{
-		if (MusicToggle != null)
+		isPause = false;
+		curCanvas = GameCanvas;
+	}
+	public override void OnTick()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			MusicToggle.isOn = (PlayerPrefs.GetInt(musicSave, 1) == 1);
-			MusicImage.enabled = MusicToggle.isOn;
+			SetSettings();
+		}
+	}
+
+	private void SetSettings()
+	{
+		if (isPause)
+		{
+			Time.timeScale = 1.0f;
+			Normal.TransitionTo(0.5f);
+
+			SetCanvas(GameCanvas);
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+		else
+		{
+			Time.timeScale = 0f;
+			InPause.TransitionTo(0.5f);
+
+			SetCanvas(PauseCanvas);
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
 		}
 
-		if (SFXToggle != null)
-		{
-			SFXToggle.isOn = (PlayerPrefs.GetInt(sfxSave, 1) == 1);
-			SFXTImage.enabled = SFXToggle.isOn;
-		}
-
-		PlayerPrefs.SetInt(musicSave, MusicToggle.isOn ? 1 : 0);
-		PlayerPrefs.SetInt(sfxSave, SFXToggle.isOn ? 1 : 0);
+		isPause = !isPause;
 	}
 
-	//private void OnEnable()
-	//{
-	//	Time.timeScale = 0f;
-	//	InPause.TransitionTo(0.5f);
-	//}
-
-	//private void OnDisable()
-	//{
-	//	Time.timeScale = 1.0f;
-	//	Normal.TransitionTo(0.5f);
-	//}
-
-	public void ToggleMusic (bool state)
+	private void SetCanvas(Window canvas)
 	{
-		Mixer.audioMixer.SetFloat(musicMixer, state ? 0f : -80f);
-
-		if (PlayerPrefs.HasKey(musicSave))
-			PlayerPrefs.SetInt(musicSave, state ? 1 : 0);
-
-		MusicImage.enabled = state;
-		PlaySoundClick();
-	}
-
-	public void ToggleSFX(bool state)
-	{
-		Mixer.audioMixer.SetFloat(sfxMixer, state ? 0f : -80f);
-
-		if (PlayerPrefs.HasKey(sfxSave))
-			PlayerPrefs.SetInt(sfxSave, state ? 1 : 0);
-
-		SFXTImage.enabled = state;
-		PlaySoundClick();
-	}
-
-
-	private void PlaySoundClick()
-	{
-		audioManager.PlaySound(clickSound);
-	}
-
-	public void ChangeSFX(float volume)
-	{
-		Mixer.audioMixer.SetFloat(sfxMixer, Mathf.Lerp(-80, 0, volume));
+		canvas.Open_Instantly();
+		curCanvas.Close_Instantly();
+		curCanvas = canvas;
 	}
 }
