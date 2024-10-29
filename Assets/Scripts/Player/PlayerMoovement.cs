@@ -54,12 +54,6 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
 	}
     private void Update()
     {
-		//тест
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-			ApplyDamage(10);
-
-		}
 		TurnHead();
 		brain.Update();
 	}

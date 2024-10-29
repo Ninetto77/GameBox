@@ -50,14 +50,17 @@ public class MouseLook : MonoBehaviour
 
 	private void LateUpdate()
 	{
-        if ( axes == RotationAxes.MouseY)
+        if (Time.timeScale > 0f)
         {
-            _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVer;
-            _rotationX = Mathf.Clamp(_rotationX, minVer, maxVer);
+            if ( axes == RotationAxes.MouseY)
+            {
+                _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVer;
+                _rotationX = Mathf.Clamp(_rotationX, minVer, maxVer);
 
-            float rotationY = transform.localEulerAngles.y;
+                float rotationY = transform.localEulerAngles.y;
 
-            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+                transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+            }
         }
 	}
 
