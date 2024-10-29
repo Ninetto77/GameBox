@@ -28,29 +28,43 @@ public class PausePanel : MonoCache
 		}
 	}
 
+	public void ContinueGame()
+	{
+		Time.timeScale = 1.0f;
+		Normal.TransitionTo(0.5f);
+
+		SetCanvas(GameCanvas);
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		isPause = !isPause;
+	}
+
+	private void PauseGame()
+	{
+		Time.timeScale = 0f;
+		InPause.TransitionTo(0.5f);
+
+		SetCanvas(PauseCanvas);
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+		isPause = !isPause;
+
+	}
+
 	private void SetSettings()
 	{
 		if (isPause)
 		{
-			Time.timeScale = 1.0f;
-			Normal.TransitionTo(0.5f);
-
-			SetCanvas(GameCanvas);
-			Cursor.visible = false;
-			Cursor.lockState = CursorLockMode.Locked;
+			ContinueGame();
 		}
 		else
 		{
-			Time.timeScale = 0f;
-			InPause.TransitionTo(0.5f);
-
-			SetCanvas(PauseCanvas);
-			Cursor.visible = true;
-			Cursor.lockState = CursorLockMode.None;
+			PauseGame();
 		}
 
-		isPause = !isPause;
 	}
+
+
 
 	private void SetCanvas(Window canvas)
 	{

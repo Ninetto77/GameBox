@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadType: 0
   SceneType: 0
-  SceneName: NIK
+  SceneName: Nina
 --- !u!1 &994229075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2091,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138591651}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -3059,7 +3059,7 @@ MonoBehaviour:
     playOnAwake: 1
     isSFX: 0
     source: {fileID: 0}
-  - name: Click_on
+  - name: Click
     clip: {fileID: 8300000, guid: ce028f0c30564334c818e1228923cebc, type: 3}
     volume: 0.2
     pitch: 0.83

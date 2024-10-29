@@ -1,8 +1,12 @@
 using Cache;
+using System;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent (typeof(InputKeys))]
+[RequireComponent (typeof(MouseLook))]
 public class PlayerMoovement : MonoCache, IDamageable
 {
     [Header("Физика")]
@@ -55,6 +59,10 @@ public class PlayerMoovement : MonoCache, IDamageable
 	}
 	protected override void OnTick()
     {
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			ApplyDamage(99f);
+		}
 		TurnHead();
 		brain.Update();
 	}
@@ -103,8 +111,22 @@ public class PlayerMoovement : MonoCache, IDamageable
 	}
 
 	public void ApplyDamage(float damage) {
-		uiManager.OnPlayerDamage?.Invoke();
-		health.TakeDamage(damage); 
+		health.TakeDamage(damage);
+		
+		if (health.GetCurrentHealth() <=0)
+		{
+			StartCoroutine(DeadPlayer());
+		}
+		else 
+			uiManager.OnPlayerDamage?.Invoke();
+	}
+
+	private IEnumerator DeadPlayer()
+	{
+		yield return new WaitForEndOfFrame();
+		GetComponent<InputKeys>().enabled = false;
+		GetComponent<MouseLook>().enabled = false;
+		uiManager.OnPlayerDead?.Invoke();
 	}
 
 	public void Hit(bool state)

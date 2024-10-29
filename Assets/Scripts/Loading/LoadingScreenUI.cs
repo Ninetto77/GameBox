@@ -17,6 +17,7 @@ public class LoadingScreenUI : MonoBehaviour
 
     IEnumerator LoadSceneCor()
     {
+        Time.timeScale = 1f;
         yield return new WaitForSeconds(1f);
         asyncOperation = AssyncLoadSceneManager.LoadScene();
 
