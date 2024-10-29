@@ -15,7 +15,7 @@ namespace Attack.Projectile
 			_projectile = GetComponent<Projectile>();
 		}
 
-		public override void OnTick()
+		protected override void OnTick()
 		{
 			if (_projectile.IsProjectileDisposed)
 				return;

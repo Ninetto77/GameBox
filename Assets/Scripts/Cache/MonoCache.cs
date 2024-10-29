@@ -15,6 +15,6 @@ namespace Cache
 
 		public void Tick() => OnTick();
 
-		public virtual void OnTick() { }
+		protected virtual void OnTick() { }
 	}
 }

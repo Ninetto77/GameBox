@@ -52,7 +52,7 @@ public class Voodoo : MonoCache, IDamageable, IEnemy
 		stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.none, this));
 	}
 
-	public override void OnTick()
+	protected override void OnTick()
 	{
 		if (isTakingDamage) return;
 		if (isDead) return;

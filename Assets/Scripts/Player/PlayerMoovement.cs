@@ -1,8 +1,9 @@
+using Cache;
 using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMoovement : MonoBehaviour, IDamageable
+public class PlayerMoovement : MonoCache, IDamageable
 {
     [Header("Физика")]
     public float Gravity = -9.8f;
@@ -52,7 +53,7 @@ public class PlayerMoovement : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
 		isGrounded = true;
 	}
-    private void Update()
+	protected override void OnTick()
     {
 		TurnHead();
 		brain.Update();

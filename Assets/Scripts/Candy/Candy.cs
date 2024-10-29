@@ -29,7 +29,7 @@ namespace Points
 			candyPoint = new Point(Points);
 		}
 
-		public override void OnTick()
+		protected override void OnTick()
 		{
 			AnimationShortCuts.PunchRotationAnimation(AnimTransform, presetPunchRotation);
 			//AnimationShortCuts.PunchPositionAnimation(transform, presetPunchPosition);

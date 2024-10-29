@@ -19,7 +19,7 @@ public class ItemsController : MonoCache
 		inventory = InventoryController.instance;
 	}
 
-	public override void OnTick()
+	protected override void OnTick()
 	{
 		string inventoryname = "";
 

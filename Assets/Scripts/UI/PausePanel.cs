@@ -20,7 +20,7 @@ public class PausePanel : MonoCache
 		isPause = false;
 		curCanvas = GameCanvas;
 	}
-	public override void OnTick()
+	protected override void OnTick()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
