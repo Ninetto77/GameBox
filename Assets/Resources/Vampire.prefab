@@ -686,6 +686,7 @@ GameObject:
   - component: {fileID: 3918634276395435539}
   - component: {fileID: 4392238689926925134}
   - component: {fileID: 8737901652412500644}
+  - component: {fileID: 2210943548207018737}
   m_Layer: 8
   m_Name: Vampire
   m_TagString: Untagged
@@ -814,6 +815,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.69494, z: 1}
   m_Center: {x: 0, y: 1.8525298, z: 0}
+--- !u!114 &2210943548207018737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512205277927780355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e47f03c5c72d8c4c88e90592f09660b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _drawGizmosType: 0
+  _overlapSettings:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 128
+    _overlapPoint: {fileID: 8847324332943027948}
+    _overlapType: 1
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 1.8
+    _positionOffset: {x: 0, y: 1.9, z: 1.55}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0.4433962, g: 0.09594305, b: 0.085751146, a: 1}
 --- !u!1 &4091222975912288667
 GameObject:
   m_ObjectHideFlags: 0

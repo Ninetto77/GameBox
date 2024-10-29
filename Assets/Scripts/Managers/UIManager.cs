@@ -94,6 +94,10 @@ public class UIManager : MonoBehaviour
 
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+
+		yield return new WaitForSeconds(0.5f);
+
+		//Time.timeScale = 0f;
 	}
 	#endregion
 

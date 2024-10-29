@@ -1228,6 +1228,7 @@ GameObject:
   - component: {fileID: 6585578710309211195}
   - component: {fileID: 6925115626242964315}
   - component: {fileID: 6650348631689539006}
+  - component: {fileID: 8009056143975997061}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Untagged
@@ -1357,6 +1358,35 @@ MonoBehaviour:
   <MaxSpeed>k__BackingField: 70
   <Speed>k__BackingField: 100
   <AngularSpeed>k__BackingField: 10
+--- !u!114 &8009056143975997061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320897848287988323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e47f03c5c72d8c4c88e90592f09660b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _drawGizmosType: 0
+  _overlapSettings:
+    _searchMask:
+      serializedVersion: 2
+      m_Bits: 128
+    _overlapPoint: {fileID: 4435719625153555956}
+    _overlapType: 1
+    _boxSize: {x: 1, y: 1, z: 1}
+    _sphereRadius: 1.72
+    _positionOffset: {x: 0, y: 3.14, z: 2.5}
+    _considerObstacles: 0
+    _obstaclesMask:
+      serializedVersion: 2
+      m_Bits: 0
+    _drawGizmos: 1
+    _gizmosColor: {r: 0.4433962, g: 0.09594305, b: 0.085751146, a: 1}
 --- !u!1 &7475371352594767811
 GameObject:
   m_ObjectHideFlags: 0

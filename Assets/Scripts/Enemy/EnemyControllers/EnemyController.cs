@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Enemy.States
@@ -38,7 +36,6 @@ namespace Enemy.States
 		public Transform EnemyTransform => transform;
 
 
-		private bool started = true;
 		private bool isTakingDamage = false;
 		private bool isDead = false;
 
@@ -59,25 +56,6 @@ namespace Enemy.States
 			health = GetComponent<Health>();
 			rb = GetComponent<Rigidbody>();
 			health.OnChangeHealth += TakeDamage;
-		}
-
-		private void Start()
-		{
-			//StartCoroutine(StartScreaming());
-		}
-
-		/// <summary>
-		/// Вой врага
-		/// </summary>
-		/// <returns></returns>
-		private IEnumerator StartScreaming()
-		{
-			started = true;
-			stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.scream, this));
-
-			yield return new WaitForSeconds(3f);
-
-			started = false;
 		}
 
 		protected virtual void Update()
