@@ -23,7 +23,21 @@ namespace Enemy.States
 
 		public void Attack()
 		{
+			if (!canMove) return;
+			PlayAttackSound();
 			GetFireBall();
+		}
+
+		private void PlayAttackSound()
+		{
+			try
+			{
+				audioSource.PlayOneShot(attackSound);
+			}
+			catch (System.Exception)
+			{
+				Debug.Log($"no sound {attackSound.name}");
+			}
 		}
 
 		private void GetFireBall()

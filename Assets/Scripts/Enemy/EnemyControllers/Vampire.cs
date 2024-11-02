@@ -23,9 +23,24 @@ namespace Enemy.States
 		#region Атака
 		public void Attack()
 		{
+			if (!canMove) return;
+
 			GetHeal();
+			PlayAttackSound();
 			attack.PerformAttack();
 			//player.ApplyDamage(Damage);
+		}
+
+		private void PlayAttackSound()
+		{
+			try
+			{
+				audioSource.PlayOneShot(attackSound);
+			}
+			catch (System.Exception)
+			{
+				Debug.Log($"no sound {attackSound.name}");
+			}
 		}
 		#endregion
 

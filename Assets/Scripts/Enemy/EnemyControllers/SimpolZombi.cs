@@ -17,7 +17,21 @@ namespace Enemy.States
 		}
 		public void Attack()
 		{
+			if (!canMove) return;
+
+			PlayAttackSound();
 			attack.PerformAttack();
+		}
+		private void PlayAttackSound()
+		{
+			try
+			{
+				audioSource.PlayOneShot(attackSound);
+			}
+			catch (System.Exception)
+			{
+				Debug.Log($"no sound {attackSound.name}");
+			}
 		}
 	}
 }

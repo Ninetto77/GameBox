@@ -1,4 +1,5 @@
 using Cache;
+using Sounds;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -30,20 +31,30 @@ public class PlayerMoovement : MonoCache, IDamageable
 	[HideInInspector]
     public Vector3 direction;
 
+	public Action OnPlayerDead;
+
     private CharacterController player;
     private Animator animator;
     private PlayerAnimations animations;
     private PlayerBrain brain;
 	private Rigidbody rb;
 	[Inject]
+	private AudioManager audioManager;
+	[Inject]
 	private UIManager uiManager;
-	
+
 	[HideInInspector]
 	public Health health;
+
+	private const string runName = GlobalStringsVars.RUN_SOUND_NAME;
+	private const string deadName = GlobalStringsVars.DEATH_SOUND_NAME;
+	private const string musicName = GlobalStringsVars.MAIN_MUSIC_NAME;
 
     private bool isGrounded;
 	private float curSpeed;
 	private float curMaxSpeed;
+	private bool isGoing = false;
+
 	private void Awake()
 	{
         health = GetComponent<Health>();
@@ -89,6 +100,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 		}
 
 		rb.AddRelativeForce(direction * curSpeed, ForceMode.Impulse);
+		PlayRunSound();
 
 		if (rb.velocity.magnitude > curMaxSpeed)
 			rb.velocity = Vector3.ClampMagnitude(rb.velocity, curMaxSpeed);
@@ -101,6 +113,26 @@ public class PlayerMoovement : MonoCache, IDamageable
 			}
 		}
 		animations.SetRuningAnim(rb.velocity);
+	}
+
+	private void PlayRunSound()
+	{
+		if (rb.velocity.magnitude >= 0.01f)
+		{
+			if (!isGoing)
+			{
+				isGoing = true;
+				audioManager.PlaySound(runName);
+			}
+		}
+		else
+		{
+			if (isGoing)
+			{
+				isGoing = false;
+				audioManager.StopSound(runName);
+			}
+		}
 	}
 
     private void TurnHead()
@@ -126,6 +158,12 @@ public class PlayerMoovement : MonoCache, IDamageable
 		yield return new WaitForEndOfFrame();
 		GetComponent<InputKeys>().enabled = false;
 		GetComponent<MouseLook>().enabled = false;
+		
+		audioManager.StopSound(musicName);
+		audioManager.StopSound(runName);
+		audioManager.PlaySound(deadName);
+
+		OnPlayerDead?.Invoke();
 		uiManager.OnPlayerDead?.Invoke();
 	}
 

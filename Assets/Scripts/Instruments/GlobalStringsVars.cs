@@ -19,11 +19,18 @@ public class GlobalStringsVars
 
 	#endregion
 
+	#region Музыка
+	public const string MAIN_MUSIC_NAME = "MainMusic";
+	#endregion
+
 	#region Звуки
 	public const string CANDY_SOUND_NAME = "CandyImpact";
 	public const string AMMO_SOUND_NAME = "AmmoImpact";
-	public const string RUN_SOUND_NAME = "Run";
 	public const string CLICK_SOUND_NAME = "Click";
+	public const string RUN_SOUND_NAME = "Run";
+	public const string WIN_SOUND_NAME = "Win";
+	public const string QUEST_SOUND_NAME = "Quest";
+	public const string DEATH_SOUND_NAME = "Death";
 
 	public const string SFXMIXER_NAME = "SFXVolume";
 	public const string MUSICMIXER_NAME = "MusicVolume";

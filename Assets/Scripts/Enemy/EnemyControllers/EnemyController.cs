@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -7,6 +8,7 @@ namespace Enemy.States
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(Health))]
 	[RequireComponent(typeof(Rigidbody))]
+	[RequireComponent (typeof(AudioSource))]
 	public abstract class EnemyController : MonoBehaviour, IDamageable, IEnemy, IAttack
 	{
 		[Header("Обнаружение игрока")]
@@ -23,7 +25,13 @@ namespace Enemy.States
 		[field: SerializeField] public float Speed { get; set; }
 		[field: SerializeField] public float AngularSpeed  {get; set;}
 
+		[Header("Звуки")]
+		[SerializeField] private AudioClip appearingSound;
+		[SerializeField] protected AudioClip attackSound;
+		[SerializeField] private AudioClip deathSound;
+
 		private Animator animator;
+		protected AudioSource audioSource;
 
 		[HideInInspector]
 		public EnemyAnimation Animation { get; set; }
@@ -35,6 +43,7 @@ namespace Enemy.States
 		public Vector3 TargetPosition => player.transform.position;
 		public Transform EnemyTransform => transform;
 
+		protected bool canMove;
 
 		private bool isTakingDamage = false;
 		private bool isDead = false;
@@ -56,10 +65,19 @@ namespace Enemy.States
 			health = GetComponent<Health>();
 			rb = GetComponent<Rigidbody>();
 			health.OnChangeHealth += TakeDamage;
+
+			audioSource = GetComponent<AudioSource>();
+
+			if (appearingSound != null)
+				audioSource.PlayOneShot(appearingSound);
+
+			player.OnPlayerDead += OnPlayerDead;
+			canMove = true;
 		}
 
 		protected virtual void Update()
 		{
+			if (!canMove) return;
 			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
 			if (isTakingDamage) return;
@@ -84,6 +102,10 @@ namespace Enemy.States
 
 		public Rigidbody GetRigidBody() => rb;
 
+		#region
+		private void OnPlayerDead() => canMove = false;
+		#endregion
+
 		#region Смерть
 		private void Die()
 		{
@@ -94,6 +116,10 @@ namespace Enemy.States
 		private IEnumerator StartGetDead()
 		{
 			isDead = true;
+
+			if (deathSound != null)
+				audioSource.PlayOneShot(deathSound);
+
 			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.death, this));
 
 			rb.isKinematic = true;

@@ -20,7 +20,7 @@ MonoBehaviour:
   _prefab: {fileID: 3483187592900947640, guid: 02f8b48816f5a744783fc73fee9a2c9f, type: 3}
   _equipmentSlot: 0
   _fxType: 3
-  aimIcon: {fileID: 0}
+  aimIcon: {fileID: -11665840, guid: fe6aa07dc825c2c4c896f8629bc7dcd8, type: 3}
   weaponDamage: 8
   layerMask:
     serializedVersion: 2
@@ -29,11 +29,11 @@ MonoBehaviour:
   shotCount: 1
   _hitEffectPrefab: {fileID: 198805632700201286, guid: d1e27766830781946b7e50a599bfaaac, type: 3}
   _hitEffectDestroyDelay: 2
-  useSpread: 1
+  useSpread: 0
   spreadFactor: 0.1
   useZoom: 0
   singleFire: 1
   fireRate: 0.1
-  timeToReload: 2
+  timeToReload: 3
   countOfBullets: 100
-  totalBulletsInPool: 2
+  totalBulletsInPool: 15

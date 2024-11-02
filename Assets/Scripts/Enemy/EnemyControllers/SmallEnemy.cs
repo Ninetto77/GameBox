@@ -15,7 +15,21 @@ public class SmallEnemy : EnemyController, IAttack
 	#region Атака
 	public void Attack()
 	{
+		if (!canMove) return;
+
+		PlayAttackSound();
 		attack.PerformAttack();
+	}
+	private void PlayAttackSound()
+	{
+		try
+		{
+			audioSource.PlayOneShot(attackSound);
+		}
+		catch (System.Exception)
+		{
+			Debug.Log($"no sound {attackSound.name}");
+		}
 	}
 	#endregion
 }
