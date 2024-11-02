@@ -219,8 +219,6 @@ GameObject:
   - component: {fileID: 9172803616772380295}
   - component: {fileID: 8531542081007616539}
   - component: {fileID: 707635520324661138}
-  - component: {fileID: 7922338121011897432}
-  - component: {fileID: 3785206924662316529}
   m_Layer: 0
   m_Name: HealthKitMesh
   m_TagString: Untagged
@@ -293,36 +291,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7922338121011897432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8716521535668361596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &3785206924662316529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8716521535668361596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26f8008a1e975394a938ec2d0a95a48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 8b3a4866bdb4a764792acf5f8fbeb394, type: 2}
-  particleOnDestroy: {fileID: 198894602908660118, guid: 5dbe86494ac8cfd46bd61c777a7c8ea6, type: 3}
-  timeOfDestroy: 0.1

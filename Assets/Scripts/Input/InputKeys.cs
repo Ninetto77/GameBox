@@ -34,8 +34,8 @@ public class InputKeys : MonoBehaviour
         jump = Input.GetKeyDown(KeyCode.Space);
 		// if (jump) Debug.Log("jump");
 		isRuning = Input.GetKey(KeyCode.LeftShift);
-
 		player.MovePlayer(horizontalDirection, verticalDirection, jump, isRuning);
+
 
 	}
 

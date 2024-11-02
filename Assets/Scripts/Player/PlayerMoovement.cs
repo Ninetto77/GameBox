@@ -22,7 +22,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 	public float RunMaxSpeed = 10f;
 
 	[Header("Удар")]
-	[SerializeField] private Transform aimTarget;
+	//[SerializeField] private Transform aimTarget;
 	public Transform hand;
 
 	[Header("Подбор предметов")]
@@ -51,6 +51,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 	private const string musicName = GlobalStringsVars.MAIN_MUSIC_NAME;
 
     private bool isGrounded;
+    private bool isJumping;
 	private float curSpeed;
 	private float curMaxSpeed;
 	private bool isGoing = false;
@@ -99,8 +100,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 			curMaxSpeed = MaxSpeed;
 		}
 
-		rb.AddRelativeForce(direction * curSpeed, ForceMode.Impulse);
-		PlayRunSound();
+		rb.AddRelativeForce(direction * curSpeed, ForceMode.Acceleration);
 
 		if (rb.velocity.magnitude > curMaxSpeed)
 			rb.velocity = Vector3.ClampMagnitude(rb.velocity, curMaxSpeed);
@@ -109,14 +109,20 @@ public class PlayerMoovement : MonoCache, IDamageable
 		{
 			if (jump == true)
 			{
+				isJumping = true;
 				rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
 			}
 		}
+
+		PlayRunSound();
 		animations.SetRuningAnim(rb.velocity);
 	}
 
+	
 	private void PlayRunSound()
 	{
+		if (isJumping) return;
+
 		if (rb.velocity.magnitude >= 0.01f)
 		{
 			if (!isGoing)
@@ -139,7 +145,7 @@ public class PlayerMoovement : MonoCache, IDamageable
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width/2, Screen.height/2));
         Vector3 desirePosition = ray.origin + ray.direction * 0.7f;
-        aimTarget.position = desirePosition;
+       // aimTarget.position = desirePosition;
 	}
 
 	public void ApplyDamage(float damage) {
@@ -193,6 +199,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 		{
 			isGrounded = value;
 			animations.SetJumpAnim(!value);
+			isJumping = !value;
 		}
 	}
 	#endregion

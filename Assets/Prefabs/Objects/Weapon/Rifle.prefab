@@ -531,7 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _emptyClipSound: {fileID: 8300000, guid: 68735908f6f9f54438b9808d920c36b4, type: 3}
   _reloudSound: {fileID: 8300000, guid: 20f04d3a6663e8842a536d50dcd778fa, type: 3}
-  _shootSound: {fileID: 8300000, guid: 0496c319a36537c418dd5178996f6931, type: 3}
+  _shootSound: {fileID: 8300000, guid: 1399be72bc71818428c331508df13e20, type: 3}
   _endedSound: {fileID: 8300000, guid: 1cc8ae785eb7b9943aa59d326445bfd4, type: 3}
 --- !u!54 &8838339019697714915
 Rigidbody:
