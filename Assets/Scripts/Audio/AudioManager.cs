@@ -17,7 +17,7 @@ namespace Sounds
         private void Awake()
         {
             Initialize();
-            PlaySound("MainMenu");
+            PlaySound(GlobalStringsVars.MAIN_MUSIC_NAME);
 		}
 
 		public void Initialize()
@@ -60,8 +60,13 @@ namespace Sounds
                 Debug.LogWarning("Sound: " + name + " not found!");
                 return;
             }
-            s.source.Stop();
-        }
+
+			if (s.isSFX == true)
+				SFXSource.Stop();
+			else
+				musicSource.Stop();
+			// s.source.Stop();
+		}
 
         public bool IsPlayingSound(string name)
         {

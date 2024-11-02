@@ -1,0 +1,756 @@
+fileFormatVersion: 2
+guid: 946e36bbf33d268418e5f6f20aac3667
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_0
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 609
+        width: 200
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deb508968fcae7d49b9b7b374382c9d6
+      internalID: 150041728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_1
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 609
+        width: 201
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f639a299d111844ba79e4858bdc8c2c
+      internalID: -907752895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_2
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 539
+        width: 110
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8180a74e8e9db024bae4f2cfaa0eef90
+      internalID: 728458197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_3
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 538
+        width: 112
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba1ac027c35bae841aebe076913235e9
+      internalID: 1322737351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_4
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 539
+        width: 109
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ef7bf0cb8653ed418970d285975e6a6
+      internalID: 920694252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_5
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 563
+        width: 66
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2bceee5938d5414f861c98615530031
+      internalID: 1391959052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_6
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 536
+        width: 42
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2278800e326b6446a7de96ba0710e47
+      internalID: -569803595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_7
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 458
+        width: 201
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83575690c0e94c4f82e7036a1e12157
+      internalID: -719832440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_8
+      rect:
+        serializedVersion: 2
+        x: 1719
+        y: 457
+        width: 201
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40b06d3e1d9a72a43999663135e48cc5
+      internalID: -787325863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 517
+        width: 332
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27ab9a5567ac8fc489b0db7a16035251
+      internalID: 885477221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_10
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 517
+        width: 334
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2768224cade3b6f46a412eda5716553e
+      internalID: -506072181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 428
+        width: 165
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6360d98674d2fd84db4487d82144726f
+      internalID: -1100564054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_12
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 428
+        width: 168
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5d142734e9adc48b1f04d911578889
+      internalID: -771467627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_13
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 371
+        width: 110
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9495974475161054c95028b42279857f
+      internalID: -1352782324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_14
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 371
+        width: 109
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 695e121e51f63634eb48037d873c1eff
+      internalID: 1085053829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_15
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 371
+        width: 112
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf83c92e333a764aa16ed5eaa974b60
+      internalID: 1956917020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_16
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 360
+        width: 103
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf9bc8c7323b5524b88c64482c9b9ade
+      internalID: 1261158858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_17
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 378
+        width: 50
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d8ee25cb6f410e4fba5479e2bd77a27
+      internalID: 451498142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_18
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 338
+        width: 148
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d55e1125ff696c409903a626f5a606e
+      internalID: -960987762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_19
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 337
+        width: 343
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a369998a43e13d048af6442e6b856cb6
+      internalID: 615343320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_20
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 309
+        width: 97
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfb2ff65b6dcab644bdcc2ee721ca5b3
+      internalID: 1264195351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_21
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 34
+        width: 208
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ce3bb7070cdbb840aa168916aa4d788
+      internalID: 1870650342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_22
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 33
+        width: 203
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f99521c3d587d4ba8f6fcfc4cf6e07
+      internalID: -426734538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_23
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 34
+        width: 193
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d94a8db949784e548a45eac3dc971e3d
+      internalID: 1136364512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_24
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 33
+        width: 211
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d70448a70e70ab2448d7d62c49aad61f
+      internalID: -674803335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_25
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 33
+        width: 206
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14ee3618880c2ee46986820004181804
+      internalID: -1305863573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_26
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 33
+        width: 196
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 152d2a561190f6e4eb2e8c9aa9be2ff0
+      internalID: 947326880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LIST_BUTTONS_4_27
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 90
+        width: 132
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 992ffcf0c49550e43b745f9225e7e3f6
+      internalID: -1178763556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UI_LIST_BUTTONS_4_0: 150041728
+      UI_LIST_BUTTONS_4_1: -907752895
+      UI_LIST_BUTTONS_4_10: -506072181
+      UI_LIST_BUTTONS_4_11: -1100564054
+      UI_LIST_BUTTONS_4_12: -771467627
+      UI_LIST_BUTTONS_4_13: -1352782324
+      UI_LIST_BUTTONS_4_14: 1085053829
+      UI_LIST_BUTTONS_4_15: 1956917020
+      UI_LIST_BUTTONS_4_16: 1261158858
+      UI_LIST_BUTTONS_4_17: 451498142
+      UI_LIST_BUTTONS_4_18: -960987762
+      UI_LIST_BUTTONS_4_19: 615343320
+      UI_LIST_BUTTONS_4_2: 728458197
+      UI_LIST_BUTTONS_4_20: 1264195351
+      UI_LIST_BUTTONS_4_21: 1870650342
+      UI_LIST_BUTTONS_4_22: -426734538
+      UI_LIST_BUTTONS_4_23: 1136364512
+      UI_LIST_BUTTONS_4_24: -674803335
+      UI_LIST_BUTTONS_4_25: -1305863573
+      UI_LIST_BUTTONS_4_26: 947326880
+      UI_LIST_BUTTONS_4_27: -1178763556
+      UI_LIST_BUTTONS_4_3: 1322737351
+      UI_LIST_BUTTONS_4_4: 920694252
+      UI_LIST_BUTTONS_4_5: 1391959052
+      UI_LIST_BUTTONS_4_6: -569803595
+      UI_LIST_BUTTONS_4_7: -719832440
+      UI_LIST_BUTTONS_4_8: -787325863
+      UI_LIST_BUTTONS_4_9: 885477221
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

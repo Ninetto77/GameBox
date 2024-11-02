@@ -4469,8 +4469,8 @@ Transform:
   m_Children:
   - {fileID: 979348310}
   - {fileID: 1376674628}
-  - {fileID: 758925760}
   - {fileID: 1671094356}
+  - {fileID: 758925760}
   - {fileID: 732660111}
   - {fileID: 2065741}
   - {fileID: 1745885120}
@@ -7493,6 +7493,63 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 3, z: 0}
+--- !u!1001 &268895312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3718982838855820358, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_Name
+      value: GrenadeLauncher
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 41.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 38.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 61.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7372774
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.67559016
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095931074792013564, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
 --- !u!1001 &268979758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64835,7 +64892,7 @@ Transform:
   m_GameObject: {fileID: 2072206844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.43051103, z: 0, w: 0.9025853}
-  m_LocalPosition: {x: 19, y: 3, z: 95}
+  m_LocalPosition: {x: 19, y: 1.378, z: 95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67226,7 +67283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: MainMenu
+  - name: MainMusic
     clip: {fileID: 8300000, guid: 06454024e117716429398bd4887bca85, type: 3}
     volume: 0.05
     pitch: 0
@@ -67254,12 +67311,36 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ce028f0c30564334c818e1228923cebc, type: 3}
     volume: 0.113
     pitch: 0
-    loop: 0
+    loop: 1
     playOnAwake: 0
     isSFX: 1
     source: {fileID: 0}
   - name: Run
     clip: {fileID: 8300000, guid: 76c098ac9aba25e4c9540e422ad5ad5f, type: 3}
+    volume: 0.05
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    isSFX: 1
+    source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 0440e2fc051dc6b488dbc777c8090a90, type: 3}
+    volume: 0.05
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    isSFX: 1
+    source: {fileID: 0}
+  - name: Quest
+    clip: {fileID: 8300000, guid: fbe03083e9f9b2e45ad69dfb273e89fe, type: 3}
+    volume: 0.05
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    isSFX: 1
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: d346806a4a6231d4293cd153e5d34afd, type: 3}
     volume: 0.05
     pitch: 0
     loop: 0
@@ -69148,11 +69229,11 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 8851594868083378811}
+  - {fileID: 7820868431355522751}
   - {fileID: 713460191953166110}
   - {fileID: 363849704831572346}
   - {fileID: 5521873055562588505}
   - {fileID: 38021216434953287}
-  - {fileID: 7820868431355522751}
   - {fileID: 3836089120504405695}
   - {fileID: 2233662953797664533}
   - {fileID: 2263114881210193283}
@@ -69193,3 +69274,4 @@ SceneRoots:
   - {fileID: 834003439}
   - {fileID: 294006802}
   - {fileID: 1367746037}
+  - {fileID: 268895312}

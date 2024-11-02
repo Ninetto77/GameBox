@@ -2953,7 +2953,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4917805514707966469, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -3051,7 +3051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: MainMenu
+  - name: MainMusic
     clip: {fileID: 8300000, guid: 623c80409eaf24149955300eb93d797f, type: 3}
     volume: 0.2
     pitch: 0
@@ -3062,7 +3062,7 @@ MonoBehaviour:
   - name: Click
     clip: {fileID: 8300000, guid: ce028f0c30564334c818e1228923cebc, type: 3}
     volume: 0.2
-    pitch: 0.83
+    pitch: 2
     loop: 0
     playOnAwake: 0
     isSFX: 1
