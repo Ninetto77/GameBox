@@ -33,6 +33,6 @@ MonoBehaviour:
   useZoom: 1
   singleFire: 1
   fireRate: 2
-  timeToReload: 2
+  timeToReload: 1.2
   countOfBullets: 100
   totalBulletsInPool: 8
