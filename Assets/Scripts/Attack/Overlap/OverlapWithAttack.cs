@@ -38,6 +38,11 @@ public class OverlapWithAttack : AttackBehaviour
 		_overlapSettings.SetSearchMask(newMask);
 	}
 
+	public void SetDamage(float damage)
+	{
+		_damage = damage;
+	}
+
 #if UNITY_EDITOR
 	private void OnDrawGizmos()
 	{

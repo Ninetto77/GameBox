@@ -219,8 +219,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 56.99, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5313395601565083221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1335,8 +1335,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 60.000004, y: 60.000004, z: 60.000004}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6153912002872051635}
   - {fileID: 72968476309051746}
@@ -1549,9 +1549,9 @@ GameObject:
   - component: {fileID: 743547172888893883}
   - component: {fileID: 106825833988127370}
   - component: {fileID: 8234940898442616519}
-  - component: {fileID: 831176077946823660}
   - component: {fileID: 5057666481266291133}
   - component: {fileID: 8959921718103473811}
+  - component: {fileID: 4656873277496133392}
   m_Layer: 8
   m_Name: SimpolZombi
   m_TagString: Untagged
@@ -1661,27 +1661,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &831176077946823660
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7067163870905714071}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 3.69494, z: 1}
-  m_Center: {x: 0, y: 1.8525298, z: 0}
 --- !u!114 &5057666481266291133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1703,8 +1682,8 @@ MonoBehaviour:
     _overlapPoint: {fileID: 5313395601565083221}
     _overlapType: 1
     _boxSize: {x: 1, y: 1, z: 1}
-    _sphereRadius: 1.8
-    _positionOffset: {x: 0, y: 1.9, z: 1.55}
+    _sphereRadius: 1
+    _positionOffset: {x: 0, y: 1, z: 0.8}
     _considerObstacles: 0
     _obstaclesMask:
       serializedVersion: 2
@@ -1720,9 +1699,9 @@ AudioSource:
   m_GameObject: {fileID: 7067163870905714071}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1731,7 +1710,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.19281387
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1807,6 +1786,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &4656873277496133392
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067163870905714071}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7221513642185374908
 GameObject:
   m_ObjectHideFlags: 0
