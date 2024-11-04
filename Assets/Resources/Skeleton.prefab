@@ -591,7 +591,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8aeeca0b2c2b19a4db4983b729fec3e2, type: 2}
+  - {fileID: 2100000, guid: 7308832eb2adf3a4ea41646a3131aef0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -882,7 +882,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9151010800021185664}
@@ -1301,9 +1301,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 3.3
+  m_Height: 3.1
   m_Direction: 1
-  m_Center: {x: 0, y: 3.3, z: 0}
+  m_Center: {x: 0, y: 3.38, z: 0}
 --- !u!95 &6585578710309211195
 Animator:
   serializedVersion: 5
@@ -1383,8 +1383,8 @@ MonoBehaviour:
     _overlapPoint: {fileID: 4435719625153555956}
     _overlapType: 1
     _boxSize: {x: 1, y: 1, z: 1}
-    _sphereRadius: 1.72
-    _positionOffset: {x: 0, y: 3.14, z: 2.5}
+    _sphereRadius: 1.3
+    _positionOffset: {x: 0, y: 3.25, z: 2}
     _considerObstacles: 0
     _obstaclesMask:
       serializedVersion: 2
@@ -1400,9 +1400,9 @@ AudioSource:
   m_GameObject: {fileID: 7320897848287988323}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1535,7 +1535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7204825240821752909
 Transform:
   m_ObjectHideFlags: 0

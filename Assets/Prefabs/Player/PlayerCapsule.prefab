@@ -89,11 +89,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gravity: 9.8
-  JumpForce: 80
+  JumpForce: 40
   Speed: 100
-  MaxSpeed: 3
+  MaxSpeed: 6
   RunSpeed: 100
-  RunMaxSpeed: 7
+  RunMaxSpeed: 14
   hand: {fileID: 4592198054327879845}
   reachDistance: 10
   direction: {x: 0, y: 0, z: 0}
@@ -305,7 +305,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

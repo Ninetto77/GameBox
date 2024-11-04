@@ -41,6 +41,8 @@ public class UIManager : MonoBehaviour
 	private TextMeshProUGUI restartText;
 	private TextMeshProUGUI menuText;
 
+	private bool isDead;
+
 	private void Start()
 	{
 		OnPlayerDamage += ShowRedOverlay;
@@ -48,6 +50,8 @@ public class UIManager : MonoBehaviour
 
 		restartText = RestartButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 		menuText = MenuButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+		isDead = false;
 	}
 
 
@@ -74,6 +78,8 @@ public class UIManager : MonoBehaviour
 
 	private IEnumerator ShowDeadWindowForTime()
 	{
+		isDead = true;
+			
 		AnimationShortCuts.FadeAnimation(GameCanvas, FadeOutGameCanvas);
 		GameCanvas.blocksRaycasts = false;
 		DeadCanvas.interactable = false;
@@ -100,5 +106,7 @@ public class UIManager : MonoBehaviour
 		//Time.timeScale = 0f;
 	}
 	#endregion
+
+	public bool GetIsDead() => isDead;
 
 }

@@ -1,6 +1,7 @@
 using Cache;
 using UnityEngine;
 using UnityEngine.Audio;
+using Zenject;
 
 public class PausePanel : MonoCache
 {
@@ -11,9 +12,11 @@ public class PausePanel : MonoCache
 	[Header("Audio snapshots")]
 	public AudioMixerSnapshot Normal;
 	public AudioMixerSnapshot InPause;
-	
+
 	private bool isPause;
 	private Window curCanvas;
+
+	[Inject] private UIManager uIManager;
 
 	private void Start()
 	{
@@ -22,6 +25,9 @@ public class PausePanel : MonoCache
 	}
 	protected override void OnTick()
 	{
+		if (uIManager.GetIsDead())
+			return;
+
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			SetSettings();
@@ -64,7 +70,7 @@ public class PausePanel : MonoCache
 
 	}
 
-
+	public bool GetIsPause() => isPause;
 
 	private void SetCanvas(Window canvas)
 	{

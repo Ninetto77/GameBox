@@ -100,7 +100,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 			curMaxSpeed = MaxSpeed;
 		}
 
-		rb.AddRelativeForce(direction * curSpeed, ForceMode.Acceleration);
+		rb.AddRelativeForce(direction * curSpeed/*, ForceMode.Acceleration*/);
 
 		if (rb.velocity.magnitude > curMaxSpeed)
 			rb.velocity = Vector3.ClampMagnitude(rb.velocity, curMaxSpeed);

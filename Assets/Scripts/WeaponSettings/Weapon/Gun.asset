@@ -20,6 +20,7 @@ MonoBehaviour:
   _prefab: {fileID: 3483187592900947640, guid: 02f8b48816f5a744783fc73fee9a2c9f, type: 3}
   _equipmentSlot: 0
   _fxType: 3
+  typeOfWeapon: 0
   aimIcon: {fileID: -11665840, guid: fe6aa07dc825c2c4c896f8629bc7dcd8, type: 3}
   weaponDamage: 8
   layerMask:
@@ -36,4 +37,4 @@ MonoBehaviour:
   fireRate: 0.1
   timeToReload: 3
   countOfBullets: 100
-  totalBulletsInPool: 15
+  totalBulletsInPool: 8

@@ -18,6 +18,7 @@ namespace Enemy.States
 		{
 			attack = GetComponent<OverlapWithAttack>();
 			attack.SetSearchMask(PlayerMask);
+			attack.SetDamage(Damage);
 		}
 
 		#region Атака

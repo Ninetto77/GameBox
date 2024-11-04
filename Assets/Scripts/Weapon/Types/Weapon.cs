@@ -1,11 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using Attack.Base;
-using Old;
-using System;
 using Items;
 using Zenject;
-using Sounds;
+using Points;
 
 namespace Attack.Raycast
 {
@@ -27,17 +25,63 @@ namespace Attack.Raycast
 		private int RestCountOfBullets;
 		private int curCountBulletsInPool;
 
-		//		[Inject]private UIManager uiManager;
-		//[Inject] private AudioManager audioManager;
-		//public void Construct(AudioManager audio)
-		//{
-		//	this.audioManager = audio;
-		//}
+		[Inject] private ShopPoint shop;
+
+		[Inject]
+		public void Construct(ShopPoint shop)
+		{
+			this.shop = shop;
+		}
+
+		/// <summary>
+		/// когда изменяется общее количество пуль 
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="value"></param>
+		private void ChangeCurrentBullets(TypeOfCartridge type, int value)
+		{
+			switch (weapon.TypeOfWeapon)
+			{
+				case TypeOfCartridge.light:
+					RestCountOfBullets = shop.LightCartridgeCount;
+					break;
+				case TypeOfCartridge.heavy:
+					RestCountOfBullets = shop.HeavyCartridgeCount;
+					break;
+				case TypeOfCartridge.oil:
+					RestCountOfBullets = shop.OilCartridgeCount;
+					break;
+				default:
+					break;
+			}
+		}
+
+		/// <summary>
+		/// Изменить общее количество пуль
+		/// </summary>
+		/// <param name="value"></param>
+		private void ChangeTotalBulletsInThePool(int value)
+		{
+			RestCountOfBullets -= value;
+			var temp = GetCountsOfBullets() - value;
+			shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, (temp));
+		}
 
 		private void Start()
 		{
-			RestCountOfBullets = weapon.CountOfBullets;
-			curCountBulletsInPool = weapon.TotalBulletsInPool;
+			//RestCountOfBullets = weapon.CountOfBullets;
+			//curCountBulletsInPool = weapon.TotalBulletsInPool;
+
+
+			//изменение количества пуль в магазине
+			RestCountOfBullets = GetCountsOfBullets();
+			if (RestCountOfBullets > weapon.TotalBulletsInPool)
+			{
+				curCountBulletsInPool = weapon.TotalBulletsInPool;
+				shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, RestCountOfBullets - weapon.TotalBulletsInPool);
+			}
+
+			shop.OnChangeCartridge += ChangeCurrentBullets;
 
 			mainCamera = Camera.main;
 
@@ -120,12 +164,12 @@ namespace Attack.Raycast
 				{
 					// On IDamageable is not found.
 				}
-
-				RestCountOfBullets--;
-				curCountBulletsInPool--;
-
 				SpawnParticleEffectOnHit(hitInfo);
 			}
+
+			//RestCountOfBullets--;
+			curCountBulletsInPool--;
+			ChangeTotalBulletsInThePool(1);
 
 			PerformEffects();
 		}
@@ -195,10 +239,28 @@ namespace Attack.Raycast
 				{
 					dif = RestCountOfBullets;
 				}
+
 				curCountBulletsInPool += dif;
-				RestCountOfBullets -= dif;
+				ChangeTotalBulletsInThePool(dif);
+
+				//RestCountOfBullets -= dif;
 				
 				canFire = true;
+			}
+		}
+
+		private int GetCountsOfBullets()
+		{
+			switch (weapon.TypeOfWeapon)
+			{
+				case TypeOfCartridge.light:
+					return shop.LightCartridgeCount;
+				case TypeOfCartridge.heavy:
+					return shop.HeavyCartridgeCount;
+				case TypeOfCartridge.oil:
+					return shop.OilCartridgeCount;
+				default:
+					return 0;
 			}
 		}
 

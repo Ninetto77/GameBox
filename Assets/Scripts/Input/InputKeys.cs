@@ -22,6 +22,12 @@ public class InputKeys : MonoBehaviour
     /// </summary>
     private void Update()
     {
+
+
+	}
+
+	private void FixedUpdate()
+	{
         horizontalDirection = Input.GetAxis(GlobalStringsVars.HORIZONTAL_AXIS);
         verticalDirection = Input.GetAxis(GlobalStringsVars.VERTICAL_AXIS);
 
@@ -35,12 +41,6 @@ public class InputKeys : MonoBehaviour
 		// if (jump) Debug.Log("jump");
 		isRuning = Input.GetKey(KeyCode.LeftShift);
 		player.MovePlayer(horizontalDirection, verticalDirection, jump, isRuning);
-
-
-	}
-
-	private void FixedUpdate()
-	{
 
 	}
 }

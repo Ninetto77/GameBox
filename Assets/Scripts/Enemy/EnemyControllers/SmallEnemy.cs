@@ -11,12 +11,12 @@ public class SmallEnemy : EnemyController, IAttack
 	{
 		attack = GetComponent<OverlapWithAttack>();
 		attack.SetSearchMask(PlayerMask);
+		attack.SetDamage(Damage);
 	}
 	#region Атака
 	public void Attack()
 	{
 		if (!canMove) return;
-
 		PlayAttackSound();
 		attack.PerformAttack();
 	}
