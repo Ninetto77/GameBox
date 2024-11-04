@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a80d37e11b24c4087ae7715fc44f2b, type: 3}
-  m_Name: Apple
+  m_Name: HealthKit
   m_EditorClassIdentifier: 
-  _name: Apple
+  _name: HealthKit
   _description: Treat youself
   _icon: {fileID: 1530113631, guid: 8224205d05753024981f0dd48f6438f3, type: 3}
   _itemType: 0

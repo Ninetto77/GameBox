@@ -1,5 +1,6 @@
 using Code.Global.Animations;
 using Points;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,11 +9,18 @@ using Zenject;
 
 public class HintUI : MonoBehaviour
 {
+	public Action<TypeOfCartridge> OnAddCartridge;
+
+	[Header("Type")]
+	public TypeOfCartridge typeOfCartridge;
+
 	[Header("Hints")]
 	public CanvasGroup HintCanvas;
 	public FadeAnimationPreset HintPresetFade;
 	public Image HintImage;
 	public TextMeshProUGUI HintText;
+
+	[Header("Settings")]
 	public float timeOfAppearHint = 0.8f;
 
 	private int defaultText = 1;
@@ -22,12 +30,13 @@ public class HintUI : MonoBehaviour
 
 	void Start()
 	{
-		shop.OnAddHint += UpdateUI;
+		shop.OnPickCartridge += UpdateUI;
 	}
 
-	private void UpdateUI()
+	private void UpdateUI(TypeOfCartridge type, int value)
 	{
-		StartCoroutine(ShowHint());
+		if (typeOfCartridge == type)
+			StartCoroutine(ShowHint());
 	}
 
 	private IEnumerator ShowHint()
@@ -41,4 +50,9 @@ public class HintUI : MonoBehaviour
 		yield return new WaitForSeconds(timeOfAppearHint);
 		AnimationShortCuts.FadeOut(HintCanvas);
 	}
+}
+
+public enum TypeOfCartridge
+{
+	light, heavy, oil
 }

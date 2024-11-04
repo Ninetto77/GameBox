@@ -6,6 +6,9 @@ namespace Items
 	[CreateAssetMenu(fileName = "WeaponInfo", menuName = "Gameplay/New weapon")]
 	public class WeaponItem : Equipable
 	{
+		[Header("Type of weapon")]
+		[SerializeField] private TypeOfCartridge typeOfWeapon;
+
 		[Header("Prefab")]
 		[SerializeField] private Sprite aimIcon;
 
@@ -37,6 +40,9 @@ namespace Items
 		[SerializeField] private int countOfBullets = 100;
 		[SerializeField] private int totalBulletsInPool = 10;
 
+	
+		public TypeOfCartridge TypeOfWeapon => typeOfWeapon;
+		
 		public Sprite AimIcon => aimIcon;
 
 		public float WeaponDamage => weaponDamage;

@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BaffInfo", menuName = "Gameplay/New Baff")]
-
 public class BaffItem : ItemInfo
 {
 	public float TreatPoints;
@@ -15,5 +14,4 @@ public class BaffItem : ItemInfo
 			}
 		}
 	}
-
 }
