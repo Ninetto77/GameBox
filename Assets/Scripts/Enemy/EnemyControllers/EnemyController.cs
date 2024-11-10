@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Enemy.States
@@ -16,7 +18,7 @@ namespace Enemy.States
 		[SerializeField] private float radiusOfDetect = 10;
 		[SerializeField] private float distanceToAtack = 3;
 
-		[Header("Урон (не ведьма)")]
+		[Header("Урон по игроку (не ведьма)")]
 		[Tooltip("Урон ведьмы менять в фаербол")]
 		public float Damage = 10;
 
@@ -30,12 +32,17 @@ namespace Enemy.States
 		[SerializeField] protected AudioClip attackSound;
 		[SerializeField] private AudioClip deathSound;
 
+		[Header("Отображение HP")]
+		[SerializeField] private Canvas hpCanvas;
+		[SerializeField] private Slider hpSlider;
+
 		private Animator animator;
 		protected AudioSource audioSource;
 
 		[HideInInspector]
 		public EnemyAnimation Animation { get; set; }
 		private Rigidbody rb;
+		private Camera camera;
 		protected StateMachine stateMachine;
 		protected Health health;
 
@@ -52,10 +59,7 @@ namespace Enemy.States
 		private void Construct(PlayerMoovement player)
         {
             this.player = player;
-        }
 
-        private void Awake()
-		{
 			animator = GetComponent<Animator>();
 			Animation = new EnemyAnimation(animator);
 
@@ -65,6 +69,7 @@ namespace Enemy.States
 			health = GetComponent<Health>();
 			rb = GetComponent<Rigidbody>();
 			health.OnChangeHealth += TakeDamage;
+			health.OnChangeHealth += ChangeHPSliderValue;
 
 			audioSource = GetComponent<AudioSource>();
 
@@ -73,11 +78,15 @@ namespace Enemy.States
 
 			player.OnPlayerDead += OnPlayerDead;
 			canMove = true;
+
+			SetHPCanvas();
 		}
 
 		protected virtual void Update()
 		{
 			if (!canMove) return;
+			rb.AddForce(0, -20f, 0f, ForceMode.Acceleration);
+
 			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
 			if (isTakingDamage) return;
@@ -100,10 +109,41 @@ namespace Enemy.States
 			stateMachine.CurrentState.Update();
 		}
 
-		public Rigidbody GetRigidBody() => rb;
+		private void LateUpdate()
+		{
+			RotateHPCanvas();
+		}
+		
+		#region Канвас со здоровьем
+		private void SetHPCanvas()
+		{
+			camera = Camera.main;
 
-		#region
-		private void OnPlayerDead() => canMove = false;
+			if (hpCanvas)
+				hpCanvas.worldCamera = camera;
+
+			if (hpSlider)
+			{
+				hpSlider.minValue = 0;
+				hpSlider.maxValue = health.MaxHealth;
+				hpSlider.value = health.MaxHealth;
+				Debug.Log("health.MaxHealth " + health.MaxHealth);
+				Debug.Log("hpSlider.value " + hpSlider.value);
+			}
+		}
+		private void RotateHPCanvas()
+		{
+			if (hpCanvas && hpCanvas.worldCamera != null)
+			{
+				Quaternion vec = camera.transform.rotation;
+				hpCanvas.transform.rotation = vec;
+			}
+		}
+
+		private void ChangeHPSliderValue(float health)
+		{
+			hpSlider.value = health;
+		}
 		#endregion
 
 		#region Смерть
@@ -129,13 +169,18 @@ namespace Enemy.States
 		#endregion
 
 		#region Нанесение урона
-		private void TakeDamage(float obj)
+		private void TakeDamage(float value)
 		{
 			if (!isTakingDamage)
 			{
 				if (health.GetCurrentHealth() > 0)
+				{
+					//Debug.Log("health.GetCurrentHealth() = " + health.GetCurrentHealth());
+					//ChangeHPSliderValue(health);
 					StartCoroutine(StartTakeDamage());
-				else Die();
+				}
+				
+				else if (health.GetCurrentHealth() <= 0) Die();
 			}
 		}
 
@@ -150,13 +195,23 @@ namespace Enemy.States
 
 		public void ApplyDamage(float damage)
 		{
+			Debug.Log("apply Damage " + damage);
+
 			health.TakeDamage(damage);
 		}
+		#endregion
+
+		#region некоторые методы
+		public Rigidbody GetRigidBody() => rb;
+
+		private void OnPlayerDead() => canMove = false;
 		#endregion
 
 		private void OnDisable()
 		{
 			health.OnChangeHealth -= TakeDamage;
+			health.OnChangeHealth -= ChangeHPSliderValue;
+			player.OnPlayerDead -= OnPlayerDead;
 		}
 
 	}

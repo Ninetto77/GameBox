@@ -15,6 +15,7 @@ namespace Enemy.States
 		public void RotateToPlayer()
 		{
 			var direction = (enemy.TargetPosition - enemy.EnemyTransform.position).normalized;
+			direction.y = 0;
 			var targetRotation = Quaternion.LookRotation(direction);
 			enemy.EnemyTransform.rotation = targetRotation;
 		}

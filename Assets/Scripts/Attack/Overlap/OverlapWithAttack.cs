@@ -31,6 +31,7 @@ public class OverlapWithAttack : AttackBehaviour
 	private void ApplyDamage(IDamageable damageable)
 	{
 		damageable.ApplyDamage(_damage);
+		//Debug.Log("apply " + damageable.g);
 	}
 
 	public void SetSearchMask(LayerMask newMask)
