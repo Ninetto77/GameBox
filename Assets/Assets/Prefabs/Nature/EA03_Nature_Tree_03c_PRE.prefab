@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2450025930588129347}
   - component: {fileID: 7231129755091550002}
+  - component: {fileID: 2136595819671195055}
   m_Layer: 0
   m_Name: EA03_Nature_Tree_03c_PRE
   m_TagString: Untagged
@@ -228,6 +229,29 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5419764378160999486}
   m_Enabled: 1
+--- !u!136 &2136595819671195055
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2975732799178527481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &7251980798142840143
 GameObject:
   m_ObjectHideFlags: 0
