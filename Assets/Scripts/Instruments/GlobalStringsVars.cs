@@ -28,6 +28,7 @@ public class GlobalStringsVars
 	public const string AMMO_SOUND_NAME = "AmmoImpact";
 	public const string CLICK_SOUND_NAME = "Click";
 	public const string RUN_SOUND_NAME = "Run";
+	public const string WALK_SOUND_NAME = "Walk";
 	public const string WIN_SOUND_NAME = "Win";
 	public const string QUEST_SOUND_NAME = "Quest";
 	public const string DEATH_SOUND_NAME = "Death";

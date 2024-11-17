@@ -47,6 +47,8 @@ public class PlayerMoovement : MonoCache, IDamageable
 	public Health health;
 
 	private const string runName = GlobalStringsVars.RUN_SOUND_NAME;
+	private const string walkName = GlobalStringsVars.WALK_SOUND_NAME;
+
 	private const string deadName = GlobalStringsVars.DEATH_SOUND_NAME;
 	private const string musicName = GlobalStringsVars.MAIN_MUSIC_NAME;
 
@@ -55,6 +57,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 	private float curSpeed;
 	private float curMaxSpeed;
 	private bool isGoing = false;
+	private string curSound = walkName;
 
 	private void Awake()
 	{
@@ -93,11 +96,13 @@ public class PlayerMoovement : MonoCache, IDamageable
 		{
 			curSpeed = RunSpeed;
 			curMaxSpeed = RunMaxSpeed;
+			curSound = runName;
 		}
 		else
 		{
 			curSpeed = Speed;
 			curMaxSpeed = MaxSpeed;
+			curSound = walkName;
 		}
 
 		rb.AddRelativeForce(direction * curSpeed/*, ForceMode.Acceleration*/);
@@ -128,7 +133,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 			if (!isGoing)
 			{
 				isGoing = true;
-				audioManager.PlaySound(runName);
+				audioManager.PlaySound(curSound);
 			}
 		}
 		else
@@ -136,7 +141,7 @@ public class PlayerMoovement : MonoCache, IDamageable
 			if (isGoing)
 			{
 				isGoing = false;
-				audioManager.StopSound(runName);
+				audioManager.StopSound(curSound);
 			}
 		}
 	}
