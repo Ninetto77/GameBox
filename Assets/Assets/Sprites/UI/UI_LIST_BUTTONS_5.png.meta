@@ -273,10 +273,10 @@ TextureImporter:
       name: UI_LIST_BUTTONS_5_7
       rect:
         serializedVersion: 2
-        x: 340
-        y: 468
-        width: 110
-        height: 110
+        x: 339
+        y: 465
+        width: 114
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,7 +297,7 @@ TextureImporter:
         x: 456
         y: 465
         width: 114
-        height: 113
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: UI_LIST_BUTTONS_5_9
       rect:
         serializedVersion: 2
-        x: 571
-        y: 465
-        width: 110
-        height: 111
+        x: 570
+        y: 464
+        width: 114
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -422,8 +422,8 @@ TextureImporter:
         serializedVersion: 2
         x: 340
         y: 352
-        width: 110
-        height: 110
+        width: 114
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -441,10 +441,10 @@ TextureImporter:
       name: UI_LIST_BUTTONS_5_15
       rect:
         serializedVersion: 2
-        x: 456
-        y: 351
-        width: 118
-        height: 113
+        x: 458
+        y: 352
+        width: 114
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -462,10 +462,10 @@ TextureImporter:
       name: UI_LIST_BUTTONS_5_16
       rect:
         serializedVersion: 2
-        x: 571
+        x: 572
         y: 352
-        width: 110
-        height: 110
+        width: 114
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -782,7 +782,7 @@ TextureImporter:
         width: 198
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -803,7 +803,7 @@ TextureImporter:
         width: 98
         height: 97
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
