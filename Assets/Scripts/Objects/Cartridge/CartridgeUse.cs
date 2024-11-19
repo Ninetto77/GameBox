@@ -1,5 +1,6 @@
 using Cache;
 using Points;
+using Sounds;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +14,9 @@ namespace Cartridges
 		[SerializeField] private float timeOfDestroy = 0.1f;
 
 		[Inject] private ShopPoint shop;
+		[Inject] private AudioManager audio;
 
+		private const string candyAudio = GlobalStringsVars.AMMO_SOUND_NAME;
 		/// <summary>
 		/// use item baff
 		/// </summary>
@@ -28,12 +31,16 @@ namespace Cartridges
 
 		private void OnTriggerEnter(Collider other)
 		{
+			if (other.tag != "Player")
+				return;
+
 			if (particleOnDestroy != null)
 				particleOnDestroy.Play();
 
 			UseItem();
 
-			//shop.AddHeal();
+			audio.PlaySound(candyAudio);
+
 			if (particleOnDestroy != null)
 			{
 				var hitEffect = Instantiate(particleOnDestroy, transform.position, Quaternion.identity);

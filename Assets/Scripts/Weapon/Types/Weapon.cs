@@ -152,7 +152,7 @@ namespace Attack.Raycast
 
 			FirePoint.LookAt(direction);
 
-			if (Physics.Raycast(ray, out RaycastHit hitInfo, weapon.DistanceToShoot, weapon.Mask))
+			if (Physics.Raycast(ray, out RaycastHit hitInfo, weapon.DistanceToShoot, weapon.Mask, QueryTriggerInteraction.Ignore))
 			{
 				var hitCollider = hitInfo.collider;
 

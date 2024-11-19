@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Disapear;
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -21,6 +20,8 @@ namespace Enemy.States
 		[Header("Урон по игроку (не ведьма)")]
 		[Tooltip("Урон ведьмы менять в фаербол")]
 		public float Damage = 10;
+		[Header("Смерть")]
+		[SerializeField] float timeOfDeath = 3;
 
 		//[Header("Физика")]
 		[field: SerializeField] public float MaxSpeed  {get; set;}
@@ -43,6 +44,7 @@ namespace Enemy.States
 		public EnemyAnimation Animation { get; set; }
 		private Rigidbody rb;
 		private Camera camera;
+		private DisappearAbility disappear;
 		protected StateMachine stateMachine;
 		protected Health health;
 
@@ -66,10 +68,11 @@ namespace Enemy.States
 			stateMachine = new StateMachine();
 			stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.none, this));
 
-			health = GetComponent<Health>();
 			rb = GetComponent<Rigidbody>();
+			disappear = GetComponent<DisappearAbility>();
+
+			health = GetComponent<Health>();
 			health.OnChangeHealth += TakeDamage;
-			health.OnChangeHealth += ChangeHPSliderValue;
 
 			audioSource = GetComponent<AudioSource>();
 
@@ -127,8 +130,8 @@ namespace Enemy.States
 				hpSlider.minValue = 0;
 				hpSlider.maxValue = health.MaxHealth;
 				hpSlider.value = health.MaxHealth;
-				Debug.Log("health.MaxHealth " + health.MaxHealth);
-				Debug.Log("hpSlider.value " + hpSlider.value);
+				Debug.Log("At start: health.MaxHealth " + health.MaxHealth);
+				Debug.Log("At start: hpSlider.value " + hpSlider.value);
 			}
 		}
 		private void RotateHPCanvas()
@@ -160,10 +163,14 @@ namespace Enemy.States
 			if (deathSound != null)
 				audioSource.PlayOneShot(deathSound);
 
+			if (disappear)
+				disappear.Execute();
+
 			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.death, this));
 
+			hpCanvas.enabled = false;
 			rb.isKinematic = true;
-			yield return new WaitForSeconds(5f);
+			yield return new WaitForSeconds(timeOfDeath);
 			Destroy(this.gameObject);
 		}
 		#endregion
@@ -171,17 +178,16 @@ namespace Enemy.States
 		#region Нанесение урона
 		private void TakeDamage(float value)
 		{
-			if (!isTakingDamage)
-			{
+				ChangeHPSliderValue(value);
+
 				if (health.GetCurrentHealth() > 0)
 				{
-					//Debug.Log("health.GetCurrentHealth() = " + health.GetCurrentHealth());
-					//ChangeHPSliderValue(health);
+					Debug.Log("Take damage: health.GetCurrentHealth() = " + health.GetCurrentHealth());
+					Debug.Log("Take damage: hpSlider.value = " + hpSlider.value);
 					StartCoroutine(StartTakeDamage());
 				}
 				
 				else if (health.GetCurrentHealth() <= 0) Die();
-			}
 		}
 
 		private IEnumerator StartTakeDamage()
@@ -195,8 +201,6 @@ namespace Enemy.States
 
 		public void ApplyDamage(float damage)
 		{
-			Debug.Log("apply Damage " + damage);
-
 			health.TakeDamage(damage);
 		}
 		#endregion
@@ -210,7 +214,6 @@ namespace Enemy.States
 		private void OnDisable()
 		{
 			health.OnChangeHealth -= TakeDamage;
-			health.OnChangeHealth -= ChangeHPSliderValue;
 			player.OnPlayerDead -= OnPlayerDead;
 		}
 

@@ -244,7 +244,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5325afbec6d6cfb4bbecf3ada6b9d508, type: 2}
+  - {fileID: 2100000, guid: 64488bd767e913343a47e32a81a9b1c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1903,6 +1903,7 @@ GameObject:
   - component: {fileID: 5057666481266291133}
   - component: {fileID: 8959921718103473811}
   - component: {fileID: 4656873277496133392}
+  - component: {fileID: 8828175743290288043}
   m_Layer: 8
   m_Name: SimpolZombi
   m_TagString: Untagged
@@ -1967,14 +1968,15 @@ MonoBehaviour:
   radiusOfDetect: 15
   distanceToAtack: 3
   Damage: 15
+  timeOfDeath: 3
   <MaxSpeed>k__BackingField: 4
   <Speed>k__BackingField: 40
   <AngularSpeed>k__BackingField: 10
   appearingSound: {fileID: 8300000, guid: 180edb1e9b03e8c4da0113ca58d27644, type: 3}
   attackSound: {fileID: 8300000, guid: 290433e1c58196046b8fbd468223e70a, type: 3}
   deathSound: {fileID: 8300000, guid: ca2112d19cd9c56478829cb80b0623b8, type: 3}
-  hpCanvas: {fileID: 0}
-  hpSlider: {fileID: 0}
+  hpCanvas: {fileID: 1882578515602674316}
+  hpSlider: {fileID: 6607235028720115538}
 --- !u!114 &106825833988127370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,7 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
-  _drawGizmosType: 0
+  _drawGizmosType: 2
   _overlapSettings:
     _searchMask:
       serializedVersion: 2
@@ -2163,6 +2165,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8828175743290288043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067163870905714071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f85baf32ce94e14c9c126c9a5c6029a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 3675473861881142851}
+  effectSpeed: 0.3
 --- !u!1 &7221513642185374908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2544,6 @@ GameObject:
   - component: {fileID: 2678733279502467623}
   - component: {fileID: 1882578515602674316}
   - component: {fileID: 5117653440212467277}
-  - component: {fileID: 7154657628883344931}
   m_Layer: 8
   m_Name: EnemyCanvas
   m_TagString: Untagged
@@ -2602,23 +2617,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &7154657628883344931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8077707964588706764}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &8148230087153085177
 GameObject:
   m_ObjectHideFlags: 0

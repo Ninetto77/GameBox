@@ -66882,7 +66882,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -4917805514707966469, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -67571,10 +67571,18 @@ MonoBehaviour:
     isSFX: 1
     source: {fileID: 0}
   - name: Walk
-    clip: {fileID: 8300000, guid: 76c098ac9aba25e4c9540e422ad5ad5f, type: 3}
+    clip: {fileID: 8300000, guid: 6147b9cce1b5017498ce98a504635e7e, type: 3}
     volume: 0.05
     pitch: 0
-    loop: 0
+    loop: 1
+    playOnAwake: 0
+    isSFX: 1
+    source: {fileID: 0}
+  - name: Run
+    clip: {fileID: 8300000, guid: 9f782813c46a5fd43b3685af1c0b5c58, type: 3}
+    volume: 0.05
+    pitch: 0
+    loop: 1
     playOnAwake: 0
     isSFX: 1
     source: {fileID: 0}
@@ -68828,15 +68836,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9105333287490452133, guid: 910205adcfc3d7f40a82a5de4c982365, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.94
+      value: 24.29
       objectReference: {fileID: 0}
     - target: {fileID: 9105333287490452133, guid: 910205adcfc3d7f40a82a5de4c982365, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.48
+      value: 40.02
       objectReference: {fileID: 0}
     - target: {fileID: 9105333287490452133, guid: 910205adcfc3d7f40a82a5de4c982365, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.61
+      value: 83.26
       objectReference: {fileID: 0}
     - target: {fileID: 9105333287490452133, guid: 910205adcfc3d7f40a82a5de4c982365, type: 3}
       propertyPath: m_LocalRotation.w
