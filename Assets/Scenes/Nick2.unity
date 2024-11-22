@@ -15536,6 +15536,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 134476954}
     m_Modifications:
+    - target: {fileID: 1120970879645836310, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120970879645836310, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
+      propertyPath: m_Size.z
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7097269977889926110, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
       propertyPath: m_Name
       value: Knife
@@ -67968,7 +67976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e435c4d6c6a20c4882fb7767c3f0083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2543975211626771901, guid: fdc2dc1446372784c8955aaba8122c11, type: 3}
+  playerPrefab: {fileID: 5808370390435642053, guid: b48427abe98fc2849975ab25af60340c, type: 3}
   StartPoint: {fileID: 2072206845}
 --- !u!223 &830139700501309567
 Canvas:

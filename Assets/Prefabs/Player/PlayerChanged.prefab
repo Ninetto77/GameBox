@@ -95,7 +95,7 @@ MonoBehaviour:
   RunSpeed: 100
   RunMaxSpeed: 14
   hand: {fileID: 6208833017383352251}
-  reachDistance: 10
+  reachDistance: 1.8
   direction: {x: 0, y: 0, z: 0}
   health: {fileID: 0}
 --- !u!114 &7828954373525826843

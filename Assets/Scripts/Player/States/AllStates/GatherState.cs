@@ -7,7 +7,7 @@ namespace Player.States
 		private Camera mainCamera;
 		private OutlineObjects lastOutline;
 		private float reachDistance;
-
+		public LayerMask m_Mask = -1;
 
 		public GatherState(PlayerBrain brain) : base(brain)
 		{
@@ -17,7 +17,7 @@ namespace Player.States
 
 		public override void Update()
 		{
-			GatherResource();
+			//GatherResource();
 		}
 
 		/// <summary>
@@ -31,7 +31,7 @@ namespace Player.States
 			if (lastOutline != null)
 				lastOutline.enabled = false;
 
-			if (Physics.Raycast(ray, out hit, reachDistance))
+			if (Physics.Raycast(ray, out hit, reachDistance, m_Mask.value, QueryTriggerInteraction.Ignore/*, QueryTriggerInteraction.Ignore*/))
 			{
 				ItemPickup item = hit.collider.gameObject.GetComponent<ItemPickup>();
 
