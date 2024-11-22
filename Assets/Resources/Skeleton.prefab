@@ -1743,7 +1743,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 20
-  distanceToAtack: 3
+  distanceToAtack: 4
   Damage: 10
   timeOfDeath: 3
   <MaxSpeed>k__BackingField: 70
@@ -1816,7 +1816,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: a58154c350c4ccf47a6cdad03a8dca1a, type: 3}
   m_Controller: {fileID: 9100000, guid: ab27554ac9074134f95739d5f119ac3f, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

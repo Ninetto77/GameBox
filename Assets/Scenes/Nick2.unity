@@ -14757,6 +14757,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 134476954}
     m_Modifications:
+    - target: {fileID: 3268677507544887672, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.51
+      objectReference: {fileID: 0}
     - target: {fileID: 3718982838855820358, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
       propertyPath: m_Name
       value: GrenadeLauncher
@@ -15536,14 +15540,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 134476954}
     m_Modifications:
-    - target: {fileID: 1120970879645836310, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
-      propertyPath: m_Size.x
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1120970879645836310, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
-      propertyPath: m_Size.z
-      value: 1.7
-      objectReference: {fileID: 0}
     - target: {fileID: 7097269977889926110, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
       propertyPath: m_Name
       value: Knife
@@ -40782,7 +40778,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1234965085682579653, guid: e4c1f1b45a6380b43beee3ed6cc46c88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.32
+      value: 32.24
       objectReference: {fileID: 0}
     - target: {fileID: 1234965085682579653, guid: e4c1f1b45a6380b43beee3ed6cc46c88, type: 3}
       propertyPath: m_LocalPosition.y
@@ -40790,7 +40786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1234965085682579653, guid: e4c1f1b45a6380b43beee3ed6cc46c88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 79.47
+      value: 85.7
       objectReference: {fileID: 0}
     - target: {fileID: 1234965085682579653, guid: e4c1f1b45a6380b43beee3ed6cc46c88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -68443,15 +68439,15 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: CandyImpact
     clip: {fileID: 8300000, guid: 57b68a26a55c0b34a9db50c740f089e6, type: 3}
-    volume: 0.05
+    volume: 0.5
     pitch: 0
-    loop: 0
-    playOnAwake: 0
+    loop: 1
+    playOnAwake: 1
     isSFX: 1
     source: {fileID: 0}
   - name: AmmoImpact
     clip: {fileID: 8300000, guid: cb54e697a569fbd44a44b0d46bff4342, type: 3}
-    volume: 0.05
+    volume: 0.5
     pitch: 0
     loop: 0
     playOnAwake: 0
@@ -68465,17 +68461,9 @@ MonoBehaviour:
     playOnAwake: 0
     isSFX: 1
     source: {fileID: 0}
-  - name: Run
-    clip: {fileID: 8300000, guid: 76c098ac9aba25e4c9540e422ad5ad5f, type: 3}
-    volume: 0.05
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-    isSFX: 1
-    source: {fileID: 0}
   - name: Walk
     clip: {fileID: 8300000, guid: 6147b9cce1b5017498ce98a504635e7e, type: 3}
-    volume: 0.05
+    volume: 0.2
     pitch: 0
     loop: 1
     playOnAwake: 0
@@ -68491,7 +68479,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Death
     clip: {fileID: 8300000, guid: d346806a4a6231d4293cd153e5d34afd, type: 3}
-    volume: 0.05
+    volume: 0.5
     pitch: 0
     loop: 0
     playOnAwake: 0
@@ -68500,6 +68488,7 @@ MonoBehaviour:
   musicMixerGroup: {fileID: -4917805514707966469, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   sfxMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   musicSource: {fileID: 399937229481735193}
+  sfxSource: {fileID: 7820868431355522752}
 --- !u!114 &2130316438072848466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69214,6 +69203,7 @@ GameObject:
   - component: {fileID: 7820868431355522751}
   - component: {fileID: 2121699533375930335}
   - component: {fileID: 399937229481735193}
+  - component: {fileID: 7820868431355522752}
   m_Layer: 0
   m_Name: AudioInstaller
   m_TagString: Untagged
@@ -70101,6 +70091,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioManagerPrefab: {fileID: 2121699533375930335}
+--- !u!82 &7820868431355522752
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042427970073189208}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &7936225657856740400
 MonoBehaviour:
   m_ObjectHideFlags: 0

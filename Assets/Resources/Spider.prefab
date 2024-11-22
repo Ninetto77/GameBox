@@ -705,7 +705,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
   m_Controller: {fileID: 9100000, guid: 23a782bdeb4420e459e878c1c14d7581, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -770,7 +770,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 10
-  distanceToAtack: 5
+  distanceToAtack: 10
   Damage: 3
   timeOfDeath: 3
   <MaxSpeed>k__BackingField: 8
