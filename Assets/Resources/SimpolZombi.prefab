@@ -1969,7 +1969,7 @@ MonoBehaviour:
   distanceToAtack: 3
   Damage: 15
   timeOfDeath: 3
-  <MaxSpeed>k__BackingField: 4
+  <MaxSpeed>k__BackingField: 2
   <Speed>k__BackingField: 40
   <AngularSpeed>k__BackingField: 10
   appearingSound: {fileID: 8300000, guid: 180edb1e9b03e8c4da0113ca58d27644, type: 3}

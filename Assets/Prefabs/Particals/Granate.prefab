@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02291f7a69f0fe44d9d892463942089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countdown: 2
+  _countdown: 0.8
 --- !u!1001 &3624384082146858624
 PrefabInstance:
   m_ObjectHideFlags: 0

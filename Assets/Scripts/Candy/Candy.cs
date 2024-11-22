@@ -19,7 +19,8 @@ namespace Points
 		[SerializeField] private ParticleSystem particleOnDestroy;
 
 		[Inject] private ShopPoint shop;
-		[Inject] private AudioManager audio;
+		[Inject] private AudioManager audioManager;
+
 
 		private const string candyAudio = GlobalStringsVars.CANDY_SOUND_NAME;
 		private Point candyPoint;
@@ -41,7 +42,8 @@ namespace Points
 				return;
 
 			shop.AddPoints(candyPoint);
-			audio.PlaySound(candyAudio);
+			audioManager.PlaySound(candyAudio);
+			Debug.Log("PLAY");
 
 			if (particleOnDestroy != null)
 			{

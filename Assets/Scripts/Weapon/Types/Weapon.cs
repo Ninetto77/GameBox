@@ -111,8 +111,6 @@ namespace Attack.Raycast
 			{
 				ReloudBullet();
 			}
-			if (Input.GetMouseButtonUp(0))
-				EndAttack();
 
 			if (weapon.UseZoom)
 				if (Input.GetMouseButtonDown(1))
@@ -140,8 +138,15 @@ namespace Attack.Raycast
 							OnAttackStarted?.Invoke();
 							PerformRaycastCamera();
 						}
+						else
+						{
+							OnEmptyClip?.Invoke();
+						}
 					}
+
 				}
+				if (Input.GetMouseButtonUp(0))
+					EndAttack();
 			}
 		}
 
