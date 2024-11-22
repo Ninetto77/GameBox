@@ -52,7 +52,6 @@ public class PlayerMoovement : MonoCache, IDamageable
 	private const string deadName = GlobalStringsVars.DEATH_SOUND_NAME;
 	private const string musicName = GlobalStringsVars.MAIN_MUSIC_NAME;
 
-    private bool isGrounded;
     private bool isJumping;
 	private float curSpeed;
 	private float curMaxSpeed;
@@ -70,7 +69,6 @@ public class PlayerMoovement : MonoCache, IDamageable
 		animations =  new PlayerAnimations(animator);
         brain = new PlayerBrain(reachDistance);
         rb = GetComponent<Rigidbody>();
-		isGrounded = true;
 	}
 	protected override void OnTick()
     {
@@ -87,10 +85,9 @@ public class PlayerMoovement : MonoCache, IDamageable
 	/// </summary>
 	/// <param name="horizontalDirection">горизонтальное направление</param>
 	/// <param name="verticalDirection">вертикальное направление</param>
-	public void MovePlayer(float horizontalDirection, float verticalDirection, bool jump, bool isRuning)
+	public void MovePlayer(float horizontalDirection, float verticalDirection, bool isRuning)
     {
 		direction = new Vector3(horizontalDirection, 0, verticalDirection);
-
 		
 		if (isRuning)
 		{
@@ -110,17 +107,10 @@ public class PlayerMoovement : MonoCache, IDamageable
 		if (rb.velocity.magnitude > curMaxSpeed)
 			rb.velocity = Vector3.ClampMagnitude(rb.velocity, curMaxSpeed);
 
-		if (isGrounded)
-		{
-			if (jump == true)
-			{
-				isJumping = true;
-				rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-			}
-		}
-
 		PlayRunSound();
-		animations.SetRuningAnim(rb.velocity);
+		
+		if (animator != null)
+			animations.SetRuningAnim(rb.velocity);
 	}
 
 	
@@ -180,35 +170,9 @@ public class PlayerMoovement : MonoCache, IDamageable
 
 	public void Hit(bool state)
 	{
-		animations.SetHitAnim(state);
+		if (animator != null)
+			animations.SetHitAnim(state);
 	}
-	public void HitAndGeatherResource()
-	{
-
-	}
-	#region коллизии для прыжка
-
-	void OnCollisionEnter(Collision collision)
-	{
-		IsGroundedUpate(collision, true);
-	}
-
-	void OnCollisionExit(Collision collision)
-	{
-		IsGroundedUpate(collision, false);
-	}
-
-	private void IsGroundedUpate(Collision collision, bool value)
-	{
-		if (collision.gameObject.tag == "Ground")
-		{
-			isGrounded = value;
-			animations.SetJumpAnim(!value);
-			isJumping = !value;
-		}
-	}
-	#endregion
-
 
 	//private void Update()
 	//{

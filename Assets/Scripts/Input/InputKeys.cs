@@ -1,9 +1,11 @@
+using PlayerScripts;
 using UnityEngine;
 
 public class InputKeys : MonoBehaviour
 {
     [HideInInspector]
     public PlayerMoovement player;
+    private PlayerJump playerJump;
 
     public float horizontalDirection;
 	public float verticalDirection;
@@ -15,16 +17,8 @@ public class InputKeys : MonoBehaviour
 	private void Start()
     {
         player = GetComponent<PlayerMoovement>();
+		playerJump = GetComponent<PlayerJump>();
     }
-
-    /// <summary>
-    /// Принимает клавиши клавиатуры и отправляет их к скрипту движения игрока
-    /// </summary>
-    private void Update()
-    {
-
-
-	}
 
 	private void FixedUpdate()
 	{
@@ -37,10 +31,18 @@ public class InputKeys : MonoBehaviour
 		bool notHit = Input.GetMouseButtonUp(GlobalStringsVars.FIRE);
 		if (notHit) player.Hit(false);
 
-        jump = Input.GetKeyDown(KeyCode.Space);
-		// if (jump) Debug.Log("jump");
-		isRuning = Input.GetKey(KeyCode.LeftShift);
-		player.MovePlayer(horizontalDirection, verticalDirection, jump, isRuning);
+        isRuning = Input.GetKey(KeyCode.LeftShift);
+		player.MovePlayer(horizontalDirection, verticalDirection, isRuning);
 
+	}
+
+	private void LateUpdate()
+	{
+		jump = Input.GetKeyDown(KeyCode.Space);
+        if (jump)
+        {
+            playerJump.Jump();
+		}
+		
 	}
 }
