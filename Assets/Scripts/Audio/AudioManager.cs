@@ -11,6 +11,7 @@ namespace Sounds
         [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
 		[SerializeField] private AudioSource musicSource;
+		[SerializeField] private AudioSource sfxSource;
 
 		public static AudioManager instance;
         private void Awake()
@@ -45,8 +46,11 @@ namespace Sounds
 			}
 
             if (s.isSFX == true)
-                s.source.Play();
-            else
+            {
+				 s.source.PlayOneShot(s.clip);
+                //sfxSource.PlayOneShot(s.clip);
+            }
+			else
             {
 				musicSource.clip = s.clip;
 				musicSource.Play();

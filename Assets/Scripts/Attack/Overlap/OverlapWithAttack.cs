@@ -22,16 +22,15 @@ public class OverlapWithAttack : AttackBehaviour
 		}
 
 		// For many targets.
-		if (_overlapSettings.TryFind(_damageableResults))
-		{
-			_damageableResults.ForEach(ApplyDamage);
-		}
+		//if (_overlapSettings.TryFind(_damageableResults))
+		//{
+		//	_damageableResults.ForEach(ApplyDamage);
+		//}
 	}
 
 	private void ApplyDamage(IDamageable damageable)
 	{
 		damageable.ApplyDamage(_damage);
-		//Debug.Log("apply " + damageable.g);
 	}
 
 	public void SetSearchMask(LayerMask newMask)

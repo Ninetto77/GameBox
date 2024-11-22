@@ -1,5 +1,4 @@
 using Attack.Base;
-using Attack.Raycast;
 using System;
 using UnityEngine;
 
@@ -38,6 +37,7 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayShootSound()
 	{
+		Debug.Log("PlayShootSound");
 		try
 		{
 			audioSource.PlayOneShot(_shootSound);
@@ -50,6 +50,8 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayEmptyClipSound()
 	{
+		Debug.Log("PlayEmptyClipSound");
+
 		try
 		{
 			audioSource.PlayOneShot(_emptyClipSound);
@@ -62,6 +64,8 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayReloudSound()
 	{
+		Debug.Log("PlayReloudSound");
+
 		try
 		{
 			audioSource.PlayOneShot(_reloudSound);
@@ -74,6 +78,8 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayEndedSound()
 	{
+		Debug.Log("PlayEndedSound");
+
 		if (_endedSound != null)
 		{
 			audioSource.PlayOneShot(_shootSound);
