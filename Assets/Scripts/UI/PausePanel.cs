@@ -7,6 +7,7 @@ public class PausePanel : MonoCache
 {
 	[Header("Canvases")]
 	public Window PauseCanvas;
+	public Window TutorialCanvas;
 	public Window GameCanvas;
 
 	[Header("Audio snapshots")]
@@ -30,7 +31,12 @@ public class PausePanel : MonoCache
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			SetSettings();
+			SetSettings(PauseCanvas);
+		}
+
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			SetSettings(TutorialCanvas);
 		}
 	}
 
@@ -45,19 +51,19 @@ public class PausePanel : MonoCache
 		isPause = !isPause;
 	}
 
-	private void PauseGame()
+	private void PauseGame(Window curCanvas)
 	{
 		Time.timeScale = 0f;
 		InPause.TransitionTo(0.5f);
 
-		SetCanvas(PauseCanvas);
+		SetCanvas(curCanvas);
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 		isPause = !isPause;
 
 	}
 
-	private void SetSettings()
+	private void SetSettings(Window curCanvas)
 	{
 		if (isPause)
 		{
@@ -65,7 +71,7 @@ public class PausePanel : MonoCache
 		}
 		else
 		{
-			PauseGame();
+			PauseGame(curCanvas);
 		}
 
 	}

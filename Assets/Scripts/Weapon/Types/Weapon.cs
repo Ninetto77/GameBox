@@ -140,6 +140,10 @@ namespace Attack.Raycast
 							OnAttackStarted?.Invoke();
 							PerformRaycastCamera();
 						}
+						else
+						{
+							OnEmptyClip?.Invoke();
+						}
 					}
 				}
 			}

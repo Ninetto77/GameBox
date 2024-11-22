@@ -1,10 +1,11 @@
+using Cache;
 using System;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
 namespace Disapear
 {
-	public class DisappearAbility : MonoBehaviour
+	public class DisappearAbility : MonoCache
 	{
 		[SerializeField] Renderer enemyRenderer;
 		[SerializeField] private float effectSpeed;
@@ -22,7 +23,7 @@ namespace Disapear
 			_activateSwitcher = true;
 		}
 
-		private void Update()
+		protected override void OnTick()
 		{
 			if (_activateSwitcher)
 				Effect();

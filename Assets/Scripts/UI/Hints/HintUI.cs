@@ -16,9 +16,6 @@ public class HintUI : MonoBehaviour
 
 	[Header("Hints")]
 	public CanvasGroup HintCanvas;
-	public FadeAnimationPreset HintPresetFade;
-	public Image HintImage;
-	public TextMeshProUGUI HintText;
 
 	[Header("Settings")]
 	public float timeOfAppearHint = 0.8f;

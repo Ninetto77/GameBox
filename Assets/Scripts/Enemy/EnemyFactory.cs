@@ -16,8 +16,9 @@ namespace Enemy
 		private Object skeletonObject;
 		private Object witchObject;
 		private Object spiderObject;
-		
+
 		[Inject] private DiContainer _container;
+		//private static Random rand;
 
 		public void Load()
 		{
@@ -51,6 +52,9 @@ namespace Enemy
 					break;
 			}
 		}
+		private void RandomRotate()
+		{
+			Quaternion rot = Quaternion.EulerAngles(0, Random.RandomRange(0, 179), 0);
+		}
 	}
-
 }

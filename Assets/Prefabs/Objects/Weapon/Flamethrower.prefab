@@ -5172,6 +5172,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7568585946540457847}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8562333281885766947}
   m_SourcePrefab: {fileID: 100100000, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
 --- !u!1 &50911323043190480 stripped
 GameObject:
@@ -5436,6 +5439,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 5720437169972567968}
+--- !u!114 &8562333281885766947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50911323043190480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f4cb39eb865554c8bcde5ad6cf4e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &864426388948028522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a2e8d68f9b9b60547a0e64ddf8834fdd, type: 3}
@@ -5453,6 +5468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1460947261320532568, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9565cd0c7e55b6f49b08c33caf0b697f, type: 3}
     - target: {fileID: 4804989593370041140, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_Camera
       value: 

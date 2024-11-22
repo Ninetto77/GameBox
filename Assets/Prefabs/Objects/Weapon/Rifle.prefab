@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1460947261320532568, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9565cd0c7e55b6f49b08c33caf0b697f, type: 3}
     - target: {fileID: 4804989593370041140, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_Camera
       value: 
@@ -139,6 +143,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9074921736675419215, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -176,15 +184,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 31.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 79.47
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -285,6 +293,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9007953714112204016}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8111316480462126297}
   m_SourcePrefab: {fileID: 100100000, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
 --- !u!4 &1234965085682579653 stripped
 Transform:
@@ -573,3 +584,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 4660151654813128234}
+--- !u!114 &8111316480462126297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902958443794195071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f4cb39eb865554c8bcde5ad6cf4e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

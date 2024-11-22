@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 8590624517406175152}
   - component: {fileID: 3774372439573228930}
   - component: {fileID: 3809223198371269347}
+  - component: {fileID: 1930643162945263129}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -225,12 +226,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15187645, y: 1.6089926, z: 0.2186966}
-  m_Center: {x: 0, y: 0.46118832, z: 0}
+  m_Size: {x: 0.1, y: 1.6, z: 0.2}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!54 &3774372439573228930
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -253,7 +254,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -271,6 +272,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 5312373224780173414}
+--- !u!114 &1930643162945263129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097269977889926110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f4cb39eb865554c8bcde5ad6cf4e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &799274440886356818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1460947261320532568, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9565cd0c7e55b6f49b08c33caf0b697f, type: 3}
     - target: {fileID: 4804989593370041140, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_Camera
       value: 
@@ -378,6 +395,10 @@ PrefabInstance:
     - target: {fileID: 6551677897421456062, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074921736675419215, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

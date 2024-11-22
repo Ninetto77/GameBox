@@ -25420,6 +25420,18 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6782612393925902242, guid: 94f76ea580cc3594e940ce929301f400, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2987345
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782612393925902242, guid: 94f76ea580cc3594e940ce929301f400, type: 3}
+      propertyPath: m_Center.x
+      value: -0.14936836
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782612393925902242, guid: 94f76ea580cc3594e940ce929301f400, type: 3}
+      propertyPath: m_Center.z
+      value: 0.00000001512756
+      objectReference: {fileID: 0}
     - target: {fileID: 6807929307757334251, guid: 94f76ea580cc3594e940ce929301f400, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -25479,6 +25491,10 @@ PrefabInstance:
     - target: {fileID: 6809191246633586009, guid: 94f76ea580cc3594e940ce929301f400, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828929160110313000, guid: 94f76ea580cc3594e940ce929301f400, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.294
       objectReference: {fileID: 0}
     - target: {fileID: 6830083277129201294, guid: 94f76ea580cc3594e940ce929301f400, type: 3}
       propertyPath: m_Layer
@@ -67968,7 +67984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e435c4d6c6a20c4882fb7767c3f0083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2543975211626771901, guid: fdc2dc1446372784c8955aaba8122c11, type: 3}
+  playerPrefab: {fileID: 5808370390435642053, guid: b48427abe98fc2849975ab25af60340c, type: 3}
   StartPoint: {fileID: 2072206845}
 --- !u!223 &830139700501309567
 Canvas:

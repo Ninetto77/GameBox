@@ -130,8 +130,6 @@ namespace Enemy.States
 				hpSlider.minValue = 0;
 				hpSlider.maxValue = health.MaxHealth;
 				hpSlider.value = health.MaxHealth;
-				Debug.Log("At start: health.MaxHealth " + health.MaxHealth);
-				Debug.Log("At start: hpSlider.value " + hpSlider.value);
 			}
 		}
 		private void RotateHPCanvas()
@@ -168,7 +166,9 @@ namespace Enemy.States
 
 			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.death, this));
 
-			hpCanvas.enabled = false;
+			if (hpCanvas != null)
+				hpCanvas.enabled = false;
+
 			rb.isKinematic = true;
 			yield return new WaitForSeconds(timeOfDeath);
 			Destroy(this.gameObject);
@@ -178,16 +178,14 @@ namespace Enemy.States
 		#region Нанесение урона
 		private void TakeDamage(float value)
 		{
-				ChangeHPSliderValue(value);
+			ChangeHPSliderValue(value);
 
-				if (health.GetCurrentHealth() > 0)
-				{
-					Debug.Log("Take damage: health.GetCurrentHealth() = " + health.GetCurrentHealth());
-					Debug.Log("Take damage: hpSlider.value = " + hpSlider.value);
-					StartCoroutine(StartTakeDamage());
-				}
-				
-				else if (health.GetCurrentHealth() <= 0) Die();
+			if (health.GetCurrentHealth() > 0)
+			{
+				StartCoroutine(StartTakeDamage());
+			}
+
+			else if (health.GetCurrentHealth() <= 0) Die();
 		}
 
 		private IEnumerator StartTakeDamage()
