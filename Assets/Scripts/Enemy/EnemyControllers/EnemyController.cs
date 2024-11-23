@@ -123,7 +123,10 @@ namespace Enemy.States
 			camera = Camera.main;
 
 			if (hpCanvas)
+			{
+				hpCanvas.enabled = false;
 				hpCanvas.worldCamera = camera;
+			}
 
 			if (hpSlider)
 			{
@@ -143,6 +146,7 @@ namespace Enemy.States
 
 		private void ChangeHPSliderValue(float health)
 		{
+			hpCanvas.enabled = true;
 			hpSlider.value = health;
 		}
 		#endregion
