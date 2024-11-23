@@ -43,7 +43,6 @@ namespace Points
 
 			shop.AddPoints(candyPoint);
 			audioManager.PlaySound(candyAudio);
-			Debug.Log("PLAY");
 
 			if (particleOnDestroy != null)
 			{

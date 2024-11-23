@@ -47,8 +47,9 @@ namespace Sounds
 
             if (s.isSFX == true)
             {
-				 s.source.PlayOneShot(s.clip);
-                //sfxSource.PlayOneShot(s.clip);
+                //            s.source.clip = s.clip;
+                //s.source.Play();
+                sfxSource.PlayOneShot(s.clip);
             }
 			else
             {
@@ -72,8 +73,11 @@ namespace Sounds
             }
 
 			if (s.isSFX == true)
-                s.source.Stop();
-            else
+            //    s.source.Stop();
+			    sfxSource.Stop();
+
+
+			else
 				musicSource.Stop();
 			// s.source.Stop();
 		}

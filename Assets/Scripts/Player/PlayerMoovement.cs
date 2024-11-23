@@ -45,6 +45,8 @@ public class PlayerMoovement : MonoCache, IDamageable
 
 	[HideInInspector]
 	public Health health;
+	[HideInInspector]
+	public bool IsRunning = false;
 
 	private const string runName = GlobalStringsVars.RUN_SOUND_NAME;
 	private const string walkName = GlobalStringsVars.WALK_SOUND_NAME;
@@ -52,11 +54,9 @@ public class PlayerMoovement : MonoCache, IDamageable
 	private const string deadName = GlobalStringsVars.DEATH_SOUND_NAME;
 	private const string musicName = GlobalStringsVars.MAIN_MUSIC_NAME;
 
-    private bool isJumping;
 	private float curSpeed;
 	private float curMaxSpeed;
 	private bool isGoing = false;
-	private string curSound = walkName;
 
 	private void Awake()
 	{
@@ -85,21 +85,19 @@ public class PlayerMoovement : MonoCache, IDamageable
 	/// </summary>
 	/// <param name="horizontalDirection">горизонтальное направление</param>
 	/// <param name="verticalDirection">вертикальное направление</param>
-	public void MovePlayer(float horizontalDirection, float verticalDirection, bool isRuning)
+	public void MovePlayer(float horizontalDirection, float verticalDirection, bool run)
     {
 		direction = new Vector3(horizontalDirection, 0, verticalDirection);
-		
-		if (isRuning)
+		IsRunning = run ? true: false;
+		if (run)
 		{
 			curSpeed = RunSpeed;
 			curMaxSpeed = RunMaxSpeed;
-			curSound = runName;
 		}
 		else
 		{
 			curSpeed = Speed;
 			curMaxSpeed = MaxSpeed;
-			curSound = walkName;
 		}
 
 		rb.AddRelativeForce(direction * curSpeed/*, ForceMode.Acceleration*/);
@@ -107,33 +105,9 @@ public class PlayerMoovement : MonoCache, IDamageable
 		if (rb.velocity.magnitude > curMaxSpeed)
 			rb.velocity = Vector3.ClampMagnitude(rb.velocity, curMaxSpeed);
 
-		PlayRunSound();
 		
 		if (animator != null)
 			animations.SetRuningAnim(rb.velocity);
-	}
-
-	
-	private void PlayRunSound()
-	{
-		if (isJumping) return;
-
-		if (rb.velocity.magnitude >= 0.01f)
-		{
-			if (!isGoing)
-			{
-				isGoing = true;
-				audioManager.PlaySound(curSound);
-			}
-		}
-		else
-		{
-			if (isGoing)
-			{
-				isGoing = false;
-				audioManager.StopSound(curSound);
-			}
-		}
 	}
 
     private void TurnHead()
