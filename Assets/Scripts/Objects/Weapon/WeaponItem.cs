@@ -37,7 +37,6 @@ namespace Items
 		[SerializeField] private float timeToReload = 1.5f;
 
 		[Header("Bullets")]
-		[SerializeField] private int countOfBullets = 100;
 		[SerializeField] private int totalBulletsInPool = 10;
 
 	
@@ -63,7 +62,6 @@ namespace Items
 
 		public bool SingleFire => singleFire;
 		public float FireRate => fireRate;
-		public int CountOfBullets => countOfBullets;
 		public int TotalBulletsInPool => totalBulletsInPool;
 		public float TimeToReload => timeToReload;
 

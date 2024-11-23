@@ -2,6 +2,7 @@ using Cache;
 using InventorySystem;
 using Items;
 using Old;
+using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -49,12 +50,32 @@ public class ItemsController : MonoCache
 	private void SetActiveSlot(string inventoryname)
 	{
 		var itemInInventory = inventory.GetInventory(inventoryname).InventoryGetItem(0).GetItemType();
+		
+		if (CheckIsDifferentItems(itemInInventory) == false)
+			return;
+
 		CleanActiveSlot();
 
 		if (itemInInventory != null)
 		{
 			inventory.AddItemPos(ActiveSlotName, itemInInventory, 0);
 		}
+	}
+
+	/// <summary>
+	/// ѕровер€ет, не в руках уже данное оружие
+	/// </summary>
+	/// <param name="itemInInventory"></param>
+	/// <returns></returns>
+	private bool CheckIsDifferentItems(string itemInInventory)
+	{
+		var curWeaponInActiveSlot = inventory.GetInventory(ActiveSlotName).InventoryGetItem(0).GetItemType();
+		if (curWeaponInActiveSlot != null)
+		{
+			if (curWeaponInActiveSlot == itemInInventory)
+				return false;
+		}
+		return true;
 	}
 
 	private void CleanActiveSlot()

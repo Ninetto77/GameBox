@@ -22,10 +22,11 @@ namespace Attack.Raycast
 		private ItemPickup item;
 		private bool toolIsPicked;
 
-		private int RestCountOfBullets;
-		private int curCountBulletsInPool;
+		public int CurCountBulletsInPool;
+		private int commonCountOfBullets => GetCountsOfBullets();
 
 		[Inject] private ShopPoint shop;
+		[Inject] private BulletUI bulletUI;
 
 		[Inject]
 		public void Construct(ShopPoint shop)
@@ -34,37 +35,14 @@ namespace Attack.Raycast
 		}
 
 		/// <summary>
-		/// когда изменяется общее количество пуль 
-		/// </summary>
-		/// <param name="type"></param>
-		/// <param name="value"></param>
-		private void ChangeCurrentBullets(TypeOfCartridge type, int value)
-		{
-			switch (weapon.TypeOfWeapon)
-			{
-				case TypeOfCartridge.light:
-					RestCountOfBullets = shop.LightCartridgeCount;
-					break;
-				case TypeOfCartridge.heavy:
-					RestCountOfBullets = shop.HeavyCartridgeCount;
-					break;
-				case TypeOfCartridge.oil:
-					RestCountOfBullets = shop.OilCartridgeCount;
-					break;
-				default:
-					break;
-			}
-		}
-
-		/// <summary>
 		/// Изменить общее количество пуль
 		/// </summary>
 		/// <param name="value"></param>
 		private void ChangeTotalBulletsInThePool(int value)
 		{
-			RestCountOfBullets -= value;
 			var temp = GetCountsOfBullets() - value;
 			shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, (temp));
+			bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, GetCountsOfBullets());
 		}
 
 		private void Start()
@@ -73,20 +51,23 @@ namespace Attack.Raycast
 			//curCountBulletsInPool = weapon.TotalBulletsInPool;
 
 
-			//изменение количества пуль в магазине
-			RestCountOfBullets = GetCountsOfBullets();
-			if (RestCountOfBullets > weapon.TotalBulletsInPool)
-			{
-				curCountBulletsInPool = weapon.TotalBulletsInPool;
-				shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, RestCountOfBullets - weapon.TotalBulletsInPool);
-			}
+			////изменение количества пуль в магазине
+			////RestCountOfBullets = GetCountsOfBullets();
+			//if (RestCountOfBullets > weapon.TotalBulletsInPool)
+			//{
+			//	curCountBulletsInPool = weapon.TotalBulletsInPool;
+			//	shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, RestCountOfBullets - weapon.TotalBulletsInPool);
+			//}
 
-			shop.OnChangeCartridge += ChangeCurrentBullets;
+			//shop.OnChangeCartridge += ChangeCurrentBullets;
 
+			CurCountBulletsInPool = 0;
 			mainCamera = Camera.main;
 
 			ChangeIsPicked();
 			item.OnChangeIsPicked += ChangeIsPicked;
+
+			bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, GetCountsOfBullets());
 		}
 
 		private void ChangeIsPicked()
@@ -133,7 +114,7 @@ namespace Attack.Raycast
 
 					for (var i = 0; i < weapon.ShotCount; i++)
 					{
-						if (curCountBulletsInPool > 0)
+						if (CurCountBulletsInPool > 0)
 						{
 							OnAttackStarted?.Invoke();
 							PerformRaycastCamera();
@@ -172,8 +153,7 @@ namespace Attack.Raycast
 				SpawnParticleEffectOnHit(hitInfo);
 			}
 
-			//RestCountOfBullets--;
-			curCountBulletsInPool--;
+			CurCountBulletsInPool--;
 			ChangeTotalBulletsInThePool(1);
 
 			PerformEffects();
@@ -205,6 +185,10 @@ namespace Attack.Raycast
 			}
 		}
 
+		/// <summary>
+		/// Вычисление разброса
+		/// </summary>
+		/// <returns></returns>
 		private Vector3 CalculateSpread()
 		{
 			return new Vector3
@@ -215,12 +199,16 @@ namespace Attack.Raycast
 			};
 		}
 
+		/// <summary>
+		/// Проверка на перезарядку
+		/// </summary>
+		/// <returns></returns>
 		private void ReloudBullet()
 		{
 			StartCoroutine(WaitToReloudBullet());
 
 			//звук пyстого патрона
-			if (RestCountOfBullets <= 0)
+			if (commonCountOfBullets <= 0)
 			{
 				OnEmptyClip?.Invoke();
 			}
@@ -232,28 +220,33 @@ namespace Attack.Raycast
 		/// <returns></returns>
 		private IEnumerator WaitToReloudBullet()
 		{
-			if (RestCountOfBullets > 0)
+			if (commonCountOfBullets > 0)
 			{
 				canFire = false;
 
 				OnReloud?.Invoke();
 
 				yield return new WaitForSeconds(weapon.TimeToReload);
-				int dif = weapon.TotalBulletsInPool - curCountBulletsInPool;
-				if (dif > RestCountOfBullets)
+				int dif = weapon.TotalBulletsInPool - CurCountBulletsInPool;
+				if (dif > commonCountOfBullets)
 				{
-					dif = RestCountOfBullets;
+					dif = commonCountOfBullets;
 				}
 
-				curCountBulletsInPool += dif;
-				ChangeTotalBulletsInThePool(dif);
+				CurCountBulletsInPool += dif;
+				bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, GetCountsOfBullets());
+				//ChangeTotalBulletsInThePool(dif);
 
 				//RestCountOfBullets -= dif;
-				
+
 				canFire = true;
 			}
 		}
 
+		/// <summary>
+		/// общее количество пуль
+		/// </summary>
+		/// <returns>общее количество пуль </returns>
 		private int GetCountsOfBullets()
 		{
 			switch (weapon.TypeOfWeapon)
