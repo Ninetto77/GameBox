@@ -143,7 +143,8 @@ PrefabInstance:
       value: EA03_Town_Hut_Foundation_02b_PRE (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4193390155017772245, guid: e6ae1b2523142a94797ab44e46647cdb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ae1b2523142a94797ab44e46647cdb, type: 3}
