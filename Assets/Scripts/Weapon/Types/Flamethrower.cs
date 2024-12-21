@@ -3,6 +3,7 @@ using Enemy;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Flamethrower : AttackBehaviour
 {
@@ -27,6 +28,7 @@ public class Flamethrower : AttackBehaviour
 	private void Start()
 	{
 		overlap = GetComponent<OverlapWithAttack>();
+		isAttack = false;
 
 		ChangeIsPicked();
 		item.OnChangeIsPicked += ChangeIsPicked;
@@ -34,6 +36,9 @@ public class Flamethrower : AttackBehaviour
 		audioSource = GetComponent<AudioSource>();
 	}
 
+	/// <summary>
+	/// Воспроизвести звуки
+	/// </summary>
 	private void SetSounds()
 	{
 		if (isAttack)
@@ -49,6 +54,9 @@ public class Flamethrower : AttackBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Изменить состояние "подобран"
+	/// </summary>
 	private void ChangeIsPicked()
 	{
 		item = gameObject.GetComponent<ItemPickup>();
@@ -58,6 +66,8 @@ public class Flamethrower : AttackBehaviour
 	private void Update()
 	{
 		if (!toolIsPicked) return;
+		if (EventSystem.current.IsPointerOverGameObject())
+			return;
 
 		if (Input.GetMouseButton(GlobalStringsVars.FIRE))
 		{
@@ -65,12 +75,19 @@ public class Flamethrower : AttackBehaviour
 		}
 		if (Input.GetMouseButtonUp(GlobalStringsVars.FIRE))
 		{
+			StopAttack();
+		}
+	}
+
+	private void StopAttack()
+	{
+		if (isAttack == true)
+		{
 			isAttack = false;
 			OnAttackEnded?.Invoke();
 			SparkParticle.Play();
 			FireParticle.Stop();
 			SetSounds();
-
 		}
 	}
 
@@ -78,13 +95,24 @@ public class Flamethrower : AttackBehaviour
 	{
 		if (isAttack  == false)
 		{
+			isAttack = true;
+
 			FireParticle.Play();
 			SparkParticle.Stop();
-			overlap.PerformAttack();
+			StartCoroutine(SetAttack());
+			//overlap.PerformAttack();
 
-			isAttack = true;
 			OnAttackStarted?.Invoke();
 			SetSounds();
+		}
+	}
+
+	private IEnumerator SetAttack()
+	{
+		while(isAttack)
+		{
+			overlap.PerformAttack();
+			yield return new WaitForSeconds(1f);
 		}
 	}
 

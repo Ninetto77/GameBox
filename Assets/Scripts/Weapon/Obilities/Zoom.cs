@@ -67,5 +67,14 @@ namespace WeaponObilities
 
 			isZoom = !isZoom;
 		}
+
+		private void OnDestroy()
+		{
+			mainCamera.fieldOfView = 60;
+			manager.ZoomIcon.enabled = false;
+			manager.AimIcon.enabled = true;
+			look.sensitivityVer = oldSensitivityVer;
+			playerLook.sensitivityHor = oldSensitivityHor;
+		}
 	}
 }

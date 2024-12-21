@@ -1,27 +1,42 @@
 using System;
-using System.Runtime.ConstrainedExecution;
+using System.Text.RegularExpressions;
 using TMPro;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
+
 
 public class BulletUI : MonoBehaviour
 {
     public Action<int, int> OnChangeBullets;
-    public TextMeshProUGUI bulletTxt;
+	public Action<int> OnChangeCommonBullets;
+	public TextMeshProUGUI bulletTxt;
 	void Awake()
 	{
-        OnChangeBullets += ShowBullets;
-		bulletTxt.text = 0 + "/" + 1000;
-
+        OnChangeBullets += ShowBulletsText;
+		OnChangeCommonBullets += ChangeCommonBulletsText;
+		bulletTxt.text ="";
 	}
 
-	private void ShowBullets(int cur, int common)
+	private void ShowBulletsText(int cur, int common)
     {
-		bulletTxt.text = cur.ToString() + "/" + common.ToString();
+		if (cur == -1 && common == -1)
+			bulletTxt.text = "";
+		else
+			bulletTxt.text = cur.ToString() + "/" + common.ToString();
+	}
+
+	private void ChangeCommonBulletsText(int common)
+	{
+		string pattern = @"/.*$";
+		string result = Regex.Replace(bulletTxt.text, pattern, $"/{common}");
+		if (result == "") 
+			{ bulletTxt.text = "0/" + common; }
+		else
+			bulletTxt.text = result;
 	}
 
 	private void OnDisable()
 	{
-        OnChangeBullets -= ShowBullets;
+        OnChangeBullets -= ShowBulletsText;
+		OnChangeCommonBullets -= ChangeCommonBulletsText;
 	}
 }

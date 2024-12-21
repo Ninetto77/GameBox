@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Attack.Overlap
 {
@@ -22,6 +23,8 @@ namespace Attack.Overlap
 		private void Update()
 		{
 			if (!toolIsPicked) return;
+			if (EventSystem.current.IsPointerOverGameObject())
+				return;
 
 			if (Input.GetMouseButtonDown(0))
 			{

@@ -4,6 +4,8 @@ using Attack.Base;
 using Items;
 using Zenject;
 using Points;
+using System;
+using UnityEngine.EventSystems;
 
 namespace Attack.Raycast
 {
@@ -24,6 +26,7 @@ namespace Attack.Raycast
 
 		public int CurCountBulletsInPool;
 		private int commonCountOfBullets => GetCountsOfBullets();
+		private int visibleBulletUI;
 
 		[Inject] private ShopPoint shop;
 		[Inject] private BulletUI bulletUI;
@@ -41,8 +44,8 @@ namespace Attack.Raycast
 		private void ChangeTotalBulletsInThePool(int value)
 		{
 			var temp = GetCountsOfBullets() - value;
-			shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, (temp));
-			bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, GetCountsOfBullets());
+			shop.OnUseCartridge?.Invoke(weapon.TypeOfCartridge, (temp));
+			bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
 		}
 
 		private void Start()
@@ -59,15 +62,41 @@ namespace Attack.Raycast
 			//	shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, RestCountOfBullets - weapon.TotalBulletsInPool);
 			//}
 
-			//shop.OnChangeCartridge += ChangeCurrentBullets;
+			
+			shop.OnChangeCartridge += ChangeVisibleBulletUI;
 
 			CurCountBulletsInPool = 0;
 			mainCamera = Camera.main;
 
 			ChangeIsPicked();
 			item.OnChangeIsPicked += ChangeIsPicked;
+			visibleBulletUI = GetCountsOfBullets();
 
-			bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, GetCountsOfBullets());
+		}
+
+		private void ChangeVisibleBulletUI(TypeOfCartridge cartridge, int arg2)
+		{
+			switch (cartridge)
+			{
+				case TypeOfCartridge.light:
+					if (weapon.TypeOfCartridge == TypeOfCartridge.light)
+					{
+						visibleBulletUI = GetCountsOfBullets();
+					}
+					break;
+				case TypeOfCartridge.heavy:
+					if (weapon.TypeOfCartridge == TypeOfCartridge.heavy)
+					{
+						visibleBulletUI = GetCountsOfBullets();
+					}
+					break;
+				case TypeOfCartridge.oil:
+					break;
+				case TypeOfCartridge.none:
+					break;
+				default:
+					break;
+			}
 		}
 
 		private void ChangeIsPicked()
@@ -79,6 +108,9 @@ namespace Attack.Raycast
 		private void Update()
 		{
 			if (!toolIsPicked) return;
+
+			if (EventSystem.current.IsPointerOverGameObject())
+				return;
 
 			if (Input.GetMouseButtonDown(0) && weapon.SingleFire)
 			{
@@ -234,9 +266,10 @@ namespace Attack.Raycast
 				}
 
 				CurCountBulletsInPool += dif;
-				bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, GetCountsOfBullets());
+				visibleBulletUI = visibleBulletUI - dif;
+				bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
+				
 				//ChangeTotalBulletsInThePool(dif);
-
 				//RestCountOfBullets -= dif;
 
 				canFire = true;
@@ -249,7 +282,7 @@ namespace Attack.Raycast
 		/// <returns>общее количество пуль </returns>
 		private int GetCountsOfBullets()
 		{
-			switch (weapon.TypeOfWeapon)
+			switch (weapon.TypeOfCartridge)
 			{
 				case TypeOfCartridge.light:
 					return shop.LightCartridgeCount;

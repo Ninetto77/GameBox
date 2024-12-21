@@ -7,7 +7,7 @@ namespace Items
 	public class WeaponItem : Equipable
 	{
 		[Header("Type of weapon")]
-		[SerializeField] private TypeOfCartridge typeOfWeapon;
+		[SerializeField] private TypeOfCartridge typeOfCartridge;
 
 		[Header("Prefab")]
 		[SerializeField] private Sprite aimIcon;
@@ -40,7 +40,7 @@ namespace Items
 		[SerializeField] private int totalBulletsInPool = 10;
 
 	
-		public TypeOfCartridge TypeOfWeapon => typeOfWeapon;
+		public TypeOfCartridge TypeOfCartridge => typeOfCartridge;
 		
 		public Sprite AimIcon => aimIcon;
 

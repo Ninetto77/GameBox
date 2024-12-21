@@ -5,6 +5,7 @@ namespace Items
 		melle, 
 		lightWeapon, 
 		heavyWeapon, 
-		scientificWeapon
+		scientificWeapon,
+		none
 	}
 }

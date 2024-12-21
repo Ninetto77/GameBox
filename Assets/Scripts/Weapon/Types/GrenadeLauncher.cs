@@ -3,6 +3,7 @@ using Attack.Projectile;
 using Items;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GrenadeLauncher : AttackBehaviour
 {
@@ -46,15 +47,17 @@ public class GrenadeLauncher : AttackBehaviour
 	private void Update()
 	{
 		if (!toolIsPicked) return;
+		if (EventSystem.current.IsPointerOverGameObject())
+			return;
 
 		if (Input.GetMouseButtonDown(0))
 		{
 			PerformAttack();
 		}
-		if (Input.GetKeyDown(KeyCode.R) && canFire)
-		{
-			StartCoroutine(Reload());
-		}
+		//if (Input.GetKeyDown(KeyCode.R) && canFire)
+		//{
+		//	StartCoroutine(Reload());
+		//}
 		if (Input.GetMouseButtonUp(0))
 			EndAttack();
 

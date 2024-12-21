@@ -51,5 +51,5 @@ public class HintUI : MonoBehaviour
 
 public enum TypeOfCartridge
 {
-	light, heavy, oil
+	light, heavy, oil, none
 }

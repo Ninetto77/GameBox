@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8911503503702858194}
   - component: {fileID: 4860671366219082387}
   - component: {fileID: 5978795973323912646}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Dagger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,13 +97,14 @@ GameObject:
   - component: {fileID: 3952487455407406786}
   - component: {fileID: 4549500838656573965}
   - component: {fileID: 2768503791806890588}
+  - component: {fileID: 1120970879645836310}
   - component: {fileID: 8590624517406175152}
   - component: {fileID: 3774372439573228930}
-  - component: {fileID: 1120970879645836310}
   - component: {fileID: 960006307251539833}
   - component: {fileID: 3809223198371269347}
   - component: {fileID: 1930643162945263129}
-  m_Layer: 0
+  - component: {fileID: 4609463812802409740}
+  m_Layer: 10
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a6662ee781d2e4a91a4a115514d7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &8590624517406175152
+--- !u!65 &1120970879645836310
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,6 +219,27 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7, y: 1.7, z: 1.7}
+  m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!65 &8590624517406175152
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097269977889926110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.1, y: 1.6, z: 0.2}
   m_Center: {x: 0, y: 0.4, z: 0}
@@ -248,27 +270,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1120970879645836310
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7097269977889926110}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7, y: 1.7, z: 1.7}
-  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &960006307251539833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +307,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f4cb39eb865554c8bcde5ad6cf4e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4609463812802409740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097269977889926110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9518f1fdd7431fd42a885d2adaf902e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &799274440886356818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,10 +331,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 545910277506981086, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1460947261320532568, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9565cd0c7e55b6f49b08c33caf0b697f, type: 3}
+    - target: {fileID: 4259445804771485576, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4804989593370041140, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_Camera
       value: 

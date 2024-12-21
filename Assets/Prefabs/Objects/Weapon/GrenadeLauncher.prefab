@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3268677507544887672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5194700685844438845}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.0044506267, z: 0, w: 0.9999901}
-  m_LocalPosition: {x: 0, y: 0, z: 0.558}
+  m_LocalPosition: {x: 0, y: 0, z: 0.394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39,9 +39,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4095931074792013564}
     m_Modifications:
+    - target: {fileID: 1215602691881072, guid: d5390d5cbddc3ae4d83edf2faeb062d5, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1400592477459988, guid: d5390d5cbddc3ae4d83edf2faeb062d5, type: 3}
       propertyPath: m_Name
       value: GrenadeMuzzleYellow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400592477459988, guid: d5390d5cbddc3ae4d83edf2faeb062d5, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400592477459988, guid: d5390d5cbddc3ae4d83edf2faeb062d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1983855565718404, guid: d5390d5cbddc3ae4d83edf2faeb062d5, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4653411506583968, guid: d5390d5cbddc3ae4d83edf2faeb062d5, type: 3}
       propertyPath: m_LocalScale.x
@@ -207,12 +223,20 @@ PrefabInstance:
       value: GrenadeLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6263444945335782496, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_Name
       value: blasterOMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263444945335782496, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8251192530559543868, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -269,16 +293,19 @@ PrefabInstance:
       addedObject: {fileID: 3555150159340214091}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6282669759327339442}
+      addedObject: {fileID: 1517186049049256579}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1517186049049256579}
+      addedObject: {fileID: 6282669759327339442}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2924505290000969080}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3668924073710932173}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6373845515786056332}
   m_SourcePrefab: {fileID: 100100000, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
 --- !u!1 &3718982838855820358 stripped
 GameObject:
@@ -345,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613309eb169c12047b574a07d28f1e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponMuzzle: {fileID: 329287458069728906}
+  _firePoint: {fileID: 3268677507544887672}
   _projectilePrefab: {fileID: 9016329488155290155, guid: 00920ca39a916714f9dfe5956945e22d, type: 3}
   _forceMode: 1
   _force: 45
@@ -418,7 +445,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -426,27 +453,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6282669759327339442
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3718982838855820358}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.32, z: 0.51}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &1517186049049256579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -460,7 +466,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -468,6 +474,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3, y: 1.3, z: 1.3}
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!65 &6282669759327339442
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718982838855820358}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2, y: 0.32, z: 0.51}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &2924505290000969080
 AudioSource:
   m_ObjectHideFlags: 0
@@ -576,6 +603,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f4cb39eb865554c8bcde5ad6cf4e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6373845515786056332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718982838855820358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9518f1fdd7431fd42a885d2adaf902e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4095931074792013564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
@@ -593,10 +632,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 545910277506981086, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1460947261320532568, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9565cd0c7e55b6f49b08c33caf0b697f, type: 3}
+    - target: {fileID: 4259445804771485576, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4804989593370041140, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_Camera
       value: 
@@ -692,6 +739,10 @@ PrefabInstance:
     - target: {fileID: 6551677897421456062, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074921736675419215, guid: 306b38d021cf02c4dabf5efce0143bdb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
