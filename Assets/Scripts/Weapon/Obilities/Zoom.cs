@@ -1,4 +1,5 @@
 using Attack.Raycast;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,7 @@ namespace WeaponObilities
 		private float oldSensitivityVer;
 
 		private Weapon weapon;
+		private ItemPickup item;
 		private Camera mainCamera;
 		private MouseLook look;
 		private MouseLook playerLook;
@@ -39,21 +41,19 @@ namespace WeaponObilities
 		{
 			weapon = GetComponent<Weapon>();
 			weapon.OnZoomMouseClick += ZoomWeapon;
+			item  = GetComponent<ItemPickup>();
+			item.OnChangeIsPicked += CheckForRemoveZoom;
 		}
 
-		private void OnDisable()
-		{
-			weapon.OnZoomMouseClick -= ZoomWeapon;
-		}
+
+		/// <summary>
+		/// Поменять зум у оружия
+		/// </summary>
 		public void ZoomWeapon()
 		{
 			if (isZoom)
 			{
-				mainCamera.fieldOfView = 60;
-				manager.ZoomIcon.enabled = false;
-				manager.AimIcon.enabled = true;
-				look.sensitivityVer = oldSensitivityVer;
-				playerLook.sensitivityHor = oldSensitivityHor;
+				RemoveZoom();
 			}
 			else
 			{
@@ -68,13 +68,38 @@ namespace WeaponObilities
 			isZoom = !isZoom;
 		}
 
-		private void OnDestroy()
+		/// <summary>
+		/// Убрать зум при сброшенном оружии
+		/// </summary>
+		private void CheckForRemoveZoom()
+		{
+			if (item.IsPicked == true)
+				return;
+
+			RemoveZoom();
+		}
+
+		/// <summary>
+		/// Убрать зум
+		/// </summary>
+		private void RemoveZoom()
 		{
 			mainCamera.fieldOfView = 60;
 			manager.ZoomIcon.enabled = false;
 			manager.AimIcon.enabled = true;
 			look.sensitivityVer = oldSensitivityVer;
 			playerLook.sensitivityHor = oldSensitivityHor;
+		}
+
+
+		private void OnDestroy()
+		{
+			RemoveZoom();
+		}
+		private void OnDisable()
+		{
+			weapon.OnZoomMouseClick -= ZoomWeapon;
+			item.OnChangeIsPicked -= CheckForRemoveZoom;
 		}
 	}
 }
