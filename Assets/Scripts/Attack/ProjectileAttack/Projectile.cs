@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Burst.CompilerServices;
+using UnityEngine;
 
 
 namespace Attack.Projectile
@@ -73,6 +74,13 @@ namespace Attack.Projectile
 				return;
 
 			var effect = Instantiate(_effectOnDestroyPrefab, transform.position, _effectOnDestroyPrefab.transform.rotation);
+
+			RaycastHit hit;
+			if (Physics.Raycast(transform.position, -transform.up, out hit, 10f))
+			{
+				Vector3 normal = hit.normal;
+				_effectOnDestroyPrefab.transform.rotation = Quaternion.Euler(normal);
+			}
 
 			Destroy(effect.gameObject, _effectOnDestroyLifetime);
 		}

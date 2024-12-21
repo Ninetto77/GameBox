@@ -12,7 +12,6 @@ namespace Enemy.States
 		public FXType FxPrefab;
 		public Transform FirePoint;
 
-
 		[Inject] private ProjectContext projectContext;
 		FXProvider fXProvider;
 

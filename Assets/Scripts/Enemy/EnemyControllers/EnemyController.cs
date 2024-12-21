@@ -1,4 +1,5 @@
 ﻿using Disapear;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ namespace Enemy.States
 	[RequireComponent (typeof(AudioSource))]
 	public abstract class EnemyController : MonoBehaviour, IDamageable, IEnemy, IAttack
 	{
+		public Action OnEnemyDeath;
 		[Header("Обнаружение игрока")]
 		public LayerMask PlayerMask;
 		[SerializeField] private float radiusOfDetect = 10;
@@ -161,6 +163,7 @@ namespace Enemy.States
 		private IEnumerator StartGetDead()
 		{
 			isDead = true;
+			OnEnemyDeath?.Invoke();
 
 			if (deathSound != null)
 				audioSource.PlayOneShot(deathSound);

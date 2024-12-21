@@ -10,11 +10,13 @@ namespace Enemy
 		private const string spider = "Spider";
 		private const string skeleton = "Skeleton";
 		private const string witch = "Witch";
+		private const string mainWitch = "MainWitch";
 
 		private Object simpolZombi;
 		private Object hardZombi;
 		private Object skeletonObject;
 		private Object witchObject;
+		private Object mainWitchObject;
 		private Object spiderObject;
 
 		[Inject] private DiContainer _container;
@@ -26,6 +28,7 @@ namespace Enemy
 			hardZombi = Resources.Load(enemyHard);
 			skeletonObject = Resources.Load(skeleton);
 			witchObject = Resources.Load(witch);
+			mainWitchObject = Resources.Load(mainWitch);
 			spiderObject = Resources.Load(spider);
 		}
 
@@ -44,6 +47,9 @@ namespace Enemy
 					break;
 				case EnemyType.witch:
 					_container.InstantiatePrefab(witchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
+					break;		
+				case EnemyType.mainWitch:
+					_container.InstantiatePrefab(mainWitchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
 					break;
 				case EnemyType.spider:
 					_container.InstantiatePrefab(spiderObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
@@ -52,9 +58,6 @@ namespace Enemy
 					break;
 			}
 		}
-		private void RandomRotate()
-		{
-			Quaternion rot = Quaternion.EulerAngles(0, Random.RandomRange(0, 179), 0);
-		}
+
 	}
 }

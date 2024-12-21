@@ -4,5 +4,6 @@ public enum EnemyType
 	hardZombi,
 	skeleton,
 	witch,
+	mainWitch,
 	spider, 
 }

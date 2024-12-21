@@ -17,22 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 1302c45ca789a4b40a76c21176559456
   m_SerializeEntries:
-  - m_GUID: 00fedc70b62a31e448e8ccc298257b56
-    m_Address: WFX_Metal
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ac1aa04288fad804ba1cd769f4377aaf
-    m_Address: WFX_Wood
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03a4a1935a9f4454c861dfa0aa6df562
     m_Address: WFX_Blaster
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a05812a47e74b1d4284a57a3948ae691
+  - m_GUID: be8ecfd9b34ab194585126491894a1c6
     m_Address: Fireball
     m_ReadOnly: 0
     m_SerializedLabels: []
