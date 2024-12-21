@@ -36,13 +36,15 @@ public class SettingsPanel : MonoCache
 		if (MusicToggle != null)
 		{
 			MusicToggle.isOn = (PlayerPrefs.GetInt(musicSave, 1) == 1);
-			MusicImage.enabled = MusicToggle.isOn;
+			if (MusicImage != null)
+				MusicImage.enabled = MusicToggle.isOn;
 		}
 
 		if (SFXToggle != null)
 		{
 			SFXToggle.isOn = (PlayerPrefs.GetInt(sfxSave, 1) == 1);
-			SFXTImage.enabled = SFXToggle.isOn;
+			if (SFXTImage != null)
+				SFXTImage.enabled = SFXToggle.isOn;
 		}
 
 		PlayerPrefs.SetInt(musicSave, MusicToggle.isOn ? 1 : 0);
@@ -55,7 +57,8 @@ public class SettingsPanel : MonoCache
 		if (PlayerPrefs.HasKey(musicSave))
 			PlayerPrefs.SetInt(musicSave, state ? 1 : 0);
 
-		MusicImage.enabled = state;
+		if (MusicImage != null)
+			MusicImage.enabled = state;
 		PlaySoundClick();
 	}
 
@@ -66,7 +69,8 @@ public class SettingsPanel : MonoCache
 		if (PlayerPrefs.HasKey(sfxSave))
 			PlayerPrefs.SetInt(sfxSave, state ? 1 : 0);
 
-		SFXTImage.enabled = state;
+		if (SFXTImage != null)
+			SFXTImage.enabled = state;
 		PlaySoundClick();
 	}
 
