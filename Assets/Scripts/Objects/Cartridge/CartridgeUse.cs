@@ -15,6 +15,7 @@ namespace Cartridges
 
 		[Inject] private ShopPoint shop;
 		[Inject] private AudioManager audio;
+		[Inject] private ItemsController itemsController;
 
 		private const string candyAudio = GlobalStringsVars.AMMO_SOUND_NAME;
 		/// <summary>
@@ -25,6 +26,7 @@ namespace Cartridges
 			if (item != null)
 			{
 				item.Use(shop);
+				itemsController.CheckHandForChangeBulletUI(item.typeOfCartridge);
 				Destroy(this.gameObject);
 			}
 		}

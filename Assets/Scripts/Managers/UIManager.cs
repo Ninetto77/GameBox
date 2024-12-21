@@ -1,15 +1,18 @@
 using Code.Global.Animations;
+using Points;
 using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class UIManager : MonoBehaviour
 {
 	[field: SerializeField] public Image ZoomIcon { get; set; }
 	[field: SerializeField] public Image AimIcon { get ; set ; }
 	[field: SerializeField] public TextMeshProUGUI TaskText { get; set; }
+	[field: SerializeField] public TextMeshProUGUI HintTutorialText { get; set; }
 
 	[Header("RedOverlay/ Player Damage")]
 	[Tooltip("Setting for fade in animation")]
@@ -22,6 +25,7 @@ public class UIManager : MonoBehaviour
 	[Header("Canvas")]
 
 	[SerializeField] private CanvasGroup DeadCanvas;
+	[SerializeField] private CanvasGroup WinCanvas;
 	[SerializeField] private CanvasGroup GameCanvas;
 
 	[Header("Animations Dead")]
@@ -35,21 +39,34 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Image RestartButton;
 	[SerializeField] private Image MenuButton;
 
+	[Header("Win Canvas UI")]
+	[SerializeField] private Image CandyImage;
+	[SerializeField] private Image MenuWinButton;
+	[SerializeField] private TextMeshProUGUI CandyText;
+
 	public Action OnPlayerDamage;
 	public Action OnPlayerDead;
+	public Action OnPlayerWin;
 
 	private TextMeshProUGUI restartText;
 	private TextMeshProUGUI menuText;
+	private TextMeshProUGUI menuWinText;
 
+	[Inject] private ShopPoint shop;
 	private bool isDead;
+
+	private const string candyTextCount = "Количество собранных конфет: ";
 
 	private void Start()
 	{
 		OnPlayerDamage += ShowRedOverlay;
 		OnPlayerDead += ShowDeadWindow;
+		OnPlayerWin += ShowWinWindow;
 
 		restartText = RestartButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 		menuText = MenuButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+		menuWinText = MenuWinButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
 		isDead = false;
 	}
@@ -107,6 +124,51 @@ public class UIManager : MonoBehaviour
 	}
 	#endregion
 
+	#region Win Player
+	private void ShowWinWindow()
+	{
+		StartCoroutine(ShowWinWindowForTime());
+	}
+
+	private IEnumerator ShowWinWindowForTime()
+	{
+		isDead = true;
+		CandyText.text = candyTextCount + shop.curPoints.Value;
+
+		AnimationShortCuts.FadeAnimation(GameCanvas, FadeOutGameCanvas);
+		GameCanvas.blocksRaycasts = false;
+		GameCanvas.interactable = false;
+
+
+		yield return new WaitForSeconds(0.5f);
+		AnimationShortCuts.FadeAnimation(WinCanvas, FadeInDeadCanvas);
+		WinCanvas.blocksRaycasts = true;
+		WinCanvas.interactable = true;
+
+
+		yield return new WaitForSeconds(2f);
+		AnimationShortCuts.FadeIn(CandyImage);
+		AnimationShortCuts.FadeIn(CandyText);
+		yield return new WaitForSeconds(1f);
+		AnimationShortCuts.FadeIn(MenuWinButton);
+		AnimationShortCuts.FadeIn(menuWinText);
+
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+
+		yield return new WaitForSeconds(0.5f);
+
+		//Time.timeScale = 0f;
+	}
+
+	#endregion
 	public bool GetIsDead() => isDead;
+
+	private void OnDestroy()
+	{
+		OnPlayerDamage -= ShowRedOverlay;
+		OnPlayerDead -= ShowDeadWindow;
+		OnPlayerWin -= ShowWinWindow;
+	}
 
 }

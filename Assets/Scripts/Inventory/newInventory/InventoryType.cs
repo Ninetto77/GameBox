@@ -15,6 +15,7 @@ public static class InventoryType
 			ItemType.lightWeapon => LightSlotname,
 			ItemType.heavyWeapon => HeavySlotname,
 			ItemType.scientificWeapon => ScientificSlotname,
+			ItemType.none => "",
 			_ => "",
 		};
 	}

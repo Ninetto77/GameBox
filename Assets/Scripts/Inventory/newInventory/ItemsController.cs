@@ -1,9 +1,7 @@
 using Cache;
 using InventorySystem;
 using Items;
-using Old;
-using System;
-using System.Collections;
+using Points;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +12,9 @@ public class ItemsController : MonoCache
 	private ItemInfo item;
 	private InventoryController inventory;
 	private readonly string ActiveSlotName = GlobalStringsVars.ACTIVESLOT_NAME;
+	
+	[Inject] private ShopPoint shop;
+	[Inject] private BulletUI bulletUI;
 
 	private void Start()
 	{
@@ -28,25 +29,50 @@ public class ItemsController : MonoCache
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.melle);
 			SetActiveSlot(inventoryname);
+			CheckHandForChangeBulletUI(TypeOfCartridge.none);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.lightWeapon);
 			SetActiveSlot(inventoryname);
+			CheckHandForChangeBulletUI(TypeOfCartridge.light);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.heavyWeapon);
 			SetActiveSlot(inventoryname);
+			CheckHandForChangeBulletUI(TypeOfCartridge.heavy);
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha4))
-		{
-			inventoryname = InventoryType.GetInventoryName(ItemType.scientificWeapon);
-			SetActiveSlot(inventoryname);
-		}
-
 	}
 
+	/// <summary>
+	/// Обновить количество пуль
+	/// </summary>
+	/// <param name="typeOfWeapon"></param>
+	private void UpdateBulletUI(ItemType typeOfWeapon)
+	{
+		switch (typeOfWeapon)
+		{
+			case ItemType.melle:
+				bulletUI.OnChangeBullets?.Invoke(-1, -1);
+				break;
+			case ItemType.lightWeapon:
+				bulletUI.OnChangeBullets?.Invoke(0, shop.LightCartridgeCount);
+				break;
+			case ItemType.heavyWeapon:
+				bulletUI.OnChangeBullets?.Invoke(0, shop.HeavyCartridgeCount);
+				break;
+			case ItemType.scientificWeapon:
+				break;
+			default:
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Установить активный слот
+	/// </summary>
+	/// <param name="inventoryname"></param>
 	private void SetActiveSlot(string inventoryname)
 	{
 		var itemInInventory = inventory.GetInventory(inventoryname).InventoryGetItem(0).GetItemType();
@@ -54,12 +80,14 @@ public class ItemsController : MonoCache
 		if (CheckIsDifferentItems(itemInInventory) == false)
 			return;
 
+		equipmentManager.UnequipHand();
 		CleanActiveSlot();
 
 		if (itemInInventory != null)
 		{
 			inventory.AddItemPos(ActiveSlotName, itemInInventory, 0);
 		}
+
 	}
 
 	/// <summary>
@@ -69,17 +97,25 @@ public class ItemsController : MonoCache
 	/// <returns></returns>
 	private bool CheckIsDifferentItems(string itemInInventory)
 	{
-		var curWeaponInActiveSlot = inventory.GetInventory(ActiveSlotName).InventoryGetItem(0).GetItemType();
+		string curWeaponInActiveSlot = inventory.GetInventory(ActiveSlotName).InventoryGetItem(0).GetItemType();
+
 		if (curWeaponInActiveSlot != null)
 		{
+			ItemType curTypeWeaponInActiveSlot = inventory.GetInventory(ActiveSlotName).InventoryGetItem(0).GetItemInfo().ItemType;
+			curWeaponInActiveSlot = InventoryType.GetInventoryName(curTypeWeaponInActiveSlot);
+
 			if (curWeaponInActiveSlot == itemInInventory)
 				return false;
 		}
 		return true;
 	}
 
+	/// <summary>
+	/// Очистить активный слот
+	/// </summary>
 	private void CleanActiveSlot()
 	{
+		//Debug.Log("clean active slot in CleanActiveSlot() ");
 		inventory.RemoveItemPos(ActiveSlotName, 0, 1);
 	}
 
@@ -107,15 +143,20 @@ public class ItemsController : MonoCache
 		catch { Debug.Log("no equipmentManager"); }
 	}
 
-
-
+	/// <summary>
+	/// Удалось ли добавить предмет в инвентарь
+	/// </summary>
+	/// <param name="item"></param>
+	/// <returns></returns>
 	public bool TryAddToInventory(ItemInfo item)
 	{
 		var type = item.ItemType;
 		string inventoryname = InventoryType.GetInventoryName(type);
 
 		bool isPicked = TryAdd(inventoryname, item);
-		CleanActiveSlot();
+
+		if (CheckIsDifferentItems(inventoryname) == false)
+			CleanActiveSlot();
 
 		return isPicked;
 	}
@@ -133,8 +174,18 @@ public class ItemsController : MonoCache
 		else
 		{
 			var dropItem = inventory.GetItem(inventoryname, 0);
+
+			if (CheckIsDifferentItems(inventoryname) == false)
+			{
+				//Debug.Log("clean in TryAdd");
+				CleanActiveSlot();
+			}
+			//else
+			//	Debug.Log("no clean Try Add");
+
 			DropItem(inventoryname, dropItem);
 			inventory.RemoveItemPos(inventoryname, 0, 1);
+
 			return inventory.TryAddItem(inventoryname, item.Name);
 		}
 	}
@@ -146,57 +197,70 @@ public class ItemsController : MonoCache
 	/// <param name="dropItem"></param>
 	public void DropItem(string inventoryname, InventoryItem dropItem)
 	{
+		if (dropItem == null) return;
+
+		CheckIsMelleWeapon(dropItem);
+
 		for (int i = 0; i < dropItem.GetAmount(); i++)
 		{
-			Debug.Log($"Хочу сбросить = {dropItem.GetItemInfo().Name}");
+			//Debug.Log($"Хочу сбросить = {dropItem.GetItemInfo().Name}");
 
 			var objInHand = equipmentManager.GetPlayerHand();
 			if (objInHand == null) //если рука пустая
 			{
-				Debug.Log($"Рука пустая. Беру в руки = {dropItem.GetItemInfo().Name}");
+				//Debug.Log($"Рука пустая. Беру в руки = {dropItem.GetItemInfo().Name}");
 				objInHand = EquipHand(dropItem);
-				Debug.Log($"Взяла в руки {objInHand.name}");
+				//Debug.Log($"Взяла в руки {objInHand.name}");
 
 			}
-			else
-				Debug.Log($"Рука не пустая и занята {objInHand.name}");
+			//else
+			//	Debug.Log($"Рука не пустая и занята {objInHand.name}");
 
 
-			Debug.Log($"Категория руки равна {objInHand.name}");
-			Debug.Log($"Категория ненужного оружия {dropItem.GetItemInfo().ItemType.ToString()}");
+			//	Debug.Log($"Категория руки равна {objInHand.name}");
+			//Debug.Log($"Категория ненужного оружия {dropItem.GetItemInfo().ItemType.ToString()}");
 
 			GameObject oldObj = null;
 			string inventoryHandName = InventoryType.GetInventoryName(objInHand.GetComponent<ItemPickup>().item.ItemType);
 			if (inventoryHandName != inventoryname)
 			{
-				Debug.Log($"Категория не равны");
-				Debug.Log($"Меняю руку");
+				//Debug.Log($"Категория не равны");
+				//Debug.Log($"Меняю руку");
 
 				oldObj = equipmentManager.GetPlayerHand();
 
 				objInHand = EquipHand(dropItem);
-				Debug.Log($"Взяла в руки {objInHand.name}");
+				//	Debug.Log($"Взяла в руки {objInHand.name}");
+
+				SetSettingsToDrop(objInHand, false);
+
+				//				Debug.Log($"Сбросила руку");
+				equipmentManager.DropHand();
+				EquipHand(oldObj.GetComponent<ItemPickup>().item);
+				//Debug.Log($"Взяла в руку старое оружие " + oldObj.name);
 
 			}
 			else
 			{
-				Debug.Log($"Категории равны");
+				//Debug.Log($"Категории равны");
+				SetSettingsToDrop(objInHand, true);
 
+				//Debug.Log($"Сбросила руку");
+				equipmentManager.DropHand();
 			}
 
-			ItemPickup dropedItemPickup = objInHand.gameObject.GetComponent<ItemPickup>();
-			Debug.Log($"Меняем настройки {dropedItemPickup.item.Name}");
+			//SetSettingsToDrop(objInHand);
 
-			if (dropedItemPickup != null)
-			{
-				dropedItemPickup.IsPicked = false;
-				dropedItemPickup.GetComponent<Rigidbody>().isKinematic = false;
-				Debug.Log($"dropedItem.IsPicked = {dropedItemPickup.IsPicked}");
-			}
+			//Debug.Log($"Сбросила руку");
+			//equipmentManager.DropHand();
 
-			Debug.Log($"Сбросила руку");
-			equipmentManager.DropHand();
 		}
+	}
+
+	private void CheckIsMelleWeapon(InventoryItem dropItem)
+	{
+		if (dropItem.GetItemInfo().ItemType == ItemType.melle)
+			UpdateBulletUI(ItemType.melle);
 	}
 
 	private GameObject EquipHand(InventoryItem item)
@@ -206,22 +270,33 @@ public class ItemsController : MonoCache
 		return objInHand;
 	}
 
-	private GameObject SetSettingsToDrop(GameObject objInHand)
+	private GameObject EquipHand(ItemInfo info)
+	{
+		equipmentManager.EquipHand(info as Equipable);
+		GameObject objInHand = equipmentManager.GetPlayerHand();
+		return objInHand;
+	}
+
+	/// <summary>
+	/// Убрать с руки оружие, сделать его физическим
+	/// </summary>
+	/// <param name="objInHand"></param>
+	/// <returns></returns>
+	private void SetSettingsToDrop(GameObject objInHand, bool canUpdateBulletUI)
 	{
 		ItemPickup dropedItem = objInHand.gameObject.GetComponent<ItemPickup>();
 
 		if (dropedItem != null)
 		{
-			Debug.Log("dropedItem is not null");
-			Debug.Log($"dropedItem.IsPicked = {dropedItem.IsPicked}");
-
 			dropedItem.IsPicked = false;
 			dropedItem.GetComponent<Rigidbody>().isKinematic = false;
 		}
 			
 		else
-		Debug.Log("dropedItem is null");
-		return objInHand;
+			Debug.Log("dropedItem is null");
+
+		if (canUpdateBulletUI)
+			UpdateBulletUI(dropedItem.item.ItemType);
 	}
 
 	/// <summary>
@@ -241,5 +316,39 @@ public class ItemsController : MonoCache
 		InventoryController.instance.AddItemPos(item1inv, inSlot.GetItemType(), positem1, inSlot.GetAmount());
 
 		InventoryController.instance.AddItemPos(inSLotInv, item1.GetItemType(), posinslotinv, item1.GetAmount());
+	}
+
+	/// <summary>
+	/// Обновить UI пуль при подборе пуль, если это оружие в руке
+	/// </summary>
+	/// <param name="type"></param>
+	public void CheckHandForChangeBulletUI(TypeOfCartridge type)
+	{
+		string obj = inventory.GetInventory(ActiveSlotName).InventoryGetItem(0).GetItemType();
+		if (obj != null)
+		{
+			ItemType handType = inventory.GetItem(ActiveSlotName, 0).GetItemInfo().ItemType;
+			switch (type)
+			{
+				case TypeOfCartridge.light:
+					if (handType == ItemType.lightWeapon)
+						UpdateBulletUI(handType);
+					break;
+				case TypeOfCartridge.heavy:
+					if (handType == ItemType.heavyWeapon)
+						UpdateBulletUI(handType);
+					break;
+				case TypeOfCartridge.oil:
+					break;
+				case TypeOfCartridge.none:
+					if (handType == ItemType.melle)
+						UpdateBulletUI(handType);
+					break;
+				default:
+					break;
+			}
+		}
+		else
+			bulletUI.OnChangeBullets?.Invoke(-1, -1);
 	}
 }

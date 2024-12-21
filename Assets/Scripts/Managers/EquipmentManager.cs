@@ -1,6 +1,7 @@
 using InventorySystem;
 using UnityEngine;
 using Zenject;
+using static UnityEditor.Progress;
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -85,7 +86,6 @@ public class EquipmentManager : MonoBehaviour
         item.GetComponent<ItemPickup>().IsPicked = true;
 		item.GetComponent<Rigidbody>().isKinematic = true;
 
-		//Debug.Log($"Get {item.name}");
         curHand = item;
     }
 
@@ -96,10 +96,16 @@ public class EquipmentManager : MonoBehaviour
     {
         if (playerHand.childCount > 0)
         {
-            Destroy(playerHand.GetChild(0).gameObject);
+            GameObject obj = playerHand.GetChild(0).gameObject;
+            if (obj.GetComponent<ItemPickup>() != null)
+            {
+                ItemPickup item = obj.GetComponent<ItemPickup>();
+                item.IsPicked = false;
+			}
+			Destroy(obj);
 			curHand = null;
 		}
-    }
+	}
 
     /// <summary>
     /// Бросить в мир предмет
@@ -109,6 +115,7 @@ public class EquipmentManager : MonoBehaviour
 		if (playerHand.childCount > 0)
 		{
 			GetPlayerHand().transform.parent = null;
+			curHand = null;
 		}
 	}
 

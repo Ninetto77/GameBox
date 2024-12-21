@@ -31,7 +31,7 @@ namespace Player.States
 			if (lastOutline != null)
 				lastOutline.enabled = false;
 
-			if (Physics.Raycast(ray, out hit, reachDistance, m_Mask.value, QueryTriggerInteraction.Ignore/*, QueryTriggerInteraction.Ignore*/))
+			if (Physics.Raycast(ray, out hit, reachDistance, m_Mask.value, QueryTriggerInteraction.Ignore))
 			{
 				ItemPickup item = hit.collider.gameObject.GetComponent<ItemPickup>();
 
