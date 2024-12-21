@@ -10,9 +10,6 @@ namespace Sounds
         [SerializeField] private AudioMixerGroup musicMixerGroup;
         [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
-		[SerializeField] private AudioSource musicSource;
-		[SerializeField] private AudioSource sfxSource;
-
 		public static AudioManager instance;
         private void Awake()
         {
@@ -44,24 +41,8 @@ namespace Sounds
                 Debug.Log("Sound: " + name + " not found!");
 				return;
 			}
-
-            if (s.isSFX == true)
-            {
-                //            s.source.clip = s.clip;
-                //s.source.Play();
-                sfxSource.PlayOneShot(s.clip);
-            }
-			else
-            {
-				musicSource.clip = s.clip;
-				musicSource.Play();
-            }
-
-            //if (s.isSFX == true)
-            //    SFXSource.PlayOneShot(s.clip);
-            //else
-            //    musicSource.PlayOneShot(s.clip);
-        }
+			s.source.Play();
+		}
 
         public void StopSound(string name)
         {
@@ -71,15 +52,7 @@ namespace Sounds
                 Debug.LogWarning("Sound: " + name + " not found!");
                 return;
             }
-
-			if (s.isSFX == true)
-            //    s.source.Stop();
-			    sfxSource.Stop();
-
-
-			else
-				musicSource.Stop();
-			// s.source.Stop();
+			 s.source.Stop();
 		}
 
         public bool IsPlayingSound(string name)

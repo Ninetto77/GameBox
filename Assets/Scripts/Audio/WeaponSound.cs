@@ -37,7 +37,9 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayShootSound()
 	{
-		Debug.Log("PlayShootSound");
+		//Debug.Log("PlayShootSound");
+		if (Time.timeScale == 0)
+			return;
 		try
 		{
 			audioSource.PlayOneShot(_shootSound);
@@ -50,8 +52,9 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayEmptyClipSound()
 	{
-		Debug.Log("PlayEmptyClipSound");
-
+		//Debug.Log("PlayEmptyClipSound");
+		if (Time.timeScale == 0)
+			return;
 		try
 		{
 			audioSource.PlayOneShot(_emptyClipSound);
@@ -64,8 +67,9 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayReloudSound()
 	{
-		Debug.Log("PlayReloudSound");
-
+		//Debug.Log("PlayReloudSound");
+		if (Time.timeScale == 0)
+			return;
 		try
 		{
 			audioSource.PlayOneShot(_reloudSound);
@@ -78,8 +82,9 @@ public class WeaponSound : MonoBehaviour
 
 	private void PlayEndedSound()
 	{
-		Debug.Log("PlayEndedSound");
-
+		//	Debug.Log("PlayEndedSound");
+		if (Time.timeScale == 0)
+			return;
 		if (_endedSound != null)
 		{
 			audioSource.PlayOneShot(_shootSound);

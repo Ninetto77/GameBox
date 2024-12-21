@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 using Languages;
+using Sounds;
 
 namespace Tasks
 {
@@ -15,6 +16,9 @@ namespace Tasks
 		private int curTask = 0;
 		private Language lang;
 		[Inject] private UIManager uiManager;
+		[Inject] private AudioManager audioManager;
+		private const string questSound = GlobalStringsVars.QUEST_SOUND_NAME;
+
 
 		private void Start()
 		{
@@ -28,6 +32,7 @@ namespace Tasks
 		public void ChangeTask()
 		{
 			uiManager.TaskText.text = RUTasks[curTask++];
+			audioManager.PlaySound(questSound);
 		}
 
 		///// <summary>

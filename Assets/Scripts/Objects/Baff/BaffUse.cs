@@ -2,6 +2,7 @@ using Zenject;
 using UnityEngine;
 using Cache;
 using Points;
+using Sounds;
 
 public class BaffUse : MonoCache
 {
@@ -12,6 +13,9 @@ public class BaffUse : MonoCache
 
 	[Inject] private PlayerMoovement player;
 	[Inject] private ShopPoint shop;
+	[Inject] private AudioManager audioManager;
+
+	private const string candyAudio = GlobalStringsVars.CANDY_SOUND_NAME;
 
 	/// <summary>
 	/// use item baff
@@ -33,10 +37,11 @@ public class BaffUse : MonoCache
 		UseItem();
 
 		shop.AddHeal();
+		audioManager.PlaySound(candyAudio);
+
 		if (particleOnDestroy != null)
 		{
 			var hitEffect = Instantiate(particleOnDestroy, transform.position, Quaternion.identity);
-
 			Destroy(hitEffect.gameObject, 0.5f);
 		}
 		Destroy(this.gameObject, 0.5f);
