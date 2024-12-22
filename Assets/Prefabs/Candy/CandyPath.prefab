@@ -160,10 +160,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1660694631001666658, guid: 0cb8c42bfcf25d84698d30d79f5cd0a2, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1808800368584831935, guid: 0cb8c42bfcf25d84698d30d79f5cd0a2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.378349
@@ -233,10 +229,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144944438732887942, guid: 0cb8c42bfcf25d84698d30d79f5cd0a2, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1660694631001666658, guid: 0cb8c42bfcf25d84698d30d79f5cd0a2, type: 3}
-      propertyPath: outlineMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1808800368584831935, guid: 0cb8c42bfcf25d84698d30d79f5cd0a2, type: 3}

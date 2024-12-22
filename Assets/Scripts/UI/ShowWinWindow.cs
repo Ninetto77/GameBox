@@ -10,9 +10,9 @@ namespace Enemy
 		[Inject] private AudioManager audioManager;
 
 		private const string winSound = GlobalStringsVars.WIN_SOUND_NAME;
+		private const string musicSound = GlobalStringsVars.MAIN_MUSIC_NAME;
+
 		private EnemyController enemyController;
-
-
 
 		private void Start()
 		{
@@ -24,6 +24,7 @@ namespace Enemy
 		private void ShowWinWindowFunc()
 		{
 			uiManager.OnPlayerWin?.Invoke();
+			audioManager.StopSound(musicSound);
 			audioManager.PlaySound(winSound);
 		}
 	}

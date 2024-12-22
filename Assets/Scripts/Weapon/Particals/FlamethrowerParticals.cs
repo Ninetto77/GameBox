@@ -1,0 +1,77 @@
+using Enemy;
+using Enemy.States;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FlamethrowerParticals : MonoBehaviour
+{
+	[Header("Ёффекты")]
+	public ParticleSystem FireParticle;
+	public ParticleSystem SparkParticle;
+
+	public Flamethrower weapon;
+
+	private bool isAttack = false;
+
+	void Start()
+    {
+		weapon.OnAttackStarted += StartAttack;
+		weapon.OnAttackEnded += StopAttack;
+		FireParticle.Stop();
+		SparkParticle.Stop();
+	}
+
+	private void StartAttack()
+	{
+		if (isAttack == false)
+		{
+			isAttack = true;
+			FireParticle.Play();
+			SparkParticle.Stop();
+		}
+	}
+
+	private void StopAttack()
+	{
+		if (isAttack == true)
+		{
+			isAttack = false;
+			FireParticle.Stop();
+			SparkParticle.Play();
+		}
+	}
+
+	public List<ParticleCollisionEvent> collisionEvents;
+
+	private void OnParticleCollision(GameObject other)
+	{
+		if (other.layer == 8)
+		{
+			StartCoroutine(SetAttack(other));
+		}
+	}
+
+	/// <summary>
+	/// Ќаносить урон раз в секунду
+	/// </summary>
+	/// <param name="other"></param>
+	/// <returns></returns>
+	private IEnumerator SetAttack(GameObject other)
+	{
+		while (isAttack)
+		{
+			var enemy = other.GetComponent<EnemyController>();
+			if (enemy != null)
+			{
+				other.GetComponent<EnemyController>().ApplyDamage(weapon.weapon.WeaponDamage);
+				yield return new WaitForSeconds(1.5f);
+			}
+		}
+	}
+	private void OnDisable()
+	{
+		weapon.OnAttackStarted -= StartAttack;
+		weapon.OnAttackEnded -= StopAttack;
+	}
+}

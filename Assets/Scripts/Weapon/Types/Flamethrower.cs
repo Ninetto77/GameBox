@@ -1,27 +1,25 @@
 using Attack.Base;
-using Enemy;
-using System;
-using System.Collections;
+using Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Flamethrower : AttackBehaviour
 {
-    public float Damage;
-    public float TimeToStartAttack;
-    public ParticleSystem FireParticle;
-    public ParticleSystem SparkParticle;
+	[Header("Настройки")]
+	public WeaponItem weapon;
+	public float TimeToStartAttack;
+	
 
 	[Header("Sounds")]
 	[SerializeField] private AudioClip _emptyClipSound;
 	[SerializeField] private AudioClip _shootSound;
 	[SerializeField] private AudioClip _endedSound;
-	
+
+	[HideInInspector]
+	public ItemPickup item;
+
 	private AudioSource audioSource;
-
-
 	private OverlapWithAttack overlap;
-	private ItemPickup item;
 	private bool toolIsPicked;
 	private bool isAttack;
 
@@ -36,23 +34,6 @@ public class Flamethrower : AttackBehaviour
 		audioSource = GetComponent<AudioSource>();
 	}
 
-	/// <summary>
-	/// Воспроизвести звуки
-	/// </summary>
-	private void SetSounds()
-	{
-		if (isAttack)
-		{
-			audioSource.loop = true;
-			audioSource.Play();
-		}
-		else
-		{
-			audioSource.Stop();
-			audioSource.loop = false;
-			audioSource.PlayOneShot(_endedSound);
-		}
-	}
 
 	/// <summary>
 	/// Изменить состояние "подобран"
@@ -85,34 +66,35 @@ public class Flamethrower : AttackBehaviour
 		{
 			isAttack = false;
 			OnAttackEnded?.Invoke();
-			SparkParticle.Play();
-			FireParticle.Stop();
 			SetSounds();
 		}
 	}
 
 	private void StartAttack()
 	{
-		if (isAttack  == false)
+		if (isAttack == false)
 		{
 			isAttack = true;
-
-			FireParticle.Play();
-			SparkParticle.Stop();
-			StartCoroutine(SetAttack());
-			//overlap.PerformAttack();
-
 			OnAttackStarted?.Invoke();
 			SetSounds();
 		}
 	}
 
-	private IEnumerator SetAttack()
+	/// <summary>
+	/// Воспроизвести звуки
+	/// </summary>
+	private void SetSounds()
 	{
-		while(isAttack)
+		if (isAttack)
 		{
-			overlap.PerformAttack();
-			yield return new WaitForSeconds(1f);
+			audioSource.loop = true;
+			audioSource.Play();
+		}
+		else
+		{
+			audioSource.Stop();
+			audioSource.loop = false;
+			audioSource.PlayOneShot(_endedSound);
 		}
 	}
 

@@ -1,7 +1,5 @@
 using Cache;
-using System;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace Disapear
 {

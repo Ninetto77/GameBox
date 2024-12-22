@@ -92,10 +92,10 @@ namespace WeaponObilities
 		}
 
 
-		private void OnDestroy()
-		{
-			RemoveZoom();
-		}
+		//private void OnDestroy()
+		//{
+		//	RemoveZoom();
+		//}
 		private void OnDisable()
 		{
 			weapon.OnZoomMouseClick -= ZoomWeapon;

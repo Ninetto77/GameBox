@@ -76,38 +76,5 @@ namespace Sounds
             }
             return s.clip.length;
         }
-
-        /// <summary>
-        /// Change all sounds volume exept one sound
-        /// </summary>
-        /// <param name="value">value of volume</param>
-        /// <param name="name">sound name which doesnt need to be changed </param>
-        public void ChangeAllSoundsVolume(float value, string name)
-        {
-            foreach (var sound in sounds)
-            {
-                if (sound.name != name)
-                    sound.volume = value;
-            }
-        }
-
-        public void ChangeAllSoundsVolume(float value)
-        {
-            foreach (var sound in sounds)
-            {
-                sound.volume = value;
-            }
-        }
-
-        public void ChangeSoundVolume(string name, float value)
-        {
-            Sound s = Array.Find(sounds, sound => sound.name == name);
-            if (s == null)
-            {
-                Debug.LogWarning("Sound: " + name + " not found!");
-                return;
-            }
-            s.volume = value;
-        }
     }
 }

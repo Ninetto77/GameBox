@@ -48,9 +48,6 @@ public class PlayerMoovement : MonoCache, IDamageable
 	[HideInInspector]
 	public bool IsRunning = false;
 
-	private const string runName = GlobalStringsVars.RUN_SOUND_NAME;
-	private const string walkName = GlobalStringsVars.WALK_SOUND_NAME;
-
 	private const string deadName = GlobalStringsVars.DEATH_SOUND_NAME;
 	private const string musicName = GlobalStringsVars.MAIN_MUSIC_NAME;
 
@@ -135,7 +132,6 @@ public class PlayerMoovement : MonoCache, IDamageable
 		GetComponent<MouseLook>().enabled = false;
 		
 		audioManager.StopSound(musicName);
-		audioManager.StopSound(runName);
 		audioManager.PlaySound(deadName);
 
 		OnPlayerDead?.Invoke();
