@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+	public Action<int> OnChangeLevelDescription;
+
 	[Header("Canvases")]
 	public CanvasGroup MainMenuCanvas;
 	public CanvasGroup SettingsCanvas;
@@ -20,7 +22,6 @@ public class MenuManager : MonoBehaviour
 	[Multiline]
 	public string[] LevelDescription;
 	public TextMeshProUGUI LevelDescriptionText;
-
 
 	private CanvasGroup curCanvas;
 
@@ -48,8 +49,11 @@ public class MenuManager : MonoBehaviour
 
 	public void SetLevelDescription(int numberLevel)
 	{
-		if (numberLevel < LevelDescription.Length && numberLevel >-1)
+		if (numberLevel < LevelDescription.Length && numberLevel > -1)
+		{
 			LevelDescriptionText.text = LevelDescription[numberLevel];
+			OnChangeLevelDescription?.Invoke(numberLevel);
+		}
 		else
 			Debug.Log($"There are no {numberLevel} Level Description");
 	}
