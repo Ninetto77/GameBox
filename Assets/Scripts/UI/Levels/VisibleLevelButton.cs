@@ -34,4 +34,9 @@ public class VisibleLevelButton : MonoCache
 				break;
 		}
 	}
+
+	public void OpenLevelButtons(int openLevels)
+	{
+
+	}
 }

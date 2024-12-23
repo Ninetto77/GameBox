@@ -1,3 +1,4 @@
+using SaveSystem;
 using System;
 using UnityEngine;
 using Zenject.Asteroids;
@@ -105,16 +106,16 @@ namespace Points
         #endregion
 
 
-        public void SavePoints() => SaveSystem.SavePoints(this);
+        public void SavePoints() => SaveSystemInFile.SavePoints(this);
         public void LoadPoints()
         {
-            SavePoints points = SaveSystem.LoadPoints();
+            SavePoints points = SaveSystemInFile.LoadPoints();
             curPoints.Value = points.Points;
         }
 
 		private void OnDisable()
 		{
-            SavePoints();
+			SavePoints();
 		}
 	}
 }

@@ -3,9 +3,13 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class SaveSystem 
+public class SaveSystemInFile 
 {
-    public static void SavePoints(ShopPoint shop)
+	/// <summary>
+	/// Сохранение данных о количестве очков в файл
+	/// </summary>
+	/// <param name="shop"></param>
+	public static void SavePoints(ShopPoint shop)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/saveData.multy";
@@ -17,6 +21,10 @@ public class SaveSystem
         stream.Close();
 	}
 
+    /// <summary>
+    /// Загрузка данных о количестве очков из файла
+    /// </summary>
+    /// <returns></returns>
     public static SavePoints LoadPoints()
     {
 		string path = Application.persistentDataPath + "/saveData.multy";

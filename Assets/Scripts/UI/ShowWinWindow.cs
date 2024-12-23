@@ -2,12 +2,16 @@ using Enemy.States;
 using Sounds;
 using UnityEngine;
 using Zenject;
-namespace Enemy
+using SaveSystem;
+using Points;
+
+namespace Enemy.Abilities
 {
 	public class ShowWinWindow : MonoBehaviour
 	{
 		[Inject] private UIManager uiManager;
 		[Inject] private AudioManager audioManager;
+		[Inject] private ShopPoint shop;
 
 		private const string winSound = GlobalStringsVars.WIN_SOUND_NAME;
 		private const string musicSound = GlobalStringsVars.MAIN_MUSIC_NAME;
@@ -17,6 +21,13 @@ namespace Enemy
 		private void Start()
 		{
 			enemyController = GetComponent<EnemyController>();
+
+#if UNITY_WEBGL
+			Progress.instance.playerInfo.Level++;
+			Progress.instance.playerInfo.Points = shop.curPoints.Value;
+			Progress.instance.SavePlayerInfo();
+#endif
+
 			if (enemyController != null )
 				enemyController.OnEnemyDeath += ShowWinWindowFunc;
 		}
