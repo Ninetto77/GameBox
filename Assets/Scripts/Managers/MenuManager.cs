@@ -5,6 +5,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using Zenject.Asteroids;
 
 public class MenuManager : MonoBehaviour
@@ -30,6 +31,7 @@ public class MenuManager : MonoBehaviour
 	public TextMeshProUGUI LevelDescriptionText;
 
 	private CanvasGroup curCanvas;
+	[Inject] private Progress progress;
 
 	private void Start()
 	{
@@ -37,7 +39,10 @@ public class MenuManager : MonoBehaviour
 		StartMainMenu();
 		ChangeLevelButtons();
 #if UNITY_WEBGL
-		Progress.instance.SavePlayerInfo();
+		//ßÈ
+		//progress.SavePlayerInfo();
+		//ßÈ
+		//progress.LoadPlayerInfo();
 #endif
 	}
 
@@ -64,6 +69,20 @@ public class MenuManager : MonoBehaviour
 	{
 		StartCoroutine(SetCanvas(LevelCanvas));
 	}
+	private IEnumerator SetCanvas(CanvasGroup canvas)
+	{
+		AnimationShortCuts.FadeAnimation(curCanvas, PresetFadeOut);
+		curCanvas.blocksRaycasts = false;
+
+		yield return new WaitForSeconds(TimeOfDisappear);
+
+		AnimationShortCuts.FadeAnimation(canvas, PresetFadeIn);
+		
+		curCanvas = canvas;
+		canvas.blocksRaycasts = true;
+
+		SetLevelDescription(-1);
+	}
 
 
 	/// <summary>
@@ -78,20 +97,10 @@ public class MenuManager : MonoBehaviour
 			OnChangeLevelDescription?.Invoke(numberLevel);
 		}
 		else
-			Debug.Log($"There are no {numberLevel} Level Description");
-	}
-
-	private IEnumerator SetCanvas(CanvasGroup canvas)
-	{
-		AnimationShortCuts.FadeAnimation(curCanvas, PresetFadeOut);
-		curCanvas.blocksRaycasts = false;
-
-		yield return new WaitForSeconds(TimeOfDisappear);
-
-		AnimationShortCuts.FadeAnimation(canvas, PresetFadeIn);
-		
-		curCanvas = canvas;
-		canvas.blocksRaycasts = true;
+		{
+			LevelDescriptionText.text = "";
+			OnChangeLevelDescription?.Invoke(-1);
+		}
 	}
 
 	/// <summary>
@@ -100,7 +109,7 @@ public class MenuManager : MonoBehaviour
 	private void ChangeLevelButtons()
 	{
 		int countOfOpenLevel = 1;
-		countOfOpenLevel = Progress.instance.playerInfo.Level;
+		countOfOpenLevel = progress.playerInfo.Level;
 
 		switch (countOfOpenLevel)
 		{

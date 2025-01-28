@@ -5,11 +5,11 @@ using Zenject.Asteroids;
 
 namespace Points
 {
-    public class ShopPoint : MonoBehaviour
+    public class CartridgeShop : MonoBehaviour
     {
-        [ReadOnly]
-        public Point curPoints;
-        public Action<int> OnChangedPoints;
+        //[ReadOnly]
+        //public Point curPoints;
+        //public Action<int> OnChangedPoints;
         public Action OnAddHint;
 
 		public Action<TypeOfCartridge, int> OnPickCartridge;
@@ -26,14 +26,12 @@ namespace Points
 
 		private void Start()
 		{
-			LoadPoints();
-
 			LightCartridgeCount = 0;
 			HeavyCartridgeCount = 0;
 			OilCartridgeCount = 0;
 			
 			//curPoints = new Point();
-			OnChangedPoints?.Invoke(curPoints.Value);
+			//OnChangedPoints?.Invoke(curPoints.Value);
 			OnPickCartridge += PickCartridge;
 
 			OnUseCartridge += UseCartridge;
@@ -92,30 +90,6 @@ namespace Points
 		}
 		#endregion
 
-		#region Действия с очками
-		public void AddPoints(Point points)
-        {
-            curPoints += points;
-            OnChangedPoints?.Invoke(curPoints.Value);
-		}
-        public void SpendPoints(Point points)
-        {
-            curPoints -= points;
-			OnChangedPoints?.Invoke(curPoints.Value);
-		}
-        #endregion
 
-
-        public void SavePoints() => SaveSystemInFile.SavePoints(this);
-        public void LoadPoints()
-        {
-            SavePoints points = SaveSystemInFile.LoadPoints();
-            curPoints.Value = points.Points;
-        }
-
-		private void OnDisable()
-		{
-			SavePoints();
-		}
 	}
 }

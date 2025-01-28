@@ -12,7 +12,7 @@ public class BaffUse : MonoCache
 	[SerializeField] private float timeOfDestroy = 0.1f;
 
 	[Inject] private PlayerMoovement player;
-	[Inject] private ShopPoint shop;
+	[Inject] private CartridgeShop shop;
 	[Inject] private AudioManager audioManager;
 
 	private const string candyAudio = GlobalStringsVars.CANDY_SOUND_NAME;

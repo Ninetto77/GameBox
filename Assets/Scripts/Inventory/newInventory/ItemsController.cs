@@ -13,7 +13,7 @@ public class ItemsController : MonoCache
 	private InventoryController inventory;
 	private readonly string ActiveSlotName = GlobalStringsVars.ACTIVESLOT_NAME;
 	
-	[Inject] private ShopPoint shop;
+	[Inject] private CartridgeShop shop;
 	[Inject] private BulletUI bulletUI;
 
 	private void Start()

@@ -13,7 +13,7 @@ namespace Cartridges
 		[SerializeField] private ParticleSystem particleOnDestroy;
 		[SerializeField] private float timeOfDestroy = 0.1f;
 
-		[Inject] private ShopPoint shop;
+		[Inject] private CartridgeShop shop;
 		[Inject] private AudioManager audio;
 		[Inject] private ItemsController itemsController;
 

@@ -1,0 +1,36 @@
+﻿{
+	"items": {
+		{
+			"key": "BackKey",
+			"value": "Назад"
+		},
+		{
+			"key": "PlayKey",
+			"value": "Играть"
+		},
+		{
+			"key": "CompanyMenuKey",
+			"value": "Компания"
+		},
+		{
+			"key": "SettingsMenuKey",
+			"value": "Настройки"
+		},
+		{
+			"key": "InfinityArenaMenuKey",
+			"value": "Бесконечный кошмар"
+		},
+		{
+			"key": "DescriptionLevel1Key",
+			"value": "Описание 1"
+		},
+				{
+			"key": "DescriptionLevel2Key",
+			"value": "Описание 2"
+		},
+				{
+			"key": "DescriptionLevel3Key",
+			"value": "Описание 3"
+		},
+	}
+}

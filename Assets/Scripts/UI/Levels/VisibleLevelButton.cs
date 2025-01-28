@@ -24,13 +24,15 @@ public class VisibleLevelButton : MonoCache
 				break;
 			case 1:
 				PlayButton.SceneName = "Nick2";
-				button.interactable = true;
+				button.interactable = false;
 				break;
 			case 2:
 				PlayButton.SceneName = "Nick2";
-				button.interactable = true;
+				button.interactable = false;
 				break;
 			default:
+				PlayButton.SceneName = "Nick2";
+				button.interactable = false;
 				break;
 		}
 	}

@@ -13,15 +13,18 @@ Hello: function(){
 },
 
 SaveExtern: function(data){
+   console.log("SaveExtern");
     var dataString = UTF8ToString(data);
     var myObj = JSON.parse(dataString);
     player.setData(myObj);
 },
 
 LoadExtern: function(){
+   console.log("LoadExtern");
     player.getData().then(_data=>{
         const myJSON = JSON.stringify(_data);
-        myGameInstance.SendMessage('Progress', 'LoadPlayerInfo' , myJSON);
+        //имя объекта, функция, которая есть в этом объекте
+        myGameInstance.SendMessage('Progress', 'SetPlayerInfo' , myJSON);
     });
 },
 

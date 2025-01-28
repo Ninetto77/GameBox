@@ -7,7 +7,7 @@ using Zenject;
 
 public class CandyUI : MonoBehaviour
 {
-	[Inject] private ShopPoint shop;
+	[Inject] private PointsLevel shop;
 	
 	//[Header("Candy Info")]
 	//public TextMeshProUGUI CandyText;

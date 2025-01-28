@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace SaveSystem
 {
-	public class Progress : MonoBehaviour
+	public class Progress
 	{
-		public static Progress instance;
 		public PlayerInfo playerInfo;
 
 		[DllImport("__Internal")]
@@ -13,24 +12,23 @@ namespace SaveSystem
 		[DllImport("__Internal")]
 		private static extern void LoadExtern();
 
-		private void Awake()
-		{
-			if (instance == null)
-			{
-				transform.parent = null;
-				DontDestroyOnLoad(gameObject);
-				instance = this;
-
+        public Progress()
+        {
+			playerInfo = new PlayerInfo();
 #if UNITY_WEBGL
-				LoadExtern();
+			//ЯИ
+			//LoadExtern();
 #endif
-
-			}
-			else
-			{
-				Destroy(gameObject);
-			}
 		}
+
+		/// <summary>
+		/// изменение общего количества очков
+		/// </summary>
+		public void ChangeCommonPoints()
+		{
+			playerInfo.PointsCommon = playerInfo.PointsLevel1 + playerInfo.PointsLevel2 + playerInfo.PointsLevel3;
+		}
+
 
 		/// <summary>
 		/// сохранение данных
@@ -40,6 +38,16 @@ namespace SaveSystem
 #if UNITY_WEBGL
 			string jsonstring = JsonUtility.ToJson(playerInfo);
 			SaveExtern(jsonstring);
+#endif
+		}
+
+		/// <summary>
+		/// загрузить данные из облака
+		/// </summary>
+		public void LoadPlayerInfo()
+		{
+#if UNITY_WEBGL
+			LoadExtern();
 #endif
 		}
 

@@ -18,7 +18,7 @@ namespace Points
 		[Header("Effects")]
 		[SerializeField] private ParticleSystem particleOnDestroy;
 
-		[Inject] private ShopPoint shop;
+		[Inject] private PointsLevel shop;
 		[Inject] private AudioManager audioManager;
 
 
@@ -42,6 +42,8 @@ namespace Points
 				return;
 
 			shop.AddPoints(candyPoint);
+			shop.AddCandies();
+
 			audioManager.PlaySound(candyAudio);
 
 			if (particleOnDestroy != null)

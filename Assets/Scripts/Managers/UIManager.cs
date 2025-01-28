@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Image CandyImage;
 	[SerializeField] private Image MenuWinButton;
 	[SerializeField] private TextMeshProUGUI CandyText;
+	[SerializeField] private TextMeshProUGUI PointText;
 
 	public Action OnPlayerDamage;
 	public Action OnPlayerDead;
@@ -52,10 +53,11 @@ public class UIManager : MonoBehaviour
 	private TextMeshProUGUI menuText;
 	private TextMeshProUGUI menuWinText;
 
-	[Inject] private ShopPoint shop;
+	[Inject] private PointsLevel shop;
 	private bool isDead;
 
 	private const string candyTextCount = "Количество собранных конфет: ";
+	private const string pointTextCount = "Количество очков: ";
 
 	private void Start()
 	{
@@ -133,7 +135,8 @@ public class UIManager : MonoBehaviour
 	private IEnumerator ShowWinWindowForTime()
 	{
 		isDead = true;
-		CandyText.text = candyTextCount + shop.curPoints.Value;
+		CandyText.text = candyTextCount + shop.countOfCandy;
+		PointText.text = pointTextCount + shop.curPoints.Value;
 
 		AnimationShortCuts.FadeAnimation(GameCanvas, FadeOutGameCanvas);
 		GameCanvas.blocksRaycasts = false;
@@ -149,6 +152,10 @@ public class UIManager : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 		AnimationShortCuts.FadeIn(CandyImage);
 		AnimationShortCuts.FadeIn(CandyText);
+
+		yield return new WaitForSeconds(1f);
+		AnimationShortCuts.FadeIn(PointText);
+
 		yield return new WaitForSeconds(1f);
 		AnimationShortCuts.FadeIn(MenuWinButton);
 		AnimationShortCuts.FadeIn(menuWinText);
