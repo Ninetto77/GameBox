@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nick2.unity
     guid: 1d947cc2aebbe81449bbc6d7942915da
+  - enabled: 0
+    path: Assets/Scenes/Graveyard.unity
+    guid: 3a095ce3e54708740ae4f106aa3443b8
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: f3ddf04e654c5274bb07ca764613ecd8, type: 2}

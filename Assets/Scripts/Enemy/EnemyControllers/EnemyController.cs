@@ -1,4 +1,4 @@
-﻿using Disapear;
+﻿using Enemy.Abilities;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -82,6 +82,7 @@ namespace Enemy.States
 				audioSource.PlayOneShot(appearingSound);
 
 			player.OnPlayerDead += OnPlayerDead;
+			player.OnPlayerWin += OnPlayerWin;
 			canMove = true;
 
 			SetHPCanvas();
@@ -214,12 +215,14 @@ namespace Enemy.States
 		public Rigidbody GetRigidBody() => rb;
 
 		private void OnPlayerDead() => canMove = false;
+		private void OnPlayerWin() => canMove = false;
 		#endregion
 
 		private void OnDisable()
 		{
 			health.OnChangeHealth -= TakeDamage;
 			player.OnPlayerDead -= OnPlayerDead;
+			player.OnPlayerWin -= OnPlayerWin;
 		}
 
 	}

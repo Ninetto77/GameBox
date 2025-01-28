@@ -32,6 +32,7 @@ public class PlayerMoovement : MonoCache, IDamageable
     public Vector3 direction;
 
 	public Action OnPlayerDead;
+	public Action OnPlayerWin;
 
     private CharacterController player;
     private Animator animator;

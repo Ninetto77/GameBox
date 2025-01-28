@@ -26,7 +26,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 1d0eda7ce3dcba541b885420b847dde9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b57f3d29e8658740a46d20da06c66fb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AmbientOcclusion:
@@ -34,7 +34,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 424bc6a7b64744e4da71d0ccf122659b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic:
@@ -68,7 +68,7 @@ Material:
     - _Cull: 2
     - _Dissolve: 1
     - _DstBlend: 10
-    - _EmissionSwitcher: 1
+    - _EmissionSwitcher: 0
     - _MetallicValue: 0
     - _QueueControl: 0
     - _QueueOffset: 1
@@ -82,8 +82,8 @@ Material:
     - _ZWriteControl: 1
     m_Colors:
     - _Color: {r: 1.905882, g: 0.1537063, b: 0, a: 0}
-    - _Emission: {r: 0.9056604, g: 0.008963057, b: 0, a: 0}
-    - _EmissionMapColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Emission: {r: 1, g: 1, b: 1, a: 0}
+    - _EmissionMapColor: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7609489820068649374
 MonoBehaviour:

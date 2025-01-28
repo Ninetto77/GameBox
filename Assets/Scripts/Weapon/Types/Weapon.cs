@@ -28,11 +28,11 @@ namespace Attack.Raycast
 		private int commonCountOfBullets => GetCountsOfBullets();
 		private int visibleBulletUI;
 
-		[Inject] private ShopPoint shop;
+		[Inject] private CartridgeShop shop;
 		[Inject] private BulletUI bulletUI;
 
 		[Inject]
-		public void Construct(ShopPoint shop)
+		public void Construct(CartridgeShop shop)
 		{
 			this.shop = shop;
 		}

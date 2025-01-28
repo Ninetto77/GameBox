@@ -23,7 +23,7 @@ public class HintUI : MonoBehaviour
 	private int defaultText = 1;
 	private const string PLUS_TEXT = "+";
 
-	[Inject] private ShopPoint shop;
+	[Inject] private CartridgeShop shop;
 
 	void Start()
 	{

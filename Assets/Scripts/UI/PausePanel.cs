@@ -10,6 +10,9 @@ public class PausePanel : MonoCache
 	public Window TutorialCanvas;
 	public Window GameCanvas;
 
+	[Header("Cursor")]
+	public Texture2D cursorTexture;
+
 	[Header("Audio snapshots")]
 	public AudioMixerSnapshot Normal;
 	public AudioMixerSnapshot InPause;
@@ -23,6 +26,9 @@ public class PausePanel : MonoCache
 	{
 		isPause = false;
 		curCanvas = GameCanvas;
+
+		//убрать курсор
+		SetCursorState(false);
 	}
 	protected override void OnTick()
 	{
@@ -46,8 +52,8 @@ public class PausePanel : MonoCache
 		Normal.TransitionTo(0.5f);
 
 		SetCanvas(GameCanvas);
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		SetCursorState(false);
+
 		isPause = !isPause;
 	}
 
@@ -57,10 +63,9 @@ public class PausePanel : MonoCache
 		InPause.TransitionTo(0.5f);
 
 		SetCanvas(curCanvas);
-		Cursor.visible = true;
-		Cursor.lockState = CursorLockMode.None;
-		isPause = !isPause;
+		SetCursorState(true);
 
+		isPause = !isPause;
 	}
 
 	private void SetSettings(Window curCanvas)
@@ -73,8 +78,22 @@ public class PausePanel : MonoCache
 		{
 			PauseGame(curCanvas);
 		}
-
 	}
+
+	private void SetCursorState(bool state)
+	{
+		if (state)
+		{
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+		}
+        else
+        {
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+    }
 
 	public bool GetIsPause() => isPause;
 

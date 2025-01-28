@@ -1,7 +1,7 @@
 using Cache;
 using UnityEngine;
 
-namespace Disapear
+namespace Enemy.Abilities
 {
 	public class DisappearAbility : MonoCache
 	{

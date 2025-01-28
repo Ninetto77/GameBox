@@ -11,7 +11,7 @@ namespace Cartridges
 		public TypeOfCartridge typeOfCartridge;
 		public int CountOfCartridge;
 
-		public void Use(ShopPoint shop)
+		public void Use(CartridgeShop shop)
 		{
 			if (shop != null)
 				shop.OnPickCartridge?.Invoke(typeOfCartridge, CountOfCartridge);

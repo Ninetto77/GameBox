@@ -1,0 +1,36 @@
+﻿{
+	"items": {
+		{
+			"key": "BackKey",
+			"value": "Back"
+		},
+		{
+			"key": "PlayKey",
+			"value": "Plat"
+		},
+		{
+			"key": "CompanyMenuKey",
+			"value": "Company"
+		},
+		{
+			"key": "SettingsMenuKey",
+			"value": "Settings"
+		},
+		{
+			"key": "InfinityArenaMenuKey",
+			"value": "Infinity nightmare"
+		},
+		{
+			"key": "DescriptionLevel1Key",
+			"value": "Description 1"
+		},
+				{
+			"key": "DescriptionLevel2Key",
+			"value": "Description 2"
+		},
+				{
+			"key": "DescriptionLevel3Key",
+			"value": "Description 3"
+		},
+	}
+}
