@@ -2559,8 +2559,8 @@ MonoBehaviour:
   <MaxSpeed>k__BackingField: 10
   <Speed>k__BackingField: 60
   <AngularSpeed>k__BackingField: 10
-  appearingSound: {fileID: 8300000, guid: 15ca16ff45e4d1b4e8d2fc52547f6b5c, type: 3}
-  attackSound: {fileID: 8300000, guid: 9d4bab3cff47e5f45b384488b1c1f56f, type: 3}
+  triggedPlayerSound: {fileID: 8300000, guid: 15ca16ff45e4d1b4e8d2fc52547f6b5c, type: 3}
+  attackSound: {fileID: 8300000, guid: 687d9e90edf524247882ab60315c0839, type: 3}
   deathSound: {fileID: 8300000, guid: a285ec59c6c0df54dad0319ad89f7590, type: 3}
   hpCanvas: {fileID: 7313265054793841989}
   hpSlider: {fileID: 5193186177802451192}

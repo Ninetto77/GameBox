@@ -31,7 +31,7 @@ namespace Enemy.States
 		[field: SerializeField] public float AngularSpeed  {get; set;}
 
 		[Header("Звуки")]
-		[SerializeField] private AudioClip appearingSound;
+		[SerializeField] private AudioClip triggedPlayerSound;
 		[SerializeField] protected AudioClip attackSound;
 		[SerializeField] private AudioClip deathSound;
 
@@ -58,6 +58,7 @@ namespace Enemy.States
 
 		private bool isTakingDamage = false;
 		private bool isDead = false;
+		private bool noticePlayer = false;
 
         [Inject]
 		private void Construct(PlayerMoovement player)
@@ -77,9 +78,6 @@ namespace Enemy.States
 			health.OnChangeHealth += TakeDamage;
 
 			audioSource = GetComponent<AudioSource>();
-
-			if (appearingSound != null)
-				audioSource.PlayOneShot(appearingSound);
 
 			player.OnPlayerDead += OnPlayerDead;
 			player.OnPlayerWin += OnPlayerWin;
@@ -105,6 +103,13 @@ namespace Enemy.States
 				{
 					stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.attack, this));
 					return;
+				}
+
+				if (noticePlayer == false)
+				{
+					noticePlayer = true;
+					if (triggedPlayerSound != null)
+						audioSource.PlayOneShot(triggedPlayerSound);
 				}
 
 				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
