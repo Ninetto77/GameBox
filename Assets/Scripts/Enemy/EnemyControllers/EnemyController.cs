@@ -6,7 +6,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using Zenject.Asteroids;
 
 namespace Enemy.States
 {
@@ -75,10 +74,11 @@ namespace Enemy.States
 			animator = GetComponent<Animator>();
 			Animation = new EnemyAnimation(animator);
 
+			rb = GetComponent<Rigidbody>();
+
 			stateMachine = new StateMachine();
 			stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.none, this));
-
-			rb = GetComponent<Rigidbody>();
+			
 			disappear = GetComponent<DisappearAbility>();
 
 			health = GetComponent<Health>();
@@ -96,7 +96,7 @@ namespace Enemy.States
 		protected virtual void Update()
 		{
 			if (!canMove) return;
-			rb.AddForce(0, -20f, 0f, ForceMode.Acceleration);
+			rb.AddForce(0, -20f, 0f, ForceMode.Acceleration); //гравитация вниз
 
 			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
@@ -113,14 +113,15 @@ namespace Enemy.States
 				}
 
 				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
-				stateMachine.CurrentState.Update();
 			}
 
-			if (colliders.Count() == 0)
+
+			if (colliders.Count() == 0 && (stateMachine.CurrentState is RunState) | (stateMachine.CurrentState is AttackState))
 			{
 				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.idle, this));
-				stateMachine.CurrentState.Update();
 			}
+			
+			stateMachine.CurrentState.Update();
 		}
 
 		private IEnumerator NoticePlayer()
@@ -173,6 +174,8 @@ namespace Enemy.States
 
 		private void ChangeHPSliderValue(float health)
 		{
+			if (isDead) return;
+
 			hpCanvas.enabled = true;
 			hpSlider.value = health;
 		}

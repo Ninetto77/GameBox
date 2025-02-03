@@ -39,7 +39,10 @@ namespace Enemy.States
 			rb.AddForce(enemy.EnemyTransform.forward * Time.deltaTime * speed, ForceMode.Impulse);
 
 			if (rb.velocity.magnitude > enemy.MaxSpeed)
+			{
 				rb.velocity = Vector3.ClampMagnitude(rb.velocity, enemy.MaxSpeed);
+				Debug.Log(rb.velocity.magnitude);
+			}
 
 			enemy.Animation.Walk(rb.velocity.magnitude);
 		}

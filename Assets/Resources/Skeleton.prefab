@@ -6618,8 +6618,8 @@ MonoBehaviour:
   Damage: 10
   timeOfDeath: 3
   Points: 5
-  <MaxSpeed>k__BackingField: 70
-  <Speed>k__BackingField: 100
+  <MaxSpeed>k__BackingField: 90
+  <Speed>k__BackingField: 500
   <AngularSpeed>k__BackingField: 10
   triggedPlayerSound: {fileID: 8300000, guid: 26b79078b2bd5e94895628895fdf01c7, type: 3}
   attackSound: {fileID: 8300000, guid: d7d09b263dd05d345ac8b6960f32dfec, type: 3}
@@ -6673,9 +6673,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 3.1
+  m_Height: 2.56
   m_Direction: 1
-  m_Center: {x: 0, y: 3.38, z: 0}
+  m_Center: {x: 0, y: 3.31, z: 0}
 --- !u!95 &6585578710309211195
 Animator:
   serializedVersion: 5

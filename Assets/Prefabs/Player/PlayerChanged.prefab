@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gravity: 9.8
-  JumpForce: 40
+  JumpForce: 45
   Speed: 250
   MaxSpeed: 4
   RunSpeed: 250

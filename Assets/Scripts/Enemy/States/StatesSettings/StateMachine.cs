@@ -11,12 +11,12 @@ namespace Enemy.States
         {
             CurrentState = newState;
             CurrentState.Enter();
-        }
-        public void ChangeState(EnemyState newState)
+		}
+		public void ChangeState(EnemyState newState)
         {
             CurrentState.Exit();
             CurrentState = newState;
-            //Debug.Log($"Current state is {CurrentState}");
+            Debug.Log($"Current state is {CurrentState}");
             CurrentState.Enter();
         }
     }

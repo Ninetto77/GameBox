@@ -6841,7 +6841,7 @@ MonoBehaviour:
   Damage: 15
   timeOfDeath: 3
   Points: 15
-  <MaxSpeed>k__BackingField: 2
+  <MaxSpeed>k__BackingField: 1
   <Speed>k__BackingField: 40
   <AngularSpeed>k__BackingField: 10
   triggedPlayerSound: {fileID: 8300000, guid: 180edb1e9b03e8c4da0113ca58d27644, type: 3}
