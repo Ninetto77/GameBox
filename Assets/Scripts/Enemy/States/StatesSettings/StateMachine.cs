@@ -16,7 +16,7 @@ namespace Enemy.States
         {
             CurrentState.Exit();
             CurrentState = newState;
-            Debug.Log($"Current state is {CurrentState}");
+            //Debug.Log($"Current state is {CurrentState}");
             CurrentState.Enter();
         }
     }
