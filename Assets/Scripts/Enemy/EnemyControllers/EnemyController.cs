@@ -1,9 +1,12 @@
 ﻿using Enemy.Abilities;
+using Points;
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Zenject.Asteroids;
 
 namespace Enemy.States
 {
@@ -23,7 +26,9 @@ namespace Enemy.States
 		[Tooltip("Урон ведьмы менять в фаербол")]
 		public float Damage = 10;
 		[Header("Смерть")]
-		[SerializeField] float timeOfDeath = 3;
+		[SerializeField] private float timeOfDeath = 3;
+		[Header("Очки от смерти")]
+		public int Points;
 
 		//[Header("Физика")]
 		[field: SerializeField] public float MaxSpeed  {get; set;}
@@ -51,6 +56,8 @@ namespace Enemy.States
 		protected Health health;
 
 		[Inject] protected PlayerMoovement player;
+		[Inject] private PointsLevel shop;
+
 		public Vector3 TargetPosition => player.transform.position;
 		public Transform EnemyTransform => transform;
 
@@ -98,26 +105,38 @@ namespace Enemy.States
 
 			foreach (var collider in colliders)
 			{
-
+				StartCoroutine(NoticePlayer());
 				if (Vector3.Distance(transform.position, TargetPosition) < distanceToAtack)
 				{
 					stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.attack, this));
 					return;
 				}
 
+				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
+				stateMachine.CurrentState.Update();
+			}
+
+			if (colliders.Count() == 0)
+			{
+				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.idle, this));
+				stateMachine.CurrentState.Update();
+			}
+		}
+
+		private IEnumerator NoticePlayer()
+		{
+			if (stateMachine.CurrentState is IdleState)
+			{
 				if (noticePlayer == false)
 				{
 					noticePlayer = true;
 					if (triggedPlayerSound != null)
 						audioSource.PlayOneShot(triggedPlayerSound);
+
+					yield return new WaitForSeconds(10f);
+					noticePlayer = false;
 				}
-
-				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.run, this));
-				stateMachine.CurrentState.Update();
 			}
-
-			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.idle, this));
-			stateMachine.CurrentState.Update();
 		}
 
 		private void LateUpdate()
@@ -170,6 +189,8 @@ namespace Enemy.States
 		{
 			isDead = true;
 			OnEnemyDeath?.Invoke();
+
+			shop.AddPoints(new Point(Points));
 
 			if (deathSound != null)
 				audioSource.PlayOneShot(deathSound);

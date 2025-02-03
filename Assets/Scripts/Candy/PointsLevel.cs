@@ -8,6 +8,7 @@ namespace Points
 		[ReadOnly]
 		public Point curPoints;
 		public Action<int> OnChangedPoints;
+		public Action OnChangedCountCandies;
 
 		[ReadOnly]
 		public int countOfCandy = 0;
@@ -24,6 +25,7 @@ namespace Points
 		public void AddCandies()
 		{
 			countOfCandy++;
+			OnChangedCountCandies?.Invoke();
 		}
 		#endregion
 

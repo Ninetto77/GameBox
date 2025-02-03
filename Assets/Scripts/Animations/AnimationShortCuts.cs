@@ -31,6 +31,15 @@ namespace Code.Global.Animations
 				.SetEase(ease)
 				.SetLink(graphic.gameObject);
 		}
+
+		public static Tween Blink(this Graphic graphic, in int numberLoops = 10, in float duration = 1f, in Ease ease = Ease.Linear)
+		{
+			return graphic
+				.DOFade(1f, duration)
+				.SetLoops(numberLoops, LoopType.Yoyo)
+				.SetEase(ease)
+				.SetLink(graphic.gameObject);
+		}
 		#endregion
 
 		#region Canvas Group

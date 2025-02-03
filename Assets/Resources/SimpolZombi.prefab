@@ -6840,6 +6840,7 @@ MonoBehaviour:
   distanceToAtack: 3
   Damage: 15
   timeOfDeath: 3
+  Points: 15
   <MaxSpeed>k__BackingField: 2
   <Speed>k__BackingField: 40
   <AngularSpeed>k__BackingField: 10

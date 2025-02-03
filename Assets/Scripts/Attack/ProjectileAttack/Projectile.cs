@@ -34,7 +34,7 @@ namespace Attack.Projectile
 
 			if (collision.gameObject.TryGetComponent(out IDamageable damageable))
 			{				
-				if (1 << collision.collider.includeLayers.value == 1 << TargetMask.value)
+				if (TargetMask == (TargetMask | (1 << collision.gameObject.layer)))
 				{
 					OnTargetCollision(collision, damageable);
 

@@ -6,8 +6,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-
-	[SerializeField] private TimeBar bar;
+	//[SerializeField] private TimeBar bar;
 	[Inject] private UIManager uiManager;
 	private void Awake()
 	{
@@ -19,13 +18,6 @@ public class GameManager : MonoBehaviour
 	}
 	void Start()
     {
-		StartCoroutine(ShowTutorialHint());
-    }
 
-	private IEnumerator ShowTutorialHint()
-	{
-		AnimationShortCuts.FadeIn(uiManager.HintTutorialText);
-		yield return new WaitForSeconds(2f);
-		AnimationShortCuts.FadeOut(uiManager.HintTutorialText);
-	}
+    }
 }

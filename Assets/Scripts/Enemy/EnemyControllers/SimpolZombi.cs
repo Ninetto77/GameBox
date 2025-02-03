@@ -43,6 +43,9 @@ namespace Enemy.States
 		/// </summary>
 		private void ChangeRandomTexture()
 		{
+			if (gameObject.CompareTag("Skeleton"))
+				return;
+
 			Renderer enemyRenderer = gameObject.GetComponentInChildren<Renderer>();
 			int index = Random.Range(1, 5);
 

@@ -22,10 +22,10 @@ public class CandyUI : MonoBehaviour
 	private const string PLUS_TEXT = "+";
 	void Start()
     {
-        shop.OnChangedPoints += UpdateUI;
+        shop.OnChangedCountCandies += UpdateUI;
 	}
 
-	private void UpdateUI(int values)
+	private void UpdateUI()
 	{
 		//CandyText.text = values.ToString();
 		StartCoroutine(ShowHint());
@@ -42,5 +42,9 @@ public class CandyUI : MonoBehaviour
 		AnimationShortCuts.FadeIn(CandyHintCanvas);
 		yield return new WaitForSeconds(timeOfAppearHint);
 		AnimationShortCuts.FadeOut(CandyHintCanvas);
+	}
+	private void OnDisable()
+	{
+        shop.OnChangedCountCandies -= UpdateUI;
 	}
 }

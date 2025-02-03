@@ -92,9 +92,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gravity: 9.8
   JumpForce: 40
-  Speed: 100
-  MaxSpeed: 6
-  RunSpeed: 100
+  Speed: 250
+  MaxSpeed: 4
+  RunSpeed: 250
   RunMaxSpeed: 14
   hand: {fileID: 6208833017383352251}
   reachDistance: 1.8
@@ -160,7 +160,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -588,7 +588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5134991160317624514
 Transform:
   m_ObjectHideFlags: 0

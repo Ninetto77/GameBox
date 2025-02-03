@@ -1,5 +1,7 @@
 using Code.Global.Animations;
+using DG.Tweening;
 using Points;
+using Sounds;
 using System;
 using System.Collections;
 using TMPro;
@@ -11,7 +13,7 @@ public class UIManager : MonoBehaviour
 {
 	[field: SerializeField] public Image ZoomIcon { get; set; }
 	[field: SerializeField] public Image AimIcon { get ; set ; }
-	[field: SerializeField] public TextMeshProUGUI TaskText { get; set; }
+	[field: SerializeField] public TextMeshProUGUI TaskText { get; private set; }
 	[field: SerializeField] public TextMeshProUGUI HintTutorialText { get; set; }
 
 	[Header("RedOverlay/ Player Damage")]
@@ -169,6 +171,16 @@ public class UIManager : MonoBehaviour
 	}
 
 	#endregion
+
+	#region Задания квеста
+	public void SetTaskUI(string task)
+	{
+		TaskText.text = task;
+		AnimationShortCuts.PopEffect(TaskText, 1.1f, 0.5f).SetLoops(10) ;
+		
+	}
+	#endregion
+
 	public bool GetIsDead() => isDead;
 
 	private void OnDestroy()

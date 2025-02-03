@@ -771,12 +771,13 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
-  radiusOfDetect: 10
-  distanceToAtack: 10
+  radiusOfDetect: 6
+  distanceToAtack: 3
   Damage: 3
   timeOfDeath: 3
+  Points: 7
   <MaxSpeed>k__BackingField: 8
-  <Speed>k__BackingField: 35
+  <Speed>k__BackingField: 50
   <AngularSpeed>k__BackingField: 10
   triggedPlayerSound: {fileID: 8300000, guid: d9da2598d0eb2a140aa583968c7f6d9a, type: 3}
   attackSound: {fileID: 8300000, guid: e80c5d3934359814c80f35dbfa1ea081, type: 3}
@@ -802,8 +803,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.7, y: 1.03, z: 1.93}
-  m_Center: {x: 0.0072822967, y: 0.89, z: 0.64}
+  m_Size: {x: 2.7, y: 1.101045, z: 1.93}
+  m_Center: {x: 0.0072822967, y: 0.8544776, z: 0.64}
 --- !u!114 &6485750358973614278
 MonoBehaviour:
   m_ObjectHideFlags: 0
