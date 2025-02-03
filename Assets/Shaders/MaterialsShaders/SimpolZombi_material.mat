@@ -68,7 +68,7 @@ Material:
     - _Cull: 2
     - _Dissolve: 1
     - _DstBlend: 10
-    - _EmissionSwitcher: 0
+    - _EmissionSwitcher: 1
     - _MetallicValue: 0
     - _QueueControl: 0
     - _QueueOffset: 1
@@ -82,7 +82,7 @@ Material:
     - _ZWriteControl: 1
     m_Colors:
     - _Color: {r: 1.905882, g: 0.1537063, b: 0, a: 0}
-    - _Emission: {r: 1, g: 1, b: 1, a: 0}
+    - _Emission: {r: 1, g: 0.18353048, b: 0, a: 0}
     - _EmissionMapColor: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7609489820068649374

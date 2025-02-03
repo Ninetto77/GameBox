@@ -11,14 +11,15 @@ TagManager:
   - FxTemporaire
   - Ground
   - Fire
+  - Skeleton
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Trees
+  - 
   - Water
   - UI
-  - Stones
+  - 
   - Player
   - Damageable
   - Ground

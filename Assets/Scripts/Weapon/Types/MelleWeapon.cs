@@ -1,23 +1,24 @@
+using Attack.Base;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Attack.Overlap
 {
-	public class MelleWeapon : MonoBehaviour
+	public class MelleWeapon : AttackBehaviour
 	{
 		private bool toolIsPicked;
 		private OverlapWithAttack attack;
-
-		public Action OnAttackStarted;
-		public Action OnAttackEnded;
-		public Action OnEnemyHit;
 
 		private void Start()
 		{
 			var temp = gameObject.GetComponent<ItemPickup>();
 			toolIsPicked = temp.IsPicked;
 			attack = GetComponent<OverlapWithAttack>();
+		}
+		public override void PerformAttack()
+		{
+			attack.PerformAttack();
 		}
 
 		private void Update()
@@ -28,7 +29,7 @@ namespace Attack.Overlap
 
 			if (Input.GetMouseButtonDown(0))
 			{
-				attack.PerformAttack();
+				PerformAttack();
 				OnAttackStarted?.Invoke();
 			}
 			if (Input.GetMouseButtonUp(0))

@@ -6182,7 +6182,7 @@ Animator:
   m_GameObject: {fileID: 4417094781758499202}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 541cba689ebbd2b46b2dc748037cd06e, type: 3}
-  m_Controller: {fileID: 9100000, guid: d7df50a440d039b4aae0b7d5ae606861, type: 2}
+  m_Controller: {fileID: 9100000, guid: 185a2b8aa78cf734094b08a13ec6bce4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6208,14 +6208,15 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
-  radiusOfDetect: 10
-  distanceToAtack: 5
+  radiusOfDetect: 15
+  distanceToAtack: 3
   Damage: 15
   timeOfDeath: 3
+  Points: 25
   <MaxSpeed>k__BackingField: 10
-  <Speed>k__BackingField: 30
+  <Speed>k__BackingField: 40
   <AngularSpeed>k__BackingField: 10
-  appearingSound: {fileID: 8300000, guid: 180edb1e9b03e8c4da0113ca58d27644, type: 3}
+  triggedPlayerSound: {fileID: 8300000, guid: 180edb1e9b03e8c4da0113ca58d27644, type: 3}
   attackSound: {fileID: 8300000, guid: 290433e1c58196046b8fbd468223e70a, type: 3}
   deathSound: {fileID: 8300000, guid: ca2112d19cd9c56478829cb80b0623b8, type: 3}
   hpCanvas: {fileID: 2246363935741009359}

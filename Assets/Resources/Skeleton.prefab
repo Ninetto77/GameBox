@@ -6574,7 +6574,7 @@ GameObject:
   - component: {fileID: 4346492747182192670}
   m_Layer: 8
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6617,10 +6617,11 @@ MonoBehaviour:
   distanceToAtack: 4
   Damage: 10
   timeOfDeath: 3
-  <MaxSpeed>k__BackingField: 70
-  <Speed>k__BackingField: 100
+  Points: 5
+  <MaxSpeed>k__BackingField: 90
+  <Speed>k__BackingField: 500
   <AngularSpeed>k__BackingField: 10
-  appearingSound: {fileID: 8300000, guid: 26b79078b2bd5e94895628895fdf01c7, type: 3}
+  triggedPlayerSound: {fileID: 8300000, guid: 26b79078b2bd5e94895628895fdf01c7, type: 3}
   attackSound: {fileID: 8300000, guid: d7d09b263dd05d345ac8b6960f32dfec, type: 3}
   deathSound: {fileID: 8300000, guid: 5e97404f0f55067428ef8ec373aff7e6, type: 3}
   hpCanvas: {fileID: 1268546867570782904}
@@ -6672,9 +6673,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 3.1
+  m_Height: 2.56
   m_Direction: 1
-  m_Center: {x: 0, y: 3.38, z: 0}
+  m_Center: {x: 0, y: 3.31, z: 0}
 --- !u!95 &6585578710309211195
 Animator:
   serializedVersion: 5

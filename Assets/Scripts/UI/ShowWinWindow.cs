@@ -5,7 +5,6 @@ using Zenject;
 using SaveSystem;
 using Points;
 using UnityEngine.SceneManagement;
-using System;
 
 namespace Enemy.Abilities
 {
@@ -19,6 +18,8 @@ namespace Enemy.Abilities
 
 		private const string winSound = GlobalStringsVars.WIN_SOUND_NAME;
 		private const string musicSound = GlobalStringsVars.MAIN_MUSIC_NAME;
+		private const string runSound = GlobalStringsVars.RUN_SOUND_NAME;
+		private const string walkSound = GlobalStringsVars.WALK_SOUND_NAME;
 
 		private EnemyController enemyController;
 
@@ -87,6 +88,8 @@ namespace Enemy.Abilities
 		{
 			player.OnPlayerWin?.Invoke();
 			audioManager.StopSound(musicSound);
+			audioManager.StopSound(walkSound);
+			audioManager.StopSound(runSound);
 			audioManager.PlaySound(winSound);
 		}
 	}

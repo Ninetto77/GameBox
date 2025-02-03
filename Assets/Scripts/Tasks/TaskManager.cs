@@ -31,7 +31,8 @@ namespace Tasks
 		/// </summary>
 		public void ChangeTask()
 		{
-			uiManager.TaskText.text = RUTasks[curTask++];
+			//uiManager.TaskText.text = RUTasks[curTask++];
+			uiManager.SetTaskUI(RUTasks[curTask++]);
 			audioManager.PlaySound(questSound);
 		}
 

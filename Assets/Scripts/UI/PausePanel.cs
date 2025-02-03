@@ -1,4 +1,6 @@
 using Cache;
+using Code.Global.Animations;
+using Sounds;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -20,7 +22,12 @@ public class PausePanel : MonoCache
 	private bool isPause;
 	private Window curCanvas;
 
-	[Inject] private UIManager uIManager;
+	private const string tutorialSound = GlobalStringsVars.TUTORIAL_SOUND_NAME;
+	private const string runSound = GlobalStringsVars.RUN_SOUND_NAME;
+	private const string walkSound = GlobalStringsVars.WALK_SOUND_NAME;
+
+	[Inject] private UIManager uiManager;
+	[Inject] private AudioManager audioManager;
 
 	private void Start()
 	{
@@ -29,10 +36,12 @@ public class PausePanel : MonoCache
 
 		//убрать курсор
 		SetCursorState(false);
+		//показать подсказку о туториале
+		ShowTutorialHint();
 	}
 	protected override void OnTick()
 	{
-		if (uIManager.GetIsDead())
+		if (uiManager.GetIsDead())
 			return;
 
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -43,9 +52,13 @@ public class PausePanel : MonoCache
 		if (Input.GetKeyDown(KeyCode.Q))
 		{
 			SetSettings(TutorialCanvas);
+			audioManager.PlaySound(tutorialSound);
 		}
 	}
 
+	/// <summary>
+	/// продолжить игру
+	/// </summary>
 	public void ContinueGame()
 	{
 		Time.timeScale = 1.0f;
@@ -57,6 +70,10 @@ public class PausePanel : MonoCache
 		isPause = !isPause;
 	}
 
+	/// <summary>
+	/// поставить на паузу
+	/// </summary>
+	/// <param name="curCanvas"></param>
 	private void PauseGame(Window curCanvas)
 	{
 		Time.timeScale = 0f;
@@ -64,6 +81,9 @@ public class PausePanel : MonoCache
 
 		SetCanvas(curCanvas);
 		SetCursorState(true);
+
+		audioManager.StopSound(walkSound);
+		audioManager.StopSound(runSound);
 
 		isPause = !isPause;
 	}
@@ -80,6 +100,10 @@ public class PausePanel : MonoCache
 		}
 	}
 
+	/// <summary>
+	/// Установить курсор (не)видимым
+	/// </summary>
+	/// <param name="state"></param>
 	private void SetCursorState(bool state)
 	{
 		if (state)
@@ -95,8 +119,20 @@ public class PausePanel : MonoCache
 		}
     }
 
+	/// <summary>
+	/// показать подсказку о туториале
+	/// </summary>
+	private void ShowTutorialHint()
+	{
+		AnimationShortCuts.Blink(uiManager.HintTutorialText);
+	}
+
 	public bool GetIsPause() => isPause;
 
+	/// <summary>
+	/// установить канвас
+	/// </summary>
+	/// <param name="canvas"></param>
 	private void SetCanvas(Window canvas)
 	{
 		canvas.Open_Instantly();
