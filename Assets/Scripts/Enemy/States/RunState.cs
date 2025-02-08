@@ -41,7 +41,7 @@ namespace Enemy.States
 			if (rb.velocity.magnitude > enemy.MaxSpeed)
 			{
 				rb.velocity = Vector3.ClampMagnitude(rb.velocity, enemy.MaxSpeed);
-				Debug.Log(rb.velocity.magnitude);
+				//Debug.Log(rb.velocity.magnitude);
 			}
 
 			enemy.Animation.Walk(rb.velocity.magnitude);
