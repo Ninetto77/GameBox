@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0013871114, g: 0.0022241957, b: 0.008175579, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.0013871131, g: 0.002224198, b: 0.008175603, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1991,7 +1991,6 @@ MonoBehaviour:
   - "5. \u041D\u0430\u0439\u0442\u0438 \u0430\u0432\u0442\u043E\u043C\u0430\u0442"
   - "6. \u0412\u043E\u0439\u0442\u0438 \u0432 \u043B\u0435\u0441"
   - "7. \u041D\u0430\u0439\u0442\u0438 \u0438 \u0443\u0431\u0438\u0442\u044C \u0432\u0435\u0434\u044C\u043C\u0443"
-  ENTasks: []
 --- !u!114 &58209243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18953,6 +18952,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
+      propertyPath: numberOfTask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -28022,6 +28025,10 @@ PrefabInstance:
     - target: {fileID: 1375959236216434798, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
+      propertyPath: numberOfTask
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.size
@@ -45584,6 +45591,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
+      propertyPath: numberOfTask
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.size
       value: 9
       objectReference: {fileID: 0}
@@ -46665,6 +46676,10 @@ PrefabInstance:
     - target: {fileID: 1375959236216434798, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
+      propertyPath: numberOfTask
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.size
@@ -55409,6 +55424,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
+      propertyPath: numberOfTask
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -58221,6 +58240,10 @@ PrefabInstance:
     - target: {fileID: 1375959236216434798, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
+      propertyPath: numberOfTask
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1889762892509618228, guid: 327cd44fed29695499d7cc5b5cb61aea, type: 3}
       propertyPath: candyTransforms.Array.size
@@ -71962,8 +71985,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072206844}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.43051103, z: 0, w: 0.9025853}
-  m_LocalPosition: {x: 26.47, y: 0.88, z: 86.78}
+  m_LocalRotation: {x: -0, y: 0.43051106, z: -0, w: 0.9025854}
+  m_LocalPosition: {x: 19, y: 2, z: 96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74266,7 +74289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e435c4d6c6a20c4882fb7767c3f0083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 5808370390435642053, guid: b48427abe98fc2849975ab25af60340c, type: 3}
+  playerPrefab: {fileID: 7265966323951426913, guid: e6b7bf059cf383d4c9ac7d158f13fe35, type: 3}
   StartPoint: {fileID: 2072206845}
 --- !u!223 &830139700501309567
 Canvas:
@@ -77000,11 +77023,11 @@ MonoBehaviour:
   - {fileID: 4712855732550814193}
   - {fileID: 8851594868083378811}
   - {fileID: 7820868431355522751}
-  - {fileID: 713460191953166110}
+  - {fileID: 3836089120504405695}
   - {fileID: 363849704831572346}
+  - {fileID: 713460191953166110}
   - {fileID: 5521873055562588505}
   - {fileID: 38021216434953287}
-  - {fileID: 3836089120504405695}
   - {fileID: 2263114881210193283}
   - {fileID: 58209243}
   - {fileID: 117653015}

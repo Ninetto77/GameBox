@@ -29,9 +29,9 @@ namespace WeaponObilities
 			mainCamera = Camera.main;
 
 			look = mainCamera.gameObject.GetComponent<MouseLook>();
-			playerLook = player.gameObject.GetComponent<MouseLook>();
+			playerLook = player.gameObject.GetComponentInChildren<MouseLook>();
 
-			oldSensitivityVer = look.sensitivityVer;
+			oldSensitivityVer = playerLook.sensitivityVer;
 			oldSensitivityHor = playerLook.sensitivityHor;
 
 			isZoom = false;
@@ -61,7 +61,7 @@ namespace WeaponObilities
 				manager.ZoomIcon.enabled = true;
 				manager.AimIcon.enabled = false;
 
-				look.sensitivityVer = sensitivityVer;
+				playerLook.sensitivityVer = sensitivityVer;
 				playerLook.sensitivityHor = sensitivityHor;
 			}
 
@@ -87,7 +87,7 @@ namespace WeaponObilities
 			mainCamera.fieldOfView = 60;
 			manager.ZoomIcon.enabled = false;
 			manager.AimIcon.enabled = true;
-			look.sensitivityVer = oldSensitivityVer;
+			playerLook.sensitivityVer = oldSensitivityVer;
 			playerLook.sensitivityHor = oldSensitivityHor;
 		}
 
