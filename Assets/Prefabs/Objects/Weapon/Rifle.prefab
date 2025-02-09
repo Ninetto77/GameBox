@@ -501,8 +501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomValue: 10
-  sensitivityHor: 0.5
-  sensitivityVer: 0.5
+  sensitivityHor: 0.1
+  sensitivityVer: 0.1
 --- !u!82 &2130645003921290883
 AudioSource:
   m_ObjectHideFlags: 0

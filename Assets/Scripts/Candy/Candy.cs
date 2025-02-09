@@ -41,15 +41,15 @@ namespace Points
 			if (other.tag != "Player")
 				return;
 
-			shop.AddPoints(candyPoint);
-			shop.AddCandies();
-
 			audioManager.PlaySound(candyAudio);
 
 			if (particleOnDestroy != null)
 			{
 				var hitEffect = Instantiate(particleOnDestroy, transform.position, Quaternion.identity);
 			}
+
+			shop.AddPoints(candyPoint);
+			shop.AddCandies();
 			Destroy(this.gameObject);
 		}
 	}
