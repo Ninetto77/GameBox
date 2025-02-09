@@ -236,6 +236,8 @@ namespace Enemy.States
 
 		public void ApplyDamage(float damage)
 		{
+			if (isDead) return;
+
 			health.TakeDamage(damage);
 		}
 		#endregion

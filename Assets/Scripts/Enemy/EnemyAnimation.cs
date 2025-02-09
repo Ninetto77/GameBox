@@ -7,12 +7,14 @@ public class EnemyAnimation
     private const string SCREAM_STRING = "Scream";
     private const string DAMAGE_STRING = "Damage";
     private const string ATTACK_STRING = "IsAttacking";
+    private const string LIVE_STRING = "IsLiving";
     private const string DEATH_STRING = "Death";
 
 
 	public EnemyAnimation(Animator animator)
     {
         this.animator = animator;
+        animator.SetBool(LIVE_STRING, true);
     }
 
     public void Walk(float speed)
@@ -37,7 +39,8 @@ public class EnemyAnimation
     {
         if (animator == null) return;
         animator.SetTrigger(DEATH_STRING);
-    }
+		animator.SetBool(LIVE_STRING, false);
+	}
 
 	public void Attack(bool value)
 	{

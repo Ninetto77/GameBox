@@ -32,27 +32,27 @@ namespace Enemy
 			spiderObject = Resources.Load(spider);
 		}
 
-		public void Create(EnemyType enemyType, Vector3 at)
+		public void Create(EnemyType enemyType, Vector3 at, Transform parent = null)
 		{
 			switch (enemyType)
 			{
 				case EnemyType.simpolZombi:
-					_container.InstantiatePrefab(simpolZombi, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
+					_container.InstantiatePrefab(simpolZombi, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.hardZombi:
-					_container.InstantiatePrefab(hardZombi, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
+					_container.InstantiatePrefab(hardZombi, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.skeleton:
-					_container.InstantiatePrefab(skeletonObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
+					_container.InstantiatePrefab(skeletonObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.witch:
-					_container.InstantiatePrefab(witchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
+					_container.InstantiatePrefab(witchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;		
 				case EnemyType.mainWitch:
-					_container.InstantiatePrefab(mainWitchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
+					_container.InstantiatePrefab(mainWitchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.spider:
-					_container.InstantiatePrefab(spiderObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), null);
+					_container.InstantiatePrefab(spiderObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				default:
 					break;
