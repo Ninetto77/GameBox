@@ -350,6 +350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -427,6 +431,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
@@ -690,6 +698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -841,6 +853,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
@@ -994,6 +1010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -1071,6 +1091,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
@@ -1150,6 +1174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -1227,6 +1255,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
@@ -1306,6 +1338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -1384,6 +1420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -1461,6 +1501,10 @@ PrefabInstance:
     - target: {fileID: 1946315513998196, guid: 911baa52170780442a318441d874e58a, type: 3}
       propertyPath: m_Name
       value: EA03_Environment_Road_Cobble_Staris_01b_PRE (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315513998196, guid: 911baa52170780442a318441d874e58a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4121107872514998, guid: 911baa52170780442a318441d874e58a, type: 3}
       propertyPath: m_RootOrder
@@ -1601,6 +1645,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
@@ -1918,6 +1966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -1995,6 +2047,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
@@ -2140,6 +2196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Environment_Road_Cobble_Staris_01b_PRE (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1946315513998196, guid: 911baa52170780442a318441d874e58a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4121107872514998, guid: 911baa52170780442a318441d874e58a, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -2205,6 +2265,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
@@ -2603,6 +2667,10 @@ PrefabInstance:
     - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_Name
       value: EA03_Town_Hut_Wall_Painted_Desk_02a_PRE (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174075278887894, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4777190801663168, guid: c85ae87bbf201b940bcba31b404d61e0, type: 3}
       propertyPath: m_RootOrder
