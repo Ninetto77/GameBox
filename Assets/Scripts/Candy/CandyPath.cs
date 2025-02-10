@@ -8,7 +8,9 @@ namespace Points
 {
 	public class CandyPath : MonoCache
 	{
+		[Header("Номер квеста")]
 		public int numberOfTask = -1;
+		[Header("Конфетный путь")]
 		public GameObject[] candyTransforms;
 
 		[Inject] private TaskManager taskManager;
