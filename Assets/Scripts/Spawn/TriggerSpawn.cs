@@ -1,15 +1,17 @@
 using Cache;
 using Enemy;
+using System;
 using UnityEngine;
 using Zenject;
 
 public class TriggerSpawn : MonoCache
 {
+	[Header("Количество врагов")]
 	public EnemyMarker[] enemyMarkers;
 
 	[Inject] private IEnemyFactory enemyFactory;
 	private bool IsFirstEnter = true; // это первый вход в триггер
-	private GameObject[] allChildren;
+	protected GameObject[] allChildren;
 
 	private void Start()
 	{
@@ -29,7 +31,7 @@ public class TriggerSpawn : MonoCache
 		}
 	}
 
-	private void SpawnEnemies()
+	protected void SpawnEnemies()
 	{
 		CreateEnemyMarkersArray();
 
@@ -43,10 +45,12 @@ public class TriggerSpawn : MonoCache
 	/// <summary>
 	/// Создать массив для уничтожения маркеров
 	/// </summary>
-	private void CreateEnemyMarkersArray()
+	protected void CreateEnemyMarkersArray()
 	{
 		int i = 0;
-		allChildren = new GameObject[transform.childCount];
+
+		if (allChildren.Length <= 0)
+			allChildren = new GameObject[transform.childCount];
 
 		foreach (Transform child in transform)
 		{
@@ -58,11 +62,12 @@ public class TriggerSpawn : MonoCache
 	/// <summary>
 	/// Уничтожить маркеры
 	/// </summary>
-	private void DestroyMarkers()
+	protected void DestroyMarkers()
 	{
 		foreach (GameObject marker in allChildren)
 		{
 			Destroy(marker.gameObject);
 		}
+		Array.Clear(allChildren, 0, allChildren.Length);
 	}
 }
