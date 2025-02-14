@@ -16,8 +16,11 @@ namespace Items
 		[SerializeField, Min(0f)] private float _hitEffectDestroyDelay = 2f;
 
 		[Header("Settings")]
-		[SerializeField] private int bulletsPerMagazine = 30;
+		[SerializeField] private int totalBulletsInPool = 30;
 		[SerializeField] private float timeToReload = 1.5f;
+
+		[Header("Type of Cartridge")]
+		[SerializeField] private TypeOfCartridge typeOfCartridge;
 
 		public GameObject BulletPrefab => bulletPrefab;
 		public Sprite AimIcon => aimIcon;
@@ -27,8 +30,10 @@ namespace Items
 		public ParticleSystem HitEffectPrefab => _hitEffectPrefab;
 		public float HitEffectDestroyDelay => _hitEffectDestroyDelay;
 
-		public int BulletsPerMagazine => bulletsPerMagazine;
+		public int TotalBulletsInPool => totalBulletsInPool;
 		public float TimeToReload => timeToReload;
+		public TypeOfCartridge TypeOfCartridge => typeOfCartridge;
+
 
 		/// <summary>
 		/// Использование экипировки

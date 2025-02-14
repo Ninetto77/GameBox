@@ -26,7 +26,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 769
   distanceToShoot: 20
-  shotCount: 6
+  shotCount: 4
   _hitEffectPrefab: {fileID: 5996921585668486377, guid: 9d0eab054929ee94ca3eae5cfc299cfa, type: 3}
   _hitEffectDestroyDelay: 2
   useSpread: 1
@@ -34,5 +34,5 @@ MonoBehaviour:
   useZoom: 0
   singleFire: 1
   fireRate: 1
-  timeToReload: 1.5
+  timeToReload: 2.8
   totalBulletsInPool: 4
