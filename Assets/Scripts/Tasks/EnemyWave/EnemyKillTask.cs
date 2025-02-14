@@ -14,8 +14,10 @@ public class EnemyKillTask : MonoCache
 
 	[Header("Номер квеста")]
 	public int numberOfTask = -1;
+	[Header("Номер следующего квеста")]
+	public int numberOfNextTask = -1;
 
-	[Header("Количество врагов для волн")]	
+	[Header("Маркеры для волн")]	
 	public EnemyMarker[] enemyMarkers;
 	public EnemyMarker[] enemyMarkers2;
 	public EnemyMarker[] enemyMarkers3;
@@ -81,6 +83,8 @@ public class EnemyKillTask : MonoCache
 		}
 		else if (curKillCount == CountOfThirdWave)
 		{
+			taskManager.OnEndedTask?.Invoke(numberOfNextTask);
+
 			EndEnemyWave?.Invoke();
 			enemyControllers.Clear();
 			Destroy(transform.gameObject, 5);
