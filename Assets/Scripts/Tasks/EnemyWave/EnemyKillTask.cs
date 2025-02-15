@@ -1,6 +1,8 @@
 using Cache;
 using Enemy;
+using Enemy.States;
 using System;
+using System.Collections.Generic;
 using Tasks;
 using UnityEngine;
 using Zenject;
@@ -12,11 +14,17 @@ public class EnemyKillTask : MonoCache
 
 	[Header("Номер квеста")]
 	public int numberOfTask = -1;
+	[Header("Номер следующего квеста")]
+	public int numberOfNextTask = -1;
 
-	[Header("Количество врагов для волн")]	
+	[Header("Маркеры для волн")]	
 	public EnemyMarker[] enemyMarkers;
 	public EnemyMarker[] enemyMarkers2;
 	public EnemyMarker[] enemyMarkers3;
+
+
+	[Header("Количество врагов для волн")]
+	public Transform[] enemyMarkersTransforms = new Transform[3];
 
 	[Inject] private IEnemyFactory enemyFactory;
 	[Inject] private TaskManager taskManager;
@@ -29,17 +37,17 @@ public class EnemyKillTask : MonoCache
 	private int commonCount = 0;
     private int curKillCount = 0;
 	
-	protected GameObject[] allChildren;
+	private List<EnemyController> enemyControllers = new List<EnemyController>();
+	protected List<GameObject> allChildren = new List<GameObject>();
 
 	void Start()
     {
 		IsFirstEnter = true;
-		commonCount = CountOfFirstWave + CountOfSecondWave + CountOfThirdWave;
 		CountOfFirstWave = enemyMarkers.Length;
-		CountOfSecondWave = enemyMarkers2.Length;
-		CountOfThirdWave = enemyMarkers3.Length;
-
-		CreateEnemyMarkersArray();
+		CountOfSecondWave = CountOfFirstWave + enemyMarkers2.Length;
+		CountOfThirdWave = CountOfSecondWave + enemyMarkers3.Length;
+		
+		commonCount = CountOfThirdWave;
 	}
 
 	protected override void OnTick()
@@ -53,31 +61,60 @@ public class EnemyKillTask : MonoCache
 
 		if (other.transform.CompareTag("Player"))
 		{
-			SpawnEnemies(enemyMarkers);
+			taskManager.OnKillEnemyTask?.Invoke(numberOfTask, curKillCount, commonCount);
+			Spawn(1);
 			StartEnemyWave?.Invoke();
 			IsFirstEnter = false;
-			//Destroy(this.gameObject);
 		}
 	}
 
 	private void CheckForWave()
 	{
 		curKillCount++;
+		taskManager.OnKillEnemyTask?.Invoke(numberOfTask, curKillCount, commonCount);
+
 		if (curKillCount == CountOfFirstWave)
 		{
-			SpawnEnemies(enemyMarkers2);
+			Spawn(2);
 		}
 		else if (curKillCount == CountOfSecondWave)
 		{
-			SpawnEnemies(enemyMarkers3);
+			Spawn(3);
 		}
 		else if (curKillCount == CountOfThirdWave)
 		{
-			taskManager.OnEndedTask?.Invoke(numberOfTask);
-			EndEnemyWave?.Invoke();
-			DestroyMarkers();
-		}
+			taskManager.OnEndedTask?.Invoke(numberOfNextTask);
 
+			EndEnemyWave?.Invoke();
+			enemyControllers.Clear();
+			Destroy(transform.gameObject, 5);
+		}
+	}
+
+	/// <summary>
+	/// Начать спавнить врагов
+	/// </summary>
+	/// <param name="numberOfWave"></param>
+	private void Spawn(int numberOfWave)
+	{
+		CreateEnemyMarkersArray(numberOfWave);
+		switch (numberOfWave)
+		{
+			case 1:
+				SpawnEnemies(enemyMarkers);
+				break;
+			case 2:
+				SpawnEnemies(enemyMarkers2);
+				break;
+			case 3:
+				SpawnEnemies(enemyMarkers3);
+				break;
+			default:
+				break;
+		}
+		CreateEnemyList();
+		DestroyMarkers();
+		Destroy(enemyMarkersTransforms[numberOfWave - 1].gameObject);
 	}
 
 	/// <summary>
@@ -94,17 +131,11 @@ public class EnemyKillTask : MonoCache
 	/// <summary>
 	/// Создать массив для уничтожения маркеров
 	/// </summary>
-	protected void CreateEnemyMarkersArray()
+	protected void CreateEnemyMarkersArray(int numberOfWave)
 	{
-		int i = 0;
-
-		if (allChildren.Length <= 0)
-			allChildren = new GameObject[transform.childCount];
-
-		foreach (Transform child in transform)
+		foreach (Transform child in enemyMarkersTransforms[numberOfWave - 1])
 		{
-			allChildren[i] = child.gameObject;
-			i += 1;
+			allChildren.Add(child.gameObject);
 		}
 	}
 
@@ -117,7 +148,22 @@ public class EnemyKillTask : MonoCache
 		{
 			Destroy(marker.gameObject);
 		}
-		Array.Clear(allChildren, 0, allChildren.Length);
+		allChildren.Clear();
 	}
 
+	/// <summary>
+	/// Создать массив для добавления врагов, подписка на смерть
+	/// </summary>
+	protected void CreateEnemyList()
+	{
+		foreach (Transform child in transform)
+		{
+			var enemy = child.GetComponent<EnemyController>();
+			if (enemy == null)
+				continue;
+
+			enemy.OnEnemyDeath += CheckForWave;
+			enemyControllers.Add(enemy);
+		}
+	}
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u0413\u0440\u0430\u043D\u0430\u0442\u043E\u043C\u0435\u0442"
   _description: "\u041F\u0443\u0441\u0442\u044C \u0432\u0435\u0441\u044C \u043C\u0438\u0440
-    \u0433\u043E\u0440\u0438\u0442"
+    \u0432\u0437\u043E\u0440\u0432\u0435\u0442\u0441\u044F"
   _icon: {fileID: -1497992062, guid: 8224205d05753024981f0dd48f6438f3, type: 3}
   _itemType: 2
   _prefab: {fileID: 3718982838855820358, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
@@ -25,5 +25,6 @@ MonoBehaviour:
   aimIcon: {fileID: 21300000, guid: 267d35dec1ca8854080c4ddd8add37f0, type: 3}
   _hitEffectPrefab: {fileID: 0}
   _hitEffectDestroyDelay: 2
-  bulletsPerMagazine: 30
-  timeToReload: 1.5
+  totalBulletsInPool: 1
+  timeToReload: 1.6
+  typeOfCartridge: 0

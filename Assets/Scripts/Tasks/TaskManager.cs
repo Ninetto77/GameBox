@@ -13,15 +13,19 @@ namespace Tasks
 		//public string[] ENTasks;
 
 		public Action<int> OnEndedTask;
+		public Action<int, int, int> OnKillEnemyTask;
 
 		private Language lang;
 		[Inject] private UIManager uiManager;
 		[Inject] private AudioManager audioManager;
+
 		private const string questSound = GlobalStringsVars.QUEST_SOUND_NAME;
+		private const string killEnemyTask = " Убито ";
 
 		private void Start()
 		{
 			OnEndedTask += ChangeTask;
+			OnKillEnemyTask += ChangeTask;
 		}
 
 		/// <summary>
@@ -32,6 +36,18 @@ namespace Tasks
 			//uiManager.TaskText.text = RUTasks[curTask++];
 			if (number == -1) return;
 			uiManager.SetTaskUI(RUTasks[number]);
+			audioManager.PlaySound(questSound);
+		}
+
+		/// <summary>
+		/// Поменять задание
+		/// </summary>
+		public void ChangeTask(int number, int count, int commonCount)
+		{
+			string str = killEnemyTask + count + "/" + commonCount;
+			if (number == -1) return;
+
+			uiManager.SetTaskUI(RUTasks[number] + str);
 			audioManager.PlaySound(questSound);
 		}
 

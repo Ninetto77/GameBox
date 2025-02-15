@@ -1,9 +1,11 @@
 using Attack.Base;
 using Attack.Projectile;
 using Items;
+using Points;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 public class GrenadeLauncher : AttackBehaviour
 {
@@ -19,23 +21,38 @@ public class GrenadeLauncher : AttackBehaviour
 
 	private float nextFireTime = 0;
 	private bool canFire = true;
-	private int bulletsPerMagazineDefault = 0;
-	private int currentBulletsPerMagazine = 0;
 
 	private Camera mainCamera;
 	private ItemPickup item;
 	private bool toolIsPicked;
 
+	//все связвнное с пулями и их отображением на UI
+	public int CurCountBulletsInPool;
+	private int commonCountOfBullets => GetCountsOfBullets();
+	private int visibleBulletUI;
+
+	[Inject] private CartridgeShop shop;
+	[Inject] private BulletUI bulletUI;
+	[Inject]
+	public void Construct(CartridgeShop shop)
+	{
+		this.shop = shop;
+	}
+
 	private void Start()
 	{
-		bulletsPerMagazineDefault = weapon.BulletsPerMagazine;
-		currentBulletsPerMagazine = bulletsPerMagazineDefault;
 		mainCamera = Camera.main;
 
 		projectile = GetComponent<ProjectileAttack>();
 
 		ChangeIsPicked();
 		item.OnChangeIsPicked += ChangeIsPicked;
+
+		//пули
+		shop.OnChangeCartridge += ChangeVisibleBulletUI;
+		CurCountBulletsInPool = 0;
+		visibleBulletUI = GetCountsOfBullets();
+
 	}
 
 	private void ChangeIsPicked()
@@ -54,13 +71,12 @@ public class GrenadeLauncher : AttackBehaviour
 		{
 			PerformAttack();
 		}
-		//if (Input.GetKeyDown(KeyCode.R) && canFire)
-		//{
-		//	StartCoroutine(Reload());
-		//}
+		if (Input.GetKeyDown(KeyCode.R) && canFire)
+		{
+			ReloadBullet();
+		}
 		if (Input.GetMouseButtonUp(0))
 			EndAttack();
-
 	}
 
 	private void EndAttack()
@@ -70,21 +86,15 @@ public class GrenadeLauncher : AttackBehaviour
 
 	public override void PerformAttack()
 	{
-		StartCoroutine(WaitToAttack());
-		////if (canFire)
-		////{
-
-		////	if (currentBulletsPerMagazine > 0)
-		////	{
-		//		projectile.PerformAttack();
-		//		OnAttackStarted?.Invoke();
-		////	}
-		////	else
-		////	{
-		////		StartCoroutine(Reload());
-		////	}
-		//PerformEffects();
-		////}
+		if (canFire)
+		{
+			if (CurCountBulletsInPool > 0)
+				StartCoroutine(WaitToAttack());
+			else
+			{
+				OnEmptyClip?.Invoke();
+			}
+		}
 	}
 
 	private IEnumerator WaitToAttack()
@@ -93,6 +103,9 @@ public class GrenadeLauncher : AttackBehaviour
 		yield return new WaitForSeconds(TimeToAttack);
 		projectile.PerformAttack();
 		PerformEffects();
+
+		CurCountBulletsInPool--;
+		ChangeTotalBulletsInThePool(1);
 	}
 
 
@@ -127,6 +140,26 @@ public class GrenadeLauncher : AttackBehaviour
 
 	#endregion
 
+	# region Перезарядка
+
+	/// <summary>
+	/// Начать перезарядку
+	/// </summary>
+	/// <returns></returns>
+	private void ReloadBullet()
+	{
+		//звук пyстого патрона
+		if (commonCountOfBullets <= 0)
+		{
+			OnEmptyClip?.Invoke();
+		}
+		else
+		{
+			StartCoroutine(Reload());
+
+		}
+	}
+
 	/// <summary>
 	/// Перезарядка
 	/// </summary>
@@ -135,11 +168,79 @@ public class GrenadeLauncher : AttackBehaviour
 	{
 		canFire = false;
 
-		yield return new WaitForSeconds(weapon.TimeToReload);
+		OnReloud?.Invoke();
 
-		currentBulletsPerMagazine = bulletsPerMagazineDefault;
+		yield return new WaitForSeconds(weapon.TimeToReload);
+		
+		int dif = weapon.TotalBulletsInPool - CurCountBulletsInPool;
+		if (dif > commonCountOfBullets)
+		{
+			dif = commonCountOfBullets;
+		}
+
+		CurCountBulletsInPool += dif;
+		visibleBulletUI = visibleBulletUI - dif;
+		bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
 
 		canFire = true;
 	}
+	#endregion
+
+	#region Пули и пули в UI
+	/// <summary>
+	/// общее количество пуль
+	/// </summary>
+	/// <returns>общее количество пуль </returns>
+	private int GetCountsOfBullets()
+	{
+		switch (weapon.TypeOfCartridge)
+		{
+			case TypeOfCartridge.light:
+				return shop.LightCartridgeCount;
+			case TypeOfCartridge.heavy:
+				return shop.HeavyCartridgeCount;
+			case TypeOfCartridge.oil:
+				return shop.OilCartridgeCount;
+			default:
+				return 0;
+		}
+	}
+
+	private void ChangeVisibleBulletUI(TypeOfCartridge cartridge, int arg2)
+	{
+		switch (cartridge)
+		{
+			case TypeOfCartridge.light:
+				if (weapon.TypeOfCartridge == TypeOfCartridge.light)
+				{
+					visibleBulletUI = GetCountsOfBullets();
+				}
+				break;
+			case TypeOfCartridge.heavy:
+				if (weapon.TypeOfCartridge == TypeOfCartridge.heavy)
+				{
+					visibleBulletUI = GetCountsOfBullets();
+				}
+				break;
+			case TypeOfCartridge.oil:
+				break;
+			case TypeOfCartridge.none:
+				break;
+			default:
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Изменить общее количество пуль
+	/// </summary>
+	/// <param name="value"></param>
+	private void ChangeTotalBulletsInThePool(int value)
+	{
+		var temp = GetCountsOfBullets() - value;
+		shop.OnUseCartridge?.Invoke(weapon.TypeOfCartridge, (temp));
+		bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
+	}
+	#endregion
 
 }

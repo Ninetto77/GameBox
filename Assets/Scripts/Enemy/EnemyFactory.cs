@@ -9,12 +9,14 @@ namespace Enemy
 		private const string enemyHard = "HardZombi";
 		private const string spider = "Spider";
 		private const string skeleton = "Skeleton";
+		private const string manKiller = "ManKiller";
 		private const string witch = "Witch";
 		private const string mainWitch = "MainWitch";
 
 		private Object simpolZombi;
 		private Object hardZombi;
 		private Object skeletonObject;
+		private Object manKillerObject;
 		private Object witchObject;
 		private Object mainWitchObject;
 		private Object spiderObject;
@@ -27,6 +29,7 @@ namespace Enemy
 			simpolZombi = Resources.Load(enemyEasy);
 			hardZombi = Resources.Load(enemyHard);
 			skeletonObject = Resources.Load(skeleton);
+			manKillerObject = Resources.Load(manKiller);
 			witchObject = Resources.Load(witch);
 			mainWitchObject = Resources.Load(mainWitch);
 			spiderObject = Resources.Load(spider);
@@ -44,6 +47,9 @@ namespace Enemy
 					break;
 				case EnemyType.skeleton:
 					_container.InstantiatePrefab(skeletonObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					break;
+				case EnemyType.manKiller:
+					_container.InstantiatePrefab(manKillerObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.witch:
 					_container.InstantiatePrefab(witchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);

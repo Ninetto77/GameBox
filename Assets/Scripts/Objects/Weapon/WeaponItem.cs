@@ -6,7 +6,7 @@ namespace Items
 	[CreateAssetMenu(fileName = "WeaponInfo", menuName = "Gameplay/New weapon")]
 	public class WeaponItem : Equipable
 	{
-		[Header("Type of weapon")]
+		[Header("Type of Cartridge")]
 		[SerializeField] private TypeOfCartridge typeOfCartridge;
 
 		[Header("Prefab")]

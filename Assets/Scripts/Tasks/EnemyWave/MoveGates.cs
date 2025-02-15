@@ -1,11 +1,21 @@
 using Cache;
 using DG.Tweening;
+using Sounds;
+using UnityEngine;
+using Zenject;
 
 public class MoveGates : MonoCache
 {
+	public Transform gate;
+	[Header("Настройки анимации")]
 	public float offset;
 	public float duration;
+
     private EnemyKillTask killTask;
+	private const string waveGatesSound = GlobalStringsVars.WAVE_GATES_SOUND_NAME;
+
+	[Inject]
+	private AudioManager audioManager;
 	void Start()
     {
 		killTask = GetComponent<EnemyKillTask>();
@@ -18,11 +28,13 @@ public class MoveGates : MonoCache
 
 	private void MoveUp()
 	{
-		transform.DOMoveY(offset, duration, true).SetEase(Ease.InElastic);
+		audioManager.PlaySound(waveGatesSound);
+		gate.DOMoveY(gate.position.y + offset, duration).SetEase(Ease.InOutQuint);
 	}
 
 	private void MoveDown()
 	{
-		transform.DOMoveY(-offset, duration, true).SetEase(Ease.InElastic);
+		audioManager.PlaySound(waveGatesSound);
+		gate.DOMoveY(gate.position.y - offset, duration).SetEase(Ease.InOutQuint);
 	}
 }

@@ -22,6 +22,12 @@ public class EnemyMarker : MonoBehaviour
 			case EnemyType.skeleton:
 				Gizmos.color = Color.magenta;
 				break;
+			case EnemyType.manKiller:
+				Gizmos.color = Color.green;
+				break;
+			case EnemyType.mainWitch:
+				Gizmos.color = Color.cyan;
+				break;
 			//case EnemyType.mainWitch:
 			//	Gizmos.color = Color.green;
 			//	break;
