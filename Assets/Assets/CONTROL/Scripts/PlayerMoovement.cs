@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(InputKeys))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(DamagePlayer))]
 public class PlayerMoovement : MonoCache
@@ -30,19 +31,24 @@ public class PlayerMoovement : MonoCache
 
 	[SerializeField] private Rigidbody rb;
 	[SerializeField] private DamagePlayer damagePlayer;	
+	[SerializeField] private InputKeys inputs;
 	private PlayerBrain brain;
+	private MouseLook playerLook;
 
 	private void OnValidate()
 	{
 		rb ??= GetComponent<Rigidbody>();
 		damagePlayer ??= GetComponent<DamagePlayer>();
+		inputs ??= GetComponent<InputKeys>();
 	}
 
 	private void Start()
 	{
 		brain = new PlayerBrain(reachDistance);
 		health = damagePlayer.health;
-		OnPlayerDead += damagePlayer.OnPlayerDead;
+		damagePlayer.OnPlayerDead += PlayerDead ;
+		OnPlayerWin += PlayerWin;
+		playerLook = GetComponentInChildren<MouseLook>();
 	}
 
 	protected override void OnTick()
@@ -76,5 +82,30 @@ public class PlayerMoovement : MonoCache
 	public void ApplyDamage(float damage)
 	{
 		damagePlayer.ApplyDamage(damage);
+	}
+
+	/// <summary>
+	/// При выигрыше
+	/// </summary>
+	private void PlayerWin()
+	{
+		ChangeCanMoveState(false);
+	}
+
+	private void PlayerDead()
+	{
+		OnPlayerDead?.Invoke();
+		ChangeCanMoveState(false);
+	}
+
+	/// <summary>
+	/// Поменять подвижность игрока
+	/// </summary>
+	/// <param name="state"></param>
+	public void ChangeCanMoveState(bool state)
+	{
+		inputs.enabled = state;
+		playerLook.enabled = state;
+		rb.freezeRotation = true;
 	}
 }

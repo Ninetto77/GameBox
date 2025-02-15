@@ -43,8 +43,6 @@ public class DamagePlayer : MonoCache, IDamageable
 	private IEnumerator DeadPlayer()
 	{
 		yield return new WaitForEndOfFrame();
-		GetComponent<InputKeys>().enabled = false;
-		GetComponent<MouseLook>().enabled = false;
 
 		audioManager.StopSound(musicName);
 		audioManager.PlaySound(deadName);

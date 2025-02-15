@@ -167,8 +167,11 @@ namespace Enemy.States
 		{
 			if (hpCanvas && hpCanvas.worldCamera != null)
 			{
-				Quaternion vec = camera.transform.rotation;
-				hpCanvas.transform.rotation = vec;
+				if (hpCanvas.enabled)
+				{
+					Quaternion vec = camera.transform.rotation;
+					hpCanvas.transform.rotation = vec;
+				}
 			}
 		}
 
