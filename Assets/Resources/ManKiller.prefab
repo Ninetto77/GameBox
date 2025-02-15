@@ -7026,7 +7026,7 @@ GameObject:
   - component: {fileID: 706364811989971189}
   m_Layer: 8
   m_Name: ManKiller
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7059,11 +7059,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6268413479186606220}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 853b80e9b8cd1aa4e85814f4c812a166, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 4dea6901624698446acfd8ce0c541f22, type: 3}
   m_Controller: {fileID: 9100000, guid: 185a2b8aa78cf734094b08a13ec6bce4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -7097,8 +7097,8 @@ MonoBehaviour:
   triggedPlayerSound: {fileID: 8300000, guid: 180edb1e9b03e8c4da0113ca58d27644, type: 3}
   attackSound: {fileID: 8300000, guid: 290433e1c58196046b8fbd468223e70a, type: 3}
   deathSound: {fileID: 8300000, guid: ca2112d19cd9c56478829cb80b0623b8, type: 3}
-  hpCanvas: {fileID: 0}
-  hpSlider: {fileID: 0}
+  hpCanvas: {fileID: 8536205193622752212}
+  hpSlider: {fileID: 7442420892030534476}
 --- !u!114 &7625694072677467850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7121,7 +7121,7 @@ Rigidbody:
   m_GameObject: {fileID: 6268413479186606220}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -7270,7 +7270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f85baf32ce94e14c9c126c9a5c6029a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyRenderer: {fileID: 0}
+  enemyRenderer: {fileID: 9209460935946739789}
   effectSpeed: 0.3
 --- !u!114 &939416596498051096
 MonoBehaviour:
