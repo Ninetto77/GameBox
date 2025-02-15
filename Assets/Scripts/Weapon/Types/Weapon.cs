@@ -122,7 +122,7 @@ namespace Attack.Raycast
 			}
 			if (Input.GetKeyDown(KeyCode.R) && canFire)
 			{
-				ReloudBullet();
+				ReloadBullet();
 			}
 
 			if (weapon.UseZoom)
@@ -148,7 +148,8 @@ namespace Attack.Raycast
 					{
 						if (CurCountBulletsInPool > 0)
 						{
-							OnAttackStarted?.Invoke();
+							if (i == 0)
+								OnAttackStarted?.Invoke();
 							PerformRaycastCamera();
 						}
 						else
@@ -235,9 +236,9 @@ namespace Attack.Raycast
 		/// Проверка на перезарядку
 		/// </summary>
 		/// <returns></returns>
-		private void ReloudBullet()
+		private void ReloadBullet()
 		{
-			StartCoroutine(WaitToReloudBullet());
+			StartCoroutine(WaitToReloadBullet());
 
 			//звук пyстого патрона
 			if (commonCountOfBullets <= 0)
@@ -250,7 +251,7 @@ namespace Attack.Raycast
 		/// Перезарядка
 		/// </summary>
 		/// <returns></returns>
-		private IEnumerator WaitToReloudBullet()
+		private IEnumerator WaitToReloadBullet()
 		{
 			if (commonCountOfBullets > 0)
 			{
