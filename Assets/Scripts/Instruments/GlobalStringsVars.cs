@@ -35,6 +35,7 @@ public class GlobalStringsVars
 	public const string TUTORIAL_SOUND_NAME = "Tutorial";
 	public const string WAVE_GATES_SOUND_NAME = "WaveGates";
 	public const string DEATH_SOUND_NAME = "Death";
+	public const string BOSS_SOUND_NAME = "Boss";
 
 	public const string SFXMIXER_NAME = "SFXVolume";
 	public const string MUSICMIXER_NAME = "MusicVolume";

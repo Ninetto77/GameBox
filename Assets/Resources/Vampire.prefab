@@ -776,7 +776,7 @@ Transform:
   m_GameObject: {fileID: 3512205277927780355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.43, y: 0.23, z: 38.45}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -824,10 +824,12 @@ MonoBehaviour:
   radiusOfDetect: 10
   distanceToAtack: 3
   Damage: 30
+  timeOfDeath: 3
+  Points: 0
   <MaxSpeed>k__BackingField: 10
   <Speed>k__BackingField: 35
   <AngularSpeed>k__BackingField: 10
-  appearingSound: {fileID: 0}
+  triggedPlayerSound: {fileID: 0}
   attackSound: {fileID: 0}
   deathSound: {fileID: 0}
   hpCanvas: {fileID: 3838121907309581809}

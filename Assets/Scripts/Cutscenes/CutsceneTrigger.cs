@@ -1,4 +1,5 @@
 using Cache;
+using Sounds;
 using System;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -9,11 +10,17 @@ namespace CutScenes
 	[RequireComponent(typeof(PlayableDirector))]
 	public class CutsceneTrigger : MonoCache
 	{
+		[Header("Аудио для боссов")]
+		[SerializeField] private bool playBossSound = false;
+
+		[Header("Катсцена")]
 		[SerializeField] private PlayableDirector playable;
 		[Inject] private PlayerMoovement player;
-		//[SerializeField] private List<CutsceneStruct> cutscenes = new List<CutsceneStruct>();
+		[Inject] private AudioManager audioManager;
 
-		//public Dictionary<string, PlayableDirector> CutscenesDictionary = new Dictionary<string, PlayableDirector>();
+		private Camera mainCamera;
+		private const string bossSound = GlobalStringsVars.BOSS_SOUND_NAME;
+
 
 		private void OnValidate()
 		{
@@ -23,6 +30,7 @@ namespace CutScenes
 		private void Start()
 		{
 			playable.playOnAwake = false;
+			mainCamera = Camera.main;
 		}
 
 		public void PlayCutscene()
@@ -31,7 +39,11 @@ namespace CutScenes
 			{
 				Debug.Log("Play");
 
+				if (playBossSound)
+					audioManager.PlaySound(bossSound);
+
 				player.ChangeCanMoveState(false);
+				mainCamera.gameObject.SetActive(false);
 				playable.Play();
 			}
 		}
@@ -42,6 +54,7 @@ namespace CutScenes
 			{
 				Debug.Log("Stop");
 				player.ChangeCanMoveState(true);
+				mainCamera.gameObject.SetActive(true);
 				playable.Stop();
 			}
 		}
@@ -51,9 +64,6 @@ namespace CutScenes
 			if (!other.CompareTag("Player")) return;
 
 			PlayCutscene();
-			//словарь катсцен: имя - объект таймлини
-			//плэй катсцену
-			//остановить катсцену
 		}
 	}
 
@@ -64,4 +74,3 @@ namespace CutScenes
 		PlayableDirector playable;
 	}
 }
-
