@@ -14,7 +14,7 @@ namespace Enemy.States
 		{
 			base.Enter();
 			RotateToPlayer();
-			enemy.Animation.Damage();
+			enemy.AnimationEnemy.Damage();
 		}
 
 		/// <summary>

@@ -7,7 +7,7 @@ public interface IEnemy
    float MaxSpeed { get; set; }
    float AngularSpeed { get; set; }
    Vector3 TargetPosition { get; }
-	EnemyAnimation Animation { get; set; }
+	EnemyAnimation AnimationEnemy { get; set; }
 	Rigidbody GetRigidBody();
 	Transform EnemyTransform { get; }
 

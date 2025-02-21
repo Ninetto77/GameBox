@@ -24,12 +24,12 @@ namespace Enemy.States
 		{
 			base.Enter();
 			RotateToPlayer();
-			enemy.Animation.Attack(true);
+			enemy.AnimationEnemy.Attack(true);
 		}
 
 		public override void Exit()
 		{
-			enemy.Animation.Attack(false);
+			enemy.AnimationEnemy.Attack(false);
 			base.Exit();
 		}
 	}

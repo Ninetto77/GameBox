@@ -11,21 +11,15 @@ public class FXProvider : LocalAssetLoader
 			case FXType.none:
 				_assetName = "";
 				break;
-			case FXType.wood:
-				_assetName = "WFX_Wood";
-				break;
-			case FXType.metal:
-				_assetName = "WFX_Metal";
-				break;
-			case FXType.blaster:
-				_assetName = "WFX_Blaster";
-				break;
 			case FXType.fireball:
 				_assetName = "Fireball";
 				break;
+			case FXType.magicArea:
+				_assetName = "MagicArea";
+				break;
 		}
 		return LoadAsset<GameObject>(_assetName, position, rotation, parent);
-    }
+	}
 
 	public void UnloadFX()
 	{
