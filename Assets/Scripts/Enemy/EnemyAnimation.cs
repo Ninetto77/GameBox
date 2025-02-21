@@ -7,6 +7,7 @@ public class EnemyAnimation
     private const string SCREAM_STRING = "Scream";
     private const string DAMAGE_STRING = "Damage";
     private const string ATTACK_STRING = "IsAttacking";
+    private const string MAGIC_AREA_STRING = "MagicArea";
     private const string LIVE_STRING = "IsLiving";
     private const string DEATH_STRING = "Death";
 
@@ -46,5 +47,11 @@ public class EnemyAnimation
 	{
         if (animator == null) return;
 		animator.SetBool(ATTACK_STRING, value);
+	}
+
+	public void MagicArea()
+	{
+		if (animator == null) return;
+		animator.SetTrigger(MAGIC_AREA_STRING);
 	}
 }

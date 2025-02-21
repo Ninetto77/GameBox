@@ -13,7 +13,7 @@ namespace Enemy.States
 		{
 			base.Enter();
 			RotateToPlayer();
-			enemy.Animation.Death();
+			enemy.AnimationEnemy.Death();
 		}
 
 

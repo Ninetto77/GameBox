@@ -44,7 +44,7 @@ namespace Enemy.States
 				//Debug.Log(rb.velocity.magnitude);
 			}
 
-			enemy.Animation.Walk(rb.velocity.magnitude);
+			enemy.AnimationEnemy.Walk(rb.velocity.magnitude);
 		}
 
 		public override void Enter()

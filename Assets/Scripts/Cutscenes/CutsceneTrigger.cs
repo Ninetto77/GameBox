@@ -19,6 +19,7 @@ namespace CutScenes
 		[Inject] private AudioManager audioManager;
 
 		private Camera mainCamera;
+		private bool IsFirstEnter = true; // это первый вход в триггер
 		private const string bossSound = GlobalStringsVars.BOSS_SOUND_NAME;
 
 
@@ -37,7 +38,6 @@ namespace CutScenes
 		{
 			if (playable != null)
 			{
-				Debug.Log("Play");
 
 				if (playBossSound)
 					audioManager.PlaySound(bossSound);
@@ -61,9 +61,13 @@ namespace CutScenes
 
 		private void OnTriggerEnter(Collider other)
 		{
+			if (!IsFirstEnter) return;
 			if (!other.CompareTag("Player")) return;
 
+			Debug.Log("Play " + gameObject.name + " " + other.name);
 			PlayCutscene();
+			IsFirstEnter = false;
+
 		}
 	}
 

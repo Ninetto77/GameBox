@@ -31,7 +31,7 @@ namespace Points
 		{
 			if (transform.childCount == 1)
 			{
-				Destroy(this.gameObject);
+				//Destroy(this);
 			}
 		}
 

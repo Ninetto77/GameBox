@@ -1376,6 +1376,37 @@ Transform:
   - {fileID: 774130736536218972}
   m_Father: {fileID: 6834784104561477504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3960744343061582317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7599103316451364024}
+  m_Layer: 8
+  m_Name: MagicArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7599103316451364024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960744343061582317}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5993843983179672226}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3983231923672765310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1689,7 @@ GameObject:
   - component: {fileID: 6448707715413381501}
   - component: {fileID: 8143754138522671943}
   - component: {fileID: 9140787953298931305}
+  - component: {fileID: 5870156548235563581}
   - component: {fileID: 8733187353795393314}
   - component: {fileID: 1307673428144357397}
   - component: {fileID: 1281627326348991269}
@@ -1686,6 +1718,7 @@ Transform:
   - {fileID: 5625083902669872800}
   - {fileID: 1712396481656649985}
   - {fileID: 2050835166940327812}
+  - {fileID: 7599103316451364024}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5948826032033513395
@@ -1716,8 +1749,10 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: a285ec59c6c0df54dad0319ad89f7590, type: 3}
   hpCanvas: {fileID: 7552217039336961626}
   hpSlider: {fileID: 1186232161197289515}
-  FxPrefab: 4
+  FxPrefab: 1
   FirePoint: {fileID: 5625083902669872800}
+  FxMagicAreaPrefab: 2
+  FirePointMagicArea: {fileID: 7599103316451364024}
 --- !u!95 &2679908944548675714
 Animator:
   serializedVersion: 5
@@ -1898,6 +1933,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5870156548235563581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728899135202617665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93914757ea1b6c64fa5737f6272def6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 3399686520363597031}
+  effectSpeed: 0.3
 --- !u!114 &8733187353795393314
 MonoBehaviour:
   m_ObjectHideFlags: 0
