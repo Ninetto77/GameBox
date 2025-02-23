@@ -32,6 +32,7 @@ namespace Attack.Projectile
 			if (IsProjectileDisposed)
 				return;
 
+			Debug.Log(collision.gameObject.name);
 			if (collision.gameObject.TryGetComponent(out IDamageable damageable))
 			{				
 				if (TargetMask == (TargetMask | (1 << collision.gameObject.layer)))

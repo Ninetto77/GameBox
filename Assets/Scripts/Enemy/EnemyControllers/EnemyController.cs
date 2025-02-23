@@ -266,7 +266,6 @@ namespace Enemy.States
 			}
 			else
 			{
-				Debug.Log("appea");
 				if (appear)
 					appear.Execute();
 			}
