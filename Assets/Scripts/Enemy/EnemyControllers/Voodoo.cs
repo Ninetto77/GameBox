@@ -18,7 +18,7 @@ public class Voodoo : MonoCache, IDamageable, IEnemy
 
 
 	public Vector3 TargetPosition => player.transform.position;
-	public EnemyAnimation Animation { get; set; }
+	public EnemyAnimation AnimationEnemy { get; set; }
 	public Transform EnemyTransform => transform;
 
 
@@ -42,7 +42,7 @@ public class Voodoo : MonoCache, IDamageable, IEnemy
 	private void Awake()
 	{
 		animator = GetComponent<Animator>();
-		Animation = new EnemyAnimation(animator);
+		AnimationEnemy = new EnemyAnimation(animator);
 
 		health = GetComponent<Health>();
 		health.OnChangeHealth += TakeDamage;

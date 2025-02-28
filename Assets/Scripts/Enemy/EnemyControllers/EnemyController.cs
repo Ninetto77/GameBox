@@ -29,7 +29,6 @@ namespace Enemy.States
 		[Header("Очки от смерти")]
 		public int Points;
 
-		//[Header("Физика")]
 		[field: SerializeField] public float MaxSpeed  {get; set;}
 		[field: SerializeField] public float Speed { get; set; }
 		[field: SerializeField] public float AngularSpeed  {get; set;}
@@ -47,10 +46,11 @@ namespace Enemy.States
 		protected AudioSource audioSource;
 
 		[HideInInspector]
-		public EnemyAnimation Animation { get; set; }
+		public EnemyAnimation AnimationEnemy { get; set; }
 		private Rigidbody rb;
 		private Camera camera;
 		private DisappearAbility disappear;
+		private AppearAbility appear;
 		protected StateMachine stateMachine;
 		protected Health health;
 
@@ -72,7 +72,7 @@ namespace Enemy.States
             this.player = player;
 
 			animator = GetComponent<Animator>();
-			Animation = new EnemyAnimation(animator);
+			AnimationEnemy = new EnemyAnimation(animator);
 
 			rb = GetComponent<Rigidbody>();
 
@@ -80,6 +80,7 @@ namespace Enemy.States
 			stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.none, this));
 			
 			disappear = GetComponent<DisappearAbility>();
+			appear = GetComponent<AppearAbility>();
 
 			health = GetComponent<Health>();
 			health.OnChangeHealth += TakeDamage;
@@ -251,6 +252,24 @@ namespace Enemy.States
 		private void OnPlayerDead() => canMove = false;
 		private void OnPlayerWin() => canMove = false;
 		#endregion
+
+		/// <summary>
+		/// Изменить прозрачность
+		/// </summary>
+		/// <param name="state">Сделать ли исчезновение объекта</param>
+		public void SetDissapeareState(bool state)
+		{
+			if (state) 
+			{
+				if (disappear)
+					disappear.Execute();
+			}
+			else
+			{
+				if (appear)
+					appear.Execute();
+			}
+		}
 
 		private void OnDisable()
 		{

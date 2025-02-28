@@ -9,6 +9,7 @@ namespace Tasks
 {
 	public class TaskManager : MonoBehaviour
 	{
+		[TextArea]
 		public string[] RUTasks;
 		//public string[] ENTasks;
 

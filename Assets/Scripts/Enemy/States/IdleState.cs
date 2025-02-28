@@ -8,7 +8,7 @@ namespace Enemy.States
 
 		public override void Update()
 		{
-			enemy.Animation.Walk(rb.velocity.magnitude);
+			enemy.AnimationEnemy.Walk(rb.velocity.magnitude);
 		}
 
 		public override void Enter()

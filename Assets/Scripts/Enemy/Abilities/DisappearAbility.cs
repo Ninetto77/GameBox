@@ -34,6 +34,9 @@ namespace Enemy.Abilities
 				currentValue -= effectSpeed * Time.deltaTime;
 			}
 			enemyRenderer.material.SetFloat("_Dissolve", currentValue);
+
+			if ( currentValue <= 0 )
+				_activateSwitcher = false;
 		}
 	}
 }

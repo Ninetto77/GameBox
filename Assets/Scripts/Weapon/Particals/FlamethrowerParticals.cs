@@ -48,6 +48,7 @@ public class FlamethrowerParticals : MonoBehaviour
 	{
 		if (other.layer == 8)
 		{
+			if (other == null) return;
 			StartCoroutine(SetAttack(other));
 		}
 	}
@@ -60,7 +61,7 @@ public class FlamethrowerParticals : MonoBehaviour
 	private IEnumerator SetAttack(GameObject other)
 	{
 		while (isAttack)
-		{
+		{			
 			var enemy = other.GetComponent<EnemyController>();
 			if (enemy != null)
 			{

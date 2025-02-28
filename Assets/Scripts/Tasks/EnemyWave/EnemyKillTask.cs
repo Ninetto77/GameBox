@@ -13,18 +13,18 @@ public class EnemyKillTask : MonoCache
 	public Action EndEnemyWave;
 
 	[Header("Номер квеста")]
-	public int numberOfTask = -1;
+	[SerializeField] private int numberOfTask = -1;
 	[Header("Номер следующего квеста")]
-	public int numberOfNextTask = -1;
+	[SerializeField] private int numberOfNextTask = -1;
 
-	[Header("Маркеры для волн")]	
-	public EnemyMarker[] enemyMarkers;
-	public EnemyMarker[] enemyMarkers2;
-	public EnemyMarker[] enemyMarkers3;
+	[Header("Маркеры для волн")]
+	[SerializeField] private EnemyMarker[] enemyMarkers;
+	[SerializeField] private EnemyMarker[] enemyMarkers2;
+	[SerializeField] private EnemyMarker[] enemyMarkers3;
 
 
 	[Header("Количество врагов для волн")]
-	public Transform[] enemyMarkersTransforms = new Transform[3];
+	[SerializeField] private Transform[] enemyMarkersTransforms = new Transform[3];
 
 	[Inject] private IEnemyFactory enemyFactory;
 	[Inject] private TaskManager taskManager;

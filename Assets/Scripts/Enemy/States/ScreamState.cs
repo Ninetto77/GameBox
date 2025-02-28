@@ -25,7 +25,7 @@ namespace Enemy.States
 		public override void Enter()
 		{
 			base.Enter();
-			enemy.Animation.Scream();
+			enemy.AnimationEnemy.Scream();
 		}
 
 		public override void Exit()
