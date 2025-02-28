@@ -21,7 +21,7 @@ MonoBehaviour:
   _fxType: 3
   typeOfCartridge: 1
   aimIcon: {fileID: 0}
-  weaponDamage: 15
+  weaponDamage: 20
   layerMask:
     serializedVersion: 2
     m_Bits: 769

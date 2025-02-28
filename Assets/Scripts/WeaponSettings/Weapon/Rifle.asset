@@ -19,8 +19,9 @@ MonoBehaviour:
   _prefab: {fileID: 1902958443794195071, guid: e4c1f1b45a6380b43beee3ed6cc46c88, type: 3}
   _equipmentSlot: 0
   _fxType: 3
+  typeOfCartridge: 0
   aimIcon: {fileID: 0}
-  weaponDamage: 80
+  weaponDamage: 60
   layerMask:
     serializedVersion: 2
     m_Bits: 769
@@ -34,5 +35,4 @@ MonoBehaviour:
   singleFire: 1
   fireRate: 2
   timeToReload: 1.2
-  countOfBullets: 100
   totalBulletsInPool: 8

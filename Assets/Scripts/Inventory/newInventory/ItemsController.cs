@@ -29,19 +29,19 @@ public class ItemsController : MonoCache
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.melle);
 			SetActiveSlot(inventoryname);
-			CheckHandForChangeBulletUI(TypeOfCartridge.none);
+			CheckHandForChangeBulletUI(TypeOfCartridge.none, true);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.lightWeapon);
 			SetActiveSlot(inventoryname);
-			CheckHandForChangeBulletUI(TypeOfCartridge.light);
+			CheckHandForChangeBulletUI(TypeOfCartridge.light, true);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.heavyWeapon);
 			SetActiveSlot(inventoryname);
-			CheckHandForChangeBulletUI(TypeOfCartridge.heavy);
+			CheckHandForChangeBulletUI(TypeOfCartridge.heavy, true);
 		}
 	}
 
@@ -49,24 +49,46 @@ public class ItemsController : MonoCache
 	/// Обновить количество пуль
 	/// </summary>
 	/// <param name="typeOfWeapon"></param>
-	private void UpdateBulletUI(ItemType typeOfWeapon)
+	private void UpdateBulletUI(ItemType typeOfWeapon, bool update)
 	{
-		switch (typeOfWeapon)
+		if (update)
 		{
-			case ItemType.melle:
-				bulletUI.OnChangeBullets?.Invoke(-1, -1);
-				break;
-			case ItemType.lightWeapon:
-				bulletUI.OnChangeBullets?.Invoke(0, shop.LightCartridgeCount);
-				break;
-			case ItemType.heavyWeapon:
-				bulletUI.OnChangeBullets?.Invoke(0, shop.HeavyCartridgeCount);
-				break;
-			case ItemType.scientificWeapon:
-				break;
-			default:
-				break;
+			switch (typeOfWeapon)
+			{
+				case ItemType.melle:
+					bulletUI.OnChangeBullets?.Invoke(-1, -1);
+					break;
+				case ItemType.lightWeapon:
+					bulletUI.OnChangeBullets?.Invoke(0, shop.LightCartridgeCount);
+					break;
+				case ItemType.heavyWeapon:
+					bulletUI.OnChangeBullets?.Invoke(0, shop.HeavyCartridgeCount);
+					break;
+				case ItemType.scientificWeapon:
+					break;
+				default:
+					break;
+			}
 		}
+		else
+		{
+			switch (typeOfWeapon)
+			{
+				case ItemType.melle:
+					bulletUI.OnChangeBullets?.Invoke(-1, -1);
+					break;
+				case ItemType.lightWeapon:
+					bulletUI.OnChangeCommonBullets?.Invoke(shop.LightCartridgeCount);
+					break;
+				case ItemType.heavyWeapon:
+					bulletUI.OnChangeCommonBullets?.Invoke(shop.HeavyCartridgeCount);
+					break;
+				case ItemType.scientificWeapon:
+					break;
+				default:
+					break;
+			}
+		}	
 	}
 
 	/// <summary>
@@ -260,7 +282,7 @@ public class ItemsController : MonoCache
 	private void CheckIsMelleWeapon(InventoryItem dropItem)
 	{
 		if (dropItem.GetItemInfo().ItemType == ItemType.melle)
-			UpdateBulletUI(ItemType.melle);
+			UpdateBulletUI(ItemType.melle, false);
 	}
 
 	private GameObject EquipHand(InventoryItem item)
@@ -296,7 +318,7 @@ public class ItemsController : MonoCache
 			Debug.Log("dropedItem is null");
 
 		if (canUpdateBulletUI)
-			UpdateBulletUI(dropedItem.item.ItemType);
+			UpdateBulletUI(dropedItem.item.ItemType, true);
 	}
 
 	/// <summary>
@@ -322,7 +344,7 @@ public class ItemsController : MonoCache
 	/// Обновить UI пуль при подборе пуль, если это оружие в руке
 	/// </summary>
 	/// <param name="type"></param>
-	public void CheckHandForChangeBulletUI(TypeOfCartridge type)
+	public void CheckHandForChangeBulletUI(TypeOfCartridge type, bool update)
 	{
 		string obj = inventory.GetInventory(ActiveSlotName).InventoryGetItem(0).GetItemType();
 		if (obj != null)
@@ -332,17 +354,17 @@ public class ItemsController : MonoCache
 			{
 				case TypeOfCartridge.light:
 					if (handType == ItemType.lightWeapon)
-						UpdateBulletUI(handType);
+						UpdateBulletUI(handType, update);
 					break;
 				case TypeOfCartridge.heavy:
 					if (handType == ItemType.heavyWeapon)
-						UpdateBulletUI(handType);
+						UpdateBulletUI(handType, update);
 					break;
 				case TypeOfCartridge.oil:
 					break;
 				case TypeOfCartridge.none:
 					if (handType == ItemType.melle)
-						UpdateBulletUI(handType);
+						UpdateBulletUI(handType, update);
 					break;
 				default:
 					break;

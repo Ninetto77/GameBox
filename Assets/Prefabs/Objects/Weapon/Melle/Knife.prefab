@@ -222,7 +222,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.7, y: 1.7, z: 1.7}
+  m_Size: {x: 4.4, y: 4.4, z: 4.4}
   m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!65 &8590624517406175152
 BoxCollider:
@@ -346,7 +346,7 @@ AudioSource:
   m_GameObject: {fileID: 7097269977889926110}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

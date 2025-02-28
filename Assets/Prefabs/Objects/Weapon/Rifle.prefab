@@ -192,15 +192,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.24
+      value: 407.578
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7
+      value: -8.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 85.7
+      value: 253.958
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -208,15 +208,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -228,7 +228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -423,7 +423,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3, y: 1.3, z: 1.3}
+  m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!65 &143108831612933586
 BoxCollider:

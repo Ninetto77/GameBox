@@ -76,7 +76,7 @@ MonoBehaviour:
     m_Bits: 768
   _projectileRigidbody: {fileID: 4337788067180452655}
   _spawnEffectOnDestroy: 1
-  _effectOnDestroyPrefab: {fileID: 198779945009258616, guid: 9aa670fab9a0c664e85bcf9d96b4c506, type: 3}
+  _effectOnDestroyPrefab: {fileID: 6096747404827299595, guid: f024c070df78a834bb7c301ec96fdf66, type: 3}
   _effectOnDestroyLifetime: 2
   _explosionOverlapSettings:
     _searchMask:

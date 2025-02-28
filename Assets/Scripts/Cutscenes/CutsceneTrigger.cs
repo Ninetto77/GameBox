@@ -52,7 +52,7 @@ namespace CutScenes
 		{
 			if (playable != null)
 			{
-				Debug.Log("Stop");
+				//Debug.Log("Stop");
 				player.ChangeCanMoveState(true);
 				mainCamera.gameObject.SetActive(true);
 				playable.Stop();
@@ -64,7 +64,7 @@ namespace CutScenes
 			if (!IsFirstEnter) return;
 			if (!other.CompareTag("Player")) return;
 
-			Debug.Log("Play " + gameObject.name + " " + other.name);
+			//Debug.Log("Play " + gameObject.name + " " + other.name);
 			PlayCutscene();
 			IsFirstEnter = false;
 

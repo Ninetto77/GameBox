@@ -63,6 +63,7 @@ namespace Enemy.States
 		protected bool canMove;
 
 		private bool isTakingDamage = false;
+		private bool hasFirstDamage = false;
 		private bool isDead = false;
 		private bool noticePlayer = false;
 
@@ -98,7 +99,6 @@ namespace Enemy.States
 		{
 			if (!canMove) return;
 			rb.AddForce(0, -20f, 0f, ForceMode.Acceleration); //гравитация вниз
-
 			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
 
 			if (isTakingDamage) return;
@@ -125,6 +125,10 @@ namespace Enemy.States
 			stateMachine.CurrentState.Update();
 		}
 
+		/// <summary>
+		/// Воспроизвести звук обнаружение игрока
+		/// </summary>
+		/// <returns></returns>
 		private IEnumerator NoticePlayer()
 		{
 			if (stateMachine.CurrentState is IdleState)
@@ -219,6 +223,13 @@ namespace Enemy.States
 		#region Нанесение урона
 		private void TakeDamage(float value)
 		{
+			//если это был первый урон
+			if (!hasFirstDamage)
+			{
+				hasFirstDamage = true;
+				radiusOfDetect = 45f;
+			}
+
 			ChangeHPSliderValue(value);
 
 			if (health.GetCurrentHealth() > 0)

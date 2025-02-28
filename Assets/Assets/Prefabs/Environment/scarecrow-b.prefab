@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2002211976558444129}
   - component: {fileID: 3199405914964849092}
   - component: {fileID: 829337378288272654}
-  - component: {fileID: 2036735692644620679}
+  - component: {fileID: 964492867732465332}
   m_Layer: 0
   m_Name: scarecrow-b
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2036735692644620679
-MeshCollider:
+--- !u!65 &964492867732465332
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2047507698295110468, guid: da077f0aa5505964cbc56c88ef257f4a, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.3876833, y: 2, z: 0.66847897}
+  m_Center: {x: 0.04886073, y: 1, z: -0.0070284754}

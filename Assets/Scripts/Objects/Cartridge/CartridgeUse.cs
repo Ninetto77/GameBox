@@ -26,7 +26,7 @@ namespace Cartridges
 			if (item != null)
 			{
 				item.Use(shop);
-				itemsController.CheckHandForChangeBulletUI(item.typeOfCartridge);
+				itemsController.CheckHandForChangeBulletUI(item.typeOfCartridge, false);
 				Destroy(this.gameObject);
 			}
 		}

@@ -1736,7 +1736,7 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
-  radiusOfDetect: 15
+  radiusOfDetect: 30
   distanceToAtack: 15.5
   Damage: 30
   timeOfDeath: 3
