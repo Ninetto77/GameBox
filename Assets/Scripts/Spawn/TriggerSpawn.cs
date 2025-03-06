@@ -1,10 +1,10 @@
 using Cache;
 using Enemy;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof(Collider))]
 public class TriggerSpawn : MonoCache
 {
 	[Header("Количество врагов")]

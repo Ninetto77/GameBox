@@ -6184,7 +6184,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 541cba689ebbd2b46b2dc748037cd06e, type: 3}
   m_Controller: {fileID: 9100000, guid: 185a2b8aa78cf734094b08a13ec6bce4, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -6302,7 +6302,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6405,10 +6405,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 2
+  m_Radius: 0.27367002
+  m_Height: 2.2700813
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0.0021927953, y: 1.1350406, z: 0}
 --- !u!114 &4155617570641873978
 MonoBehaviour:
   m_ObjectHideFlags: 0

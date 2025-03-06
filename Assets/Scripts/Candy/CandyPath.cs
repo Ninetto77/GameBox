@@ -6,6 +6,7 @@ using Tasks;
 
 namespace Points
 {
+	[RequireComponent(typeof(Collider))]
 	public class CandyPath : MonoCache
 	{
 		[Header("Номер квеста")]

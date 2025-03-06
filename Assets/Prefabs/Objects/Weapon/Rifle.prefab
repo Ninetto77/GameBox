@@ -192,15 +192,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 407.578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.54
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 253.958
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8cacfc8aaf730d4ba575c9c09ad584d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 0.50459474, b: 0, a: 1}
-  outlineWidth: 2.5
+  outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

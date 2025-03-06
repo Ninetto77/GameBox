@@ -1736,7 +1736,7 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
-  radiusOfDetect: 30
+  radiusOfDetect: 15
   distanceToAtack: 15.5
   Damage: 30
   timeOfDeath: 3
@@ -7589,7 +7589,7 @@ Transform:
   m_GameObject: {fileID: 7153667796600526797}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.501, y: 1.244, z: 1.047}
+  m_LocalPosition: {x: -0.025, y: 1.244, z: 1.047}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -9,7 +9,6 @@ public class FinalFight : MonoCache
 	[Header("Трансформы для перемещения")]
     [SerializeField] private Transform witchTransform;
     [SerializeField] private Transform playerTransform;
-	[SerializeField] Renderer enemyRenderer;
 
 	private EnemyController witch;
 	[Inject] private PlayerMoovement player;
@@ -44,7 +43,9 @@ public class FinalFight : MonoCache
 		}
 		if (playerTransform != null)
 		{
-			player.gameObject.transform.position = playerTransform.position;
+			playerTransform.GetPositionAndRotation(out Vector3 localPosition, out Quaternion localRotation); 
+			player.gameObject.transform.position = localPosition;
+			player.gameObject.transform.rotation = Quaternion.Euler(localPosition);
 		}
 	}
 

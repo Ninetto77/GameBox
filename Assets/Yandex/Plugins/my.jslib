@@ -12,6 +12,7 @@ Hello: function(){
     window.alert("Hello, world");
 },
 
+//сохранить данные
 SaveExtern: function(data){
    console.log("SaveExtern");
     var dataString = UTF8ToString(data);
@@ -19,6 +20,7 @@ SaveExtern: function(data){
     player.setData(myObj);
 },
 
+//загрузить данные
 LoadExtern: function(){
    console.log("LoadExtern");
     player.getData().then(_data=>{
@@ -26,6 +28,19 @@ LoadExtern: function(){
         //имя объекта, функция, которая есть в этом объекте
         myGameInstance.SendMessage('Progress', 'SetPlayerInfo' , myJSON);
     });
+},
+
+//лидерборд
+InitLeaderboard: function ()
+{
+    InitLeaderboard();
+},
+
+SetLeaderboardScores: function (nameLB, score)
+{
+    var nameLBO = UTF8ToString(nameLB);
+    var scores = score;
+    SetLeaderboard (nameLBO, scores);
 },
 
 

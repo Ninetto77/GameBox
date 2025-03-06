@@ -11,8 +11,12 @@ namespace SaveSystem
 		private static extern void SaveExtern(string date);
 		[DllImport("__Internal")]
 		private static extern void LoadExtern();
+		[DllImport("__Internal")]
+		private static extern void SetLeaderboardScores(string nameLB, int score);
 
-        public Progress()
+		private const string leaderboardName = "PointsLeaderbourd";
+
+		public Progress()
         {
 			playerInfo = new PlayerInfo();
 #if UNITY_WEBGL
@@ -38,6 +42,7 @@ namespace SaveSystem
 #if UNITY_WEBGL
 			string jsonstring = JsonUtility.ToJson(playerInfo);
 			SaveExtern(jsonstring);
+			//SetLeaderboardScores(leaderboardName, playerInfo.PointsCommon);
 #endif
 		}
 

@@ -61,7 +61,9 @@ public class FlamethrowerParticals : MonoBehaviour
 	private IEnumerator SetAttack(GameObject other)
 	{
 		while (isAttack)
-		{			
+		{
+			if (other == null) yield return null;
+
 			var enemy = other.GetComponent<EnemyController>();
 			if (enemy != null)
 			{

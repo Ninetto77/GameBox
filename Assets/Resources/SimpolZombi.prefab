@@ -6930,7 +6930,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7034,9 +7034,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
-  m_Height: 2
+  m_Height: 2.1980157
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.0990078, z: 0}
 --- !u!114 &8828175743290288043
 MonoBehaviour:
   m_ObjectHideFlags: 0

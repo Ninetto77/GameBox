@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(InputKeys))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(DamagePlayer))]
-public class PlayerMoovement : MonoCache
+public class PlayerMoovement : MonoCache, IDamageable
 {
 	public Action OnPlayerDead;
 	public Action OnPlayerWin;

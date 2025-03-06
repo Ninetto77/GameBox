@@ -2,6 +2,8 @@ public enum FXType
 {
     none,
     fireball,
-	magicArea
+	magicArea,
+    granate,
+    granateBoom
 }
     

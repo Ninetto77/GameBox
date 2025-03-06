@@ -30,7 +30,7 @@ namespace Attack.Projectile
 			if (IsProjectileDisposed)
 				return;
 
-			Debug.Log(collision.gameObject.name);
+			//Debug.Log(collision.gameObject.name);
 			if (collision.gameObject.TryGetComponent(out IDamageable damageable))
 			{				
 				if (TargetMask == (TargetMask | (1 << collision.gameObject.layer)))
@@ -93,6 +93,7 @@ namespace Attack.Projectile
 		protected virtual void OnProjectileDispose() { }
 		protected virtual void OnAnyCollision(Collision collision) { }
 		protected virtual void OnOtherCollision(Collision collision) { }
+			
 		protected virtual void OnTargetCollision(Collision collision, IDamageable damageable) { }
 	}
 }
