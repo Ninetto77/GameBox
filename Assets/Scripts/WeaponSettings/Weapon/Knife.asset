@@ -19,5 +19,5 @@ MonoBehaviour:
   _prefab: {fileID: 7097269977889926110, guid: 8a729b51588d43e48afc4f86745d4f4a, type: 3}
   _equipmentSlot: 0
   _fxType: 0
-  weaponDamage: 15
+  weaponDamage: 8
   velosity: 1

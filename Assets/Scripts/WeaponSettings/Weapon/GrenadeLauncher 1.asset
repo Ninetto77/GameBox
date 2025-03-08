@@ -26,5 +26,5 @@ MonoBehaviour:
   _hitEffectPrefab: {fileID: 0}
   _hitEffectDestroyDelay: 2
   totalBulletsInPool: 1
-  timeToReload: 1.6
+  timeToReload: 1.5
   typeOfCartridge: 1

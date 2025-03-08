@@ -21,18 +21,18 @@ MonoBehaviour:
   _fxType: 3
   typeOfCartridge: 1
   aimIcon: {fileID: 0}
-  weaponDamage: 20
+  weaponDamage: 40
   layerMask:
     serializedVersion: 2
     m_Bits: 769
-  distanceToShoot: 20
+  distanceToShoot: 30
   shotCount: 4
   _hitEffectPrefab: {fileID: 5996921585668486377, guid: 9d0eab054929ee94ca3eae5cfc299cfa, type: 3}
   _hitEffectDestroyDelay: 2
   useSpread: 1
   spreadFactor: 0.1
-  useZoom: 0
+  useZoom: 1
   singleFire: 1
   fireRate: 1
-  timeToReload: 2.8
-  totalBulletsInPool: 4
+  timeToReload: 1
+  totalBulletsInPool: 2

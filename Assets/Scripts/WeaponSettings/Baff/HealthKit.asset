@@ -16,4 +16,4 @@ MonoBehaviour:
   _description: Treat youself
   _icon: {fileID: 1530113631, guid: 8224205d05753024981f0dd48f6438f3, type: 3}
   _itemType: 0
-  TreatPoints: 15
+  TreatPoints: 50
