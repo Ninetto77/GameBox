@@ -22,6 +22,7 @@ namespace SaveSystem
 #if UNITY_WEBGL
 			//ЯИ
 			//LoadExtern();
+
 #endif
 		}
 

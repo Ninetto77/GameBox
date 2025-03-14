@@ -14,7 +14,7 @@ namespace Tasks
 		//public string[] ENTasks;
 
 		public Action<int> OnEndedTask;
-		public Action<int, int, int> OnKillEnemyTask;
+		public Action<int, int, int> OnEnemyKillTask;
 
 		private Language lang;
 		[Inject] private UIManager uiManager;
@@ -26,7 +26,7 @@ namespace Tasks
 		private void Start()
 		{
 			OnEndedTask += ChangeTask;
-			OnKillEnemyTask += ChangeTask;
+			OnEnemyKillTask += ChangeTask;
 		}
 
 		/// <summary>

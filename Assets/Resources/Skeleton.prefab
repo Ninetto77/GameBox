@@ -6672,10 +6672,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.56
+  m_Radius: 0.3497821
+  m_Height: 2.4803138
   m_Direction: 1
-  m_Center: {x: 0, y: 3.31, z: 0}
+  m_Center: {x: 3.5412576e-12, y: 3.2701566, z: 0.015326142}
 --- !u!95 &6585578710309211195
 Animator:
   serializedVersion: 5
@@ -6723,7 +6723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
-  _drawGizmosType: 0
+  _drawGizmosType: 2
   _overlapSettings:
     _searchMask:
       serializedVersion: 2

@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using Zenject.Asteroids;
 
 public class MenuManager : MonoBehaviour
 {

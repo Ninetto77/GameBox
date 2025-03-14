@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 681717260726114704}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.027, y: 0.827, z: 0}
+  m_LocalPosition: {x: -0.084, y: 0.561, z: 0.077}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -168,22 +168,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points: 10
   AnimTransform: {fileID: 8698945218946778650}
+  MoveTransform: {fileID: 139465092015484358}
   presetPunchRotation:
     isOn: 1
     duration: 1
-    ease: 6
+    ease: 3
     direction: {x: 0, y: 1, z: 0}
     vibrato: 10
     elasticity: 1
     snapping: 0
-  presetPunchPosition:
-    isOn: 0
-    duration: 1
-    ease: 6
-    direction: {x: 0, y: 0.3, z: 0}
-    vibrato: 10
-    elasticity: 1
+  presetShakePosition:
+    isOn: 1
+    duration: 2
+    ease: 4
+    randomnessMode: 1
+    strength: {x: 0, y: 0.2, z: 0}
+    randomness: 0
+    vibrato: 0
     snapping: 0
+  presetRotation:
+    isOn: 1
+    duration: 1
+    ease: 1
+    value: {x: 0, y: 0, z: 0}
   particleOnDestroy: {fileID: 198894602908660118, guid: 5dbe86494ac8cfd46bd61c777a7c8ea6, type: 3}
 --- !u!114 &1660694631001666658
 MonoBehaviour:

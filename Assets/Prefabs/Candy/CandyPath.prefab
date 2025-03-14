@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5902373461095639505}
   - component: {fileID: 1889762892509618228}
   - component: {fileID: 556195352522388350}
+  - component: {fileID: 4163146823058666686}
   m_Layer: 0
   m_Name: CandyPath
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e682fd267ca77a428b02a26db53c9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfTask: -1
   candyTransforms:
   - {fileID: 464790930905949981}
   - {fileID: 3822491438768093779}
@@ -73,6 +75,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.03, y: 1, z: 4.42}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &4163146823058666686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491643848771706033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a29bbe336f2f040a118a4b1e459261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTask: -1
+  changeTaskType: 0
 --- !u!1001 &689310249294983323
 PrefabInstance:
   m_ObjectHideFlags: 0

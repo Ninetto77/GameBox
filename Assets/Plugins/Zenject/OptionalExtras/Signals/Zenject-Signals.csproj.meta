@@ -1,10 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Plugins/Zenject/OptionalExtras/Signals/Zenject-Signals.csproj.meta
-guid: aebd7ef925dd4fe4690c3238e879f914
-========
-guid: 7dfc2229586e20e46aa6005d8f7c23b9
-folderAsset: yes
->>>>>>>> ff0c32c3726a2b71104afa2948ed72eaf1d2f47e:Assets/Materials.meta
+
 DefaultImporter:
   externalObjects: {}
   userData: 

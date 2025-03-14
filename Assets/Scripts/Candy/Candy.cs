@@ -1,5 +1,6 @@
 using Cache;
 using Code.Global.Animations;
+using DG.Tweening;
 using Sounds;
 using UnityEngine;
 using Zenject;
@@ -12,8 +13,9 @@ namespace Points
 
 		[Header("Animations")]
 		public Transform AnimTransform;
+		public Transform MoveTransform;
 		public PunchAnimationPreset presetPunchRotation;
-		public PunchAnimationPreset presetPunchPosition;
+		public ShakeAnimationPreset presetShakePosition;
 
 		[Header("Effects")]
 		[SerializeField] private ParticleSystem particleOnDestroy;
@@ -24,16 +26,18 @@ namespace Points
 
 		private const string candyAudio = GlobalStringsVars.CANDY_SOUND_NAME;
 		private Point candyPoint;
+		Sequence seq;
 
 		private void Start()
 		{
 			candyPoint = new Point(Points);
+
+			AnimationShortCuts.ShakePositionAnimation(MoveTransform, presetShakePosition).SetLoops(-1, LoopType.Yoyo);
 		}
 
 		protected override void OnTick()
 		{
 			AnimationShortCuts.PunchRotationAnimation(AnimTransform, presetPunchRotation);
-			//AnimationShortCuts.PunchPositionAnimation(transform, presetPunchPosition);
 		}
 
 		private void OnTriggerEnter(Collider other)

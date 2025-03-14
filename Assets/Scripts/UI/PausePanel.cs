@@ -1,6 +1,7 @@
 using Cache;
 using Code.Global.Animations;
 using Sounds;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -29,8 +30,20 @@ public class PausePanel : MonoCache
 	[Inject] private UIManager uiManager;
 	[Inject] private AudioManager audioManager;
 
+	//говорит о начале игры
+	[DllImport("__Internal")]
+	private static extern void SetStartGameplayAPI();	
+
+	//говорит об остановке игры
+	[DllImport("__Internal")]
+	private static extern void SetStopGameplayAPI();
+
 	private void Start()
 	{
+#if UNITY_WEBGL
+		//я»
+		//SetStartGameplayAPI();
+#endif
 		isPause = false;
 		curCanvas = GameCanvas;
 
@@ -61,6 +74,10 @@ public class PausePanel : MonoCache
 	/// </summary>
 	public void ContinueGame()
 	{
+#if UNITY_WEBGL
+		//я»
+		//SetStartGameplayAPI();
+#endif
 		Time.timeScale = 1.0f;
 		Normal.TransitionTo(0.5f);
 
@@ -76,6 +93,10 @@ public class PausePanel : MonoCache
 	/// <param name="curCanvas"></param>
 	private void PauseGame(Window curCanvas)
 	{
+#if UNITY_WEBGL
+		//я»
+		//SetStopGameplayAPI();
+#endif
 		Time.timeScale = 0f;
 		InPause.TransitionTo(0.5f);
 
@@ -124,7 +145,7 @@ public class PausePanel : MonoCache
 	/// </summary>
 	private void ShowTutorialHint()
 	{
-		AnimationShortCuts.Blink(uiManager.HintTutorialText);
+		AnimationShortCuts.Blink(uiManager.HintTutorialText, 20, 1);
 	}
 
 	public bool GetIsPause() => isPause;
