@@ -21,7 +21,7 @@ MonoBehaviour:
   _fxType: 3
   typeOfCartridge: 0
   aimIcon: {fileID: 0}
-  weaponDamage: 60
+  weaponDamage: 55
   layerMask:
     serializedVersion: 2
     m_Bits: 769
@@ -35,4 +35,4 @@ MonoBehaviour:
   singleFire: 1
   fireRate: 2
   timeToReload: 1.2
-  totalBulletsInPool: 8
+  totalBulletsInPool: 5
