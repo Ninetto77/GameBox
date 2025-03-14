@@ -84,6 +84,14 @@ namespace Code.Global.Animations
 				.SetLink(transform.gameObject);
 		}
 
+		public static Tween RotateAnimation(this Transform transform, RotateAnimationPreset preset)
+		{
+			return transform
+				.DORotate(preset.value, preset.duration)
+				.SetEase(preset.ease)
+				.SetLink(transform.gameObject);
+		}
+
 		public static Tween ScaleAnimation(this Transform transform, ScaleAnimationPreset preset)
 		{
 			return transform

@@ -2,19 +2,15 @@ using Cache;
 using System.Collections;
 using UnityEngine;
 using Zenject;
-using Tasks;
 
 namespace Points
 {
 	[RequireComponent(typeof(Collider))]
 	public class CandyPath : MonoCache
 	{
-		[Header("Номер квеста")]
-		public int numberOfTask = -1;
 		[Header("Конфетный путь")]
 		public GameObject[] candyTransforms;
 
-		[Inject] private TaskManager taskManager;
 		[Inject] private PointsLevel shop;
 
 		private bool isFirst = true;
@@ -53,7 +49,6 @@ namespace Points
 
 			if (!isFirst) return;
 
-			taskManager.OnEndedTask?.Invoke(numberOfTask);
 			StartCoroutine(AppearCandyPath());
 			isFirst = !isFirst;
 		}

@@ -43,5 +43,16 @@ SetLeaderboardScores: function (nameLB, score)
     SetLeaderboard (nameLBO, scores);
 },
 
+///GameplayAPI
+SetStartGameplayAPI: function()
+{
+    ysdk.features.GameplayAPI?.start(); 
+},
+
+SetStopGameplayAPI: function()
+{
+    ysdk.features.GameplayAPI?.stop();
+},
+
 
 });

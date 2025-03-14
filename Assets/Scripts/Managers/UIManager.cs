@@ -4,6 +4,7 @@ using Points;
 using Sounds;
 using System;
 using System.Collections;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,6 +62,14 @@ public class UIManager : MonoBehaviour
 	private const string candyTextCount = "Количество собранных конфет: ";
 	private const string pointTextCount = "Количество очков: ";
 
+	//говорит о начале игры
+	[DllImport("__Internal")]
+	private static extern void SetStartGameplayAPI();
+
+	//говорит об остановке игры
+	[DllImport("__Internal")]
+	private static extern void SetStopGameplayAPI();
+
 	private void Start()
 	{
 		OnPlayerDamage += ShowRedOverlay;
@@ -99,6 +108,10 @@ public class UIManager : MonoBehaviour
 
 	private IEnumerator ShowDeadWindowForTime()
 	{
+#if UNITY_WEBGL
+		//ЯИ
+		//SetStopGameplayAPI();
+#endif
 		isDead = true;
 			
 		AnimationShortCuts.FadeAnimation(GameCanvas, FadeOutGameCanvas);
@@ -136,6 +149,10 @@ public class UIManager : MonoBehaviour
 
 	private IEnumerator ShowWinWindowForTime()
 	{
+#if UNITY_WEBGL
+		//ЯИ
+		//SetStopGameplayAPI();
+#endif
 		isDead = true;
 		CandyText.text = candyTextCount + shop.countOfCandy;
 		PointText.text = pointTextCount + shop.curPoints.Value;
@@ -176,7 +193,7 @@ public class UIManager : MonoBehaviour
 	public void SetTaskUI(string task)
 	{
 		TaskText.text = task;
-		AnimationShortCuts.PopEffect(TaskText, 1.1f, 0.5f).SetLoops(10) ;
+		AnimationShortCuts.PopEffect(TaskText, 1.1f, 0.5f).SetLoops(10).SetLink(transform.gameObject);
 		
 	}
 	#endregion
@@ -188,6 +205,7 @@ public class UIManager : MonoBehaviour
 		OnPlayerDamage -= ShowRedOverlay;
 		OnPlayerDead -= ShowDeadWindow;
 		OnPlayerWin -= ShowWinWindow;
+		DOTween.KillAll();
 	}
 
 }

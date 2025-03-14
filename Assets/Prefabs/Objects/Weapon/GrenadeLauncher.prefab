@@ -377,6 +377,7 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 9016329488155290155, guid: 00920ca39a916714f9dfe5956945e22d, type: 3}
   _forceMode: 1
   _force: 45
+  FxPrefab: 3
 --- !u!114 &6923495461245090775
 MonoBehaviour:
   m_ObjectHideFlags: 0
