@@ -30,28 +30,28 @@ LoadExtern: function(){
     });
 },
 
-//лидерборд
-InitLeaderboard: function ()
-{
-    InitLeaderboard();
-},
+////лидерборд
+// InitLeaderboard: function ()
+// {
+//     InitLeaderboard();
+// },
 
-SetLeaderboardScores: function (nameLB, score)
-{
-    var nameLBO = UTF8ToString(nameLB);
-    var scores = score;
-    SetLeaderboard (nameLBO, scores);
-},
+// SetLeaderboardScores: function (nameLB, score)
+// {
+//     var nameLBO = UTF8ToString(nameLB);
+//     var scores = score;
+//     SetLeaderboard (nameLBO, scores);
+// },
 
-///GameplayAPI
+/////GameplayAPI
 SetStartGameplayAPI: function()
 {
-    ysdk.features.GameplayAPI?.start(); 
+   // ysdk.features.GameplayAPI?.start(); 
 },
 
 SetStopGameplayAPI: function()
 {
-    ysdk.features.GameplayAPI?.stop();
+    //ysdk.features.GameplayAPI?.stop();
 },
 
 

@@ -11,8 +11,8 @@ namespace SaveSystem
 		private static extern void SaveExtern(string date);
 		[DllImport("__Internal")]
 		private static extern void LoadExtern();
-		[DllImport("__Internal")]
-		private static extern void SetLeaderboardScores(string nameLB, int score);
+		//[DllImport("__Internal")]
+		//private static extern void SetLeaderboardScores(string nameLB, int score);
 
 		private const string leaderboardName = "PointsLeaderbourd";
 
