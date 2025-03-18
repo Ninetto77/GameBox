@@ -17,7 +17,6 @@ namespace Cartridges
 				shop.OnPickCartridge?.Invoke(typeOfCartridge, CountOfCartridge);
 			else
 				Debug.Log("no shop.OnAddCartridge");
-			// увеличить патроны в магазине
 		}
 	}
 }

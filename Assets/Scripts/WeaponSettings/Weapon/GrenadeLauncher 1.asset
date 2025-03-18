@@ -20,11 +20,12 @@ MonoBehaviour:
   _prefab: {fileID: 3718982838855820358, guid: ea329ba9c5ff96343b0c29147d422101, type: 3}
   _equipmentSlot: 0
   _fxType: 0
+  typeOfCartridge: 1
   bulletPrefab: {fileID: 1361763010882202291, guid: 00920ca39a916714f9dfe5956945e22d, type: 3}
   bulletSpeed: 150
   aimIcon: {fileID: 21300000, guid: 267d35dec1ca8854080c4ddd8add37f0, type: 3}
   _hitEffectPrefab: {fileID: 0}
   _hitEffectDestroyDelay: 2
-  totalBulletsInPool: 1
   timeToReload: 1.5
-  typeOfCartridge: 1
+  totalBulletsInPool: 1
+  currentCountBullets: 1

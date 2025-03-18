@@ -7,6 +7,8 @@ namespace Attack.Overlap
 {
 	public class MelleWeapon : AttackBehaviour
 	{
+		public Action onHit;
+
 		private bool toolIsPicked;
 		private OverlapWithAttack attack;
 
@@ -15,6 +17,9 @@ namespace Attack.Overlap
 			var temp = gameObject.GetComponent<ItemPickup>();
 			toolIsPicked = temp.IsPicked;
 			attack = GetComponent<OverlapWithAttack>();
+
+			attack.OnMiss += PlayMissSound;
+			attack.OnVisit += PlayHitSound;
 		}
 		public override void PerformAttack()
 		{
@@ -36,6 +41,16 @@ namespace Attack.Overlap
 			{
 				OnAttackEnded?.Invoke();
 			}
+		}
+
+		public void PlayHitSound()
+		{
+			OnEnemyHit?.Invoke();
+		}
+
+		public void PlayMissSound()
+		{
+			OnMiss?.Invoke();
 		}
 	}
 }

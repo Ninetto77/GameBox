@@ -38,7 +38,6 @@ namespace Items
 
 		[Header("Bullets")]
 		[SerializeField] private int totalBulletsInPool = 10;
-
 	
 		public TypeOfCartridge TypeOfCartridge => typeOfCartridge;
 		

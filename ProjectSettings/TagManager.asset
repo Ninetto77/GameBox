@@ -11,6 +11,7 @@ TagManager:
   - FxTemporaire
   - Ground
   - Fire
+  - Zombi
   - Skeleton
   layers:
   - Default

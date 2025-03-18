@@ -1,21 +1,19 @@
-using SaveSystem;
 using System;
 using UnityEngine;
-using Zenject.Asteroids;
 
 namespace Points
 {
-    public class CartridgeShop : MonoBehaviour
+	public class CartridgeShop : MonoBehaviour
     {
         //[ReadOnly]
         //public Point curPoints;
         //public Action<int> OnChangedPoints;
         public Action OnAddHint;
 
+		//событие при подборе пуль конкретного типа
 		public Action<TypeOfCartridge, int> OnPickCartridge;
+		//событие при изменении количества пуль конкретного типа
 		public Action<TypeOfCartridge, int> OnChangeCartridge;
-
-		public Action<TypeOfCartridge, int> OnUseCartridge;
 
 		[ReadOnly]
 		public int LightCartridgeCount;
@@ -29,15 +27,17 @@ namespace Points
 			LightCartridgeCount = 0;
 			HeavyCartridgeCount = 0;
 			OilCartridgeCount = 0;
-			
-			//curPoints = new Point();
-			//OnChangedPoints?.Invoke(curPoints.Value);
-			OnPickCartridge += PickCartridge;
 
-			OnUseCartridge += UseCartridge;
+			OnPickCartridge += PickCartridge;
+			OnChangeCartridge += ChangeCartridge;
 		}
 
-		private void UseCartridge(TypeOfCartridge type, int value)
+		/// <summary>
+		/// Изменение количества пуль
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="value"></param>
+		private void ChangeCartridge(TypeOfCartridge type, int value)
 		{
 			switch (type)
 			{
@@ -56,11 +56,7 @@ namespace Points
 			}
 		}
 
-		#region
-		public void AddHeal()
-        {
-            OnAddHint?.Invoke();
-		}
+
 
 		/// <summary>
 		/// Событие при подборе пуль
@@ -88,8 +84,13 @@ namespace Points
 					break;
 			}
 		}
-		#endregion
 
+		#region
+		public void AddHeal()
+		{
+			OnAddHint?.Invoke();
+		}
+		#endregion
 
 	}
 }

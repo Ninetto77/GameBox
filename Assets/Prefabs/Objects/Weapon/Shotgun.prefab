@@ -53,15 +53,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8225a3f34cf3dcc4cbc8eff56466542f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8225a3f34cf3dcc4cbc8eff56466542f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8225a3f34cf3dcc4cbc8eff56466542f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8225a3f34cf3dcc4cbc8eff56466542f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -202,10 +202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15e657735bbb7349abff53489169b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: Shotgun
   weapon: {fileID: 11400000, guid: 0b67b33c14feb5d42b38f78db8439be8, type: 2}
   FirePoint: {fileID: 8463396378441002611}
   MuzzleEffect: {fileID: 1495547689679256681}
-  CurCountBulletsInPool: 0
+  CurCountBulletsInPool: 6
 --- !u!114 &5907606199439747491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 0.50459474, b: 0, a: 1}
   outlineWidth: 3
   precomputeOutline: 0

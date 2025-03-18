@@ -5,6 +5,8 @@ namespace Items
 	[CreateAssetMenu(fileName = "WeaponInfo", menuName = "Gameplay/new projectile weapon")]
 	public class ProjectileWeaponItem : Equipable
 	{
+		[Header("Type of Cartridge")]
+		[SerializeField] private TypeOfCartridge typeOfCartridge;
 
 		[Header("Projectile Settings")]
 		[SerializeField] private GameObject bulletPrefab;
@@ -16,11 +18,11 @@ namespace Items
 		[SerializeField, Min(0f)] private float _hitEffectDestroyDelay = 2f;
 
 		[Header("Settings")]
-		[SerializeField] private int totalBulletsInPool = 30;
 		[SerializeField] private float timeToReload = 1.5f;
 
-		[Header("Type of Cartridge")]
-		[SerializeField] private TypeOfCartridge typeOfCartridge;
+		[Header("Bullets")]
+		[SerializeField] private int totalBulletsInPool = 30;
+
 
 		public GameObject BulletPrefab => bulletPrefab;
 		public Sprite AimIcon => aimIcon;
@@ -31,6 +33,7 @@ namespace Items
 		public float HitEffectDestroyDelay => _hitEffectDestroyDelay;
 
 		public int TotalBulletsInPool => totalBulletsInPool;
+
 		public float TimeToReload => timeToReload;
 		public TypeOfCartridge TypeOfCartridge => typeOfCartridge;
 

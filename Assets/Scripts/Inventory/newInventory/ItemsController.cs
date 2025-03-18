@@ -35,23 +35,23 @@ public class ItemsController : MonoCache
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.lightWeapon);
 			SetActiveSlot(inventoryname);
-			CheckHandForChangeBulletUI(TypeOfCartridge.light, true);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			inventoryname = InventoryType.GetInventoryName(ItemType.heavyWeapon);
 			SetActiveSlot(inventoryname);
-			CheckHandForChangeBulletUI(TypeOfCartridge.heavy, true);
+			//CheckHandForChangeBulletUI(TypeOfCartridge.heavy, true);
 		}
 	}
 
 	/// <summary>
-	/// Обновить количество пуль
+	/// Обновить в UI количество пуль
 	/// </summary>
-	/// <param name="typeOfWeapon"></param>
-	private void UpdateBulletUI(ItemType typeOfWeapon, bool update)
+	/// <param name="typeOfWeapon">тип оружия</param>
+	/// <param name="updateAllBullets">обновить все количество пуль</param>
+	private void UpdateBulletUI(ItemType typeOfWeapon, bool updateAllBullets)
 	{
-		if (update)
+		if (updateAllBullets)
 		{
 			switch (typeOfWeapon)
 			{
@@ -65,6 +65,9 @@ public class ItemsController : MonoCache
 					bulletUI.OnChangeBullets?.Invoke(0, shop.HeavyCartridgeCount);
 					break;
 				case ItemType.scientificWeapon:
+					break;
+				case ItemType.none:
+					bulletUI.OnChangeBullets?.Invoke(-1, -1);
 					break;
 				default:
 					break;
@@ -85,10 +88,13 @@ public class ItemsController : MonoCache
 					break;
 				case ItemType.scientificWeapon:
 					break;
+				case ItemType.none:
+					bulletUI.OnChangeBullets?.Invoke(-1, -1);
+					break;
 				default:
 					break;
 			}
-		}	
+		}
 	}
 
 	/// <summary>
@@ -239,7 +245,7 @@ public class ItemsController : MonoCache
 			//	Debug.Log($"Рука не пустая и занята {objInHand.name}");
 
 
-			//	Debug.Log($"Категория руки равна {objInHand.name}");
+			//Debug.Log($"Категория руки равна {objInHand.name}");
 			//Debug.Log($"Категория ненужного оружия {dropItem.GetItemInfo().ItemType.ToString()}");
 
 			GameObject oldObj = null;
@@ -256,7 +262,7 @@ public class ItemsController : MonoCache
 
 				SetSettingsToDrop(objInHand, false);
 
-				//				Debug.Log($"Сбросила руку");
+				//Debug.Log($"Сбросила руку");
 				equipmentManager.DropHand();
 				EquipHand(oldObj.GetComponent<ItemPickup>().item);
 				//Debug.Log($"Взяла в руку старое оружие " + oldObj.name);
@@ -269,6 +275,7 @@ public class ItemsController : MonoCache
 
 				//Debug.Log($"Сбросила руку");
 				equipmentManager.DropHand();
+				UpdateBulletUI(ItemType.none, true);
 			}
 
 			//SetSettingsToDrop(objInHand);

@@ -100,13 +100,12 @@ GameObject:
   - component: {fileID: 1120970879645836310}
   - component: {fileID: 8590624517406175152}
   - component: {fileID: 3774372439573228930}
-  - component: {fileID: 3488551161136299177}
+  - component: {fileID: 5613081070710237623}
   - component: {fileID: 960006307251539833}
   - component: {fileID: 3809223198371269347}
   - component: {fileID: 1930643162945263129}
   - component: {fileID: 4609463812802409740}
   - component: {fileID: 1338188583169178892}
-  - component: {fileID: 6079556571479658806}
   m_Layer: 10
   m_Name: Knife
   m_TagString: Untagged
@@ -184,9 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 0.50459474, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -273,7 +272,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3488551161136299177
+--- !u!114 &5613081070710237623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,13 +281,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7097269977889926110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9edbf36e43d97224cb58784bf8c3b5d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 099cf76ebac1cd047a98900dd89bd985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _emptyClipSound: {fileID: 0}
-  _reloudSound: {fileID: 0}
-  _shootSound: {fileID: 8300000, guid: 5d126b0224ae076469abb1a19e5f3cb0, type: 3}
-  _endedSound: {fileID: 0}
+  _missSound: {fileID: 8300000, guid: 5d126b0224ae076469abb1a19e5f3cb0, type: 3}
+  _hitSound: {fileID: 8300000, guid: c91d713589af7ef4dab207a296bda56d, type: 3}
 --- !u!114 &960006307251539833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,20 +431,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6079556571479658806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7097269977889926110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a29bbe336f2f040a118a4b1e459261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberOfTask: 2
-  changeTaskType: 3
 --- !u!1001 &799274440886356818
 PrefabInstance:
   m_ObjectHideFlags: 0

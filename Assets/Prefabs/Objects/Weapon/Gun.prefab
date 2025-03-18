@@ -19930,19 +19930,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 121
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 64.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.30070582
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalRotation.x
@@ -19950,7 +19950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.953717
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalRotation.z
@@ -19962,7 +19962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744ca321ab070944fa859173b0a7c8de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -20074,10 +20074,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15e657735bbb7349abff53489169b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: Gun
   weapon: {fileID: 11400000, guid: 436380360845fc74495e3cc3a2ff9c09, type: 2}
   FirePoint: {fileID: 8200689689148724449}
   MuzzleEffect: {fileID: 7301604104122902734}
-  CurCountBulletsInPool: 0
+  CurCountBulletsInPool: 10
 --- !u!114 &3762594055769407199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20090,7 +20091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 0.50459474, b: 0, a: 1}
   outlineWidth: 3
   precomputeOutline: 0

@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Attack.Base;
 using GizmosType;
+using Enemy;
+using System;
 
 public class OverlapWithAttack : AttackBehaviour
 {
+	public Action OnVisit;
+	public Action OnMiss;
+
 	[SerializeField, Min(0f)] private float _damage = 10f;
 	[SerializeField] private DrawGizmosType _drawGizmosType;
 	[SerializeField] private OverlapSettings _overlapSettings;
@@ -19,6 +24,16 @@ public class OverlapWithAttack : AttackBehaviour
 		if (_overlapSettings.TryFind(out IDamageable damageable))
 		{
 			ApplyDamage(damageable);
+		}
+
+		// For single target.
+		if (_overlapSettings.TryFind(out IWeaponVisitor visitor))
+		{
+			OnVisit?.Invoke();
+		} 
+		else
+		{
+			OnMiss?.Invoke();
 		}
 
 		// For many targets.

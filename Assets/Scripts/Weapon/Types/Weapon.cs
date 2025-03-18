@@ -6,11 +6,15 @@ using Zenject;
 using Points;
 using System;
 using UnityEngine.EventSystems;
+using WeaponObilities;
 
 namespace Attack.Raycast
 {
 	public partial class Weapon : AttackBehaviour
 	{
+		[Header("Идентификатор")]
+		[SerializeField] private string id;
+
 		[Header("Настройки")]
 		public WeaponItem weapon;
 		public Transform FirePoint;
@@ -25,8 +29,10 @@ namespace Attack.Raycast
 		private bool toolIsPicked;
 
 		public int CurCountBulletsInPool;
-		private int commonCountOfBullets => GetCountsOfBullets();
+		private int commonCountOfBullets => GetCommonCountsOfBullets();
 		private int visibleBulletUI;
+
+		private SaveWeaponSetting saveSetting;
 
 		[Inject] private CartridgeShop shop;
 		[Inject] private BulletUI bulletUI;
@@ -37,41 +43,19 @@ namespace Attack.Raycast
 			this.shop = shop;
 		}
 
-		/// <summary>
-		/// Изменить общее количество пуль
-		/// </summary>
-		/// <param name="value"></param>
-		private void ChangeTotalBulletsInThePool(int value)
-		{
-			var temp = GetCountsOfBullets() - value;
-			shop.OnUseCartridge?.Invoke(weapon.TypeOfCartridge, (temp));
-			bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
-		}
-
 		private void Start()
-		{
-			//RestCountOfBullets = weapon.CountOfBullets;
-			//curCountBulletsInPool = weapon.TotalBulletsInPool;
-
-
-			////изменение количества пуль в магазине
-			////RestCountOfBullets = GetCountsOfBullets();
-			//if (RestCountOfBullets > weapon.TotalBulletsInPool)
-			//{
-			//	curCountBulletsInPool = weapon.TotalBulletsInPool;
-			//	shop.OnUseCartridge?.Invoke(weapon.TypeOfWeapon, RestCountOfBullets - weapon.TotalBulletsInPool);
-			//}
-
-			
+		{		
+			saveSetting = new SaveWeaponSetting(id, CurCountBulletsInPool);
 			shop.OnChangeCartridge += ChangeVisibleBulletUI;
 
-			CurCountBulletsInPool = 0;
 			mainCamera = Camera.main;
 
 			ChangeIsPicked();
 			item.OnChangeIsPicked += ChangeIsPicked;
-			visibleBulletUI = GetCountsOfBullets();
-
+			
+			CurCountBulletsInPool = saveSetting.GetCountBullets();
+			visibleBulletUI = GetCommonCountsOfBullets();
+			ChangeUIBullets();
 		}
 
 		private void ChangeVisibleBulletUI(TypeOfCartridge cartridge, int arg2)
@@ -81,13 +65,13 @@ namespace Attack.Raycast
 				case TypeOfCartridge.light:
 					if (weapon.TypeOfCartridge == TypeOfCartridge.light)
 					{
-						visibleBulletUI = GetCountsOfBullets();
+						visibleBulletUI = GetCommonCountsOfBullets();
 					}
 					break;
 				case TypeOfCartridge.heavy:
 					if (weapon.TypeOfCartridge == TypeOfCartridge.heavy)
 					{
-						visibleBulletUI = GetCountsOfBullets();
+						visibleBulletUI = GetCommonCountsOfBullets();
 					}
 					break;
 				case TypeOfCartridge.oil:
@@ -187,7 +171,7 @@ namespace Attack.Raycast
 			}
 
 			CurCountBulletsInPool--;
-			ChangeTotalBulletsInThePool(1);
+			ChangeUIBullets();
 
 			PerformEffects();
 		}
@@ -268,10 +252,9 @@ namespace Attack.Raycast
 
 				CurCountBulletsInPool += dif;
 				visibleBulletUI = visibleBulletUI - dif;
-				bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
-				
-				//ChangeTotalBulletsInThePool(dif);
-				//RestCountOfBullets -= dif;
+
+				ChangeBulletsInShop(visibleBulletUI);
+				ChangeUIBullets();
 
 				canFire = true;
 			}
@@ -281,7 +264,7 @@ namespace Attack.Raycast
 		/// общее количество пуль
 		/// </summary>
 		/// <returns>общее количество пуль </returns>
-		private int GetCountsOfBullets()
+		private int GetCommonCountsOfBullets()
 		{
 			switch (weapon.TypeOfCartridge)
 			{
@@ -296,6 +279,29 @@ namespace Attack.Raycast
 			}
 		}
 
+		#region Изменение количество пуль
+		/// <summary>
+		/// Изменить UI общее количество пуль
+		/// </summary>
+		/// <param name="value"></param>
+		private void ChangeUIBullets()
+		{
+			//var temp = GetCountsOfBullets() - value;
+			//shop.OnChangeCartridge?.Invoke(weapon.TypeOfCartridge, (temp));
+			bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, commonCountOfBullets);
+			saveSetting.SaveCountButllets(CurCountBulletsInPool);
+			//SaveCountButllets();
+		}
+
+		/// <summary>
+		/// Изменить общее количество пуль в магазине
+		/// </summary>
+		/// <param name="value"></param>
+		private void ChangeBulletsInShop(int commonValue)
+		{
+			shop.OnChangeCartridge?.Invoke(weapon.TypeOfCartridge, commonValue);
+		}
+		#endregion
 
 #if UNITY_EDITOR
 		private void OnDrawGizmosSelected()

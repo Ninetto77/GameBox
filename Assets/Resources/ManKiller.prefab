@@ -7026,7 +7026,7 @@ GameObject:
   - component: {fileID: 706364811989971189}
   m_Layer: 8
   m_Name: ManKiller
-  m_TagString: Skeleton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
