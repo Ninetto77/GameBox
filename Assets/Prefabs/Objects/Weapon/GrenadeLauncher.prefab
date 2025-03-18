@@ -176,15 +176,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 356
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -192,15 +192,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ce3cae1bf03bc2439e83c7342642e5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 0.50459474, b: 0, a: 1}
   outlineWidth: 3
   precomputeOutline: 0
@@ -356,11 +356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f610a008a47ef142ab6f14f9330d169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: GrenadeLauncher
   weapon: {fileID: 11400000, guid: 9e328a6e25cc2c844bd1393b3d50d95f, type: 2}
   FirePoint: {fileID: 3268677507544887672}
   TimeToAttack: 0.7
   MuzzleEffect: {fileID: 450693830490711160}
-  CurCountBulletsInPool: 0
+  CurCountBulletsInPool: 1
 --- !u!114 &6030740877404543375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +378,6 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 9016329488155290155, guid: 00920ca39a916714f9dfe5956945e22d, type: 3}
   _forceMode: 1
   _force: 45
-  FxPrefab: 3
 --- !u!114 &6923495461245090775
 MonoBehaviour:
   m_ObjectHideFlags: 0

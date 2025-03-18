@@ -5,10 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Flamethrower : AttackBehaviour
 {
+	[Header("Идентификатор")]
+	[SerializeField] private string id;
+
 	[Header("Настройки")]
 	public WeaponItem weapon;
 	public float TimeToStartAttack;
-	
 
 	[Header("Sounds")]
 	[SerializeField] private AudioClip _emptyClipSound;

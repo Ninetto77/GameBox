@@ -18,7 +18,6 @@ namespace WeaponObilities
 		private Weapon weapon;
 		private ItemPickup item;
 		private Camera mainCamera;
-		private MouseLook look;
 		private MouseLook playerLook;
 		private bool isZoom = false;
 		[Inject] private UIManager manager;
@@ -28,7 +27,6 @@ namespace WeaponObilities
 		{
 			mainCamera = Camera.main;
 
-			look = mainCamera.gameObject.GetComponent<MouseLook>();
 			playerLook = player.gameObject.GetComponentInChildren<MouseLook>();
 
 			oldSensitivityVer = playerLook.sensitivityVer;
@@ -91,11 +89,6 @@ namespace WeaponObilities
 			playerLook.sensitivityHor = oldSensitivityHor;
 		}
 
-
-		//private void OnDestroy()
-		//{
-		//	RemoveZoom();
-		//}
 		private void OnDisable()
 		{
 			weapon.OnZoomMouseClick -= ZoomWeapon;

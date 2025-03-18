@@ -53,14 +53,11 @@ namespace Tasks
             isFirst = !isFirst;
 		}
 
-		void OnDestroy()
-        {
-            if (changeTaskType == ChangeTaskType.onDestroy)
-			    taskManager.OnEndedTask?.Invoke(numberOfTask);
-		}
-
 		private void OnDisable()
 		{
+            if (changeTaskType == ChangeTaskType.onDestroy)
+			    taskManager.OnEndedTask?.Invoke(numberOfTask);
+
 			if (changeTaskType == ChangeTaskType.onEnemyKill
 				|| changeTaskType == ChangeTaskType.onEndTask)
 			{

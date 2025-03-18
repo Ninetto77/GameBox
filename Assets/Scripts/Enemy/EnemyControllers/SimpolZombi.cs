@@ -43,7 +43,7 @@ namespace Enemy.States
 		/// </summary>
 		private void ChangeRandomTexture()
 		{
-			if (gameObject.CompareTag("Skeleton"))
+			if (!gameObject.CompareTag("Zombi"))
 				return;
 
 			Renderer enemyRenderer = gameObject.GetComponentInChildren<Renderer>();

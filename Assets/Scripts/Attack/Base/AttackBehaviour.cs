@@ -11,6 +11,7 @@ namespace Attack.Base
 		public Action OnZoomMouseClick;
 		public Action OnEmptyClip;
 		public Action OnEnemyHit;
+		public Action OnMiss;
 
 		public abstract void PerformAttack();
 	}

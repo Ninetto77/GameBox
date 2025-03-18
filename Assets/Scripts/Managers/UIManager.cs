@@ -193,19 +193,19 @@ public class UIManager : MonoBehaviour
 	public void SetTaskUI(string task)
 	{
 		TaskText.text = task;
-		AnimationShortCuts.PopEffect(TaskText, 1.1f, 0.5f).SetLoops(10).SetLink(transform.gameObject);
+		AnimationShortCuts.PopEffect(TaskText, 1.1f, 0.5f).SetLoops(10).SetLink(TaskText.transform.gameObject);
 		
 	}
 	#endregion
 
 	public bool GetIsDead() => isDead;
 
-	private void OnDestroy()
+	private void OnDisable()
 	{
 		OnPlayerDamage -= ShowRedOverlay;
 		OnPlayerDead -= ShowDeadWindow;
 		OnPlayerWin -= ShowWinWindow;
-		DOTween.KillAll();
+		//DOTween.KillAll(transform);
 	}
 
 }

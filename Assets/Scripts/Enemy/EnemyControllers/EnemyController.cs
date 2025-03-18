@@ -1,4 +1,5 @@
-﻿using Enemy.Abilities;
+﻿using Attack.Overlap;
+using Enemy.Abilities;
 using Points;
 using System;
 using System.Collections;
@@ -13,7 +14,7 @@ namespace Enemy.States
 	[RequireComponent(typeof(Health))]
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent (typeof(AudioSource))]
-	public abstract class EnemyController : MonoBehaviour, IDamageable, IEnemy, IAttack
+	public abstract class EnemyController : MonoBehaviour, IDamageable, IEnemy, IAttack, IWeaponVisitor
 	{
 		public Action OnEnemyDeath;
 		[Header("Обнаружение игрока")]
@@ -289,5 +290,14 @@ namespace Enemy.States
 			player.OnPlayerWin -= OnPlayerWin;
 		}
 
+		public virtual void Visit(MelleWeapon weapon)
+		{
+			DefaultOverlapVisit(weapon);
+		}
+
+		public virtual void DefaultOverlapVisit(MelleWeapon weapon)
+		{
+			weapon.onHit();
+		}
 	}
 }

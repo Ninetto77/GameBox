@@ -6776,7 +6776,7 @@ GameObject:
   - component: {fileID: 901461333284111386}
   m_Layer: 8
   m_Name: SimpolZombi
-  m_TagString: Untagged
+  m_TagString: Zombi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

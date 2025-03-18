@@ -5,10 +5,14 @@ using Points;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using WeaponObilities;
 using Zenject;
 
 public class GrenadeLauncher : AttackBehaviour
 {
+	[Header("Идентификатор")]
+	[SerializeField] private string id;
+
 	[Header("Настройки")]
 	public ProjectileWeaponItem weapon;
 	public Transform FirePoint;
@@ -31,6 +35,8 @@ public class GrenadeLauncher : AttackBehaviour
 	private int commonCountOfBullets => GetCountsOfBullets();
 	private int visibleBulletUI;
 
+	private SaveWeaponSetting saveSetting;
+
 	[Inject] private CartridgeShop shop;
 	[Inject] private BulletUI bulletUI;
 	[Inject]
@@ -48,11 +54,13 @@ public class GrenadeLauncher : AttackBehaviour
 		ChangeIsPicked();
 		item.OnChangeIsPicked += ChangeIsPicked;
 
-		//пули
+		saveSetting = new SaveWeaponSetting(id, CurCountBulletsInPool);
 		shop.OnChangeCartridge += ChangeVisibleBulletUI;
-		CurCountBulletsInPool = 0;
-		visibleBulletUI = GetCountsOfBullets();
 
+		//пули
+		CurCountBulletsInPool = saveSetting.GetCountBullets();
+		visibleBulletUI = GetCountsOfBullets();
+		ChangeUIBullets();
 	}
 
 	private void ChangeIsPicked()
@@ -99,13 +107,18 @@ public class GrenadeLauncher : AttackBehaviour
 
 	private IEnumerator WaitToAttack()
 	{
+		canFire = false;
+
 		OnAttackStarted?.Invoke();
 		yield return new WaitForSeconds(TimeToAttack);
 		projectile.PerformAttack();
 		PerformEffects();
 
 		CurCountBulletsInPool--;
-		ChangeTotalBulletsInThePool(1);
+		//ChangeTotalBulletsInThePool(1);
+		ChangeUIBullets();
+
+		canFire = true;
 	}
 
 
@@ -156,7 +169,6 @@ public class GrenadeLauncher : AttackBehaviour
 		else
 		{
 			StartCoroutine(Reload());
-
 		}
 	}
 
@@ -180,7 +192,9 @@ public class GrenadeLauncher : AttackBehaviour
 
 		CurCountBulletsInPool += dif;
 		visibleBulletUI = visibleBulletUI - dif;
-		bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
+
+		ChangeBulletsInShop(visibleBulletUI);
+		ChangeUIBullets();
 
 		canFire = true;
 	}
@@ -231,16 +245,28 @@ public class GrenadeLauncher : AttackBehaviour
 		}
 	}
 
+	#region Изменение количество пуль
+
 	/// <summary>
-	/// Изменить общее количество пуль
+	/// Изменить UI общее количество пуль
 	/// </summary>
 	/// <param name="value"></param>
-	private void ChangeTotalBulletsInThePool(int value)
+	private void ChangeUIBullets()
 	{
-		var temp = GetCountsOfBullets() - value;
-		shop.OnUseCartridge?.Invoke(weapon.TypeOfCartridge, (temp));
-		bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, visibleBulletUI);
+		bulletUI.OnChangeBullets?.Invoke(CurCountBulletsInPool, commonCountOfBullets);
+		saveSetting.SaveCountButllets(CurCountBulletsInPool);
 	}
+
+	/// <summary>
+	/// Изменить общее количество пуль в магазине
+	/// </summary>
+	/// <param name="value"></param>
+	private void ChangeBulletsInShop(int commonValue)
+	{
+		shop.OnChangeCartridge?.Invoke(weapon.TypeOfCartridge, commonValue);
+	}
+	#endregion
+
 	#endregion
 
 }
