@@ -65,10 +65,6 @@ public class UIManager : MonoBehaviour
 	private const string candyTextCount = "Количество собранных конфет: ";
 	private const string pointTextCount = "Количество очков: ";
 
-	//говорит об остановке игры
-	[DllImport("__Internal")]
-	private static extern void SetStopGameplayAPI();
-
 	private void Start()
 	{
 		OnPlayerDamage += ShowRedOverlay;
@@ -109,6 +105,7 @@ public class UIManager : MonoBehaviour
 	{
 #if UNITY_WEBGL && !UNITY_EDITOR
 		//ЯИ GameReadyAPI
+		Debug.log("GameReadyAPI");
 		gameReadyApi.OnGameplayAPIStop();
 #endif
 		isDead = true;
@@ -192,7 +189,7 @@ public class UIManager : MonoBehaviour
 	public void SetTaskUI(string task)
 	{
 		TaskText.text = task;
-		AnimationShortCuts.PopEffect(TaskText, 1.1f, 0.5f).SetLoops(10).SetLink(TaskText.transform.gameObject);
+		AnimationShortCuts.PopEffect(TaskText, 1.1f, 0.5f).SetLoops(10);
 		
 	}
 	#endregion
