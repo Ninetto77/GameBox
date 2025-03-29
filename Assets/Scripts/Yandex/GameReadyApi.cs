@@ -14,7 +14,13 @@ namespace Yandex
 		private static extern void GameplayAPIStop();
 #endif
 
-		public GameReadyApi() { }
+		public GameReadyApi() 
+		{
+#if UNITY_WEBGL && !UNITY_EDITOR
+
+			OnLoadingAPIReady();
+#endif
+		}
 
 		// когда игра готова к взаимодействию
 		public void OnLoadingAPIReady()

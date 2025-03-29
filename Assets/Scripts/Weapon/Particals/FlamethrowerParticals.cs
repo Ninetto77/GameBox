@@ -62,12 +62,17 @@ public class FlamethrowerParticals : MonoBehaviour
 	{
 		while (isAttack)
 		{
-			if (other == null) yield return null;
+			if (other == null) yield break;
 
 			var enemy = other.GetComponent<EnemyController>();
-			if (enemy != null)
+
+            if (enemy == null || enemy.gameObject == null)
+            {
+				yield break;
+            }
+            if (enemy != null)
 			{
-				other.GetComponent<EnemyController>().ApplyDamage(weapon.weapon.WeaponDamage);
+				enemy.ApplyDamage(weapon.weapon.WeaponDamage);
 				yield return new WaitForSeconds(1.5f);
 			}
 		}

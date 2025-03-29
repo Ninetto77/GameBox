@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using UnityEngine;
 using Zenject;
@@ -13,22 +14,25 @@ namespace Tasks
 		[Header("Тип переключения квеста")]
 		[SerializeField] private ChangeTaskType changeTaskType;
 
-        [Inject] private TaskManager taskManager;
+		[Header("Включение следующего триггера с заданием")]
+		[SerializeField] private bool activateNextTaskCollider = false;
+		[ShowIf("turnOnNextTaskCollider")]
+		[SerializeField] private Collider nextTaskCollider;
+
+		[Inject] private TaskManager taskManager;
 		private bool isFirst = true;
 		private EnemyKillTask enemyTask;
 
 		private void Start()
 		{
 			isFirst = true;
-			if (changeTaskType == ChangeTaskType.onEnemyKill 
-				|| changeTaskType == ChangeTaskType.onEndTask)
-				{ 
+			if (changeTaskType == ChangeTaskType.onEnemyKill)
 				if (TryGetComponent(out EnemyKillTask enemyTask))
-				{
 					enemyTask.OnEnemyKill += OnEnemyKill;
+
+			if (changeTaskType == ChangeTaskType.onEndTask)
+				if (TryGetComponent(out EnemyKillTask enemyTask))
 					enemyTask.EndEnemyWave += EndEnemyWave;
-				}
-			}
 		}
 
 		private void EndEnemyWave()
@@ -49,24 +53,26 @@ namespace Tasks
 
 			if (changeTaskType == ChangeTaskType.onTriggerEnter)
 				taskManager.OnEndedTask?.Invoke(numberOfTask);
-			
-            isFirst = !isFirst;
+
+			if (activateNextTaskCollider)
+				if (nextTaskCollider != null)
+					nextTaskCollider.enabled = true;
+
+			isFirst = !isFirst;
 		}
 
 		private void OnDisable()
 		{
-            if (changeTaskType == ChangeTaskType.onDestroy)
-			    taskManager.OnEndedTask?.Invoke(numberOfTask);
+			if (changeTaskType == ChangeTaskType.onDestroy)
+				taskManager.OnEndedTask?.Invoke(numberOfTask);
 
-			if (changeTaskType == ChangeTaskType.onEnemyKill
-				|| changeTaskType == ChangeTaskType.onEndTask)
-			{
+			if (changeTaskType == ChangeTaskType.onEnemyKill)
 				if (enemyTask != null)
-				{
 					enemyTask.OnEnemyKill -= OnEnemyKill;
+
+			if (changeTaskType == ChangeTaskType.onEndTask)
+				if (enemyTask != null)
 					enemyTask.EndEnemyWave -= EndEnemyWave;
-				}
-			}
 		}
 	}
 

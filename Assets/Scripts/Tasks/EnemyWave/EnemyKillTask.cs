@@ -15,16 +15,10 @@ namespace Tasks
 		public Action EndEnemyWave;
 		public Action<int, int> OnEnemyKill;
 
-		[Header("Номер квеста")]
-		[SerializeField] private int numberOfTask = -1;
-		[Header("Номер следующего квеста")]
-		[SerializeField] private int numberOfNextTask = -1;
-
 		[Header("Маркеры для волн")]
 		[SerializeField] private EnemyMarker[] enemyMarkers;
 		[SerializeField] private EnemyMarker[] enemyMarkers2;
 		[SerializeField] private EnemyMarker[] enemyMarkers3;
-
 
 		[Header("Количество врагов для волн")]
 		[SerializeField] private Transform[] enemyMarkersTransforms = new Transform[3];
@@ -74,7 +68,9 @@ namespace Tasks
 		private void CheckForWave()
 		{
 			curKillCount++;
-			OnEnemyKill?.Invoke(curKillCount, commonCount);
+
+			if (curKillCount != CountOfThirdWave)
+				OnEnemyKill?.Invoke(curKillCount, commonCount);
 
 			if (curKillCount == CountOfFirstWave)
 			{

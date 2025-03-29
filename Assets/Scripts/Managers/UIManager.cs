@@ -1,10 +1,8 @@
 using Code.Global.Animations;
 using DG.Tweening;
 using Points;
-using Sounds;
 using System;
 using System.Collections;
-using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -105,7 +103,6 @@ public class UIManager : MonoBehaviour
 	{
 #if UNITY_WEBGL && !UNITY_EDITOR
 		//ßÈ GameReadyAPI
-		Debug.log("GameReadyAPI");
 		gameReadyApi.OnGameplayAPIStop();
 #endif
 		isDead = true;
@@ -201,7 +198,6 @@ public class UIManager : MonoBehaviour
 		OnPlayerDamage -= ShowRedOverlay;
 		OnPlayerDead -= ShowDeadWindow;
 		OnPlayerWin -= ShowWinWindow;
-		//DOTween.KillAll(transform);
 	}
 
 }
