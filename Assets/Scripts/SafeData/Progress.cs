@@ -19,11 +19,6 @@ namespace SaveSystem
 		public Progress()
         {
 			playerInfo = new PlayerInfo();
-#if UNITY_WEBGL
-			//ЯИ
-			//LoadExtern();
-
-#endif
 		}
 
 		/// <summary>
@@ -40,7 +35,7 @@ namespace SaveSystem
 		/// </summary>
 		public void SavePlayerInfo()
 		{
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
 			string jsonstring = JsonUtility.ToJson(playerInfo);
 			SaveExtern(jsonstring);
 			//SetLeaderboardScores(leaderboardName, playerInfo.PointsCommon);
@@ -52,7 +47,7 @@ namespace SaveSystem
 		/// </summary>
 		public void LoadPlayerInfo()
 		{
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
 			LoadExtern();
 #endif
 		}
@@ -62,7 +57,7 @@ namespace SaveSystem
 		/// </summary>
 		public void SetPlayerInfo(string value)
 		{
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
 			playerInfo = JsonUtility.FromJson<PlayerInfo>(value);
 #endif
 		}

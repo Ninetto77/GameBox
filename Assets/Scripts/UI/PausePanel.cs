@@ -4,6 +4,7 @@ using Sounds;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Audio;
+using Yandex;
 using Zenject;
 
 public class PausePanel : MonoCache
@@ -29,20 +30,13 @@ public class PausePanel : MonoCache
 
 	[Inject] private UIManager uiManager;
 	[Inject] private AudioManager audioManager;
-
-	//говорит о начале игры
-	[DllImport("__Internal")]
-	private static extern void SetStartGameplayAPI();	
-
-	//говорит об остановке игры
-	[DllImport("__Internal")]
-	private static extern void SetStopGameplayAPI();
+	[Inject] private GameReadyApi gameReadyApi;
 
 	private void Start()
 	{
-#if UNITY_WEBGL
-		//я»
-		//SetStartGameplayAPI();
+#if UNITY_WEBGL && !UNITY_EDITOR
+		//я» GameReadyAPI
+		gameReadyApi.OnGameplayAPIStart();
 #endif
 		isPause = false;
 		curCanvas = GameCanvas;
@@ -74,9 +68,9 @@ public class PausePanel : MonoCache
 	/// </summary>
 	public void ContinueGame()
 	{
-#if UNITY_WEBGL
-		//я»
-		//SetStartGameplayAPI();
+#if UNITY_WEBGL && !UNITY_EDITOR
+		//я» GameReadyAPI
+		gameReadyApi.OnGameplayAPIStart();
 #endif
 		Time.timeScale = 1.0f;
 		Normal.TransitionTo(0.5f);
@@ -93,9 +87,9 @@ public class PausePanel : MonoCache
 	/// <param name="curCanvas"></param>
 	private void PauseGame(Window curCanvas)
 	{
-#if UNITY_WEBGL
-		//я»
-		//SetStopGameplayAPI();
+#if UNITY_WEBGL && !UNITY_EDITOR
+		//я» GameReadyAPI
+		gameReadyApi.OnGameplayAPIStop();
 #endif
 		Time.timeScale = 0f;
 		InPause.TransitionTo(0.5f);

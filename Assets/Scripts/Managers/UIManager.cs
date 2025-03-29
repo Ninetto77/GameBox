@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Yandex;
 using Zenject;
 
 public class UIManager : MonoBehaviour
@@ -57,14 +58,12 @@ public class UIManager : MonoBehaviour
 	private TextMeshProUGUI menuWinText;
 
 	[Inject] private PointsLevel shop;
+	[Inject] private GameReadyApi gameReadyApi;
+
 	private bool isDead;
 
 	private const string candyTextCount = "Количество собранных конфет: ";
 	private const string pointTextCount = "Количество очков: ";
-
-	//говорит о начале игры
-	[DllImport("__Internal")]
-	private static extern void SetStartGameplayAPI();
 
 	//говорит об остановке игры
 	[DllImport("__Internal")]
@@ -108,9 +107,9 @@ public class UIManager : MonoBehaviour
 
 	private IEnumerator ShowDeadWindowForTime()
 	{
-#if UNITY_WEBGL
-		//ЯИ
-		//SetStopGameplayAPI();
+#if UNITY_WEBGL && !UNITY_EDITOR
+		//ЯИ GameReadyAPI
+		gameReadyApi.OnGameplayAPIStop();
 #endif
 		isDead = true;
 			
@@ -149,9 +148,9 @@ public class UIManager : MonoBehaviour
 
 	private IEnumerator ShowWinWindowForTime()
 	{
-#if UNITY_WEBGL
-		//ЯИ
-		//SetStopGameplayAPI();
+#if UNITY_WEBGL && !UNITY_EDITOR
+		//ЯИ GameReadyAPI
+		gameReadyApi.OnGameplayAPIStop();
 #endif
 		isDead = true;
 		CandyText.text = candyTextCount + shop.countOfCandy;

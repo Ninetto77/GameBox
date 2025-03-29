@@ -2601,7 +2601,7 @@ MonoBehaviour:
   FxPrefab: 1
   FirePoint: {fileID: 7112061276035992999}
   FxMagicAreaPrefab: 2
-  FirePointMagicArea: {fileID: 0}
+  FirePointMagicArea: {fileID: 7961953044401433028}
 --- !u!95 &3816993977785417335
 Animator:
   serializedVersion: 5

@@ -44,15 +44,21 @@ LoadExtern: function(){
 // },
 
 /////GameplayAPI
-SetStartGameplayAPI: function()
-{
-   // ysdk.features.GameplayAPI?.start(); 
-},
+LoadingAPIReady: function(){
+ console.log("--------Connect API--------");
+ ysdk.features.LoadingAPI.ready();
+ console.log("--------Connect API--------");
+ },
 
-SetStopGameplayAPI: function()
-{
-    //ysdk.features.GameplayAPI?.stop();
-},
+ GameplayAPIStart: function(){
+ ysdk.features.GameplayAPI.start()
+ console.log("--------Start API--------");
+ },
+
+ GameplayAPIStop: function(){
+ ysdk.features.GameplayAPI.stop()
+ console.log("--------Stop API--------");
+ }
 
 
 });

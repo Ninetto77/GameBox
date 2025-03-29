@@ -37,11 +37,9 @@ public class MenuManager : MonoBehaviour
 		Time.timeScale = 1.0f;
 		StartMainMenu();
 		ChangeLevelButtons();
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
 		//ßÈ
-		//progress.SavePlayerInfo();
-		//ßÈ
-		//progress.LoadPlayerInfo();
+		progress.LoadPlayerInfo();
 #endif
 	}
 

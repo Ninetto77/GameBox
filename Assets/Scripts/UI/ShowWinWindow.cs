@@ -66,9 +66,9 @@ namespace Enemy.Abilities
 					break;
 			}
 			progress.ChangeCommonPoints();
-			
+
 			//ßÈ
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
 			progress.SavePlayerInfo();
 #endif
 		}
