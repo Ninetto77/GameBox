@@ -1,0 +1,22 @@
+{
+    "stringKeys": [],
+    "stringValues": [],
+    "floatKeys": [],
+    "floatValues": [],
+    "intKeys": [
+        "MusicEnable",
+        "SFXEnable"
+    ],
+    "intValues": [
+        0,
+        1
+    ],
+    "idSave": 6,
+    "playerInfo": {
+        "Level": 1,
+        "PointsCommon": 0,
+        "PointsLevel1": 0,
+        "PointsLevel2": 0,
+        "PointsLevel3": 0
+    }
+}

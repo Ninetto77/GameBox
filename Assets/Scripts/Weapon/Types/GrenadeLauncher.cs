@@ -1,12 +1,14 @@
 using Attack.Base;
 using Attack.Projectile;
 using Items;
+using NTC.Pool;
 using Points;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using WeaponObilities;
 using Zenject;
+using static NTC.Pool.NightPool;
 
 public class GrenadeLauncher : AttackBehaviour
 {
@@ -145,9 +147,8 @@ public class GrenadeLauncher : AttackBehaviour
 		if (weapon.HitEffectPrefab != null)
 		{
 			var hitEffectRotation = Quaternion.LookRotation(hitInfo.normal);
-			var hitEffect = Instantiate(weapon.HitEffectPrefab, hitInfo.point, hitEffectRotation);
 
-			Destroy(hitEffect.gameObject, weapon.HitEffectDestroyDelay);
+			Spawn(weapon.HitEffectPrefab, hitInfo.point, hitEffectRotation).DespawnOnComplete();
 		}
 	}
 

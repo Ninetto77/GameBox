@@ -4,8 +4,10 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public Action<float> OnChangeHealth;
+    public event Action<float> OnRestoreHealth;
     public event Action OnTakeDamage;
     public event Action OnTakeTreat;
+
     public float MaxHealth;
 
     private float currentHealth;
@@ -37,7 +39,7 @@ public class Health : MonoBehaviour
 	public void RestoreHealth()
     {
         currentHealth = MaxHealth;
-		OnChangeHealth?.Invoke(currentHealth);
+		OnRestoreHealth?.Invoke(currentHealth);
 	}
 
 	public float GetCurrentHealth() => currentHealth;

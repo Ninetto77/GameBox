@@ -3,7 +3,6 @@ using Enemy;
 using Enemy.States;
 using System;
 using System.Collections.Generic;
-using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -15,12 +14,12 @@ namespace Tasks
 		public Action EndEnemyWave;
 		public Action<int, int> OnEnemyKill;
 
-		[Header("Маркеры для волн")]
+		[Header("Enemy markers")]
 		[SerializeField] private EnemyMarker[] enemyMarkers;
 		[SerializeField] private EnemyMarker[] enemyMarkers2;
 		[SerializeField] private EnemyMarker[] enemyMarkers3;
 
-		[Header("Количество врагов для волн")]
+		[Header("Transforms with markers in each wave")]
 		[SerializeField] private Transform[] enemyMarkersTransforms = new Transform[3];
 
 		[Inject] private IEnemyFactory enemyFactory;
@@ -30,12 +29,16 @@ namespace Tasks
 		private int CountOfSecondWave;
 		private int CountOfThirdWave;
 
-		private bool IsFirstEnter = true; // это первый вход в триггер
+		private bool IsFirstEnter = true; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		private int commonCount = 0;
 		private int curKillCount = 0;
 
-		private List<EnemyController> enemyControllers = new List<EnemyController>();
 		protected List<GameObject> allChildren = new List<GameObject>();
+
+		private List<EnemyController> enemyControllers = new List<EnemyController>();
+		private Dictionary<string, Action> enemySubscriptions = new Dictionary<string, Action>();
+
+		int i = 0;
 
 		void Start()
 		{
@@ -47,10 +50,6 @@ namespace Tasks
 			commonCount = CountOfThirdWave;
 		}
 
-		protected override void OnTick()
-		{
-			base.OnTick();
-		}
 		private void OnTriggerEnter(Collider other)
 		{
 			if (!IsFirstEnter) return;
@@ -58,14 +57,13 @@ namespace Tasks
 
 			if (other.transform.CompareTag("Player"))
 			{
-				OnEnemyKill?.Invoke(curKillCount, commonCount);
 				Spawn(1);
 				StartEnemyWave?.Invoke();
 				IsFirstEnter = false;
 			}
 		}
 
-		private void CheckForWave()
+		private void CheckForWave(EnemyController enemy)
 		{
 			curKillCount++;
 
@@ -83,18 +81,30 @@ namespace Tasks
 			else if (curKillCount == CountOfThirdWave)
 			{
 				EndEnemyWave?.Invoke();
-				enemyControllers.Clear();
 				Destroy(transform.gameObject, 5);
 			}
+
+			ClearEnemyList(enemy);
+		}
+
+		private void ClearEnemyList(EnemyController enemy)
+		{
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			if (enemySubscriptions.TryGetValue(enemy.UniqueId, out var subscription))
+			{
+				enemy.OnEnemyDeath -= subscription;
+				enemySubscriptions.Remove(enemy.UniqueId);
+			}
+			enemyControllers.Remove(enemy);
 		}
 
 		/// <summary>
-		/// Начать спавнить врагов
+		/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		/// <param name="numberOfWave"></param>
 		private void Spawn(int numberOfWave)
 		{
-			CreateEnemyMarkersArray(numberOfWave);
+			CreateMarkersArray(numberOfWave);
 			switch (numberOfWave)
 			{
 				case 1:
@@ -109,26 +119,45 @@ namespace Tasks
 				default:
 					break;
 			}
-			CreateEnemyList();
 			DestroyMarkers();
 			Destroy(enemyMarkersTransforms[numberOfWave - 1].gameObject);
 		}
 
 		/// <summary>
-		/// Заспавнить врагов
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		/// <param name="enemies"></param>
 		protected void SpawnEnemies(EnemyMarker[] enemies)
 		{
 			enemyFactory.Load();
 			foreach (EnemyMarker marker in enemies)
-				enemyFactory.Create(marker.type, marker.transform.position, transform);
+			{
+				var temp = enemyFactory.Create(marker.type, marker.transform.position);
+				CreateEnemyList(temp);
+			}
 		}
 
 		/// <summary>
-		/// Создать массив для уничтожения маркеров
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
-		protected void CreateEnemyMarkersArray(int numberOfWave)
+		private void CreateEnemyList(GameObject temp)
+		{
+			if (temp.TryGetComponent(out EnemyController enemy))
+			{
+				if (!enemySubscriptions.ContainsKey(enemy.UniqueId))
+				{
+					Action subscription = () => CheckForWave(enemy);
+					enemy.OnEnemyDeath += subscription;
+					enemySubscriptions[enemy.UniqueId] = subscription;
+				}
+				enemyControllers.Add(enemy);
+			}
+		}
+
+		/// <summary>
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		/// </summary>
+		protected void CreateMarkersArray(int numberOfWave)
 		{
 			foreach (Transform child in enemyMarkersTransforms[numberOfWave - 1])
 			{
@@ -137,7 +166,7 @@ namespace Tasks
 		}
 
 		/// <summary>
-		/// Уничтожить маркеры
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		protected void DestroyMarkers()
 		{
@@ -148,20 +177,5 @@ namespace Tasks
 			allChildren.Clear();
 		}
 
-		/// <summary>
-		/// Создать массив для добавления врагов, подписка на смерть
-		/// </summary>
-		protected void CreateEnemyList()
-		{
-			foreach (Transform child in transform)
-			{
-				var enemy = child.GetComponent<EnemyController>();
-				if (enemy == null)
-					continue;
-
-				enemy.OnEnemyDeath += CheckForWave;
-				enemyControllers.Add(enemy);
-			}
-		}
 	}
 }

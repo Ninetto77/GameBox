@@ -10,7 +10,7 @@ namespace Languages
 	public class Language
 	{
 		[DllImport("__Internal")]
-		private static extern string GetLang();
+		private static extern string GetLanguage();
 
 		public delegate void ChangeLangText();
 		public event ChangeLangText OnLanguageChanged;
@@ -19,15 +19,18 @@ namespace Languages
 		private string currentLanguage;
 		private Dictionary<string, string> localizedText;
 
-		public Language() {
-			Debug.Log("Language in construct");
-			currentLanguage = GetLang();
+		public Language()
+		{
+			//Debug.Log("Language in construct");
 
-			LoadLocalizedText(currentLanguage);
+#if UNITY_WEBGL && !UNITY_EDITOR
+			currentLanguage = GetLanguage();
+#endif
+			//LoadLocalizedText(currentLanguage);
 		}
 
 		/// <summary>
-		/// доставляет файл с переводом
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		/// <param name="langName"></param>
 		public void LoadLocalizedText(string langName)
@@ -36,7 +39,7 @@ namespace Languages
 
 			string dataAsJson;
 
-			//если телефон
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (Application.platform == RuntimePlatform.Android)
 			{
 				WWW reader = new WWW(path);

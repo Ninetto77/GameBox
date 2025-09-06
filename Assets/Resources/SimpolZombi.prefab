@@ -6774,6 +6774,7 @@ GameObject:
   - component: {fileID: 4656873277496133392}
   - component: {fileID: 8828175743290288043}
   - component: {fileID: 901461333284111386}
+  - component: {fileID: 3096441204555487325}
   m_Layer: 8
   m_Name: SimpolZombi
   m_TagString: Zombi
@@ -6833,10 +6834,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e0347d4b642ab43b5f112ae430373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 25
+  radiusOfDetectAfterDamage: 45
   distanceToAtack: 2.3
   Damage: 15
   timeOfDeath: 3
@@ -6930,7 +6933,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -498879062823469456, guid: 4bb6a7d15b50e5749a5346ff464b2677, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7064,6 +7067,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirePartical: {fileID: 1385924565641031542}
+--- !u!114 &3096441204555487325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067163870905714071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93914757ea1b6c64fa5737f6272def6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 3675473861881142851}
+  effectSpeed: 0.7
 --- !u!1 &7221513642185374908
 GameObject:
   m_ObjectHideFlags: 0

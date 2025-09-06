@@ -7024,6 +7024,7 @@ GameObject:
   - component: {fileID: 3012434256745299292}
   - component: {fileID: 939416596498051096}
   - component: {fileID: 706364811989971189}
+  - component: {fileID: 8053920591685264076}
   m_Layer: 8
   m_Name: ManKiller
   m_TagString: Untagged
@@ -7083,10 +7084,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e0347d4b642ab43b5f112ae430373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 3
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 25
+  radiusOfDetectAfterDamage: 45
   distanceToAtack: 2.3
   Damage: 15
   timeOfDeath: 3
@@ -7270,6 +7273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f85baf32ce94e14c9c126c9a5c6029a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeEmmisionSwitcher: 0
   enemyRenderer: {fileID: 9209460935946739789}
   effectSpeed: 0.3
 --- !u!114 &939416596498051096
@@ -7314,6 +7318,21 @@ MonoBehaviour:
       m_Bits: 0
     _drawGizmos: 1
     _gizmosColor: {r: 0.4433962, g: 0.09594305, b: 0.085751146, a: 1}
+--- !u!114 &8053920591685264076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6268413479186606220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93914757ea1b6c64fa5737f6272def6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeEmmisionSwitcher: 0
+  enemyRenderer: {fileID: 9209460935946739789}
+  effectSpeed: 0.5
 --- !u!1 &6442493227997384027
 GameObject:
   m_ObjectHideFlags: 0

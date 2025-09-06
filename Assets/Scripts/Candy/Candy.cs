@@ -4,6 +4,8 @@ using DG.Tweening;
 using Sounds;
 using UnityEngine;
 using Zenject;
+using NTC.Pool;
+using static NTC.Pool.NightPool;
 
 namespace Points
 {
@@ -26,7 +28,6 @@ namespace Points
 
 		private const string candyAudio = GlobalStringsVars.CANDY_SOUND_NAME;
 		private Point candyPoint;
-		Sequence seq;
 
 		private void Start()
 		{
@@ -49,11 +50,13 @@ namespace Points
 
 			if (particleOnDestroy != null)
 			{
-				var hitEffect = Instantiate(particleOnDestroy, transform.position, Quaternion.identity);
+				Spawn(particleOnDestroy, transform.position, Quaternion.identity)
+				.DespawnOnComplete();
 			}
 
 			shop.AddPoints(candyPoint);
 			shop.AddCandies();
+
 			Destroy(this.gameObject);
 		}
 	}

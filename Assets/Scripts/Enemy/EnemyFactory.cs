@@ -1,3 +1,4 @@
+using ObjectPoolZenject;
 using UnityEngine;
 using Zenject;
 
@@ -22,6 +23,13 @@ namespace Enemy
 		private Object spiderObject;
 
 		[Inject] private DiContainer _container;
+		[Inject] private SimpolZombiPool _zombiSimpolPool;
+		[Inject] private HardZombiPool _zombiHardPool;
+		[Inject] private SpiderPool _spiderPool;
+		[Inject] private SkeletonPool _skeletonPool;
+		[Inject] private MainWitchPool _mainWitchPool;
+		[Inject] private WitchPool _witchPool;
+		[Inject] private ManKillerPool _manKillerPool;
 		//private static Random rand;
 
 		public void Load()
@@ -35,34 +43,37 @@ namespace Enemy
 			spiderObject = Resources.Load(spider);
 		}
 
-		public void Create(EnemyType enemyType, Vector3 at, Transform parent = null)
+		public GameObject Create(EnemyType enemyType, Vector3 at, Transform parent = null)
 		{
+			MyPoolObject enemy = null;
 			switch (enemyType)
 			{
 				case EnemyType.simpolZombi:
-					_container.InstantiatePrefab(simpolZombi, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					enemy = _zombiSimpolPool.GetPooledObject(at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.hardZombi:
-					_container.InstantiatePrefab(hardZombi, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					enemy = _zombiHardPool.GetPooledObject(at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.skeleton:
-					_container.InstantiatePrefab(skeletonObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					enemy = _skeletonPool.GetPooledObject(at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.manKiller:
-					_container.InstantiatePrefab(manKillerObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					enemy = _manKillerPool.GetPooledObject(at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.witch:
-					_container.InstantiatePrefab(witchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					enemy = _witchPool.GetPooledObject(at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;		
 				case EnemyType.mainWitch:
-					_container.InstantiatePrefab(mainWitchObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					enemy = _mainWitchPool.GetPooledObject(at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				case EnemyType.spider:
-					_container.InstantiatePrefab(spiderObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					enemy = _spiderPool.GetPooledObject(at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+					//_container.InstantiatePrefab(spiderObject, at, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
 					break;
 				default:
 					break;
 			}
+			return enemy.transform.gameObject;
 		}
 
 	}

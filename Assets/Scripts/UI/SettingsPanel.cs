@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using Zenject;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class SettingsPanel : MonoCache
 {
@@ -55,7 +56,10 @@ public class SettingsPanel : MonoCache
 		Mixer.audioMixer.SetFloat(musicMixer, state ? 0f : -80f);
 
 		if (PlayerPrefs.HasKey(musicSave))
+		{
 			PlayerPrefs.SetInt(musicSave, state ? 1 : 0);
+			PlayerPrefs.Save();
+		}
 
 		if (MusicImage != null)
 			MusicImage.enabled = state;
@@ -67,7 +71,10 @@ public class SettingsPanel : MonoCache
 		Mixer.audioMixer.SetFloat(sfxMixer, state ? 0f : -80f);
 
 		if (PlayerPrefs.HasKey(sfxSave))
+		{
 			PlayerPrefs.SetInt(sfxSave, state ? 1 : 0);
+			PlayerPrefs.Save();
+		}
 
 		if (SFXTImage != null)
 			SFXTImage.enabled = state;

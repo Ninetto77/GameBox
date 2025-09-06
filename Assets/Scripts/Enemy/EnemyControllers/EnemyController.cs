@@ -1,5 +1,6 @@
 ﻿using Attack.Overlap;
 using Enemy.Abilities;
+using ObjectPoolZenject;
 using Points;
 using System;
 using System.Collections;
@@ -14,13 +15,24 @@ namespace Enemy.States
 	[RequireComponent(typeof(Health))]
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent (typeof(AudioSource))]
-	public abstract class EnemyController : MonoBehaviour, IDamageable, IEnemy, IAttack, IWeaponVisitor
+	public abstract class EnemyController : MyPoolObject, IDamageable, IEnemy, IAttack, IWeaponVisitor
 	{
+		//public delegate void AccountHandler();
+		//public event AccountHandler? OnEnemyDeath
+		//{
+		//	add { Debug.Log("add to OnEnemyDeath"); }
+		//	remove { Debug.Log("delete OnEnemyDeath"); }
+		//}
 		public Action OnEnemyDeath;
+		public string UniqueId { get; private set; }
+
+		//public Action<EnemyController> OnEnemyDeath;
+		public EnemyType Type;
 		[Header("Обнаружение игрока")]
 		public LayerMask PlayerMask;
-		[SerializeField] private float radiusOfDetect = 10;
-		[SerializeField] private float distanceToAtack = 3;
+		[SerializeField] private float radiusOfDetect = 10f;
+		[SerializeField] private float radiusOfDetectAfterDamage = 45f;
+		[SerializeField] private float distanceToAtack = 3f;
 
 		[Header("Урон по игроку (не ведьма)")]
 		[Tooltip("Урон ведьмы менять в фаербол")]
@@ -68,39 +80,140 @@ namespace Enemy.States
 		private bool isDead = false;
 		private bool noticePlayer = false;
 
-        [Inject]
-		private void Construct(PlayerMoovement player)
-        {
-            this.player = player;
+		private float curRadiusOfDetect;
 
+
+		[Inject] private SimpolZombiPool _zombiSimpolPool;
+		[Inject] private HardZombiPool _zombiHardPool;
+		[Inject] private SpiderPool _spiderPool;
+
+		[Inject] private SkeletonPool _skeletonPool;
+		[Inject] private MainWitchPool _mainWitchPool;
+		[Inject] private WitchPool _witchPool;
+		[Inject] private ManKillerPool _manKillerPool;
+
+
+		[Inject]
+		private void Construct(PlayerMoovement player)
+		{
+			this.player = player;
+			UniqueId = Guid.NewGuid().ToString();
+
+			//animator = GetComponent<Animator>();
+			//AnimationEnemy = new EnemyAnimation(animator);
+
+			//rb = GetComponent<Rigidbody>();
+
+			//stateMachine = new StateMachine();
+			//stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.none, this));
+
+			//disappear = GetComponent<DisappearAbility>();
+			//appear = GetComponent<AppearAbility>();
+
+			//health = GetComponent<Health>();
+			//health.OnChangeHealth += TakeDamage;
+			//Debug.Log("health in Construct");
+
+			//audioSource = GetComponent<AudioSource>();
+
+			//player.OnPlayerDead += OnPlayerDead;
+			//player.OnPlayerWin += OnPlayerWin;
+			//canMove = true;
+
+
+			//hasFirstDamage = false;
+			//isTakingDamage = false;
+			//isDead = false;
+			//noticePlayer = false;
+			//SetHPCanvas();
+		}
+
+		/// <summary>
+		/// Кэширование компонентов
+		/// </summary>
+		private void CacheComponents()
+		{
 			animator = GetComponent<Animator>();
 			AnimationEnemy = new EnemyAnimation(animator);
 
 			rb = GetComponent<Rigidbody>();
+			health = GetComponent<Health>();
+			audioSource = GetComponent<AudioSource>();
 
 			stateMachine = new StateMachine();
-			stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.none, this));
-			
+
 			disappear = GetComponent<DisappearAbility>();
 			appear = GetComponent<AppearAbility>();
+		}
 
-			health = GetComponent<Health>();
-			health.OnChangeHealth += TakeDamage;
+		/// <summary>
+		/// инициализировать значения
+		/// </summary>
+		private void InitValues()
+		{
+			curRadiusOfDetect = radiusOfDetect;
+			SetHPCanvas();
+		}
 
-			audioSource = GetComponent<AudioSource>();
+		//при создании 
+		public override void OnCreate()
+		{
+			CacheComponents();
+			InitValues();
+		}
+
+		//восстановление всех настроек
+		public override void OnSpawned()
+		{
+			stateMachine.Init(FactoryState.GetStateEnemy(StatesEnum.idle, this));
+			health.RestoreHealth();
 
 			player.OnPlayerDead += OnPlayerDead;
 			player.OnPlayerWin += OnPlayerWin;
-			canMove = true;
+			health.OnChangeHealth += TakeDamage;
+			health.OnRestoreHealth += ChangeHPSliderValue;
 
-			SetHPCanvas();
+			canMove = true;
+			hasFirstDamage = false;
+			isTakingDamage = false;
+			isDead = false;
+			noticePlayer = false;
+
+			curRadiusOfDetect = radiusOfDetect;
+
+			if (rb != null)
+				rb.isKinematic = false;
+			else
+			{
+				rb = GetComponent<Rigidbody>();
+				rb.isKinematic = false;
+			}
+
+			SetDissapeareState(false);
+
+			//Debug.Log($"Spawn {gameObject.name }!");
 		}
+
+		//при деспавне
+		public override void OnDespawned()
+		{
+			health.OnChangeHealth -= TakeDamage;
+			player.OnPlayerDead -= OnPlayerDead;
+			player.OnPlayerWin -= OnPlayerWin;
+			health.OnRestoreHealth -= ChangeHPSliderValue;
+
+			//if (OnEnemyDeath != null)
+			//{
+
+			//}
+		}
+
 
 		protected virtual void Update()
 		{
 			if (!canMove) return;
 			rb.AddForce(0, -20f, 0f, ForceMode.Acceleration); //гравитация вниз
-			var colliders = Physics.OverlapSphere(transform.position, radiusOfDetect, PlayerMask.value);
+			var colliders = Physics.OverlapSphere(transform.position, curRadiusOfDetect, PlayerMask.value);
 
 			if (isTakingDamage) return;
 			if (isDead) return;
@@ -122,7 +235,7 @@ namespace Enemy.States
 			{
 				stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.idle, this));
 			}
-			
+
 			stateMachine.CurrentState.Update();
 		}
 
@@ -200,6 +313,7 @@ namespace Enemy.States
 		private IEnumerator StartGetDead()
 		{
 			isDead = true;
+			
 			OnEnemyDeath?.Invoke();
 
 			shop.AddPoints(new Point(Points));
@@ -207,8 +321,7 @@ namespace Enemy.States
 			if (deathSound != null)
 				audioSource.PlayOneShot(deathSound);
 
-			if (disappear)
-				disappear.Execute();
+			SetDissapeareState(true);
 
 			stateMachine.ChangeState(FactoryState.GetStateEnemy(StatesEnum.death, this));
 
@@ -217,7 +330,34 @@ namespace Enemy.States
 
 			rb.isKinematic = true;
 			yield return new WaitForSeconds(timeOfDeath);
-			Destroy(this.gameObject);
+
+			switch (Type)
+			{
+				case EnemyType.simpolZombi:
+					_zombiSimpolPool.ReturnPooledObject(this);
+					break;
+				case EnemyType.hardZombi:
+					_zombiHardPool.ReturnPooledObject(this);
+					break;
+				case EnemyType.skeleton:
+					_skeletonPool.ReturnPooledObject(this);
+					break;
+				case EnemyType.manKiller:
+					_manKillerPool.ReturnPooledObject(this);
+					break;
+				case EnemyType.witch:
+					_witchPool.ReturnPooledObject(this);
+					break;
+				case EnemyType.mainWitch:
+					_mainWitchPool.ReturnPooledObject(this);
+					break;
+				case EnemyType.spider:
+					_spiderPool.ReturnPooledObject(this);
+					break;
+				default:
+					break;
+			}
+			//Debug.Log("Despaw " + gameObject.name);
 		}
 		#endregion
 
@@ -228,7 +368,7 @@ namespace Enemy.States
 			if (!hasFirstDamage)
 			{
 				hasFirstDamage = true;
-				radiusOfDetect = 45f;
+				curRadiusOfDetect = radiusOfDetectAfterDamage;
 			}
 
 			ChangeHPSliderValue(value);
@@ -254,7 +394,8 @@ namespace Enemy.States
 		{
 			if (isDead) return;
 
-			health.TakeDamage(damage);
+			if (health != null)
+				health.TakeDamage(damage);
 		}
 		#endregion
 
@@ -274,22 +415,20 @@ namespace Enemy.States
 			if (state) 
 			{
 				if (disappear)
-					disappear.Execute();
+				{
+					disappear.Execute(); 
+				}
 			}
 			else
 			{
 				if (appear)
-					appear.Execute();
+				{
+					appear.Execute(); 
+				}
 			}
 		}
 
-		private void OnDisable()
-		{
-			health.OnChangeHealth -= TakeDamage;
-			player.OnPlayerDead -= OnPlayerDead;
-			player.OnPlayerWin -= OnPlayerWin;
-		}
-
+		#region паттерн Visitor
 		public virtual void Visit(MelleWeapon weapon)
 		{
 			DefaultOverlapVisit(weapon);
@@ -299,5 +438,6 @@ namespace Enemy.States
 		{
 			weapon.onHit();
 		}
+		#endregion
 	}
 }

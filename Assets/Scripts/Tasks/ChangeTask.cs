@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System;
 using UnityEngine;
+using Yandex;
 using Zenject;
 
 namespace Tasks
@@ -9,12 +10,12 @@ namespace Tasks
     {
 		public Action<int, int, int> OnKillEnemyTask;
 
-		[Header("Номер квеста")]
+		[Header("РќРѕРјРµСЂ Р·Р°РґР°РЅРёСЏ")]
         [SerializeField] private int numberOfTask = -1;
-		[Header("Тип переключения квеста")]
+		[Header("РўРёРї СЃРјРµРЅС‹ Р·Р°РґР°РЅРёСЏ")]
 		[SerializeField] private ChangeTaskType changeTaskType;
 
-		[Header("Включение следующего триггера с заданием")]
+		[Header("РђРєС‚РёРІРёСЂРѕРІР°С‚СЊ СЃР»РµРґСѓСЋС‰РёР№ РєРѕР»Р»Р°Р№РґРµСЂ")]
 		[SerializeField] private bool activateNextTaskCollider = false;
 		[ShowIf("turnOnNextTaskCollider")]
 		[SerializeField] private Collider nextTaskCollider;
@@ -38,11 +39,15 @@ namespace Tasks
 		private void EndEnemyWave()
 		{
 			taskManager.OnEndedTask?.Invoke(numberOfTask);
+			SendMetricks();
+			//Debug.Log("onEndTask");
 		}
 
 		private void OnEnemyKill(int curKillCount, int commonCount)
 		{
 			taskManager.OnEnemyKillTask?.Invoke(numberOfTask, curKillCount, commonCount);
+			//Debug.Log("onEnemyKill");
+
 		}
 
 		private void OnTriggerEnter(Collider other)
@@ -52,13 +57,18 @@ namespace Tasks
             if (!isFirst) return;
 
 			if (changeTaskType == ChangeTaskType.onTriggerEnter)
+			{
 				taskManager.OnEndedTask?.Invoke(numberOfTask);
+				SendMetricks();
+			}
 
 			if (activateNextTaskCollider)
 				if (nextTaskCollider != null)
 					nextTaskCollider.enabled = true;
 
 			isFirst = !isFirst;
+
+			//Debug.Log("onTriggerEnter " + gameObject.name);
 		}
 
 		private void OnDisable()
@@ -73,6 +83,11 @@ namespace Tasks
 			if (changeTaskType == ChangeTaskType.onEndTask)
 				if (enemyTask != null)
 					enemyTask.EndEnemyWave -= EndEnemyWave;
+		}
+
+		private void SendMetricks()
+		{
+			Metrics.OnChangeTask(numberOfTask);
 		}
 	}
 

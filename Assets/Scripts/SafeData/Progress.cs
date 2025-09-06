@@ -1,5 +1,5 @@
 ﻿using System.Runtime.InteropServices;
-using UnityEngine;
+using YG;
 
 namespace SaveSystem
 {
@@ -26,7 +26,8 @@ namespace SaveSystem
 		/// </summary>
 		public void ChangeCommonPoints()
 		{
-			playerInfo.PointsCommon = playerInfo.PointsLevel1 + playerInfo.PointsLevel2 + playerInfo.PointsLevel3;
+		//	playerInfo.PointsCommon = playerInfo.PointsLevel1 + playerInfo.PointsLevel2 + playerInfo.PointsLevel3;
+			YG2.saves.playerInfo.PointsCommon = playerInfo.PointsLevel1 + playerInfo.PointsLevel2 + playerInfo.PointsLevel3;
 		}
 
 
@@ -36,9 +37,11 @@ namespace SaveSystem
 		public void SavePlayerInfo()
 		{
 #if UNITY_WEBGL && !UNITY_EDITOR
-			string jsonstring = JsonUtility.ToJson(playerInfo);
-			SaveExtern(jsonstring);
-			//SetLeaderboardScores(leaderboardName, playerInfo.PointsCommon);
+			YG2.SaveProgress();
+
+			//string jsonstring = JsonUtility.ToJson(playerInfo);
+			//SaveExtern(jsonstring);
+			////SetLeaderboardScores(leaderboardName, playerInfo.PointsCommon);
 #endif
 		}
 
@@ -58,7 +61,7 @@ namespace SaveSystem
 		public void SetPlayerInfo(string value)
 		{
 #if UNITY_WEBGL && !UNITY_EDITOR
-			playerInfo = JsonUtility.FromJson<PlayerInfo>(value);
+			//playerInfo = JsonUtility.FromJson<PlayerInfo>(value);
 #endif
 		}
 

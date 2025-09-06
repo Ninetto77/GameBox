@@ -1,3 +1,5 @@
+using SaveSystem;
+
 namespace SaveSystem
 {
 	[System.Serializable]
@@ -8,5 +10,14 @@ namespace SaveSystem
 		public int PointsLevel1 = 0;
 		public int PointsLevel2 = 0;
 		public int PointsLevel3 = 0;
+	}
+}
+
+namespace YG
+{
+	public partial class SavesYG
+	{
+		public PlayerInfo playerInfo = new PlayerInfo();
+
 	}
 }

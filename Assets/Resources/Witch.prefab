@@ -2542,6 +2542,7 @@ GameObject:
   - component: {fileID: 7884382493355734216}
   - component: {fileID: 1348213801605912912}
   - component: {fileID: 4773625489826627537}
+  - component: {fileID: 369724723354116577}
   m_Layer: 8
   m_Name: Witch
   m_TagString: Untagged
@@ -2582,10 +2583,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f83c1838928ada4f86ee006031cfb97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 4
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 15
+  radiusOfDetectAfterDamage: 45
   distanceToAtack: 15.5
   Damage: 30
   timeOfDeath: 3
@@ -2809,6 +2812,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirePartical: {fileID: 1506466053896013009}
+--- !u!114 &369724723354116577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073238360983055838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93914757ea1b6c64fa5737f6272def6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 2820589782949722711}
+  effectSpeed: 0.3
 --- !u!1 &7090803835107200242
 GameObject:
   m_ObjectHideFlags: 0

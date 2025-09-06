@@ -6,6 +6,6 @@ namespace Enemy
 	{
 		void Load();
 
-		void Create(EnemyType enemyType, Vector3 at, Transform parent = null);
+		GameObject Create(EnemyType enemyType, Vector3 at, Transform parent = null);
 	}
 }

@@ -5,6 +5,8 @@ using Zenject;
 using SaveSystem;
 using Points;
 using UnityEngine.SceneManagement;
+using YG;
+using Yandex;
 
 namespace Enemy.Abilities
 {
@@ -37,16 +39,16 @@ namespace Enemy.Abilities
 
 
 		/// <summary>
-		/// Сохранить данные по поводу уровня
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		private void SaveData()
 		{
 			int currentIndexLevel = SceneManager.GetActiveScene().buildIndex;
 
-			////открывается следующий уровень в зависимости от 
-			//// текущего уровня. Например, 
-			////после прохождения 1 уровня с индексом 2
-			////открывается второй уровень
+			////пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 
+			//// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 
+			////пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2
+			////пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 			////0		 |1	        |2	    |3	    |4	    |
 			////mainmenu |loadscene |level1 |level2 |level3 |
@@ -54,27 +56,30 @@ namespace Enemy.Abilities
 			switch (currentIndexLevel)
 			{
 				case 2:
-					progress.playerInfo.PointsLevel1 = shop.curPoints.Value;
+					//progress.playerInfo.PointsLevel1 = shop.curPoints.Value;
+					YG2.saves.playerInfo.PointsLevel1 = shop.curPoints.Value;
 					break;
 				case 3:
-					progress.playerInfo.PointsLevel2 = shop.curPoints.Value;
+					//progress.playerInfo.PointsLevel2 = shop.curPoints.Value;
+					YG2.saves.playerInfo.PointsLevel1 = shop.curPoints.Value;
 					break;
 				case 4:
-					progress.playerInfo.PointsLevel3 = shop.curPoints.Value;
+					//progress.playerInfo.PointsLevel3 = shop.curPoints.Value;
+					YG2.saves.playerInfo.PointsLevel1 = shop.curPoints.Value;
 					break;
 				default:
 					break;
 			}
 			progress.ChangeCommonPoints();
-
-			//ЯИ
+			YG2.SaveProgress();
+			//пїЅпїЅ
 #if UNITY_WEBGL && !UNITY_EDITOR
 			progress.SavePlayerInfo();
 #endif
 		}
 
 		/// <summary>
-		/// Показать окно выигрыша
+		/// РџСЂРё РІС‹РёРіСЂС‹С€Рµ СѓСЂРѕРІРЅСЏ
 		/// </summary>
 		private void ShowWinWindowFunc()
 		{
@@ -82,7 +87,7 @@ namespace Enemy.Abilities
 		}
 
 		/// <summary>
-		/// Остановить врагов и выключить звуки
+		/// РћСЃС‚Р°РЅРѕРІРёС‚СЊ РІСЃРµ Р·РІСѓРєРё
 		/// </summary>
 		private void StopAllActions()
 		{
@@ -91,6 +96,16 @@ namespace Enemy.Abilities
 			audioManager.StopSound(walkSound);
 			audioManager.StopSound(runSound);
 			audioManager.PlaySound(winSound);
+		}
+
+		private void OnDestroy()
+		{
+			if (enemyController != null)
+			{
+				enemyController.OnEnemyDeath -= ShowWinWindowFunc;
+				enemyController.OnEnemyDeath -= StopAllActions;
+				enemyController.OnEnemyDeath -= SaveData;
+			}
 		}
 	}
 }

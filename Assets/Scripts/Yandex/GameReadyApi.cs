@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+п»їusing System.Runtime.InteropServices;
 
 namespace Yandex
 {
@@ -18,23 +18,23 @@ namespace Yandex
 		{
 #if UNITY_WEBGL && !UNITY_EDITOR
 
-			OnLoadingAPIReady();
+			//OnLoadingAPIReady();
 #endif
 		}
 
-		// когда игра готова к взаимодействию
-		public void OnLoadingAPIReady()
-		{
-			LoadingAPIReady();
-		}
+		//// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		//public void OnLoadingAPIReady()
+		//{
+		//	LoadingAPIReady();
+		//}
 
-		// при начале игры
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		public void OnGameplayAPIStart()
 		{
 			GameplayAPIStart();
 		}
 
-		// меню/пауза/загрузка
+		// пїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		public void OnGameplayAPIStop()
 		{
 			GameplayAPIStop();

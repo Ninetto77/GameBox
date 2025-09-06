@@ -35,15 +35,15 @@ public class PausePanel : MonoCache
 	private void Start()
 	{
 #if UNITY_WEBGL && !UNITY_EDITOR
-		//ЯИ GameReadyAPI
+		//пїЅпїЅ GameReadyAPI
 		gameReadyApi.OnGameplayAPIStart();
 #endif
 		isPause = false;
 		curCanvas = GameCanvas;
 
-		//убрать курсор
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		SetCursorState(false);
-		//показать подсказку о туториале
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		ShowTutorialHint();
 	}
 	protected override void OnTick()
@@ -64,12 +64,12 @@ public class PausePanel : MonoCache
 	}
 
 	/// <summary>
-	/// продолжить игру
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	/// </summary>
 	public void ContinueGame()
 	{
 #if UNITY_WEBGL && !UNITY_EDITOR
-		//ЯИ GameReadyAPI
+		//пїЅпїЅ GameReadyAPI
 		gameReadyApi.OnGameplayAPIStart();
 #endif
 		Time.timeScale = 1.0f;
@@ -82,13 +82,13 @@ public class PausePanel : MonoCache
 	}
 
 	/// <summary>
-	/// поставить на паузу
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
 	/// <param name="curCanvas"></param>
 	private void PauseGame(Window curCanvas)
 	{
 #if UNITY_WEBGL && !UNITY_EDITOR
-		//ЯИ GameReadyAPI
+		//пїЅпїЅ GameReadyAPI
 		gameReadyApi.OnGameplayAPIStop();
 #endif
 		Time.timeScale = 0f;
@@ -116,7 +116,7 @@ public class PausePanel : MonoCache
 	}
 
 	/// <summary>
-	/// Установить курсор (не)видимым
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ)пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
 	/// <param name="state"></param>
 	private void SetCursorState(bool state)
@@ -135,7 +135,7 @@ public class PausePanel : MonoCache
     }
 
 	/// <summary>
-	/// показать подсказку о туториале
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
 	private void ShowTutorialHint()
 	{
@@ -145,7 +145,7 @@ public class PausePanel : MonoCache
 	public bool GetIsPause() => isPause;
 
 	/// <summary>
-	/// установить канвас
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
 	/// <param name="canvas"></param>
 	private void SetCanvas(Window canvas)

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using NTC.Pool;
+using UnityEngine;
+using static NTC.Pool.NightPool;
 
 namespace Attack.Projectile
 {
@@ -72,7 +74,9 @@ namespace Attack.Projectile
 			if (_spawnEffectOnDestroy == false)
 				return;
 
-			var effect = Instantiate(_effectOnDestroyPrefab, transform.position, _effectOnDestroyPrefab.transform.rotation);
+			var effect = 
+				 Spawn(_effectOnDestroyPrefab, transform.position, _effectOnDestroyPrefab.transform.rotation)
+				.DespawnOnComplete();
 
 			RaycastHit hit;
 			//Vector3 normal1 = new Vector3(0, 0, -90);
@@ -86,8 +90,6 @@ namespace Attack.Projectile
 				Debug.Log(normal);
 				//Debug.Log("effect" +  _effectOnDestroyPrefab.transform.rotation);
 			}
-
-			Destroy(effect.gameObject, _effectOnDestroyLifetime);
 		}
 
 		protected virtual void OnProjectileDispose() { }

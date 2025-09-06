@@ -669,9 +669,10 @@ GameObject:
   - component: {fileID: 7974624933419943125}
   - component: {fileID: 5660974003504378088}
   - component: {fileID: 4366641866610654155}
+  - component: {fileID: 3582700540788763832}
   m_Layer: 8
   m_Name: Spider
-  m_TagString: Untagged
+  m_TagString: Spider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -768,10 +769,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3144bd37f85e663469ad63936e5d87cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 6
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 25
+  radiusOfDetectAfterDamage: 45
   distanceToAtack: 3
   Damage: 3
   timeOfDeath: 3
@@ -942,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f85baf32ce94e14c9c126c9a5c6029a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeEmmisionSwitcher: 0
   enemyRenderer: {fileID: 7957207226700263755}
   effectSpeed: 0.3
 --- !u!114 &4366641866610654155
@@ -957,6 +961,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirePartical: {fileID: 3222065629593299749}
+--- !u!114 &3582700540788763832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051366457291765690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93914757ea1b6c64fa5737f6272def6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeEmmisionSwitcher: 0
+  enemyRenderer: {fileID: 7957207226700263755}
+  effectSpeed: 0.7
 --- !u!1 &3224015471688197022
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class ItemsController : MonoCache
 	private void Start()
 	{
 		inventory = InventoryController.instance;
+		UpdateBulletUI(ItemType.melle, false);
 	}
 
 	protected override void OnTick()

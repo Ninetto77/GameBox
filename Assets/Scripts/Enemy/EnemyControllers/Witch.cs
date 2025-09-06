@@ -89,7 +89,8 @@ namespace Enemy.States
 
 		private void OnDisable()
 		{
-			fXProvider.UnloadFX();
+			if (fXProvider != null)
+				fXProvider.UnloadFX();
 		}
 	}
 }

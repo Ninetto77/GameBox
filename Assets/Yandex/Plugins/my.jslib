@@ -1,6 +1,6 @@
 mergeInto(LibraryManager.library, {
 
-GetLang : function(){
+GetLanguage : function(){
 var lang = ysdk.environment.i18n.lang;
     var bufferSize = lengthBytesUTF8(lang) + 1;
     var buffer = _malloc(bufferSize);
@@ -29,6 +29,27 @@ LoadExtern: function(){
         myGameInstance.SendMessage('Progress', 'SetPlayerInfo' , myJSON);
     });
 },
+
+
+//Метрики
+//Игра загрузилась
+LoadedGame: function(){
+    ym(103646012,'reachGoal','LoadedGame');
+    console.log("LoadedGame");
+},
+
+//Первый уровень пройден
+Level1Win: function(){
+    ym(103646012,'reachGoal','Level1Win');
+    console.log("Level 1 Win");
+},
+
+//Первый уровень проигран
+Level1Loose: function(){
+    ym(103646012,'reachGoal','Level1Loose');
+    console.log("Level 1 Loose");
+},
+
 
 ////лидерборд
 // InitLeaderboard: function ()

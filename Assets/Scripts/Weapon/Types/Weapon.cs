@@ -8,6 +8,10 @@ using System;
 using UnityEngine.EventSystems;
 using WeaponObilities;
 
+using NTC.Pool;
+using static NTC.Pool.NightPool;
+
+
 namespace Attack.Raycast
 {
 	public partial class Weapon : AttackBehaviour
@@ -196,9 +200,12 @@ namespace Attack.Raycast
 			if (weapon.HitEffectPrefab != null)
 			{
 				var hitEffectRotation = Quaternion.LookRotation(hitInfo.normal);
-				var hitEffect = Instantiate(weapon.HitEffectPrefab, hitInfo.point, hitEffectRotation);
 
-				Destroy(hitEffect.gameObject, weapon.HitEffectDestroyDelay);
+				Debug.Log("hit in night pool " + weapon.HitEffectPrefab.gameObject.name);
+					 Spawn(weapon.HitEffectPrefab, hitInfo.point, hitEffectRotation)
+					.DespawnOnComplete();
+				Debug.Log("DespawnOnComplete() ");
+
 			}
 		}
 

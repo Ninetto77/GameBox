@@ -7,11 +7,10 @@ public class BootstrapInstaller : MonoInstaller
 {
 	public override void InstallBindings()
 	{
-		//Container.Bind<Language>().FromNew().AsSingle().NonLazy();
 		BindGameReadyApi();
 		BindProgress();
+		BindLanguage();
 	}
-
 	private void BindGameReadyApi()
 	{
 		Container.Bind<GameReadyApi>().FromNew().AsSingle().NonLazy();
@@ -20,5 +19,9 @@ public class BootstrapInstaller : MonoInstaller
 	{
 		// FromNew() - из конструктора
 		Container.Bind<Progress>().FromNew().AsSingle().NonLazy();
+	}
+	private void BindLanguage()
+	{
+		Container.Bind<Language>().FromNew().AsSingle().NonLazy();
 	}
 }

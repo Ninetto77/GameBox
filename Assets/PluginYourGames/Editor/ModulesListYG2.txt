@@ -1,0 +1,4 @@
+Authorization v1.022
+Metrica v1.01
+RedefinePlayerPrefs v1.001
+Storage v1.02

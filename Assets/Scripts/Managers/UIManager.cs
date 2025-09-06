@@ -60,8 +60,8 @@ public class UIManager : MonoBehaviour
 
 	private bool isDead;
 
-	private const string candyTextCount = "Количество собранных конфет: ";
-	private const string pointTextCount = "Количество очков: ";
+	private const string candyTextCount = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: ";
+	private const string pointTextCount = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: ";
 
 	private void Start()
 	{
@@ -102,10 +102,11 @@ public class UIManager : MonoBehaviour
 	private IEnumerator ShowDeadWindowForTime()
 	{
 #if UNITY_WEBGL && !UNITY_EDITOR
-		//ЯИ GameReadyAPI
+		//пїЅпїЅ GameReadyAPI
 		gameReadyApi.OnGameplayAPIStop();
 #endif
 		isDead = true;
+		Metrics.OnLevel1Loose();
 			
 		AnimationShortCuts.FadeAnimation(GameCanvas, FadeOutGameCanvas);
 		GameCanvas.blocksRaycasts = false;
@@ -130,6 +131,7 @@ public class UIManager : MonoBehaviour
 
 		yield return new WaitForSeconds(0.5f);
 
+
 		//Time.timeScale = 0f;
 	}
 	#endregion
@@ -143,10 +145,11 @@ public class UIManager : MonoBehaviour
 	private IEnumerator ShowWinWindowForTime()
 	{
 #if UNITY_WEBGL && !UNITY_EDITOR
-		//ЯИ GameReadyAPI
+		//пїЅпїЅ GameReadyAPI
 		gameReadyApi.OnGameplayAPIStop();
 #endif
 		isDead = true;
+		Metrics.OnLevel1Win();
 		CandyText.text = candyTextCount + shop.countOfCandy;
 		PointText.text = pointTextCount + shop.curPoints.Value;
 
@@ -182,7 +185,7 @@ public class UIManager : MonoBehaviour
 
 	#endregion
 
-	#region Задания квеста
+	#region РџРѕРєР°Р·Р°С‚СЊ Р·Р°РґР°РЅРёРµ
 	public void SetTaskUI(string task)
 	{
 		TaskText.text = task;

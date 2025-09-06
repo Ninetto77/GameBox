@@ -5,6 +5,7 @@ namespace Enemy.Abilities
 {
 	public class DisappearAbility : MonoCache
 	{
+		[SerializeField] private bool changeEmmisionSwitcher = false;
 		[SerializeField] Renderer enemyRenderer;
 		[SerializeField] private float effectSpeed;
 
@@ -15,9 +16,11 @@ namespace Enemy.Abilities
 		{
 			enemyRenderer.enabled = true;
 
-			enemyRenderer.material.SetFloat("_EmissionSwitcher", 1);
+			if (changeEmmisionSwitcher)
+				enemyRenderer.material.SetFloat("_EmissionSwitcher", 1);
 			enemyRenderer.material.SetFloat("_Dissolve", 1);
 
+			currentValue = enemyRenderer.material.GetFloat("_Dissolve");
 			_activateSwitcher = true;
 		}
 

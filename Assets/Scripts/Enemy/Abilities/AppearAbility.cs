@@ -1,11 +1,11 @@
 using Cache;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 namespace Enemy.Abilities
 {
-    public class AppearAbility : MonoCache
+	public class AppearAbility : MonoCache
 	{
+		[SerializeField] private bool changeEmmisionSwitcher = false;
 		[SerializeField] Renderer enemyRenderer;
 		[SerializeField] private float effectSpeed;
 
@@ -16,9 +16,11 @@ namespace Enemy.Abilities
 		{
 			enemyRenderer.enabled = true;
 
-			enemyRenderer.material.SetFloat("_EmissionSwitcher", 1);
+			if (changeEmmisionSwitcher) 
+				enemyRenderer.material.SetFloat("_EmissionSwitcher", 0);
 			enemyRenderer.material.SetFloat("_Dissolve", 0);
 
+			currentValue = enemyRenderer.material.GetFloat("_Dissolve");
 			_activateSwitcher = true;
 		}
 
@@ -35,7 +37,6 @@ namespace Enemy.Abilities
 				currentValue += effectSpeed * Time.deltaTime;
 			}
 			enemyRenderer.material.SetFloat("_Dissolve", currentValue);
-
 
 			if (currentValue > 1)
 				_activateSwitcher = false;

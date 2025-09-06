@@ -1733,10 +1733,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f83c1838928ada4f86ee006031cfb97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 5
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
   radiusOfDetect: 15
+  radiusOfDetectAfterDamage: 45
   distanceToAtack: 15.5
   Damage: 30
   timeOfDeath: 3

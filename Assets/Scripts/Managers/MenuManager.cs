@@ -5,6 +5,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Yandex;
 using Zenject;
 
 public class MenuManager : MonoBehaviour
@@ -38,13 +39,13 @@ public class MenuManager : MonoBehaviour
 		StartMainMenu();
 		ChangeLevelButtons();
 #if UNITY_WEBGL && !UNITY_EDITOR
-		//ЯИ
+		//пїЅпїЅ
 		progress.LoadPlayerInfo();
 #endif
 	}
 
 	/// <summary>
-	/// показать главное меню
+	/// РџРѕРєР°Р·Р°С‚СЊ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ
 	/// </summary>
 	private void StartMainMenu()
 	{
@@ -52,6 +53,8 @@ public class MenuManager : MonoBehaviour
 		AnimationShortCuts.FadeAnimation(SettingsCanvas, PresetFadeOut);
 		AnimationShortCuts.FadeAnimation(LevelCanvas, PresetFadeOut);
 		curCanvas = MainMenuCanvas;
+
+		Metrics.OnLoadedGame();
 	}
 
 	public void SetMainMenu()
@@ -83,7 +86,7 @@ public class MenuManager : MonoBehaviour
 
 
 	/// <summary>
-	/// установить описание уровней
+	/// РџРѕРєР°Р·Р°С‚СЊ РѕРїРёСЃР°РЅРёРµ СѓСЂРѕРІРЅСЏ
 	/// </summary>
 	/// <param name="numberLevel"></param>
 	public void SetLevelDescription(int numberLevel)
@@ -101,7 +104,7 @@ public class MenuManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// изменить количество активных кнопок уровней
+	/// РџРѕРјРµРЅСЏС‚СЊ РІРёРґРёРјРѕСЃС‚СЊ РєРЅРѕРїРѕРє СЃ СѓСЂРѕРІРЅСЏРјРё
 	/// </summary>
 	private void ChangeLevelButtons()
 	{
@@ -126,9 +129,9 @@ public class MenuManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// установить активную кнопки уровня
+	/// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р°РєС‚РёРІРЅРѕСЃС‚СЊ РєРЅРѕРїРѕРє СЃ СѓСЂРѕРІРЅСЏРјРё
 	/// </summary>
-	/// <param name="count"></param>
+	/// <param name="count">РљРѕР»РёС‡РµСЃС‚РІРѕ Р°РєС‚РёРІРЅС‹С… РєРЅРѕРїРѕРє</param>
 	private void SetInteractbleLevelButtons(int count)
 	{
 		for (int i = 0; i < count; i++)

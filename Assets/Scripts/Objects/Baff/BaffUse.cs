@@ -4,6 +4,9 @@ using Cache;
 using Points;
 using Sounds;
 
+using NTC.Pool;
+using static NTC.Pool.NightPool;
+
 public class BaffUse : MonoCache
 {
 	public BaffItem item;
@@ -41,8 +44,8 @@ public class BaffUse : MonoCache
 
 		if (particleOnDestroy != null)
 		{
-			var hitEffect = Instantiate(particleOnDestroy, transform.position, Quaternion.identity);
-			Destroy(hitEffect.gameObject, 0.5f);
+			Spawn(particleOnDestroy, transform.position, Quaternion.identity)
+			.DespawnOnComplete();
 		}
 		Destroy(this.gameObject, 0.5f);
 	}
